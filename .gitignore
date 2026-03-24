@@ -1,0 +1,30 @@
+# Dependencies
+node_modules/
+
+# Generated output
+dist/
+*.backup
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Env / Secrets
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# Build cache
+.turbo/
+.cache/

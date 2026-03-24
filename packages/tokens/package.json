@@ -1,0 +1,23 @@
+{
+  "name": "@ckw-elements/tokens",
+  "version": "0.0.1",
+  "description": "CKW Elements Design Tokens — generated from Figma Variables",
+  "type": "module",
+  "scripts": {
+    "tokens:transform": "node transform-tokens.mjs",
+    "tokens:build": "node build-tokens.mjs",
+    "tokens:sync": "node transform-tokens.mjs && node build-tokens.mjs",
+    "build": "node build-tokens.mjs"
+  },
+  "files": [
+    "dist/"
+  ],
+  "exports": {
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.js": "./dist/tokens.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "style-dictionary": "^4.3.0"
+  }
+}

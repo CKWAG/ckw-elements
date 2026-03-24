@@ -1,0 +1,12 @@
+{
+  "name": "@ckw-elements/icons",
+  "version": "0.0.1",
+  "description": "CKW Elements Icon Library",
+  "type": "module",
+  "scripts": {
+    "build": "echo 'build step — will be configured'"
+  },
+  "files": [
+    "dist/"
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "ckw-elements",
+  "private": true,
+  "version": "0.0.0",
+  "description": "CKW Elements Design System — Monorepo",
+  "scripts": {
+    "build": "pnpm -r run build",
+    "lint": "pnpm -r run lint",
+    "tokens:sync": "pnpm --filter @ckw-elements/tokens run tokens:sync"
+  },
+  "engines": {
+    "node": ">=20",
+    "pnpm": ">=10"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "style-dictionary",
+      "@bundled-es-modules/glob"
+    ]
+  }
+}

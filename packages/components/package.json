@@ -1,0 +1,27 @@
+{
+  "name": "@ckw-elements/components",
+  "version": "0.0.1",
+  "description": "CKW Elements UI Components",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "build": "echo 'build step — will be configured with bundler'",
+    "lint": "echo 'lint step — will be configured with eslint'"
+  },
+  "files": [
+    "dist/"
+  ],
+  "dependencies": {
+    "@ckw-elements/tokens": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.9.0"
+  }
+}
