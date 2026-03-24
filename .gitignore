@@ -33,3 +33,6 @@ storybook-static/
 
 # TypeScript build info
 *.tsbuildinfo
+
+# Token drop folder (JSON exports from Tokens Studio)
+token-drop/*.json
