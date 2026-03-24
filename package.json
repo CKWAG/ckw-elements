@@ -2,6 +2,8 @@
   "name": "ckw-elements",
   "private": true,
   "version": "0.0.0",
+  "type": "module",
+  "license": "UNLICENSED",
   "description": "CKW Elements Design System — Monorepo",
   "scripts": {
     "build": "pnpm -r run build",

@@ -173,16 +173,21 @@ function parseTypographyName(name) {
 /**
  * Set a deeply nested value on an object using a dot-separated path.
  */
+const DANGEROUS_KEYS = new Set(['__proto__', 'constructor', 'prototype']);
+
 function setNested(obj, path, value) {
   const parts = path.split('.');
   let current = obj;
   for (let i = 0; i < parts.length - 1; i++) {
+    if (DANGEROUS_KEYS.has(parts[i])) return;
     if (!(parts[i] in current)) {
       current[parts[i]] = {};
     }
     current = current[parts[i]];
   }
-  current[parts[parts.length - 1]] = value;
+  const lastKey = parts[parts.length - 1];
+  if (DANGEROUS_KEYS.has(lastKey)) return;
+  current[lastKey] = value;
 }
 
 // ---------------------------------------------------------------------------
@@ -196,7 +201,13 @@ function transform() {
     process.exit(1);
   }
 
-  const raw = JSON.parse(readFileSync(RAW_FILE, 'utf-8'));
+  let raw;
+  try {
+    raw = JSON.parse(readFileSync(RAW_FILE, 'utf-8'));
+  } catch (err) {
+    console.error(`  Error: Failed to parse tokens-raw.json: ${err.message}`);
+    process.exit(1);
+  }
   const output = {};
 
   // Track counts for summary
@@ -394,8 +405,12 @@ function transform() {
   // Check if existing tokens.json exists for diff
   let diff = null;
   if (existsSync(OUTPUT_FILE)) {
-    const existing = JSON.parse(readFileSync(OUTPUT_FILE, 'utf-8'));
-    diff = getSimpleDiff(existing, output);
+    try {
+      const existing = JSON.parse(readFileSync(OUTPUT_FILE, 'utf-8'));
+      diff = getSimpleDiff(existing, output);
+    } catch (err) {
+      console.warn(`  Warning: could not read existing ${OUTPUT_FILE} for diff: ${err.message}`);
+    }
   }
 
   writeFileSync(OUTPUT_FILE, JSON.stringify(output, null, 2) + '\n');
@@ -423,8 +438,8 @@ function transform() {
     if (diff.added.length === 0 && diff.changed.length === 0 && diff.removed.length === 0) {
       console.log('  No changes to tokens.json.\n');
     } else {
-      const total = diff.added.length + diff.changed.length + diff.removed.length;
-      console.log(`  ${total} change(s) vs previous tokens.json:\n`);
+      const changeCount = diff.added.length + diff.changed.length + diff.removed.length;
+      console.log(`  ${changeCount} change(s) vs previous tokens.json:\n`);
       for (const key of diff.added) {
         console.log(`    + ${key} (new)`);
       }

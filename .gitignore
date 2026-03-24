@@ -26,5 +26,10 @@ npm-debug.log*
 pnpm-debug.log*
 
 # Build cache
-.turbo/
 .cache/
+
+# Storybook build output
+storybook-static/
+
+# TypeScript build info
+*.tsbuildinfo

@@ -1,0 +1,94 @@
+import { Meta } from '@storybook/blocks';
+import { ColorGrid } from '../components/ColorGrid';
+import { TokenTable, TokenTableRow, TokenTableCell } from '../components/TokenTable';
+import { primitiveColors, semanticColors, gradientToken } from '../data/tokens';
+
+<Meta title="Foundations/Colors" />
+
+<div className="sb-unstyled">
+
+<div className="docs-page-title">Colors</div>
+<div className="docs-description">
+  The CKW color system is built on two layers: <strong>Primitive Tokens</strong> (raw color values)
+  and <strong>Semantic Tokens</strong> (purpose-driven aliases). Components always use Semantic Tokens,
+  never Primitives directly.
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Primitive Colors</div>
+  <div className="docs-description">
+    8 color groups with an 11-step scale each (50–900), plus 2 neutrals. These are the raw palette
+    values defined in Figma. The brand color is <strong>Green</strong>.
+  </div>
+
+  {primitiveColors.map((group) => (
+    <ColorGrid key={group.name} group={group} />
+  ))}
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Gradient</div>
+  <div className="docs-description">
+    The brand gradient used for decorative elements.
+  </div>
+  <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '24px' }}>
+    <div
+      className="gradient-preview"
+      style={{ background: `var(${gradientToken.cssVar})` }}
+    />
+    <div>
+      <span className="token-badge">{gradientToken.cssVar}</span>
+      <div className="cell-value" style={{ marginTop: '8px' }}>
+        {gradientToken.value}
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Semantic Colors</div>
+  <div className="docs-description">
+    Semantic tokens reference Primitive tokens via <code>var()</code>. They express <em>purpose</em>,
+    not a specific hue. When dark mode is introduced, only these mappings change — component code stays the same.
+  </div>
+
+  {semanticColors.map((category) => (
+    <div key={category.category} className="docs-subsection">
+      <div className="docs-subsection-header">
+        <span className="specs-title-xl">{category.category}</span>
+        <span className="docs-tag">{category.tokens.length} tokens</span>
+      </div>
+      <TokenTable columns={[
+        { header: 'Preview', width: '56px' },
+        { header: 'Token Name', width: '240px' },
+        { header: 'CSS Variable', width: '260px' },
+        { header: 'References' },
+      ]}>
+        {category.tokens.map((token) => (
+          <TokenTableRow key={token.cssVar}>
+            <TokenTableCell>
+              <div
+                style={{
+                  width: '32px',
+                  height: '32px',
+                  borderRadius: '6px',
+                  backgroundColor: `var(${token.cssVar})`,
+                  border: '1px solid var(--specs-200)',
+                }}
+              />
+            </TokenTableCell>
+            <TokenTableCell>
+              <span className="token-badge">{token.name}</span>
+            </TokenTableCell>
+            <TokenTableCell mono>{token.cssVar}</TokenTableCell>
+            <TokenTableCell>
+              <span className="token-badge">{token.reference}</span>
+            </TokenTableCell>
+          </TokenTableRow>
+        ))}
+      </TokenTable>
+    </div>
+  ))}
+</div>
+
+</div>

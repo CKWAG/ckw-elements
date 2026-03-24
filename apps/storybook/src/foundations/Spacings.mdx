@@ -1,0 +1,47 @@
+import { Meta } from '@storybook/blocks';
+import { SpacingBar } from '../components/SpacingBar';
+import { spacingTokens } from '../data/tokens';
+
+<Meta title="Foundations/Spacings" />
+
+<div className="sb-unstyled">
+
+<div className="docs-page-title">Spacings</div>
+<div className="docs-description">
+  A consistent spacing scale with 15 steps, from <code>none</code> (0px) to <code>8xl</code> (120px).
+  Use these tokens for margins, padding, and gaps to maintain visual rhythm across the UI.
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Tokens</div>
+
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th style={{ width: '140px' }}>Token Name</th>
+        <th style={{ width: '80px' }}>Rem</th>
+        <th style={{ width: '80px' }}>Pixel</th>
+        <th>Preview</th>
+      </tr>
+    </thead>
+    <tbody>
+      {spacingTokens.map((token) => (
+        <SpacingBar key={token.cssVar} token={token} />
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Usage</div>
+
+  ```css
+  .card {
+    padding: var(--spacing-md);       /* 16px */
+    gap: var(--spacing-sm);           /* 12px */
+    margin-bottom: var(--spacing-xl); /* 24px */
+  }
+  ```
+</div>
+
+</div>

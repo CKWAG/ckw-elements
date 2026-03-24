@@ -5,7 +5,7 @@
  *
  * Reads tokens.json (DTCG format) and generates:
  *   dist/tokens.css  — CSS Custom Properties (all layers) + Typography Utility Classes
- *   dist/tokens.js   — JavaScript named exports (primitive values only)
+ *   dist/tokens.js   — JavaScript named exports (all tokens: primitives, semantics, typography)
  *
  * Token architecture (matches Figma Variables):
  *   - Layer 1: Primitive tokens — raw values, never change per theme
@@ -25,7 +25,6 @@
  * Components must NEVER use primitive color tokens directly — only semantic.
  */
 
-import StyleDictionary from 'style-dictionary';
 import { usesReferences, getReferences } from 'style-dictionary/utils';
 
 // ---------------------------------------------------------------------------
@@ -87,6 +86,43 @@ const fontWeightTransform = {
 };
 
 // ---------------------------------------------------------------------------
+// Shared helper: categorize tokens from dictionary into named groups.
+// Used by both CSS and JS format functions.
+// ---------------------------------------------------------------------------
+function categorizeTokens(allTokens) {
+  const match = (layer, sub) => allTokens.filter(
+    (t) => t.path[0] === layer && t.path[1] === sub,
+  );
+  return {
+    primitiveColors: match('primitive', 'color'),
+    primitiveSpacing: match('primitive', 'spacing'),
+    primitiveBorderRadius: match('primitive', 'border-radius'),
+    primitiveBorderWeight: match('primitive', 'border-weight'),
+    primitiveShadow: match('primitive', 'shadow'),
+    primitiveGradient: match('primitive', 'gradient'),
+    primitiveFontFamily: match('primitive', 'font-family'),
+    semanticColors: match('semantic', 'color'),
+    typographyDesktop: match('typography', 'desktop'),
+    typographyMobile: match('typography', 'mobile'),
+  };
+}
+
+/**
+ * Resolve a semantic token's original value to a var(--name) reference.
+ * Falls back to the resolved $value if no reference is found.
+ */
+function resolveSemanticRef(token, unfilteredTokens) {
+  const origValue = token.original.$value;
+  if (origValue && typeof origValue === 'string' && usesReferences(origValue)) {
+    const refs = getReferences(origValue, unfilteredTokens);
+    if (refs.length > 0) {
+      return `var(--${refs[0].name})`;
+    }
+  }
+  return token.$value;
+}
+
+// ---------------------------------------------------------------------------
 // Custom format: ckw/tokens-css
 //
 // Generates a single CSS file with structured blocks:
@@ -113,52 +149,13 @@ function formatTokensCSS({ dictionary }) {
     '',
   ].join('\n');
 
-  // Categorise tokens by their layer
-  const primitiveColors = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'color',
-  );
-  const primitiveSpacing = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'spacing',
-  );
-  const primitiveBorderRadius = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'border-radius',
-  );
-  const primitiveBorderWeight = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'border-weight',
-  );
-  const primitiveShadow = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'shadow',
-  );
-  const primitiveGradient = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'gradient',
-  );
-  const primitiveFontFamily = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'font-family',
-  );
-  const semanticColors = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'semantic' && t.path[1] === 'color',
-  );
-  const typographyDesktop = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'typography' && t.path[1] === 'desktop',
-  );
-  const typographyMobile = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'typography' && t.path[1] === 'mobile',
-  );
+  const {
+    primitiveColors, primitiveSpacing, primitiveBorderRadius,
+    primitiveBorderWeight, primitiveShadow, primitiveGradient,
+    primitiveFontFamily, semanticColors, typographyDesktop, typographyMobile,
+  } = categorizeTokens(dictionary.allTokens);
 
-  /**
-   * Resolve a semantic token's original value to a var(--name) reference.
-   * Falls back to the resolved $value if no reference is found.
-   */
-  const formatValue = (token) => {
-    const origValue = token.original.$value;
-    if (origValue && typeof origValue === 'string' && usesReferences(origValue)) {
-      const refs = getReferences(origValue, dictionary.unfilteredTokens);
-      if (refs.length > 0) {
-        return `var(--${refs[0].name})`;
-      }
-    }
-    return token.$value;
-  };
+  const formatValue = (token) => resolveSemanticRef(token, dictionary.unfilteredTokens);
 
   let css = header;
 
@@ -320,70 +317,91 @@ function formatTokensCSS({ dictionary }) {
 //   - Default export as object with kebab-case keys
 // ---------------------------------------------------------------------------
 function formatTokensJS({ dictionary }) {
-  const primitiveColors = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'color',
-  );
-  const primitiveSpacing = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'spacing',
-  );
-  const primitiveBorderRadius = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'border-radius',
-  );
-  const primitiveBorderWeight = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'border-weight',
-  );
-  const primitiveShadow = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'shadow',
-  );
-  const primitiveGradient = dictionary.allTokens.filter(
-    (t) => t.path[0] === 'primitive' && t.path[1] === 'gradient',
-  );
+  const {
+    primitiveColors, primitiveSpacing, primitiveBorderRadius,
+    primitiveBorderWeight, primitiveShadow, primitiveGradient,
+    primitiveFontFamily, semanticColors, typographyDesktop, typographyMobile,
+  } = categorizeTokens(dictionary.allTokens);
+
+  const formatSemanticValue = (token) => resolveSemanticRef(token, dictionary.unfilteredTokens);
 
   let js = '/**\n * CKW Elements Design Tokens\n * Generated by Style Dictionary — DO NOT EDIT MANUALLY\n */\n\n';
 
   const toCamel = (name) => name.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());
 
-  // Named color exports (camelCase)
+  // Helper: safely quote a value for JS output (handles quotes in values)
+  const jsVal = (v) => JSON.stringify(v);
+
+  // --- Primitive Colors ---
   js += '// Primitive Colors\n';
   for (const t of primitiveColors) {
-    js += `export const ${toCamel(t.name)} = '${t.$value}';\n`;
+    js += `export const ${toCamel(t.name)} = ${jsVal(t.$value)};\n`;
   }
 
-  // Named spacing exports
+  // --- Primitive Spacing ---
   js += '\n// Spacing\n';
   for (const t of primitiveSpacing) {
-    js += `export const ${toCamel(t.name)} = '${t.$value}';\n`;
+    js += `export const ${toCamel(t.name)} = ${jsVal(t.$value)};\n`;
   }
 
-  // Named border exports
+  // --- Primitive Border Radius ---
   js += '\n// Border Radius\n';
   for (const t of primitiveBorderRadius) {
-    js += `export const ${toCamel(t.name)} = '${t.$value}';\n`;
+    js += `export const ${toCamel(t.name)} = ${jsVal(t.$value)};\n`;
   }
 
+  // --- Primitive Border Weight ---
   js += '\n// Border Weight\n';
   for (const t of primitiveBorderWeight) {
-    js += `export const ${toCamel(t.name)} = '${t.$value}';\n`;
+    js += `export const ${toCamel(t.name)} = ${jsVal(t.$value)};\n`;
   }
 
-  // Named shadow exports
+  // --- Primitive Shadows ---
   if (primitiveShadow.length > 0) {
     js += '\n// Shadows\n';
     for (const t of primitiveShadow) {
-      js += `export const ${toCamel(t.name)} = '${t.$value}';\n`;
+      js += `export const ${toCamel(t.name)} = ${jsVal(t.$value)};\n`;
     }
   }
 
-  // Named gradient exports
+  // --- Primitive Gradient ---
   if (primitiveGradient.length > 0) {
     js += '\n// Gradient\n';
     for (const t of primitiveGradient) {
-      js += `export const ${toCamel(t.name)} = '${t.$value}';\n`;
+      js += `export const ${toCamel(t.name)} = ${jsVal(t.$value)};\n`;
     }
   }
 
-  // Default export with all primitives
+  // --- Primitive Font Family ---
+  if (primitiveFontFamily.length > 0) {
+    js += '\n// Font Family\n';
+    for (const t of primitiveFontFamily) {
+      js += `export const ${toCamel(t.name)} = ${jsVal(t.$value)};\n`;
+    }
+  }
+
+  // --- Semantic Colors ---
+  js += '\n// Semantic Colors\n';
+  for (const t of semanticColors) {
+    js += `export const ${toCamel(t.name)} = ${jsVal(formatSemanticValue(t))};\n`;
+  }
+
+  // --- Typography Desktop ---
+  js += '\n// Typography — Desktop\n';
+  for (const t of typographyDesktop) {
+    js += `export const ${toCamel('desktop-' + t.name)} = ${jsVal(t.$value)};\n`;
+  }
+
+  // --- Typography Mobile ---
+  js += '\n// Typography — Mobile\n';
+  for (const t of typographyMobile) {
+    js += `export const ${toCamel('mobile-' + t.name)} = ${jsVal(t.$value)};\n`;
+  }
+
+  // --- Default export: flat object with all tokens ---
   js += '\nexport default {\n';
+
+  // Primitives
   const allPrimitives = [
     ...primitiveColors,
     ...primitiveSpacing,
@@ -391,10 +409,27 @@ function formatTokensJS({ dictionary }) {
     ...primitiveBorderWeight,
     ...primitiveShadow,
     ...primitiveGradient,
+    ...primitiveFontFamily,
   ];
   for (const t of allPrimitives) {
-    js += `  '${t.name}': '${t.$value}',\n`;
+    js += `  ${jsVal(t.name)}: ${jsVal(t.$value)},\n`;
   }
+
+  // Semantics
+  for (const t of semanticColors) {
+    js += `  ${jsVal(t.name)}: ${jsVal(formatSemanticValue(t))},\n`;
+  }
+
+  // Typography Desktop
+  for (const t of typographyDesktop) {
+    js += `  ${jsVal('desktop-' + t.name)}: ${jsVal(t.$value)},\n`;
+  }
+
+  // Typography Mobile
+  for (const t of typographyMobile) {
+    js += `  ${jsVal('mobile-' + t.name)}: ${jsVal(t.$value)},\n`;
+  }
+
   js += '};\n';
 
   return js;
@@ -416,7 +451,7 @@ export default {
     },
   },
   log: {
-    verbosity: 'silent',
+    verbosity: 'default',
   },
   platforms: {
     css: {

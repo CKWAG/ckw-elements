@@ -1,0 +1,62 @@
+import { Meta } from '@storybook/blocks';
+import { ShadowCard } from '../components/ShadowCard';
+import { TokenTable, TokenTableRow, TokenTableCell } from '../components/TokenTable';
+import { shadowTokens } from '../data/tokens';
+
+<Meta title="Foundations/Shadows" />
+
+<div className="sb-unstyled">
+
+<div className="docs-page-title">Shadows</div>
+<div className="docs-description">
+  Three elevation levels for cards, modals, and other raised surfaces.
+  Each shadow uses multi-layer <code>box-shadow</code> values for realistic depth.
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Shadow Scale</div>
+
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '32px', padding: '32px 0' }}>
+    {shadowTokens.map((token) => (
+      <ShadowCard key={token.cssVar} token={token} />
+    ))}
+  </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Token Reference</div>
+
+  <TokenTable columns={[
+    { header: 'Token Name', width: '120px' },
+    { header: 'CSS Variable', width: '180px' },
+    { header: 'Value' },
+  ]}>
+    {shadowTokens.map((token) => (
+      <TokenTableRow key={token.cssVar}>
+        <TokenTableCell>
+          <span className="token-badge">{token.name}</span>
+        </TokenTableCell>
+        <TokenTableCell mono>{token.cssVar}</TokenTableCell>
+        <TokenTableCell>
+          <span className="cell-value">{token.value}</span>
+        </TokenTableCell>
+      </TokenTableRow>
+    ))}
+  </TokenTable>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Usage</div>
+
+  ```css
+  .card {
+    box-shadow: var(--shadow-sm);   /* Subtle elevation */
+  }
+
+  .modal {
+    box-shadow: var(--shadow-lg);   /* High elevation */
+  }
+  ```
+</div>
+
+</div>

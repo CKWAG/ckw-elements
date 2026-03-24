@@ -1,0 +1,89 @@
+import { Meta } from '@storybook/blocks';
+import { BorderRadiusPreview, BorderWeightPreview } from '../components/BorderPreview';
+import { TokenTable, TokenTableRow, TokenTableCell } from '../components/TokenTable';
+import { borderRadiusTokens, borderWeightTokens } from '../data/tokens';
+
+<Meta title="Foundations/Borders" />
+
+<div className="sb-unstyled">
+
+<div className="docs-page-title">Borders</div>
+<div className="docs-description">
+  Border tokens cover two dimensions: <strong>radius</strong> (corner rounding) and
+  <strong>weight</strong> (line thickness). Both are defined as Primitive tokens in the design system.
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Border Radius</div>
+  <div className="docs-description">
+    7 radius steps from sharp corners (<code>none</code>) to fully rounded (<code>full</code>).
+  </div>
+
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', padding: '16px 0 32px' }}>
+    {borderRadiusTokens.map((token) => (
+      <BorderRadiusPreview key={token.cssVar} token={token} />
+    ))}
+  </div>
+
+  <TokenTable columns={[
+    { header: 'Token Name', width: '120px' },
+    { header: 'CSS Variable', width: '220px' },
+    { header: 'Value' },
+  ]}>
+    {borderRadiusTokens.map((token) => (
+      <TokenTableRow key={token.cssVar}>
+        <TokenTableCell>
+          <span className="token-badge">{token.name}</span>
+        </TokenTableCell>
+        <TokenTableCell mono>{token.cssVar}</TokenTableCell>
+        <TokenTableCell mono>{token.value}</TokenTableCell>
+      </TokenTableRow>
+    ))}
+  </TokenTable>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Border Weight</div>
+  <div className="docs-description">
+    4 weight steps for border thickness, from <code>none</code> (0px) to <code>lg</code> (3px).
+  </div>
+
+  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px', padding: '16px 0 32px' }}>
+    {borderWeightTokens.map((token) => (
+      <BorderWeightPreview key={token.cssVar} token={token} />
+    ))}
+  </div>
+
+  <TokenTable columns={[
+    { header: 'Token Name', width: '120px' },
+    { header: 'CSS Variable', width: '220px' },
+    { header: 'Value' },
+  ]}>
+    {borderWeightTokens.map((token) => (
+      <TokenTableRow key={token.cssVar}>
+        <TokenTableCell>
+          <span className="token-badge">{token.name}</span>
+        </TokenTableCell>
+        <TokenTableCell mono>{token.cssVar}</TokenTableCell>
+        <TokenTableCell mono>{token.value}</TokenTableCell>
+      </TokenTableRow>
+    ))}
+  </TokenTable>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Usage</div>
+
+  ```css
+  .card {
+    border-radius: var(--border-radius-sm);  /* 8px */
+    border: var(--border-weight-sm) solid var(--border-medium);
+  }
+
+  .pill {
+    border-radius: var(--border-radius-full); /* Fully rounded */
+  }
+  ```
+</div>
+
+</div>

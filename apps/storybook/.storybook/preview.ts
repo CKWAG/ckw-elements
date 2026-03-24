@@ -1,7 +1,26 @@
+import type { Preview } from '@storybook/react';
 import ckwTheme from './theme';
 
-export const parameters = {
-  docs: {
-    theme: ckwTheme,
+// CKW design tokens (consumed by token swatches / samples)
+import '@ckw-elements/tokens/tokens.css';
+
+// Documentation chrome styles (specs-tokens, Roboto, JetBrains Mono, Gotham @font-face)
+import '../src/docs.css';
+
+const preview: Preview = {
+  parameters: {
+    docs: {
+      theme: ckwTheme,
+    },
+    options: {
+      storySort: {
+        order: [
+          'Foundations',
+          ['Typography', 'Colors', 'Spacings', 'Borders', 'Shadows'],
+        ],
+      },
+    },
   },
 };
+
+export default preview;

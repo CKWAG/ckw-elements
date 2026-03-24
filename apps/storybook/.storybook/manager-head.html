@@ -1,0 +1,38 @@
+<style>
+  /* Replace default doc icons with emojis in Foundations sidebar.
+     DOM structure: div.sidebar-item > a > div(icon-wrapper) + text
+     The icon wrapper is the first div child of the link.
+     FRAGILE: depends on Storybook 8.6 internal DOM — re-check on upgrades. */
+
+  /* Hide the icon-wrapper div (contains the SVG) */
+  [data-item-id*="foundations-"].sidebar-item a > div:first-child {
+    display: none !important;
+  }
+
+  /* Add emoji via ::before on the link element */
+  [data-item-id="foundations-typography--docs"].sidebar-item a::before {
+    content: "🔠";
+    margin-right: 6px;
+    font-style: normal;
+  }
+  [data-item-id="foundations-colors--docs"].sidebar-item a::before {
+    content: "🎨";
+    margin-right: 6px;
+    font-style: normal;
+  }
+  [data-item-id="foundations-spacings--docs"].sidebar-item a::before {
+    content: "📏";
+    margin-right: 6px;
+    font-style: normal;
+  }
+  [data-item-id="foundations-borders--docs"].sidebar-item a::before {
+    content: "🔲";
+    margin-right: 6px;
+    font-style: normal;
+  }
+  [data-item-id="foundations-shadows--docs"].sidebar-item a::before {
+    content: "☁️";
+    margin-right: 6px;
+    font-style: normal;
+  }
+</style>

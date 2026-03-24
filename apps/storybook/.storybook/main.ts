@@ -7,12 +7,9 @@ const config: StorybookConfig = {
   ],
   addons: [
     '@storybook/addon-essentials',
-    '@storybook/addon-docs',
   ],
-  framework: {
-    name: '@storybook/react-vite',
-    options: {},
-  },
+  framework: '@storybook/react-vite',
+  staticDirs: ['../public'],
 };
 
 export default config;
