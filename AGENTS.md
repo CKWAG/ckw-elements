@@ -27,9 +27,13 @@ ckw-elements/                       # pnpm workspaces root ("type": "module")
 ├── packages/components/            # @ckw-elements/components (scaffold)
 ├── packages/icons/                 # @ckw-elements/icons (scaffold)
 ├── apps/storybook/                 # @ckw-elements/storybook (ACTIVE)
+├── token-drop/                     # Drop folder for Tokens Studio JSON exports
 ├── pnpm-workspace.yaml             # packages: ['packages/*', 'apps/*']
-└── ARCHITECTURE.md                 # Full architecture docs (870 lines)
+├── ARCHITECTURE.md                 # Full architecture docs (870 lines)
+└── PIPELINE.md                     # German non-technical pipeline docs (~170 lines)
 ```
+
+**Git remote:** `origin` → `https://github.com/CKWAG/ckw-elements-design.git`
 
 ---
 
