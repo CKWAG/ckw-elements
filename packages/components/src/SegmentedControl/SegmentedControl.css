@@ -1,0 +1,225 @@
+/**
+ * Segmented Control Styles
+ *
+ * Uses only semantic design tokens from @ckw-elements/tokens.
+ * Container is a pill-shaped track with a sliding indicator behind segments.
+ *
+ * Types: Default (auto-width), Fill (equal-width stretch)
+ * Content modes: label, icon-label, icon-compact
+ * States: Default, Hover, Active (sliding indicator)
+ *
+ * Icon-compact uses CSS grid `0fr → 1fr` on each segment to animate the label
+ * width. The indicator is positioned via offsetLeft/offsetWidth in a
+ * useLayoutEffect — no hidden measurer needed.
+ */
+
+/* ============================================
+   Container
+   ============================================ */
+
+.ckw-segmented-control {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-3xs);
+  padding: var(--spacing-2xs);
+  background-color: var(--background-control);
+  border: var(--border-weight-s) solid var(--border-soft);
+  border-radius: var(--border-radius-full);
+}
+
+.ckw-segmented-control--fill {
+  display: flex;
+  width: 100%;
+}
+
+/* ============================================
+   Sliding Indicator
+   ============================================ */
+
+.ckw-segmented-control__indicator {
+  position: absolute;
+  top: var(--spacing-2xs);
+  bottom: var(--spacing-2xs);
+  left: 0;
+  background-color: var(--background-active);
+  border: var(--border-weight-s) solid var(--border-active);
+  border-radius: var(--border-radius-full);
+  pointer-events: none;
+  will-change: transform, width;
+}
+
+.ckw-segmented-control__indicator--animated {
+  transition:
+    transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    width 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   Segment (button)
+   ============================================ */
+
+.ckw-segmented-control__segment {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2xs);
+  height: var(--spacing-2xl);
+  padding: var(--spacing-2xs) var(--spacing-m);
+  border: var(--border-weight-s) solid transparent;
+  border-radius: var(--border-radius-full);
+  background: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 150ms ease;
+}
+
+.ckw-segmented-control--fill .ckw-segmented-control__segment {
+  flex: 1 0 0;
+  min-width: 0;
+}
+
+/*
+ * Icon-compact segment: uses CSS grid to animate label width.
+ * Columns: [icon: auto] [label: 0fr or 1fr]
+ * The 0fr → 1fr transition is interpolatable and animates smoothly.
+ */
+.ckw-segmented-control__segment--compact {
+  display: grid;
+  grid-template-columns: auto 0fr;
+  gap: 0;
+  padding: var(--spacing-2xs) var(--spacing-m);
+  justify-content: start;
+  transition:
+    grid-template-columns 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 150ms ease;
+}
+
+.ckw-segmented-control__segment--compact.ckw-segmented-control__segment--active {
+  grid-template-columns: auto 1fr;
+}
+
+/* Fill + compact: all segments equal width, content centered.
+   Override grid back to flexbox so icon+label center naturally. */
+.ckw-segmented-control--fill .ckw-segmented-control__segment--compact {
+  display: flex;
+  flex: 1 0 0;
+  min-width: 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  transition: background-color 150ms ease;
+}
+
+/* Hover (non-active only) */
+.ckw-segmented-control__segment:hover:not(.ckw-segmented-control__segment--active) {
+  background-color: var(--background-hover);
+}
+
+/* Active — visuals come from the indicator behind, keep segment transparent */
+.ckw-segmented-control__segment--active {
+  background: none;
+  border-color: transparent;
+}
+
+/* Focus */
+.ckw-segmented-control__segment:focus-visible {
+  outline: var(--border-weight-m) solid var(--border-active);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Label
+   ============================================ */
+
+.ckw-segmented-control__label {
+  font-family: var(--font-family-brand), sans-serif;
+  font-size: var(--label-m-size);
+  line-height: var(--label-m-height);
+  font-weight: var(--label-m-weight);
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 150ms ease;
+}
+
+.ckw-segmented-control__segment--active .ckw-segmented-control__label {
+  color: var(--text-on-interactive-secondary);
+}
+
+/*
+ * Icon-compact label: lives in the second grid column.
+ * When inactive the column is 0fr so the label collapses.
+ * Opacity fades slightly faster than the width collapse so
+ * truncated text is never visible.
+ */
+.ckw-segmented-control__label--compact {
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: clip;
+  min-width: 0;
+  margin-left: var(--spacing-2xs);
+  opacity: 1;
+  transition:
+    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 100ms,
+    margin-left 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 150ms ease;
+}
+
+.ckw-segmented-control__label--faded {
+  margin-left: 0;
+  opacity: 0;
+  transition:
+    opacity 80ms cubic-bezier(0.4, 0, 0.2, 1),
+    margin-left 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 150ms ease;
+}
+
+/*
+ * Fill + compact label: uses max-width instead of grid columns
+ * to animate the label width, since Fill segments use flexbox for centering.
+ */
+.ckw-segmented-control--fill .ckw-segmented-control__label--compact {
+  max-width: 200px;
+  transition:
+    max-width 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 100ms,
+    margin-left 250ms cubic-bezier(0.4, 0, 0.2, 1),
+    color 150ms ease;
+}
+
+.ckw-segmented-control--fill .ckw-segmented-control__label--faded {
+  max-width: 0;
+  transition:
+    opacity 80ms cubic-bezier(0.4, 0, 0.2, 1),
+    max-width 250ms cubic-bezier(0.4, 0, 0.2, 1) 50ms,
+    margin-left 250ms cubic-bezier(0.4, 0, 0.2, 1) 50ms,
+    color 150ms ease;
+}
+
+/* ============================================
+   Icon
+   ============================================ */
+
+.ckw-segmented-control__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: color 150ms ease;
+}
+
+.ckw-segmented-control__icon > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ckw-segmented-control__segment--active .ckw-segmented-control__icon {
+  color: var(--text-on-interactive-secondary);
+}

@@ -1,0 +1,90 @@
+import { Meta, Primary, Controls, Story } from '@storybook/blocks';
+import * as SegmentedControlStories from './SegmentedControl.stories';
+
+<Meta of={SegmentedControlStories} />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Segmented Control</div>
+  <div className="docs-description">
+    Segmented controls allow users to switch between related options, views, or
+    states within the same context. They are used to toggle between a small set
+    of mutually exclusive choices while keeping the interface clear, lightweight,
+    and easy to scan. The component supports label-only, icon + label, and
+    icon-compact modes, as well as Default and Fill layout types.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to interactively configure the Segmented Control.
+      Click segments to switch the active selection.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Primary />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Types</div>
+    <div className="docs-subsection-description">
+      **Default** renders segments at their intrinsic width.
+      **Fill** stretches all segments equally to fill the container width.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SegmentedControlStories.Types} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Icon</div>
+    <div className="docs-subsection-description">
+      Segments can show a label only, an icon with a label, or just an icon
+      (icon compact). Icons are always 24 × 24 and inherit the segment color
+      via `currentColor`.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SegmentedControlStories.Icons} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">State</div>
+    <div className="docs-subsection-description">
+      Each segment has three states: Default (transparent background), Hover
+      (subtle background fill), and Active (green background with border).
+      Hover is visible on mouse interaction.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SegmentedControlStories.States} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">All Variants</div>
+    <div className="docs-subsection-description">
+      Complete matrix showing all icon modes across Default and Fill layout types.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SegmentedControlStories.AllVariants} />
+</div>

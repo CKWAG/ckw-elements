@@ -18,7 +18,7 @@ const preview: Preview = {
           'Foundations',
           ['Typography', 'Colors', 'Spacings', 'Borders', 'Shadows'],
           'Components',
-          ['Button', 'Input Field'],
+          ['Button', 'Input Field', 'Segmented Control'],
         ],
       },
     },
