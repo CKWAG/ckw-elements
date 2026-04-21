@@ -241,7 +241,7 @@ decisions from Figma into consumable CSS and JavaScript outputs.
 | Border weight       | 4     | `--border-weight-{size}`                 |
 | Font family         | 1     | `--font-family-brand`                    |
 | Shadows             | 3     | `--shadow-{size}`                        |
-| Gradient            | 1     | `--gradient-gradient`                    |
+| Gradient            | 1     | `--gradient-brand`                    |
 | Typography desktop  | 48    | `--{style}-{prop}` (e.g. `--heading-l-size`) |
 | Typography mobile   | 48    | Same names, inside `@media` block        |
 | **Total**           | **282** |                                        |

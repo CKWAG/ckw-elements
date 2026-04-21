@@ -85,6 +85,7 @@ export interface BorderWeightToken {
 const FONT_WEIGHT_MAP: Record<string, number> = {
   Book: 325,
   Medium: 500,
+  Bold: 700,
 };
 
 function fontWeightToNumber(name: string): number {
@@ -227,7 +228,7 @@ function buildSemanticColors(): SemanticColorCategory[] {
 export const semanticColors: SemanticColorCategory[] = buildSemanticColors();
 
 // ============================================
-// Typography Styles (16 styles, 5 categories)
+// Typography Styles (28 styles, 8 categories)
 // ============================================
 
 /**
@@ -280,6 +281,33 @@ const TYPOGRAPHY_CATEGORY_META: {
       'Used for supporting information such as labels, metadata or footnotes. Not intended for main content or long passages of text.',
     responsive: false,
     styleNames: ['caption', 'caption-emphasized'],
+  },
+  {
+    category: 'Label',
+    description:
+      'Used for interactive element labels such as buttons, form fields, and navigation items. Always set in Medium weight for clear visual distinction from body text.',
+    responsive: false,
+    styleNames: ['label-l', 'label-m', 'label-s'],
+  },
+  {
+    category: 'Overline',
+    description:
+      'A small uppercase-style label used above headings or content sections to indicate category or context. Always set in Medium weight.',
+    responsive: false,
+    styleNames: ['overline'],
+  },
+  {
+    category: 'Metric',
+    description:
+      'Used for numerical data displays such as KPIs, dashboards, and statistics. Available in Book (default) and Bold (emphasized) weights across five sizes.',
+    responsive: false,
+    styleNames: [
+      'metric-xl', 'metric-xl-emphasized',
+      'metric-l', 'metric-l-emphasized',
+      'metric-m', 'metric-m-emphasized',
+      'metric-s', 'metric-s-emphasized',
+      'metric-xs', 'metric-xs-emphasized',
+    ],
   },
 ];
 
@@ -356,7 +384,7 @@ export const typographyCategories: TypographyCategory[] = buildTypographyCategor
  * Desired display order for spacing tokens (smallest → largest).
  */
 const SPACING_ORDER = [
-  'none', '3xs', '2xs', 'xs', 'sm', 'md', 'lg', 'xl',
+  'none', '3xs', '2xs', 'xs', 's', 'm', 'l', 'xl',
   '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', '8xl',
 ];
 
@@ -382,10 +410,10 @@ function buildSpacingTokens(): SpacingToken[] {
 export const spacingTokens: SpacingToken[] = buildSpacingTokens();
 
 // ============================================
-// Shadow Tokens (3)
+// Shadow Tokens (5)
 // ============================================
 
-const SHADOW_ORDER = ['sm', 'md', 'lg'];
+const SHADOW_ORDER = ['xs', 's', 'm', 'l', 'xl'];
 
 function buildShadowTokens(): ShadowToken[] {
   const shadowNode = tokensJson.primitive.shadow as Record<
@@ -408,7 +436,7 @@ export const shadowTokens: ShadowToken[] = buildShadowTokens();
 // Border Radius Tokens (7)
 // ============================================
 
-const BORDER_RADIUS_ORDER = ['none', 'xs', 'sm', 'md', 'lg', 'xl', 'full'];
+const BORDER_RADIUS_ORDER = ['none', 'xs', 's', 'm', 'l', 'xl', 'full'];
 
 function buildBorderRadiusTokens(): BorderRadiusToken[] {
   const brNode = tokensJson.primitive['border-radius'] as Record<
@@ -431,7 +459,7 @@ export const borderRadiusTokens: BorderRadiusToken[] = buildBorderRadiusTokens()
 // Border Weight Tokens (4)
 // ============================================
 
-const BORDER_WEIGHT_ORDER = ['none', 'sm', 'md', 'lg'];
+const BORDER_WEIGHT_ORDER = ['none', 's', 'm', 'l'];
 
 function buildBorderWeightTokens(): BorderWeightToken[] {
   const bwNode = tokensJson.primitive['border-weight'] as Record<
@@ -455,8 +483,8 @@ export const borderWeightTokens: BorderWeightToken[] = buildBorderWeightTokens()
 // ============================================
 
 export const gradientToken = {
-  name: 'gradient',
-  cssVar: '--gradient-gradient',
+  name: 'brand',
+  cssVar: '--gradient-brand',
   value: (tokensJson.primitive.gradient as Record<string, { $value: string; $type: string }>)
-    .gradient.$value,
+    .brand.$value,
 };

@@ -368,12 +368,13 @@ function transform() {
   }
 
   // -------------------------------------------------------------------------
-  // 6. Shadows: "Shadows/Value" -> primitive.shadow.*
+  // 6. Shadows: "Shadows/Value" or top-level entries in "Specification/Value"
+  //    Tokens named "shadow-*" with $type "boxShadow" -> primitive.shadow.*
   // -------------------------------------------------------------------------
   const shadows = raw['Shadows/Value'];
   if (shadows) {
     for (const [name, token] of Object.entries(shadows)) {
-      // Strip "shadow-" prefix for the key since it's already under primitive.shadow
+      if (!token.$value && token.$value !== 0) continue;
       const key = name.replace(/^shadow-/, '');
       setNested(output, `primitive.shadow.${key}`, {
         $value: composeShadowValue(token.$value),
@@ -383,18 +384,51 @@ function transform() {
     }
   }
 
+  // Also check Specification/Value for shadow tokens (Tokens Studio may nest them there)
+  const specValue = raw['Specification/Value'];
+  if (specValue) {
+    for (const [name, token] of Object.entries(specValue)) {
+      if (!token || typeof token !== 'object' || !('$value' in token)) continue;
+      if (token.$type === 'boxShadow' && name.startsWith('shadow-')) {
+        const key = name.replace(/^shadow-/, '');
+        setNested(output, `primitive.shadow.${key}`, {
+          $value: composeShadowValue(token.$value),
+          $type: 'shadow',
+        });
+        counts['primitive.shadow']++;
+      }
+    }
+  }
+
   // -------------------------------------------------------------------------
-  // 7. Gradients: "Gradients/Value" -> primitive.gradient.*
+  // 7. Gradients: "Gradients/Value" or "Brand" in "Specification/Value"
+  //    Gradient values are linear-gradient() strings with $type "color"
   // -------------------------------------------------------------------------
   const gradients = raw['Gradients/Value'];
   if (gradients) {
     for (const [name, token] of Object.entries(gradients)) {
+      if (!token.$value && token.$value !== 0) continue;
       const key = name.toLowerCase();
       setNested(output, `primitive.gradient.${key}`, {
         $value: token.$value,
         $type: 'color',
       });
       counts['primitive.gradient']++;
+    }
+  }
+
+  // Also check Specification/Value for gradient token (named "Brand" with linear-gradient value)
+  if (specValue) {
+    for (const [name, token] of Object.entries(specValue)) {
+      if (!token || typeof token !== 'object' || !('$value' in token)) continue;
+      if (typeof token.$value === 'string' && token.$value.includes('linear-gradient')) {
+        const key = name.toLowerCase();
+        setNested(output, `primitive.gradient.${key}`, {
+          $value: token.$value,
+          $type: 'color',
+        });
+        counts['primitive.gradient']++;
+      }
     }
   }
 

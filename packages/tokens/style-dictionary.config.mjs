@@ -14,7 +14,7 @@
  *     - Borders:      --border-radius-sm, --border-weight-md
  *     - Font family:  --font-family-brand
  *     - Shadows:      --shadow-sm, --shadow-md, --shadow-lg
- *     - Gradient:     --gradient-gradient
+ *     - Gradient:     --gradient-brand
  *   - Layer 2: Semantic color tokens — reference primitives via var()
  *     - --text-primary: var(--color-grey-800)
  *     - --interactive-primary: var(--color-green-600)
@@ -36,7 +36,7 @@ import { usesReferences, getReferences } from 'style-dictionary/utils';
 //   primitive.border-radius.sm  → "border-radius-sm"
 //   primitive.font-family.brand → "font-family-brand"
 //   primitive.shadow.sm         → "shadow-sm"
-//   primitive.gradient.gradient → "gradient-gradient"
+//   primitive.gradient.brand → "gradient-brand"
 //   semantic.color.text-primary → "text-primary"
 //   typography.desktop.heading-xl.size → "heading-xl-size"
 // ---------------------------------------------------------------------------
@@ -80,6 +80,7 @@ const fontWeightTransform = {
     const map = {
       'Book': '325',
       'Medium': '500',
+      'Bold': '700',
     };
     return map[token.$value] || token.$value;
   },
