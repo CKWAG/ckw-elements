@@ -35,7 +35,7 @@
 }
 
 .ckw-button:focus-visible {
-  outline: 2px solid var(--border-active);
+  outline: var(--border-weight-m) solid var(--border-active);
   outline-offset: 2px;
 }
 
@@ -86,26 +86,45 @@
    ============================================ */
 
 .ckw-button--primary {
-  background-image: var(--gradient-brand);
-  background-color: transparent;
+  position: relative;
+  background-color: var(--interactive-primary-hover);
   color: var(--text-on-interactive-primary);
   box-shadow: var(--shadow-s);
+  z-index: 0;
 }
 
-.ckw-button--primary:hover:not(:disabled) {
-  background-image: none;
-  background-color: var(--interactive-primary-hover);
+/* Gradient overlay — fades out on hover/active for a smooth transition */
+.ckw-button--primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background-image: var(--gradient-brand);
+  opacity: 1;
+  transition: opacity 150ms ease;
+  z-index: -1;
+}
+
+.ckw-button--primary:hover:not(:disabled)::before {
+  opacity: 0;
 }
 
 .ckw-button--primary:active:not(:disabled) {
-  background-image: none;
   background-color: var(--interactive-primary-active);
+}
+
+.ckw-button--primary:active:not(:disabled)::before {
+  opacity: 0;
 }
 
 .ckw-button--primary:disabled {
   opacity: 0.4;
   box-shadow: none;
   cursor: not-allowed;
+}
+
+.ckw-button--primary:disabled::before {
+  opacity: 1;
 }
 
 /* ============================================
