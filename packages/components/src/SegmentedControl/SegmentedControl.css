@@ -82,35 +82,38 @@
 }
 
 /*
- * Icon-compact segment: uses CSS grid to animate label width.
- * Columns: [icon: auto] [label: 0fr or 1fr]
- * The 0fr → 1fr transition is interpolatable and animates smoothly.
+ * Icon-compact segment: flexbox with centered content.
+ * The inner wrapper handles the grid animation for label collapse.
  */
 .ckw-segmented-control__segment--compact {
-  display: grid;
-  grid-template-columns: auto 0fr;
-  gap: 0;
-  padding: var(--spacing-2xs) var(--spacing-m);
-  justify-content: start;
-  transition:
-    grid-template-columns 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    background-color 150ms ease;
-}
-
-.ckw-segmented-control__segment--compact.ckw-segmented-control__segment--active {
-  grid-template-columns: auto 1fr;
-}
-
-/* Fill + compact: all segments equal width, content centered.
-   Override grid back to flexbox so icon+label center naturally. */
-.ckw-segmented-control--fill .ckw-segmented-control__segment--compact {
   display: flex;
-  flex: 1 0 0;
-  min-width: 0;
   align-items: center;
   justify-content: center;
   gap: 0;
+  padding: var(--spacing-2xs) var(--spacing-m);
   transition: background-color 150ms ease;
+}
+
+/*
+ * Inner wrapper for icon-compact: CSS grid animates label column.
+ * Columns: [icon: auto] [label: 0fr or 1fr]
+ */
+.ckw-segmented-control__compact-inner {
+  display: grid;
+  grid-template-columns: auto 0fr;
+  align-items: center;
+  width: max-content;
+  transition: grid-template-columns 250ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.ckw-segmented-control__segment--active .ckw-segmented-control__compact-inner {
+  grid-template-columns: auto 1fr;
+}
+
+/* Fill + compact: all segments equal width, content centered. */
+.ckw-segmented-control--fill .ckw-segmented-control__segment--compact {
+  flex: 1 0 0;
+  min-width: 0;
 }
 
 /* Hover (non-active only) */
@@ -175,28 +178,6 @@
   transition:
     opacity 80ms cubic-bezier(0.4, 0, 0.2, 1),
     margin-left 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 150ms ease;
-}
-
-/*
- * Fill + compact label: uses max-width instead of grid columns
- * to animate the label width, since Fill segments use flexbox for centering.
- */
-.ckw-segmented-control--fill .ckw-segmented-control__label--compact {
-  max-width: 200px;
-  transition:
-    max-width 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    opacity 150ms cubic-bezier(0.4, 0, 0.2, 1) 100ms,
-    margin-left 250ms cubic-bezier(0.4, 0, 0.2, 1),
-    color 150ms ease;
-}
-
-.ckw-segmented-control--fill .ckw-segmented-control__label--faded {
-  max-width: 0;
-  transition:
-    opacity 80ms cubic-bezier(0.4, 0, 0.2, 1),
-    max-width 250ms cubic-bezier(0.4, 0, 0.2, 1) 50ms,
-    margin-left 250ms cubic-bezier(0.4, 0, 0.2, 1) 50ms,
     color 150ms ease;
 }
 

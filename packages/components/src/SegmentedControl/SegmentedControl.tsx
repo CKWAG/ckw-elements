@@ -184,11 +184,25 @@ export function SegmentedControl({
             tabIndex={isActive ? 0 : -1}
             onClick={() => onChange?.(segment.value)}
           >
-            {showIcon && segment.icon && (
-              <span className="ckw-segmented-control__icon">{segment.icon}</span>
-            )}
-            {showLabel && segment.label && (
-              <span className={labelClasses}>{segment.label}</span>
+            {isCompact ? (
+              /* Compact: inner wrapper so icon+label stay grouped for centering */
+              <span className="ckw-segmented-control__compact-inner">
+                {segment.icon && (
+                  <span className="ckw-segmented-control__icon">{segment.icon}</span>
+                )}
+                {segment.label && (
+                  <span className={labelClasses}>{segment.label}</span>
+                )}
+              </span>
+            ) : (
+              <>
+                {showIcon && segment.icon && (
+                  <span className="ckw-segmented-control__icon">{segment.icon}</span>
+                )}
+                {showLabel && segment.label && (
+                  <span className={labelClasses}>{segment.label}</span>
+                )}
+              </>
             )}
           </button>
         );
