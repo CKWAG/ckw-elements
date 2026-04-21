@@ -29,6 +29,7 @@
     background-color 150ms ease,
     background-image 150ms ease,
     border-color 150ms ease,
+    border-width 150ms ease,
     box-shadow 150ms ease,
     opacity 150ms ease;
 }
@@ -42,7 +43,7 @@
    Sizes
    ============================================ */
 
-/* Large (default) */
+/* Large (default) — uses label-l tokens */
 .ckw-button--large {
   height: 48px;
   min-width: 160px;
@@ -53,18 +54,18 @@
   font-weight: var(--label-l-weight);
 }
 
-/* Medium */
+/* Medium — uses label-m tokens */
 .ckw-button--medium {
   height: 48px;
   min-width: 144px;
   padding-left: var(--spacing-l);
   padding-right: var(--spacing-l);
-  font-size: var(--label-l-size);
-  line-height: var(--label-l-height);
-  font-weight: var(--label-l-weight);
+  font-size: var(--label-m-size);
+  line-height: var(--label-m-height);
+  font-weight: var(--label-m-weight);
 }
 
-/* Small */
+/* Small — uses label-m tokens */
 .ckw-button--small {
   height: 40px;
   min-width: 120px;
@@ -124,6 +125,8 @@
 
 .ckw-button--secondary:active:not(:disabled) {
   background-color: var(--interactive-secondary-active);
+  border-width: var(--border-weight-m);
+  border-color: var(--border-active);
 }
 
 .ckw-button--secondary:disabled {
@@ -136,14 +139,14 @@
    ============================================ */
 
 .ckw-button--tertiary {
-  background-color: var(--interactive-secondary-hover);
+  background-color: transparent;
   color: var(--text-on-interactive-secondary);
   border: none;
   box-shadow: none;
 }
 
 .ckw-button--tertiary:hover:not(:disabled) {
-  background-color: var(--interactive-secondary-active);
+  background-color: var(--interactive-secondary-hover);
 }
 
 .ckw-button--tertiary:active:not(:disabled) {

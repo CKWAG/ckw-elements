@@ -17,6 +17,8 @@ const preview: Preview = {
         order: [
           'Foundations',
           ['Typography', 'Colors', 'Spacings', 'Borders', 'Shadows'],
+          'Components',
+          ['Button'],
         ],
       },
     },
