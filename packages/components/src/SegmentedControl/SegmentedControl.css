@@ -110,10 +110,18 @@
   grid-template-columns: auto 1fr;
 }
 
-/* Fill + compact: all segments equal width, content centered. */
+/* Fill + compact: all segments equal width (1/n) by default.
+   When the active label needs more space, min-width: max-content
+   pushes it wider and the inactives shrink to accommodate. */
 .ckw-segmented-control--fill .ckw-segmented-control__segment--compact {
-  flex: 1 0 0;
+  flex: 1 1 0;
   min-width: 0;
+  overflow: hidden;
+}
+
+.ckw-segmented-control--fill .ckw-segmented-control__segment--compact.ckw-segmented-control__segment--active {
+  min-width: max-content;
+  overflow: visible;
 }
 
 /* Hover (non-active only) */
