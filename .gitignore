@@ -1,8 +1,7 @@
 # Dependencies
 node_modules/
 
-# Generated output
-dist/
+# Generated output (dist/ is tracked for packages/tokens since there is no CI/CD)
 *.backup
 
 # OS files
