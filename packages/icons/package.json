@@ -2,6 +2,7 @@
   "name": "@ckw-elements/icons",
   "version": "0.0.1",
   "description": "CKW Elements Icon Library",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "build": "echo 'build step — will be configured'"

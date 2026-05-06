@@ -192,4 +192,16 @@ Refine [area]: what was improved
 
 ## License
 
-This project is **UNLICENSED** and private to CKW AG.
+Licensed under the [Apache License, Version 2.0](./LICENSE).
+
+**Excluded from the open-source license** (see [NOTICE](./NOTICE)):
+
+| Asset | Reason |
+|-------|--------|
+| `apps/storybook/public/ckw-logo.svg` | CKW trademark |
+| `apps/storybook/public/fonts/Gotham-*` | Commercial font (Hoefler & Co.) — redistribution prohibited |
+
+The CKW name, logo, and brand identity are trademarks of CKW AG.
+The Gotham font files are included for documentation rendering only and require
+a separate license from [Hoefler & Co.](https://www.typography.com/fonts/gotham)
+for any other use.

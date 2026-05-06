@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "description": "CKW Elements Design System Documentation",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "dev": "storybook dev -p 6006",

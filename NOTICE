@@ -1,0 +1,57 @@
+CKW Elements Design System
+Copyright 2025 CKW AG
+
+This product includes software developed at CKW AG (https://www.ckw.ch/).
+
+================================================================================
+TRADEMARK NOTICE
+================================================================================
+
+The CKW name, CKW logo, CKW wordmark, and all CKW brand identity assets are
+trademarks of CKW AG and are NOT licensed under the Apache License, Version 2.0.
+
+You may not use the CKW trademarks in any way that suggests CKW AG endorses or
+is affiliated with your project without prior written permission from CKW AG.
+
+The following files in this repository are trademarks and excluded from the
+open-source license:
+
+  - apps/storybook/public/ckw-logo.svg
+
+================================================================================
+FONT NOTICE
+================================================================================
+
+The Gotham typeface (Hoefler & Co.) included in this repository is proprietary
+and is NOT licensed under the Apache License, Version 2.0. These files are
+included solely for rendering the documentation site. All rights reserved by
+the respective license holder.
+
+The following files are excluded from the open-source license:
+
+  - apps/storybook/public/fonts/Gotham-Book.otf
+  - apps/storybook/public/fonts/Gotham-Book.woff2
+  - apps/storybook/public/fonts/Gotham-Medium.otf
+  - apps/storybook/public/fonts/Gotham-Medium.woff2
+
+You may NOT redistribute, sublicense, or use these font files outside of this
+repository without obtaining your own license from Hoefler & Co.
+(https://www.typography.com/fonts/gotham).
+
+The following fonts ARE included under their respective open-source licenses:
+
+  - Roboto: Licensed under Apache License 2.0 (Google)
+  - JetBrains Mono: Licensed under SIL Open Font License 1.1 (JetBrains)
+
+================================================================================
+THIRD-PARTY NOTICES
+================================================================================
+
+This project uses the following open-source libraries (among others):
+
+  - React (MIT License) — Meta Platforms, Inc.
+  - Storybook (MIT License) — Storybook Contributors
+  - Style Dictionary (Apache-2.0) — Amazon.com, Inc.
+  - Vite (MIT License) — Evan You and Vite Contributors
+
+Full dependency license information can be generated with: pnpm licenses list
