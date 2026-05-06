@@ -22,7 +22,7 @@ export function ColorSwatch({ token }: ColorSwatchProps) {
       >
         <span
           className="color-swatch-label"
-          style={{ color: isLight ? 'var(--specs-700)' : 'var(--specs-white)' }}
+          style={{ color: isLight ? 'var(--color-grey-700)' : 'var(--color-neutrals-white)' }}
         >
           {token.step}
         </span>

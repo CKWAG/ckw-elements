@@ -3,9 +3,9 @@ import { create } from '@storybook/theming';
 /**
  * CKW Elements — Storybook Manager Theme
  *
- * Uses specs-tokens (neutral grays) for the entire Storybook chrome
- * (sidebar, toolbar, header). The actual CKW brand colors are only
- * used inside the docs canvas for token swatches and component demos.
+ * Branded with the CKW design system: green accent colors,
+ * Gotham typeface, and CKW grey palette throughout the entire
+ * Storybook chrome (sidebar, toolbar, header, docs).
  */
 export default create({
   base: 'light',
@@ -15,31 +15,31 @@ export default create({
   brandImage: '/ckw-logo.svg',
   brandUrl: '/',
 
-  // Colors — specs neutral palette (NOT CKW brand green)
-  colorPrimary: '#3b3c3f',   // specs-900
-  colorSecondary: '#4f4f55', // specs-700
+  // Colors — CKW brand green + grey palette
+  colorPrimary: '#365f10',   // interactive-primary (green-600)
+  colorSecondary: '#365f10', // interactive-primary (green-600)
 
   // UI
-  appBg: '#f3f3f4',          // specs-050
-  appContentBg: '#ffffff',   // specs-white
-  appBorderColor: '#dadadd', // specs-200
+  appBg: '#fafafa',          // background-canvas (grey-50)
+  appContentBg: '#ffffff',   // background-default (white)
+  appBorderColor: '#d5d8d5', // border-medium (grey-200)
   appBorderRadius: 8,
 
-  // Typography — Roboto (specs font) for the chrome
-  fontBase: '"Roboto", "Helvetica Neue", Arial, sans-serif',
+  // Typography — Gotham (CKW brand font)
+  fontBase: '"Gotham", "Helvetica Neue", Arial, sans-serif',
   fontCode: '"JetBrains Mono", "Fira Code", monospace',
 
   // Text colors
-  textColor: '#3b3c3f',      // specs-900
-  textInverseColor: '#ffffff', // specs-white
-  textMutedColor: '#94959c', // specs-400
+  textColor: '#232623',      // text-primary (grey-800)
+  textInverseColor: '#ffffff', // white
+  textMutedColor: '#8d968d', // text-tertiary (grey-400)
 
   // Toolbar
-  barTextColor: '#94959c',   // specs-400
-  barSelectedColor: '#3b3c3f', // specs-900
-  barHoverColor: '#4f4f55',  // specs-700
-  barBg: '#ffffff',          // specs-white
+  barTextColor: '#6a716a',   // text-secondary (grey-500)
+  barSelectedColor: '#365f10', // interactive-primary (green-600)
+  barHoverColor: '#21420b',  // interactive-primary-hover (green-700)
+  barBg: '#ffffff',          // background-default (white)
 
   // Preview
-  appPreviewBg: '#ffffff',   // specs-white
+  appPreviewBg: '#ffffff',   // background-default (white)
 });

@@ -1,13 +1,9 @@
 /**
  * CKW Elements — Documentation Stylesheet
  *
- * Styles the Storybook documentation chrome using "specs" tokens — a separate
- * set of neutral grays designed specifically for the documentation UI.
- * Visual language matches the Figma "Design System Resources" page (node 2-109).
- *
- * The actual CKW design tokens (colors, spacing, typography) are imported
- * separately via @ckw-elements/tokens/tokens.css and are used only for
- * the displayed token swatches / samples.
+ * Styles the Storybook documentation chrome using the CKW design system tokens.
+ * All colors reference semantic tokens from @ckw-elements/tokens/tokens.css.
+ * Typography uses Gotham (the CKW brand font).
  *
  * IMPORTANT: All custom docs elements use the .sb-unstyled class to opt out
  * of Storybook's default Docs styling (font-size, font-family, margins).
@@ -15,28 +11,25 @@
  */
 
 /* ============================================
-   @font-face — Roboto (self-hosted, GDPR-compliant)
-   Variable font — single file covers all weights.
+   @font-face — Gotham (CKW brand font, All Rights Reserved — see NOTICE)
    ============================================ */
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Book.woff2') format('woff2'),
+       url('/fonts/Gotham-Book.otf') format('opentype');
+  font-weight: 325;
   font-style: normal;
-  font-weight: 100 900;
-  font-stretch: 100%;
   font-display: swap;
-  src: url('/fonts/Roboto-latin-ext.woff2') format('woff2');
-  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
 }
 
 @font-face {
-  font-family: 'Roboto';
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Medium.woff2') format('woff2'),
+       url('/fonts/Gotham-Medium.otf') format('opentype');
+  font-weight: 500;
   font-style: normal;
-  font-weight: 100 900;
-  font-stretch: 100%;
   font-display: swap;
-  src: url('/fonts/Roboto-latin.woff2') format('woff2');
-  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* ============================================
@@ -62,114 +55,14 @@
 }
 
 /* ============================================
-   @font-face — Gotham (CKW brand font, All Rights Reserved — see NOTICE)
-   ============================================ */
-
-@font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham-Book.woff2') format('woff2'),
-       url('/fonts/Gotham-Book.otf') format('opentype');
-  font-weight: 325;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'Gotham';
-  src: url('/fonts/Gotham-Medium.woff2') format('woff2'),
-       url('/fonts/Gotham-Medium.otf') format('opentype');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-/* ============================================
-   Specs Color Tokens — Documentation UI Only
-   ============================================ */
-
-:root {
-  /* Neutral grays (from Figma Specification/Value set) */
-  --specs-050: #f3f3f4;
-  --specs-100: #eeeef0;
-  --specs-200: #dadadd;
-  --specs-300: #bababf;
-  --specs-400: #94959c;
-  --specs-500: #777880;
-  --specs-600: #606169;
-  --specs-700: #4f4f55;
-  --specs-800: #434349;
-  --specs-900: #3b3c3f;
-  --specs-950: #27272a;
-  --specs-white: #ffffff;
-  --specs-black: #000000;
-
-  /* Status colors (documentation) */
-  --specs-status-error: #fff0f0;
-  --specs-status-error-text: #e12d2d;
-  --specs-status-success: #edf6ea;
-  --specs-status-success-text: #428527;
-  --specs-status-wip: #fff1d9;
-  --specs-status-wip-text: #ea6b0c;
-
-  /* Logo colors */
-  --specs-logo-black: #232623;
-  --specs-logo-green: #c8dd2d;
-}
-
-/* ============================================
-   Specs Typography Tokens
-   ============================================ */
-
-:root {
-  --specs-font: 'Roboto', sans-serif;
-  --specs-font-code: 'JetBrains Mono', 'Fira Code', monospace;
-
-  /* Title 4XL */
-  --specs-title-4xl-size: 48px;
-  --specs-title-4xl-weight: 900;
-  --specs-title-4xl-height: 1.2;
-
-  /* Title 3XL */
-  --specs-title-3xl-size: 32px;
-  --specs-title-3xl-weight: 900;
-  --specs-title-3xl-height: 1.2;
-
-  /* Title 2XL */
-  --specs-title-2xl-size: 24px;
-  --specs-title-2xl-weight: 900;
-  --specs-title-2xl-height: 1.2;
-
-  /* Title XL */
-  --specs-title-xl-size: 18px;
-  --specs-title-xl-weight: 900;
-  --specs-title-xl-height: 1.2;
-
-  /* Text L */
-  --specs-text-l-size: 16px;
-  --specs-text-l-weight: 400;
-  --specs-text-l-height: 1.2;
-
-  /* Text M */
-  --specs-text-m-size: 14px;
-  --specs-text-m-weight: 400;
-  --specs-text-m-height: 1.2;
-
-  /* Text S */
-  --specs-text-s-size: 12px;
-  --specs-text-s-weight: 400;
-  --specs-text-s-height: 1.2;
-}
-
-/* ============================================
    sb-unstyled Scope
    All custom docs elements live inside .sb-unstyled
    to escape Storybook's default font/size/margin rules.
    ============================================ */
 
-/* Base reset for the unstyled scope */
 .sb-unstyled {
-  font-family: var(--specs-font) !important;
-  color: var(--specs-900);
+  font-family: var(--font-family-brand), sans-serif !important;
+  color: var(--text-primary);
   line-height: 1.5;
 }
 
@@ -178,16 +71,16 @@
 }
 
 /* ============================================
-   Specs Typography — Utility Classes
+   Typography — Utility Classes (CKW Design Tokens)
    ============================================ */
 
 .sb-unstyled .specs-title-4xl,
 .specs-title-4xl {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-title-4xl-size) !important;
-  font-weight: var(--specs-title-4xl-weight) !important;
-  line-height: var(--specs-title-4xl-height) !important;
-  color: var(--specs-900) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--heading-xl-size) !important;
+  font-weight: var(--heading-xl-weight) !important;
+  line-height: var(--heading-xl-height) !important;
+  color: var(--text-primary) !important;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
@@ -195,11 +88,11 @@
 
 .sb-unstyled .specs-title-3xl,
 .specs-title-3xl {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-title-3xl-size) !important;
-  font-weight: var(--specs-title-3xl-weight) !important;
-  line-height: var(--specs-title-3xl-height) !important;
-  color: var(--specs-900) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--heading-l-size) !important;
+  font-weight: var(--heading-l-weight) !important;
+  line-height: var(--heading-l-height) !important;
+  color: var(--text-primary) !important;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
@@ -207,11 +100,11 @@
 
 .sb-unstyled .specs-title-2xl,
 .specs-title-2xl {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-title-2xl-size) !important;
-  font-weight: var(--specs-title-2xl-weight) !important;
-  line-height: var(--specs-title-2xl-height) !important;
-  color: var(--specs-900) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--heading-s-size) !important;
+  font-weight: var(--heading-s-weight) !important;
+  line-height: var(--heading-s-height) !important;
+  color: var(--text-primary) !important;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
@@ -219,11 +112,11 @@
 
 .sb-unstyled .specs-title-xl,
 .specs-title-xl {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-title-xl-size) !important;
-  font-weight: var(--specs-title-xl-weight) !important;
-  line-height: var(--specs-title-xl-height) !important;
-  color: var(--specs-900) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-l-size) !important;
+  font-weight: var(--body-l-emphasized-weight) !important;
+  line-height: var(--body-l-height) !important;
+  color: var(--text-primary) !important;
   margin: 0 !important;
   padding: 0 !important;
   border: none !important;
@@ -231,39 +124,39 @@
 
 .sb-unstyled .specs-text-l,
 .specs-text-l {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-text-l-size) !important;
-  font-weight: var(--specs-text-l-weight) !important;
-  line-height: var(--specs-text-l-height) !important;
-  color: var(--specs-900) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-m-size) !important;
+  font-weight: var(--body-m-weight) !important;
+  line-height: var(--body-m-height) !important;
+  color: var(--text-primary) !important;
 }
 
 .sb-unstyled .specs-text-m,
 .specs-text-m {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-text-m-size) !important;
-  font-weight: var(--specs-text-m-weight) !important;
-  line-height: var(--specs-text-m-height) !important;
-  color: var(--specs-900) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+  font-weight: var(--body-s-weight) !important;
+  line-height: var(--body-s-height) !important;
+  color: var(--text-primary) !important;
 }
 
 .sb-unstyled .specs-text-s,
 .specs-text-s {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-text-s-size) !important;
-  font-weight: var(--specs-text-s-weight) !important;
-  line-height: var(--specs-text-s-height) !important;
-  color: var(--specs-900) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--caption-size) !important;
+  font-weight: var(--caption-weight) !important;
+  line-height: var(--caption-height) !important;
+  color: var(--text-primary) !important;
 }
 
 .sb-unstyled .specs-code,
 .specs-code {
-  font-family: var(--specs-font-code) !important;
-  font-size: 14px !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: var(--body-s-size) !important;
   font-weight: 500 !important;
   line-height: 1.2 !important;
   letter-spacing: -0.28px;
-  color: var(--specs-800) !important;
+  color: var(--text-primary) !important;
 }
 
 /* ============================================
@@ -271,79 +164,76 @@
    ============================================ */
 
 .sbdocs.sbdocs-wrapper {
-  font-family: var(--specs-font);
-  color: var(--specs-900);
+  font-family: var(--font-family-brand), sans-serif;
+  color: var(--text-primary);
 }
 
 /* ============================================
-   Token Badge — Code-style labels (.Specs Token)
-   Figma: JetBrains Mono Medium 14px, bg specs-050,
-   color specs-800, padding 4px 8px, radius 8px
+   Token Badge — Code-style labels
+   JetBrains Mono Medium, bg canvas, color primary,
+   padding 4px 8px, radius 8px
    ============================================ */
 
 .sb-unstyled .token-badge,
 .token-badge {
   display: inline-block;
-  font-family: var(--specs-font-code) !important;
-  font-size: 14px !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: var(--body-s-size) !important;
   font-weight: 500 !important;
   line-height: 1.2 !important;
   letter-spacing: -0.28px;
-  padding: 4px 8px;
-  border-radius: 8px;
-  background: var(--specs-050);
-  color: var(--specs-800) !important;
+  padding: var(--spacing-2xs) var(--spacing-xs);
+  border-radius: var(--border-radius-s);
+  background: var(--background-canvas);
+  color: var(--text-primary) !important;
   white-space: nowrap;
 }
 
-/* Smaller variant for inline use */
 .sb-unstyled .token-badge-sm,
 .token-badge-sm {
   display: inline-block;
-  font-family: var(--specs-font-code) !important;
-  font-size: 12px !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: var(--caption-size) !important;
   font-weight: 500 !important;
   line-height: 1.2 !important;
   letter-spacing: -0.24px;
-  padding: 2px 6px;
+  padding: var(--spacing-3xs) 6px;
   border-radius: 6px;
-  background: var(--specs-050);
-  color: var(--specs-800) !important;
+  background: var(--background-canvas);
+  color: var(--text-primary) !important;
   white-space: nowrap;
 }
 
 /* ============================================
    Status Pill — Ready / In Progress / On Hold
-   Figma: Roboto Regular 14px, radius 8px, pad 4px 8px
-   Text is UPPERCASE in Figma
    ============================================ */
 
 .sb-unstyled .status-pill,
 .status-pill {
   display: inline-block;
-  font-family: var(--specs-font) !important;
-  font-size: 14px !important;
-  font-weight: 400 !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+  font-weight: var(--body-s-weight) !important;
   line-height: 1.2 !important;
-  padding: 4px 8px;
-  border-radius: 8px;
+  padding: var(--spacing-2xs) var(--spacing-xs);
+  border-radius: var(--border-radius-s);
   white-space: nowrap;
   text-transform: uppercase;
 }
 
 .status-pill--ready {
-  background: var(--specs-status-success);
-  color: var(--specs-status-success-text) !important;
+  background: var(--status-success);
+  color: var(--status-success-text) !important;
 }
 
 .status-pill--wip {
-  background: var(--specs-status-wip);
-  color: var(--specs-status-wip-text) !important;
+  background: var(--status-warning);
+  color: var(--status-warning-text) !important;
 }
 
 .status-pill--hold {
-  background: var(--specs-status-error);
-  color: var(--specs-status-error-text) !important;
+  background: var(--status-error);
+  color: var(--status-error-text) !important;
 }
 
 /* ============================================
@@ -353,15 +243,15 @@
 .sb-unstyled .docs-tag,
 .docs-tag {
   display: inline-block;
-  font-family: var(--specs-font) !important;
-  font-size: 12px !important;
-  font-weight: 400 !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--caption-size) !important;
+  font-weight: var(--caption-weight) !important;
   line-height: 1.2 !important;
-  padding: 4px 10px;
-  border-radius: 8px;
-  background: var(--specs-100);
-  color: var(--specs-600) !important;
-  margin-left: 12px;
+  padding: var(--spacing-2xs) 10px;
+  border-radius: var(--border-radius-s);
+  background: var(--color-grey-100);
+  color: var(--text-secondary) !important;
+  margin-left: var(--spacing-s);
   vertical-align: middle;
   white-space: nowrap;
 }
@@ -370,50 +260,44 @@
    Documentation Base Styles
    ============================================ */
 
-/* Page title — 48px Roboto Black (like Post.ch "Typography", "Color") */
 .sb-unstyled .docs-page-title {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-title-4xl-size) !important;
-  font-weight: var(--specs-title-4xl-weight) !important;
-  line-height: var(--specs-title-4xl-height) !important;
-  color: var(--specs-900) !important;
-  margin: 0 0 16px 0 !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--heading-xl-size) !important;
+  font-weight: var(--heading-xl-weight) !important;
+  line-height: var(--heading-xl-height) !important;
+  color: var(--text-primary) !important;
+  margin: 0 0 var(--spacing-m) 0 !important;
   padding: 0 !important;
   border: none !important;
 }
 
-/* Content section title (e.g. "Type Scale", "Font Families", "Brand Colors") */
-/* 32px Roboto Black — like Post.ch section headers */
 .sb-unstyled .docs-section-title {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-title-3xl-size) !important;
-  font-weight: var(--specs-title-3xl-weight) !important;
-  line-height: var(--specs-title-3xl-height) !important;
-  color: var(--specs-900) !important;
-  margin: 0 0 16px 0 !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--heading-m-size) !important;
+  font-weight: var(--heading-m-weight) !important;
+  line-height: var(--heading-m-height) !important;
+  color: var(--text-primary) !important;
+  margin: 0 0 var(--spacing-m) 0 !important;
   padding: 0 !important;
   border: none !important;
 }
 
-/* Page-level section dividers — large spacing like Post.ch */
 .sb-unstyled .docs-section {
-  margin-top: 80px;
+  margin-top: var(--spacing-6xl);
   margin-bottom: 0;
 }
 
-/* First section after page intro (page-title + description) gets less spacing */
 .sb-unstyled .docs-description + .docs-section {
-  margin-top: 48px;
+  margin-top: var(--spacing-4xl);
 }
 
-/* Description text below page title or section headers */
 .sb-unstyled .docs-description {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-text-l-size) !important;
-  font-weight: var(--specs-text-l-weight) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-m-size) !important;
+  font-weight: var(--body-m-weight) !important;
   line-height: 1.6 !important;
-  color: var(--specs-700) !important;
-  margin: 0 0 32px 0 !important;
+  color: var(--text-secondary) !important;
+  margin: 0 0 var(--spacing-2xl) 0 !important;
   max-width: 680px;
 }
 
@@ -422,7 +306,7 @@
    ============================================ */
 
 .sb-unstyled .docs-subsection {
-  margin-top: 56px;
+  margin-top: var(--spacing-5xl);
   margin-bottom: 0;
 }
 
@@ -433,29 +317,29 @@
 .sb-unstyled .docs-subsection-header {
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-bottom: 8px;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-xs);
 }
 
 .sb-unstyled .docs-subsection-description {
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-text-m-size) !important;
-  font-weight: var(--specs-text-m-weight) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+  font-weight: var(--body-s-weight) !important;
   line-height: 1.6 !important;
-  color: var(--specs-700) !important;
-  margin: 0 0 24px 0 !important;
+  color: var(--text-secondary) !important;
+  margin: 0 0 var(--spacing-xl) 0 !important;
   max-width: 680px;
 }
 
 /* ============================================
-   Table Styles — Matching Figma documentation
+   Table Styles
    ============================================ */
 
 .sb-unstyled .docs-table {
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--specs-font) !important;
-  font-size: var(--specs-text-m-size) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
   line-height: 1.5 !important;
   margin: 0 !important;
   padding: 0 !important;
@@ -463,64 +347,60 @@
 
 .sb-unstyled .docs-table thead th {
   text-align: left;
-  padding: 12px 16px;
-  font-family: var(--specs-font) !important;
-  font-weight: 900 !important;
-  font-size: 14px !important;
-  color: var(--specs-900) !important;
-  background: var(--specs-050);
-  border-bottom: 1px solid var(--specs-200);
+  padding: var(--spacing-s) var(--spacing-m);
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-weight: 500 !important;
+  font-size: var(--body-s-size) !important;
+  color: var(--text-primary) !important;
+  background: var(--background-canvas);
+  border-bottom: var(--border-weight-s) solid var(--border-medium);
   white-space: nowrap;
 }
 
 .sb-unstyled .docs-table tbody td {
-  padding: 12px 16px;
-  color: var(--specs-900) !important;
-  border-bottom: 1px solid var(--specs-100);
+  padding: var(--spacing-s) var(--spacing-m);
+  color: var(--text-primary) !important;
+  border-bottom: var(--border-weight-s) solid var(--border-soft);
   vertical-align: middle;
-  font-family: var(--specs-font) !important;
-  font-size: 14px !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
   line-height: 1.5 !important;
 }
 
 .sb-unstyled .docs-table tbody tr:last-child td {
-  border-bottom: 1px solid var(--specs-200);
+  border-bottom: var(--border-weight-s) solid var(--border-medium);
 }
 
-/* Cell with monospace code text */
 .sb-unstyled .cell-mono,
 .cell-mono {
-  font-family: var(--specs-font-code) !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
   font-size: 13px !important;
   letter-spacing: -0.26px;
-  color: var(--specs-800) !important;
+  color: var(--text-primary) !important;
 }
 
-/* Cell with secondary/muted text */
 .sb-unstyled .cell-meta,
 .cell-meta {
-  font-family: var(--specs-font) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
   font-size: 13px !important;
-  font-weight: 400 !important;
-  color: var(--specs-500) !important;
+  font-weight: 325 !important;
+  color: var(--text-tertiary) !important;
   line-height: 1.4 !important;
 }
 
-/* Cell with bold name label */
 .sb-unstyled .cell-name,
 .cell-name {
-  font-family: var(--specs-font) !important;
-  font-size: 14px !important;
-  font-weight: 900 !important;
-  color: var(--specs-900) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+  font-weight: 500 !important;
+  color: var(--text-primary) !important;
 }
 
-/* Cell with muted code value (for long values like shadows) */
 .sb-unstyled .cell-value,
 .cell-value {
-  font-family: var(--specs-font-code) !important;
-  font-size: 12px !important;
-  color: var(--specs-600) !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: var(--caption-size) !important;
+  color: var(--text-secondary) !important;
   word-break: break-all;
 }
 
@@ -529,16 +409,16 @@
    ============================================ */
 
 .sb-unstyled .type-sample {
-  font-family: 'Gotham', sans-serif !important;
-  color: var(--specs-900) !important;
-  margin-bottom: 4px !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  color: var(--text-primary) !important;
+  margin-bottom: var(--spacing-2xs) !important;
 }
 
 .sb-unstyled .type-sample-meta {
-  font-family: var(--specs-font) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
   font-size: 13px !important;
-  font-weight: 400 !important;
-  color: var(--specs-500) !important;
+  font-weight: 325 !important;
+  color: var(--text-tertiary) !important;
   line-height: 1.4 !important;
 }
 
@@ -549,17 +429,17 @@
 .sb-unstyled .color-swatch {
   width: 80px;
   height: 80px;
-  border-radius: 8px;
-  border: 1px solid var(--specs-200);
+  border-radius: var(--border-radius-s);
+  border: var(--border-weight-s) solid var(--border-medium);
   position: relative;
   overflow: hidden;
 }
 
 .sb-unstyled .color-swatch-label {
   position: absolute;
-  bottom: 4px;
+  bottom: var(--spacing-2xs);
   left: 6px;
-  font-family: var(--specs-font-code) !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
   font-size: 11px !important;
   font-weight: 500 !important;
   line-height: 1;
@@ -571,7 +451,7 @@
 
 .sb-unstyled .spacing-bar {
   height: 20px;
-  border-radius: 4px;
+  border-radius: var(--border-radius-xs);
   background: var(--interactive-primary);
   transition: width 0.2s ease;
 }
@@ -583,8 +463,8 @@
 .sb-unstyled .shadow-card {
   width: 200px;
   height: 140px;
-  border-radius: 16px;
-  background: var(--specs-white);
+  border-radius: var(--border-radius-m);
+  background: var(--background-default);
 }
 
 /* ============================================
@@ -594,8 +474,8 @@
 .sb-unstyled .border-preview {
   width: 80px;
   height: 80px;
-  border: 2px solid var(--interactive-primary);
-  background: var(--specs-white);
+  border: var(--border-weight-m) solid var(--interactive-primary);
+  background: var(--background-default);
 }
 
 /* ============================================
@@ -605,8 +485,8 @@
 .sb-unstyled .gradient-preview {
   width: 200px;
   height: 80px;
-  border-radius: 12px;
-  border: 1px solid var(--specs-200);
+  border-radius: var(--border-radius-s);
+  border: var(--border-weight-s) solid var(--border-medium);
 }
 
 /* ============================================
@@ -614,31 +494,30 @@
    ============================================ */
 
 .sb-unstyled pre {
-  background: var(--specs-050) !important;
-  border: 1px solid var(--specs-200);
-  border-radius: 8px;
-  padding: 16px 20px !important;
-  margin: 16px 0 0 0 !important;
+  background: var(--color-grey-800) !important;
+  border: none;
+  border-radius: var(--border-radius-s);
+  padding: var(--spacing-m) var(--spacing-l) !important;
+  margin: var(--spacing-m) 0 0 0 !important;
   overflow-x: auto;
 }
 
 .sb-unstyled pre code {
-  font-family: var(--specs-font-code) !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
   font-size: 13px !important;
   line-height: 1.6 !important;
   letter-spacing: -0.26px;
-  color: var(--specs-800) !important;
+  color: var(--color-grey-100) !important;
   background: none !important;
   padding: 0 !important;
 }
 
-/* Inline code (inside descriptions, etc.) */
 .sb-unstyled code {
-  font-family: var(--specs-font-code) !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
   font-size: 13px !important;
   letter-spacing: -0.26px;
-  background: var(--specs-050);
-  color: var(--specs-800) !important;
-  padding: 2px 6px;
-  border-radius: 4px;
+  background: var(--background-canvas);
+  color: var(--text-primary) !important;
+  padding: var(--spacing-3xs) 6px;
+  border-radius: var(--border-radius-xs);
 }

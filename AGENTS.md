@@ -72,8 +72,9 @@ tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v4
 
 5. **Brand color is GREEN** (`#86bc46`), not blue. Font is **Gotham** (Book=325, Medium=500).
 
-6. **Storybook docs chrome** uses a "specs" design language (neutral grays, Roboto font) —
-   NOT the CKW brand tokens. Brand tokens only appear inside content areas (swatches, previews).
+6. **Storybook docs chrome** uses the CKW design system throughout — Gotham font,
+   green accent colors, CKW semantic tokens for all UI surfaces (sidebar, toolbar, docs pages).
+   No separate "specs" design language.
 
 ---
 

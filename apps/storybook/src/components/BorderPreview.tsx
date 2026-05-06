@@ -19,7 +19,7 @@ export function BorderRadiusPreview({ token }: BorderRadiusPreviewProps) {
         style={{
           width: isFull ? '120px' : undefined,
           borderRadius: `var(${token.cssVar})`,
-          backgroundColor: 'var(--specs-100)',
+          backgroundColor: 'var(--color-grey-100)',
         }}
       />
       <div style={{ textAlign: 'center' }}>
@@ -50,9 +50,9 @@ export function BorderWeightPreview({ token }: BorderWeightPreviewProps) {
         style={{
           borderWidth: `var(${token.cssVar})`,
           borderStyle: isNone ? 'dashed' : 'solid',
-          borderColor: isNone ? 'var(--specs-300)' : undefined,
+          borderColor: isNone ? 'var(--border-strong)' : undefined,
           borderRadius: '8px',
-          backgroundColor: 'var(--specs-white)',
+          backgroundColor: 'var(--background-default)',
         }}
       />
       <div style={{ textAlign: 'center' }}>

@@ -4,7 +4,7 @@ import ckwTheme from './theme';
 // CKW design tokens (consumed by token swatches / samples)
 import '@ckw-elements/tokens/tokens.css';
 
-// Documentation chrome styles (specs-tokens, Roboto, JetBrains Mono, Gotham @font-face)
+// Documentation chrome styles (CKW design tokens, Gotham, JetBrains Mono @font-face)
 import '../src/docs.css';
 
 const preview: Preview = {

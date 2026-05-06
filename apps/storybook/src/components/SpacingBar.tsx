@@ -36,7 +36,7 @@ export function SpacingBar({ token }: SpacingBarProps) {
           style={{
             width: `${numericValue}px`,
             minWidth: numericValue === 0 ? '2px' : undefined,
-            background: numericValue === 0 ? 'var(--specs-200)' : undefined,
+            background: numericValue === 0 ? 'var(--border-medium)' : undefined,
             opacity: numericValue === 0 ? 0.5 : undefined,
           }}
         />
