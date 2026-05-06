@@ -1,4 +1,4 @@
-import type { Preview } from '@storybook/react';
+import type { Preview } from '@storybook/react-vite';
 import ckwTheme from './theme';
 
 // CKW design tokens (consumed by token swatches / samples)
