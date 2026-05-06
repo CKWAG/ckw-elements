@@ -1,0 +1,214 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { SegmentedControl } from './SegmentedControl';
+import { SegmentedControl as MuiSegmentedControl } from '../mui/SegmentedControl';
+import React from 'react';
+
+<Meta title="Components/Segmented Control" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Segmented Control</div>
+  <div className="docs-description">
+    Segmented controls allow users to switch between related options, views, or states within the
+    same context. They present a set of mutually exclusive choices in a compact, inline format.
+    Available as a lightweight React component with smooth CSS animations and as a themed Material
+    UI component — both produce identical visuals using CKW design tokens.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Visual Overview</div>
+    <div className="docs-subsection-description">
+      Both implementations render identically using the same semantic tokens.
+    </div>
+  </div>
+</div>
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '48px', marginTop: '24px' }}>
+  <div>
+    <div className="sb-unstyled">
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: '14px',
+          fontWeight: 500,
+          color: 'var(--text-secondary)',
+          marginBottom: '16px',
+        }}
+      >
+        React
+      </div>
+    </div>
+    <SegmentedControl
+      segments={[
+        { value: 'a', label: 'Option A' },
+        { value: 'b', label: 'Option B' },
+        { value: 'c', label: 'Option C' },
+      ]}
+      activeValue="a"
+    />
+  </div>
+  <div>
+    <div className="sb-unstyled">
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: '14px',
+          fontWeight: 500,
+          color: 'var(--text-secondary)',
+          marginBottom: '16px',
+        }}
+      >
+        MUI
+      </div>
+    </div>
+    <MuiSegmentedControl
+      segments={[
+        { value: 'a', label: 'Option A' },
+        { value: 'b', label: 'Option B' },
+        { value: 'c', label: 'Option C' },
+      ]}
+      activeValue="a"
+    />
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Choose Your Implementation</div>
+    <div className="docs-subsection-description">
+      Pick the implementation that fits your project. Both use the same design tokens and produce
+      identical visual output.
+    </div>
+  </div>
+</div>
+
+<div
+  className="sb-unstyled"
+  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}
+>
+  <div
+    style={{
+      padding: '24px',
+      border: '1px solid var(--border-soft)',
+      borderRadius: 'var(--border-radius-s)',
+    }}
+  >
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: '18px',
+        fontWeight: 500,
+        color: 'var(--text-primary)',
+        marginBottom: '8px',
+      }}
+    >
+      React
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: '14px',
+        color: 'var(--text-secondary)',
+        lineHeight: 1.6,
+      }}
+    >
+      Lightweight, zero-dependency component. CSS-only styling with smooth animations via CSS grid
+      transitions. Supports icon-compact mode with animated label reveal. Best for projects that
+      don't use MUI.
+    </div>
+  </div>
+  <div
+    style={{
+      padding: '24px',
+      border: '1px solid var(--border-soft)',
+      borderRadius: 'var(--border-radius-s)',
+    }}
+  >
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: '18px',
+        fontWeight: 500,
+        color: 'var(--text-primary)',
+        marginBottom: '8px',
+      }}
+    >
+      MUI
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: '14px',
+        color: 'var(--text-secondary)',
+        lineHeight: 1.6,
+      }}
+    >
+      Material UI ToggleButtonGroup with CKW theme applied. Full MUI feature set including the{' '}
+      <code>sx</code> prop for overrides. Best for projects already using MUI.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Anatomy</div>
+    <div className="docs-subsection-description">
+      Both implementations share the same anatomy and token usage.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled" style={{ marginTop: '16px' }}>
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Token</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Segment height</td>
+        <td className="cell-mono">--spacing-2xl</td>
+        <td>40px</td>
+      </tr>
+      <tr>
+        <td>Container border-radius</td>
+        <td className="cell-mono">--border-radius-full</td>
+        <td>99999px (pill)</td>
+      </tr>
+      <tr>
+        <td>Container background</td>
+        <td className="cell-mono">--background-control</td>
+        <td>Subtle grey surface</td>
+      </tr>
+      <tr>
+        <td>Container border</td>
+        <td className="cell-mono">--border-soft</td>
+        <td>Soft border</td>
+      </tr>
+      <tr>
+        <td>Active segment background</td>
+        <td className="cell-mono">--background-active</td>
+        <td>Green tint</td>
+      </tr>
+      <tr>
+        <td>Active segment border</td>
+        <td className="cell-mono">--border-active</td>
+        <td>Green border</td>
+      </tr>
+      <tr>
+        <td>Font</td>
+        <td className="cell-mono">--label-m-size / --label-m-height / --label-m-weight</td>
+        <td>Gotham Medium 16/20</td>
+      </tr>
+      <tr>
+        <td>Icon size</td>
+        <td className="cell-mono">—</td>
+        <td>24×24px</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,91 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as MuiSegmentedControlStories from './SegmentedControl.stories';
+
+<Meta of={MuiSegmentedControlStories} />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">MUI Segmented Control</div>
+  <div className="docs-description">
+    Material UI ToggleButtonGroup themed with CKW design tokens. Uses MUI's{' '}
+    <code>ToggleButtonGroup</code> and <code>ToggleButton</code> components with CKW semantic token
+    styling applied via the <code>sx</code> prop. Supports two layout types (Default and Fill), icon
+    + label content, and the standard MUI <code>sx</code> prop for additional overrides.
+  </div>
+</div>
+
+<Canvas sourceState="shown" of={MuiSegmentedControlStories.Playground} />
+<Controls of={MuiSegmentedControlStories.Playground} />
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Installation</div>
+    <div className="docs-subsection-description">
+      The MUI subpath requires <code>@mui/material</code> and Emotion as peer dependencies.
+    </div>
+  </div>
+</div>
+
+```bash
+npm install @ckw-elements/components @mui/material @emotion/react @emotion/styled
+```
+
+```tsx
+import { SegmentedControl } from '@ckw-elements/components/mui';
+```
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Concrete Examples</div>
+    <div className="docs-subsection-description">
+      The following examples show different characteristics of the MUI Segmented Control component.
+    </div>
+  </div>
+</div>
+
+### Types
+
+**Default** segments size to their content. **Fill** stretches all segments equally to fill the
+container width — useful for full-width controls in forms or toolbars.
+
+<Canvas of={MuiSegmentedControlStories.Types} />
+
+### Icons
+
+Segments support an optional icon alongside the label. Pass a 24×24 SVG as the `icon` prop on each
+segment object.
+
+<Canvas of={MuiSegmentedControlStories.Icons} />
+
+### All Variants
+
+Complete matrix showing both layout types with label-only and icon + label content modes.
+
+<Canvas of={MuiSegmentedControlStories.AllVariants} />
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Theme Usage</div>
+    <div className="docs-subsection-description">
+      The CKW MUI theme can also be used standalone with <code>ThemeProvider</code> to theme any MUI
+      component in your app.
+    </div>
+  </div>
+</div>
+
+```tsx
+import { ThemeProvider } from '@mui/material/styles';
+import { ckwTheme } from '@ckw-elements/components/mui';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+
+function App() {
+  return (
+    <ThemeProvider theme={ckwTheme}>
+      <ToggleButtonGroup value="a" exclusive>
+        <ToggleButton value="a">Option A</ToggleButton>
+        <ToggleButton value="b">Option B</ToggleButton>
+      </ToggleButtonGroup>
+    </ThemeProvider>
+  );
+}
+```

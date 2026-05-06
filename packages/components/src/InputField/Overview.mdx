@@ -1,0 +1,219 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { InputField } from './InputField';
+import { InputField as MuiInputField } from '../mui/InputField';
+import React from 'react';
+
+<Meta title="Components/Input Field" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Input Field</div>
+  <div className="docs-description">
+    Input Fields allow users to enter and edit text-based data using a keyboard. They are the
+    standard way to collect specific pieces of information within forms, such as names, email
+    addresses, passwords, or search queries. Available as a lightweight React component and as a
+    themed Material UI component — both produce identical visuals using CKW design tokens.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Visual Overview</div>
+    <div className="docs-subsection-description">
+      Both implementations render identically. The React version uses native HTML inputs with CSS
+      tokens; the MUI version wraps TextField with the CKW theme.
+    </div>
+  </div>
+</div>
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: '48px', marginTop: '24px' }}>
+  <div>
+    <div className="sb-unstyled">
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: '14px',
+          fontWeight: 500,
+          color: 'var(--text-secondary)',
+          marginBottom: '16px',
+        }}
+      >
+        React
+      </div>
+    </div>
+    <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div style={{ width: '220px' }}>
+        <InputField label="Label" placeholder="Placeholder" />
+      </div>
+      <div style={{ width: '220px' }}>
+        <InputField label="Label" value="Input" />
+      </div>
+    </div>
+  </div>
+  <div>
+    <div className="sb-unstyled">
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: '14px',
+          fontWeight: 500,
+          color: 'var(--text-secondary)',
+          marginBottom: '16px',
+        }}
+      >
+        MUI
+      </div>
+    </div>
+    <div style={{ display: 'flex', gap: '24px', alignItems: 'flex-start', flexWrap: 'wrap' }}>
+      <div style={{ width: '220px' }}>
+        <MuiInputField label="Label" placeholder="Placeholder" />
+      </div>
+      <div style={{ width: '220px' }}>
+        <MuiInputField label="Label" value="Input" />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Choose Your Implementation</div>
+    <div className="docs-subsection-description">
+      Pick the implementation that fits your project. Both use the same design tokens and produce
+      identical visual output.
+    </div>
+  </div>
+</div>
+
+<div
+  className="sb-unstyled"
+  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}
+>
+  <div
+    style={{
+      padding: '24px',
+      border: '1px solid var(--border-soft)',
+      borderRadius: 'var(--border-radius-s)',
+    }}
+  >
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: '18px',
+        fontWeight: 500,
+        color: 'var(--text-primary)',
+        marginBottom: '8px',
+      }}
+    >
+      React
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: '14px',
+        color: 'var(--text-secondary)',
+        lineHeight: 1.6,
+      }}
+    >
+      Lightweight, zero-dependency component. CSS-only styling with design tokens. Best for projects
+      that don't use MUI.
+    </div>
+  </div>
+  <div
+    style={{
+      padding: '24px',
+      border: '1px solid var(--border-soft)',
+      borderRadius: 'var(--border-radius-s)',
+    }}
+  >
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: '18px',
+        fontWeight: 500,
+        color: 'var(--text-primary)',
+        marginBottom: '8px',
+      }}
+    >
+      MUI
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: '14px',
+        color: 'var(--text-secondary)',
+        lineHeight: 1.6,
+      }}
+    >
+      Material UI TextField with CKW theme applied. Full MUI feature set (sx prop, slots, etc.).
+      Best for projects already using MUI.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Anatomy</div>
+    <div className="docs-subsection-description">
+      Both implementations share the same anatomy and token usage.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled" style={{ marginTop: '16px' }}>
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th>Property</th>
+        <th>Token</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Height</td>
+        <td className="cell-mono">44px</td>
+        <td>Fixed</td>
+      </tr>
+      <tr>
+        <td>Border radius</td>
+        <td className="cell-mono">--border-radius-s</td>
+        <td>8px</td>
+      </tr>
+      <tr>
+        <td>Input font</td>
+        <td className="cell-mono">--body-m-emphasized-*</td>
+        <td>Gotham Medium 16/24</td>
+      </tr>
+      <tr>
+        <td>Label font</td>
+        <td className="cell-mono">--label-s-*</td>
+        <td>Gotham Medium 14/20</td>
+      </tr>
+      <tr>
+        <td>Default border</td>
+        <td className="cell-mono">--border-strong</td>
+        <td>1px solid</td>
+      </tr>
+      <tr>
+        <td>Focus border</td>
+        <td className="cell-mono">--border-active</td>
+        <td>2px solid green</td>
+      </tr>
+      <tr>
+        <td>Error border</td>
+        <td className="cell-mono">--status-error-border</td>
+        <td>1px solid orange</td>
+      </tr>
+      <tr>
+        <td>Background</td>
+        <td className="cell-mono">--background-input</td>
+        <td>White</td>
+      </tr>
+      <tr>
+        <td>Disabled background</td>
+        <td className="cell-mono">--background-canvas</td>
+        <td>Light grey</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

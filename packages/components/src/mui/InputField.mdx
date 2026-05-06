@@ -1,0 +1,96 @@
+import { Canvas, Controls, Meta } from '@storybook/addon-docs/blocks';
+import * as MuiInputFieldStories from './InputField.stories';
+
+<Meta of={MuiInputFieldStories} />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">MUI Input Field</div>
+  <div className="docs-description">
+    Material UI TextField themed with CKW design tokens. Uses MUI's <code>TextField</code> component
+    with a custom theme that maps CKW semantic tokens to MUI's styling system. Supports label,
+    placeholder, error state, disabled state, trailing icon, optional label, and info icon — all
+    matching the React InputField visually. Exposes the full MUI <code>sx</code> prop for additional
+    overrides.
+  </div>
+</div>
+
+<Canvas sourceState="shown" of={MuiInputFieldStories.Playground} />
+<Controls of={MuiInputFieldStories.Playground} />
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Installation</div>
+    <div className="docs-subsection-description">
+      The MUI subpath requires <code>@mui/material</code> and Emotion as peer dependencies.
+    </div>
+  </div>
+</div>
+
+```bash
+npm install @ckw-elements/components @mui/material @emotion/react @emotion/styled
+```
+
+```tsx
+import { InputField } from '@ckw-elements/components/mui';
+```
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Concrete Examples</div>
+    <div className="docs-subsection-description">
+      The following examples show different characteristics of the MUI Input Field component.
+    </div>
+  </div>
+</div>
+
+### Empty
+
+Empty input fields show the placeholder text in a muted color. The Error state shows a red border
+and error message below the input. Disabled fields have a muted background and cannot be interacted
+with.
+
+<Canvas of={MuiInputFieldStories.Empty} />
+
+### Filled
+
+When the user has entered text, the input value is displayed in the primary text color. All states
+behave the same as empty, with the filled text visible.
+
+<Canvas of={MuiInputFieldStories.Filled} />
+
+### Specials
+
+Additional features: a trailing icon inside the input (20 × 20), an "(optional)" hint next to the
+label, and an info icon for contextual help.
+
+<Canvas of={MuiInputFieldStories.Specials} />
+
+### All Variants
+
+Complete matrix showing empty and filled states across all five interaction states.
+
+<Canvas of={MuiInputFieldStories.AllVariants} />
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Theme Usage</div>
+    <div className="docs-subsection-description">
+      The CKW MUI theme can also be used standalone with <code>ThemeProvider</code> to theme any MUI
+      component in your app.
+    </div>
+  </div>
+</div>
+
+```tsx
+import { ThemeProvider } from '@mui/material/styles';
+import { ckwTheme } from '@ckw-elements/components/mui';
+import MuiTextField from '@mui/material/TextField';
+
+function App() {
+  return (
+    <ThemeProvider theme={ckwTheme}>
+      <MuiTextField variant="outlined" placeholder="CKW Styled" />
+    </ThemeProvider>
+  );
+}
+```
