@@ -1,10 +1,36 @@
-# CKW Elements Design System
+<div align="center">
 
-Design token pipeline and component library for CKW AG, built as a pnpm workspaces monorepo. Tokens are authored in Figma, exported via Tokens Studio, and transformed into CSS Custom Properties and JavaScript modules via Style Dictionary v4.
+# CKW Elements
+
+**Design tokens and component library for CKW AG**
+
+[![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](./LICENSE)
+[![Node](https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg)](https://nodejs.org)
+[![pnpm](https://img.shields.io/badge/pnpm-%3E%3D10-orange.svg)](https://pnpm.io)
+[![Storybook](https://img.shields.io/badge/docs-Storybook-ff4785.svg)](https://ckwag.github.io/ckw-elements/)
+
+[Live Documentation](https://ckwag.github.io/ckw-elements/) · [Architecture](./ARCHITECTURE.md) · [Contributing](#contributing)
+
+</div>
+
+---
+
+## Overview
+
+CKW Elements is a design system that bridges Figma and code. Tokens are authored as Figma Variables, exported via Tokens Studio, and transformed into **CSS Custom Properties** and **JavaScript modules** through Style Dictionary v4.
+
+The result: a single source of truth for colors, typography, spacing, borders, shadows, and components — consumed by any web project via a simple CSS import.
+
+## What's Included
+
+| Package                                             | Status         | Description                                                 |
+| --------------------------------------------------- | -------------- | ----------------------------------------------------------- |
+| [`@ckw-elements/tokens`](./packages/tokens)         | ✅ Active      | 282 design tokens (CSS + JS)                                |
+| [`@ckw-elements/components`](./packages/components) | 🚧 In progress | React component library                                     |
+| [`@ckw-elements/icons`](./packages/icons)           | 📋 Planned     | Icon set                                                    |
+| [`@ckw-elements/storybook`](./apps/storybook)       | ✅ Active      | [Documentation site](https://ckwag.github.io/ckw-elements/) |
 
 ## Quick Start
-
-**Prerequisites:** Node.js >= 20, pnpm >= 10
 
 ```bash
 git clone https://github.com/CKWAG/ckw-elements-design.git
@@ -13,182 +39,139 @@ pnpm install
 pnpm --filter @ckw-elements/storybook run dev
 ```
 
-Storybook opens at [http://localhost:6006](http://localhost:6006) and serves the full token documentation (colors, typography, spacing, borders, shadows).
+> **Prerequisites:** Node.js >= 20, pnpm >= 10
 
-## Monorepo Structure
+Storybook opens at [localhost:6006](http://localhost:6006) with the full token documentation.
 
-```
-ckw-elements-design/
-├── packages/
-│   ├── tokens/          @ckw-elements/tokens        Active — 282 design tokens
-│   ├── components/      @ckw-elements/components     Scaffold
-│   └── icons/           @ckw-elements/icons           Scaffold
-├── apps/
-│   └── storybook/       @ckw-elements/storybook      Active — documentation site
-├── token-drop/          Drop folder for Tokens Studio JSON exports
-├── ARCHITECTURE.md      Full architecture reference (870 lines)
-├── PIPELINE.md          Non-technical pipeline guide (German)
-└── AGENTS.md            AI agent coding reference
+## Usage
+
+Import the token CSS file into your project:
+
+```css
+@import '@ckw-elements/tokens/tokens.css';
 ```
 
-Workspaces are defined in `pnpm-workspace.yaml` — `packages/*` and `apps/*`.
+Then use semantic tokens in your styles:
 
-## Available Scripts
+```css
+.card {
+  background: var(--background-default);
+  color: var(--text-primary);
+  border: var(--border-weight-s) solid var(--border-soft);
+  border-radius: var(--border-radius-s);
+  padding: var(--spacing-l);
+  box-shadow: var(--shadow-s);
+}
 
-| Command                                                   | Description                                     |
-| --------------------------------------------------------- | ----------------------------------------------- |
-| `pnpm install`                                            | Install all workspace dependencies              |
-| `pnpm tokens:sync`                                        | Run full token pipeline (transform + build)     |
-| `pnpm --filter @ckw-elements/tokens run tokens:transform` | Transform only: raw JSON to DTCG format         |
-| `pnpm --filter @ckw-elements/tokens run build`            | Build only: DTCG to CSS/JS via Style Dictionary |
-| `pnpm --filter @ckw-elements/storybook run dev`           | Start Storybook dev server on port 6006         |
-| `pnpm --filter @ckw-elements/storybook run build`         | Build Storybook for static deployment           |
-| `pnpm -r run build`                                       | Build all workspace packages                    |
+.card:hover {
+  border-color: var(--border-hover);
+}
+```
 
-## Token Pipeline
+> **Rule:** Always use semantic tokens (`--interactive-primary`), never primitives (`--color-green-600`). This enables theming and ensures consistency.
 
-Tokens flow from Figma through a two-step transformation into consumable outputs:
+## Token Architecture
 
 ```
 Figma Variables
-  └─ Tokens Studio export ──> tokens-raw.json    (committed, verbatim)
-                                    │
-                          transform-tokens.mjs
-                                    │
-                                    v
-                              tokens.json          (committed, DTCG format)
-                                    │
-                           Style Dictionary v4
-                                    │
-                        ┌───────────┴───────────┐
-                        v                       v
-                  dist/tokens.css         dist/tokens.js
-                  (CSS Custom Props)      (JS named exports)
+  └─ Tokens Studio ──▸ tokens-raw.json
+                              │
+                    transform-tokens.mjs
+                              │
+                              ▾
+                        tokens.json (DTCG)
+                              │
+                     Style Dictionary v4
+                              │
+                  ┌───────────┴───────────┐
+                  ▾                       ▾
+            tokens.css              tokens.js
 ```
-
-The `dist/` directory is generated and gitignored. After pulling changes that touch `tokens.json`, run `pnpm --filter @ckw-elements/tokens run build` to regenerate it.
-
-See [ARCHITECTURE.md](./ARCHITECTURE.md) for the full pipeline specification, custom transforms, token categories, and output format details.
-
-### Two-Layer Token Architecture
 
 Tokens are organized in two layers:
 
-- **Primitive tokens** define raw values (colors, spacing, radii, etc.)
-- **Semantic tokens** reference primitives and describe purpose (`--interactive-primary`, `--text-primary`, etc.)
+- **Primitive** — Raw values (79 colors, 15 spacing, 7 radii, etc.)
+- **Semantic** — Purpose-driven references (`--interactive-primary`, `--text-secondary`, etc.)
 
-Components must only use semantic tokens. This separation enables future theming (dark mode is structurally prepared).
+See [ARCHITECTURE.md](./ARCHITECTURE.md) for full pipeline details.
 
-```css
-/* Wrong — primitive token */
-background: var(--color-green-600);
+## Scripts
 
-/* Correct — semantic token */
-background: var(--interactive-primary);
-```
+| Command                                           | Description                             |
+| ------------------------------------------------- | --------------------------------------- |
+| `pnpm install`                                    | Install dependencies                    |
+| `pnpm tokens:sync`                                | Full token pipeline (transform + build) |
+| `pnpm format`                                     | Format code (Prettier)                  |
+| `pnpm format:check`                               | Check formatting (CI)                   |
+| `pnpm --filter @ckw-elements/storybook run dev`   | Start Storybook                         |
+| `pnpm --filter @ckw-elements/storybook run build` | Build Storybook                         |
+| `pnpm -r run build`                               | Build all packages                      |
 
 ## Tech Stack
 
-| Tool             | Version | Purpose                    |
-| ---------------- | ------- | -------------------------- |
-| pnpm             | >= 10   | Monorepo package manager   |
-| Node.js          | >= 20   | Runtime                    |
-| Style Dictionary | 4.x     | Token transformation       |
-| React            | 19      | Component framework        |
-| TypeScript       | 5.x     | Type safety                |
-| Storybook        | 8.6     | Documentation site         |
-| Vite             | 6.x     | Build tool (via Storybook) |
-
-**Note:** There is no `tsconfig.json`, ESLint, Prettier, or test runner configured. Code style is enforced by convention. Adding these is a planned future task.
+| Tool                                                          | Purpose                  |
+| ------------------------------------------------------------- | ------------------------ |
+| [pnpm](https://pnpm.io)                                       | Monorepo package manager |
+| [Style Dictionary 4](https://amzn.github.io/style-dictionary) | Token transformation     |
+| [React 19](https://react.dev)                                 | Component framework      |
+| [TypeScript 5](https://www.typescriptlang.org)                | Type safety              |
+| [Storybook 8](https://storybook.js.org)                       | Documentation            |
+| [Vite 6](https://vite.dev)                                    | Build tool               |
+| [Prettier](https://prettier.io)                               | Code formatting          |
 
 ## Contributing
 
-### Setup
+We welcome contributions! Here's how to get started:
 
-1. Clone the repo and install dependencies (see Quick Start above).
-2. If working on tokens, ensure `dist/` is built: `pnpm tokens:sync`.
-3. Run Storybook to verify changes visually.
-
-### Code Style
-
-- 2-space indentation, single quotes, semicolons, trailing commas
-- `interface` for props, never `type`
-- String literal unions for variants, never `enum`
-- Named exports (except Storybook config files which use `export default`)
-- One component per file, PascalCase filenames
-
-### React Import Requirement
-
-`import React from 'react'` is **required** in every TSX file. There is no `tsconfig.json`, so the automatic JSX transform is not active. Removing this import causes runtime errors.
-
-### Import Order
-
-```tsx
-import React from 'react'; // 1. React (always first)
-import type { StorybookConfig } from '@storybook/…'; // 2. External type imports
-import { usesReferences } from 'style-dictionary/…'; // 3. External value imports
-import type { ColorToken } from '../data/tokens'; // 4. Local type imports
-import { ColorSwatch } from './ColorSwatch'; // 5. Local value imports
-```
-
-### Styling
-
-- Inline `style={{ }}` for token references: `style={{ color: 'var(--text-primary)' }}`
-- CSS class names from `docs.css` for documentation layout: `className="docs-section"`
-- No Tailwind in this project
-- Never hardcode hex colors — always use `var(--token-name)`
+1. Clone and install (see [Quick Start](#quick-start))
+2. Create a feature branch from `main`
+3. Make your changes — Prettier runs automatically on commit via Husky
+4. Verify visually in Storybook
+5. Open a Pull Request
 
 ### Adding a Component
 
 ```
 packages/components/src/ComponentName/
-├── ComponentName.tsx          React component (semantic tokens only)
-├── ComponentName.stories.tsx  Storybook stories
-└── ComponentName.mdx          Documentation page (optional)
+├── ComponentName.tsx          # React component (semantic tokens only)
+├── ComponentName.stories.tsx  # Interactive stories
+└── ComponentName.mdx          # Documentation page
 ```
 
-Export from the barrel: `packages/components/src/index.ts`.
+### Code Style
+
+- 2-space indent, single quotes, semicolons, trailing commas
+- `interface` for props (never `type`)
+- Named exports, PascalCase filenames
+- `import React from 'react'` required in all TSX files
 
 ### Token Changes
 
-When Figma tokens are updated:
-
-1. Export from Tokens Studio, save to `packages/tokens/tokens-raw.json`
+1. Export from Tokens Studio → save to `packages/tokens/tokens-raw.json`
 2. Run `pnpm tokens:sync`
-3. Verify changes via `git diff` on `tokens.json` and `dist/tokens.css`
-4. Check Storybook visually
-5. Commit
+3. Verify in Storybook
+4. Commit
 
-### Commit Messages
-
-Follow the pattern visible in the repo history:
+## Project Structure
 
 ```
-Add [Component] component: brief description of what it includes
-Fix [area]: what was wrong and what changed
-Refine [area]: what was improved
+ckw-elements-design/
+├── packages/
+│   ├── tokens/              282 design tokens (CSS + JS output)
+│   ├── components/          React component library
+│   └── icons/               Icon set (planned)
+├── apps/
+│   └── storybook/           Documentation site
+├── ARCHITECTURE.md          Full technical reference
+├── PIPELINE.md              Designer-facing guide (German)
+└── AGENTS.md                AI agent reference
 ```
-
-## Brand Reference
-
-| Property      | Value                             |
-| ------------- | --------------------------------- |
-| Primary color | Green `#86bc46`                   |
-| Font family   | Gotham (Book = 325, Medium = 500) |
-| Design tool   | Figma with Tokens Studio plugin   |
-
-## Files You Should Not Edit
-
-| Path                              | Reason                                                  |
-| --------------------------------- | ------------------------------------------------------- |
-| `packages/tokens/dist/*`          | Generated by Style Dictionary                           |
-| `packages/tokens/tokens-raw.json` | Verbatim Figma export — only replaced via Tokens Studio |
-| `node_modules/`                   | Package manager managed                                 |
 
 ## Further Reading
 
-- **[ARCHITECTURE.md](./ARCHITECTURE.md)** — Full architecture reference: token pipeline, Style Dictionary config, Storybook adapter pattern, data flow diagrams, file-by-file reference.
-- **[PIPELINE.md](./PIPELINE.md)** — Non-technical pipeline explanation for designers (German).
+- **[Live Documentation](https://ckwag.github.io/ckw-elements/)** — Browse tokens and components interactively
+- **[ARCHITECTURE.md](./ARCHITECTURE.md)** — Pipeline spec, Style Dictionary config, data flow
+- **[PIPELINE.md](./PIPELINE.md)** — Non-technical guide for designers (German)
 
 ## License
 
@@ -196,12 +179,7 @@ Licensed under the [Apache License, Version 2.0](./LICENSE).
 
 **Excluded from the open-source license** (see [NOTICE](./NOTICE)):
 
-| Asset                                  | Reason                                                      |
-| -------------------------------------- | ----------------------------------------------------------- |
-| `apps/storybook/public/ckw-logo.svg`   | CKW trademark                                               |
-| `apps/storybook/public/fonts/Gotham-*` | Commercial font (Hoefler & Co.) — redistribution prohibited |
-
-The CKW name, logo, and brand identity are trademarks of CKW AG.
-The Gotham font files are included for documentation rendering only and require
-a separate license from [Hoefler & Co.](https://www.typography.com/fonts/gotham)
-for any other use.
+| Asset                                  | Reason                                                                     |
+| -------------------------------------- | -------------------------------------------------------------------------- |
+| `apps/storybook/public/ckw-logo.svg`   | CKW AG trademark                                                           |
+| `apps/storybook/public/fonts/Gotham-*` | Commercial font ([Hoefler & Co.](https://www.typography.com/fonts/gotham)) |

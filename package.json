@@ -25,7 +25,7 @@
     ],
     "overrides": {
       "picomatch": ">=4.0.4",
-      "brace-expansion": ">=2.0.3",
+      "brace-expansion@^2": ">=2.0.3 <3",
       "postcss": ">=8.5.10"
     }
   },
