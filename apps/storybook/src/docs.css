@@ -525,8 +525,8 @@
    ============================================ */
 
 .sb-unstyled pre {
-  background: var(--color-grey-800) !important;
-  border: none;
+  background: var(--background-canvas) !important;
+  border: var(--border-weight-s) solid var(--border-soft);
   border-radius: var(--border-radius-s);
   padding: var(--spacing-m) var(--spacing-l) !important;
   margin: var(--spacing-m) 0 0 0 !important;
@@ -538,7 +538,7 @@
   font-size: 13px !important;
   line-height: 1.6 !important;
   letter-spacing: -0.26px;
-  color: var(--color-grey-100) !important;
+  color: var(--text-primary) !important;
   background: none !important;
   padding: 0 !important;
 }

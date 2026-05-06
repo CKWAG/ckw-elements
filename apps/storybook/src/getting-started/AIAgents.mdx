@@ -1,0 +1,373 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/Prototyping with AI Agents" />
+
+<div className="sb-unstyled">
+
+<div className="docs-page-title">Prototyping with AI Agents</div>
+<div className="docs-description">
+  Use CKW Elements tokens and components with any AI coding agent to build on-brand UI. Install the
+  package, load a skill, and start building.
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Install</div>
+
+```bash
+npm install @ckw-elements/tokens
+```
+
+```css
+/* Your app's entry CSS */
+@import '@ckw-elements/tokens/tokens.css';
+```
+
+  <div style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginTop: 'var(--spacing-m)',
+  }}>
+    All 282 design tokens are now available as <code>var(--token-name)</code> in your CSS.
+  </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">What You Get</div>
+
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th style={{ width: '200px' }}>Export</th>
+        <th style={{ width: '140px' }}>Import</th>
+        <th>Contains</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="cell-name">CSS Tokens</td>
+        <td className="cell-mono">tokens.css</td>
+        <td>76 colors, 15 spacings, 7 radii, 5 shadows, 48 typography styles, 1 gradient</td>
+      </tr>
+      <tr>
+        <td className="cell-name">JS Tokens</td>
+        <td className="cell-mono">tokens.js</td>
+        <td>Same tokens as named JS exports — for charting libraries, runtime logic</td>
+      </tr>
+      <tr>
+        <td className="cell-name">Components</td>
+        <td className="cell-mono">@ckw-elements/components</td>
+        <td>Button, Input Field, Segmented Control (in progress)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">AI Agent Skills</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  Drop one of these skill files into your AI agent's config to enable CKW Elements prototyping. Each
+  skill teaches the agent the token system so you only need to describe what to build.
+</div>
+
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th style={{ width: '200px' }}>Skill</th>
+        <th style={{ width: '200px' }}>Tool</th>
+        <th>Use Case</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="cell-name">ckw-prototyping</td>
+        <td>Claude Code, OpenCode, Cursor</td>
+        <td>Rapid UI prototyping — pages, cards, forms, layouts</td>
+      </tr>
+      <tr>
+        <td className="cell-name">ckw-components</td>
+        <td>Claude Code, OpenCode, Cursor</td>
+        <td>Building reusable React components with CKW tokens</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Download Skills</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  Download a skill file and drop it into your AI tool's config folder. Each skill contains the full
+  token reference, usage rules, and mapping tables — your agent will know how to use CKW Elements
+  without further instruction.
+</div>
+
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: 'var(--spacing-m)',
+  }}>
+    <a href="skills/ckw-prototyping.md" download style={{
+      padding: 'var(--spacing-xl)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+      textDecoration: 'none',
+      display: 'block',
+      transition: 'border-color 0.15s',
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-xs)',
+      }}>ckw-prototyping.md</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+        marginBottom: 'var(--spacing-s)',
+      }}>
+        Rapid UI prototyping — pages, layouts, forms, cards. Includes full token
+        reference with all colors, spacing, radii, shadows, and typography.
+      </div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--caption-size)',
+        fontWeight: 'var(--caption-weight)',
+        color: 'var(--interactive-primary)',
+      }}>Download skill</div>
+    </a>
+
+    <a href="skills/ckw-components.md" download style={{
+      padding: 'var(--spacing-xl)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+      textDecoration: 'none',
+      display: 'block',
+      transition: 'border-color 0.15s',
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-xs)',
+      }}>ckw-components.md</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+        marginBottom: 'var(--spacing-s)',
+      }}>
+        Building React components. Includes component file pattern, token-to-element
+        mapping table, spacing guidelines, and typography by context.
+      </div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--caption-size)',
+        fontWeight: 'var(--caption-weight)',
+        color: 'var(--interactive-primary)',
+      }}>Download skill</div>
+    </a>
+
+  </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Usage Example</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-m)',
+  }}
+>
+  With the skill loaded, you just describe what you need:
+</div>
+
+<div
+  style={{
+    padding: 'var(--spacing-l)',
+    borderRadius: 'var(--border-radius-s)',
+    background: 'var(--background-canvas)',
+    border: '1px solid var(--border-soft)',
+    marginBottom: 'var(--spacing-m)',
+  }}
+>
+  <div
+    style={{
+      fontFamily: 'var(--font-family-brand), sans-serif',
+      fontSize: 'var(--caption-size)',
+      fontWeight: 'var(--caption-weight)',
+      color: 'var(--text-tertiary)',
+      marginBottom: 'var(--spacing-xs)',
+      textTransform: 'uppercase',
+    }}
+  >
+    You say:
+  </div>
+  <div
+    style={{
+      fontFamily: 'var(--font-family-brand), sans-serif',
+      fontSize: 'var(--body-s-size)',
+      color: 'var(--text-primary)',
+      lineHeight: '1.5',
+    }}
+  >
+    "Build a settings page with a sidebar navigation and a form with text inputs, a toggle switch,
+    and a save button."
+  </div>
+</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-m)',
+  }}
+>
+  The agent produces code using CKW tokens automatically:
+</div>
+
+```css
+.settings-page {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--spacing-2xl);
+  padding: var(--spacing-xl);
+}
+
+.settings-nav {
+  border-right: var(--border-weight-s) solid var(--border-soft);
+  padding-right: var(--spacing-xl);
+}
+
+.settings-nav__item {
+  padding: var(--spacing-s) var(--spacing-m);
+  border-radius: var(--border-radius-s);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.settings-nav__item--active {
+  background: var(--background-active);
+  color: var(--text-primary);
+  border-left: 3px solid var(--interactive-primary);
+}
+
+.settings-form {
+  display: grid;
+  gap: var(--spacing-l);
+  max-width: 560px;
+}
+
+.form-field__label {
+  font-family: var(--font-family-brand), sans-serif;
+  font-size: var(--label-m-size);
+  font-weight: var(--label-m-weight);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-xs);
+}
+
+.form-field__input {
+  background: var(--background-input);
+  border: var(--border-weight-s) solid var(--border-medium);
+  border-radius: var(--border-radius-s);
+  padding: var(--spacing-s) var(--spacing-m);
+  font-size: var(--body-s-size);
+  color: var(--text-primary);
+}
+
+.form-field__input:focus {
+  border-color: var(--border-active);
+  outline: none;
+}
+
+.btn-save {
+  background: var(--interactive-primary);
+  color: var(--text-on-interactive-primary);
+  border: none;
+  border-radius: var(--border-radius-s);
+  padding: var(--spacing-s) var(--spacing-xl);
+  font-family: var(--font-family-brand), sans-serif;
+  font-size: var(--label-m-size);
+  font-weight: var(--label-m-weight);
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  background: var(--interactive-primary-hover);
+}
+```
+
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Where to Put Skills</div>
+
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th style={{ width: '160px' }}>AI Tool</th>
+        <th>Skill File Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="cell-name">Cursor</td>
+        <td className="cell-mono">.cursor/rules/ckw-prototyping.md</td>
+      </tr>
+      <tr>
+        <td className="cell-name">Claude Code</td>
+        <td className="cell-mono">.claude/skills/ckw-prototyping/SKILL.md</td>
+      </tr>
+      <tr>
+        <td className="cell-name">OpenCode</td>
+        <td className="cell-mono">.config/opencode/skill/ckw-prototyping/SKILL.md</td>
+      </tr>
+      <tr>
+        <td className="cell-name">GitHub Copilot</td>
+        <td className="cell-mono">.github/copilot-instructions.md</td>
+      </tr>
+      <tr>
+        <td className="cell-name">Any (generic)</td>
+        <td>Paste into system prompt or initial message</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</div>

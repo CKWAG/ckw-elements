@@ -16,6 +16,8 @@ const preview: Preview = {
       storySort: {
         order: [
           'Welcome',
+          'Getting Started',
+          ['Prototyping with AI Agents'],
           'Foundations',
           ['Typography', 'Colors', 'Spacings', 'Borders', 'Shadows'],
           'Components',
