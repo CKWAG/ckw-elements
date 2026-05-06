@@ -20,5 +20,6 @@
       "style-dictionary",
       "@bundled-es-modules/glob"
     ]
-  }
+  },
+  "packageManager": "pnpm@10.11.0"
 }
