@@ -525,11 +525,6 @@
    ============================================ */
 
 .sb-unstyled pre {
-  background: var(--background-canvas) !important;
-  border: var(--border-weight-s) solid var(--border-soft);
-  border-radius: var(--border-radius-s);
-  padding: var(--spacing-m) var(--spacing-l) !important;
-  margin: var(--spacing-m) 0 0 0 !important;
   overflow-x: auto;
 }
 
@@ -538,17 +533,10 @@
   font-size: 13px !important;
   line-height: 1.6 !important;
   letter-spacing: -0.26px;
-  color: var(--text-primary) !important;
-  background: none !important;
-  padding: 0 !important;
 }
 
 .sb-unstyled code {
   font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
   font-size: 13px !important;
   letter-spacing: -0.26px;
-  background: var(--background-canvas);
-  color: var(--text-primary) !important;
-  padding: var(--spacing-3xs) 6px;
-  border-radius: var(--border-radius-xs);
 }

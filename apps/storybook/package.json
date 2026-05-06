@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@ckw-elements/components": "workspace:*",
-    "@ckw-elements/tokens": "workspace:*"
+    "@ckw-elements/tokens": "workspace:*",
+    "@mui/material": "^9.0.0",
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.3.6",

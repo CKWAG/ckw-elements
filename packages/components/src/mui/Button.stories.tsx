@@ -2,7 +2,6 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Button } from './Button';
 
-/** Placeholder icon from Figma (Icon/placeholder — shield with checkmark). */
 function PlaceholderIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,69 +16,65 @@ function PlaceholderIcon() {
 }
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/React/Button',
-  parameters: {
-    docs: { source: { type: 'dynamic' } },
-  },
+  title: 'Components/MUI/Button',
   component: Button,
   tags: ['!autodocs', '!dev'],
   argTypes: {
     children: {
       name: 'Text',
-      control: { type: 'text' },
       description: 'Text content within the button.',
+      control: { type: 'text' },
       table: { category: 'Content' },
     },
-    type: {
-      name: 'Type',
+    variant: {
+      name: 'Variant',
+      description:
+        'Visual style variant. Primary → MUI contained, Secondary → MUI outlined, Tertiary → MUI text.',
       control: { type: 'inline-radio' },
       options: ['Primary', 'Secondary', 'Tertiary'],
-      description:
-        'Visual style variant. Primary uses gradient background, Secondary is outlined, Tertiary is text-only.',
       table: { category: 'General', defaultValue: { summary: 'Primary' } },
     },
     size: {
       name: 'Size',
+      description: 'Button size. Large and Medium are 48px height, Small is 40px.',
       control: { type: 'inline-radio' },
       options: ['Large', 'Medium', 'Small'],
-      description:
-        'Button size. Large uses label-l typography (18/22), Medium and Small use label-m (16/20).',
       table: { category: 'General', defaultValue: { summary: 'Large' } },
     },
     fullWidth: {
       name: 'Full width',
-      control: { type: 'boolean' },
       description: 'Stretch to fill the parent container width.',
+      control: { type: 'boolean' },
       table: { category: 'General', defaultValue: { summary: 'false' } },
     },
-    leadingIcon: {
-      name: 'Leading icon',
-      control: { type: 'boolean' },
+    startIcon: {
+      name: 'Start icon',
       description: 'Show an icon before the label.',
+      control: { type: 'boolean' },
       table: { category: 'Icon', defaultValue: { summary: 'false' } },
     },
-    trailingIcon: {
-      name: 'Trailing icon',
-      control: { type: 'boolean' },
+    endIcon: {
+      name: 'End icon',
       description: 'Show an icon after the label.',
+      control: { type: 'boolean' },
       table: { category: 'Icon', defaultValue: { summary: 'false' } },
     },
     disabled: {
       name: 'Disabled',
-      control: { type: 'boolean' },
       description:
         'When set to true, makes the component appear inactive and disables its functionality.',
+      control: { type: 'boolean' },
       table: { category: 'States', defaultValue: { summary: 'false' } },
     },
   },
   args: {
     children: 'Button',
-    type: 'Primary',
+    variant: 'Primary',
     size: 'Large',
     disabled: false,
     fullWidth: false,
-    leadingIcon: false,
-    trailingIcon: false,
+    startIcon: false,
+    endIcon: false,
   },
 };
 
@@ -87,29 +82,19 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-// ---------------------------------------------------------------------------
-// Default — interactive canvas with source shown on the Docs page
-// ---------------------------------------------------------------------------
-
-/** Interactive playground — use the controls panel to change props. */
 export const Default: Story = {
-  render: ({ leadingIcon, trailingIcon, ...args }) => {
-    // Only one icon at a time — leading takes precedence
-    const showLeading = Boolean(leadingIcon);
-    const showTrailing = Boolean(trailingIcon) && !showLeading;
+  render: ({ startIcon, endIcon, ...args }) => {
+    const showStart = Boolean(startIcon);
+    const showEnd = Boolean(endIcon) && !showStart;
     return (
       <Button
         {...args}
-        leadingIcon={showLeading ? <PlaceholderIcon /> : undefined}
-        trailingIcon={showTrailing ? <PlaceholderIcon /> : undefined}
+        startIcon={showStart ? <PlaceholderIcon /> : undefined}
+        endIcon={showEnd ? <PlaceholderIcon /> : undefined}
       />
     );
   },
 };
-
-// ---------------------------------------------------------------------------
-// Embedded examples — rendered inside the Docs page via autodocs
-// ---------------------------------------------------------------------------
 
 const sectionStyle: React.CSSProperties = {
   display: 'flex',
@@ -140,83 +125,32 @@ const headingStyle: React.CSSProperties = {
   marginBottom: '8px',
 };
 
-/** The three visual types communicate hierarchy: Primary for the main action, Secondary for alternative actions, Tertiary for low-emphasis actions. */
-export const Types: Story = {
+export const Variants: Story = {
   render: () => (
     <div style={sectionStyle}>
-      {(['Primary', 'Secondary', 'Tertiary'] as const).map((type) => (
-        <div key={type} style={rowStyle}>
-          <span style={labelStyle}>{type}</span>
-          <Button type={type}>Label</Button>
+      {(['Primary', 'Secondary', 'Tertiary'] as const).map((variant) => (
+        <div key={variant} style={rowStyle}>
+          <span style={labelStyle}>{variant}</span>
+          <Button variant={variant}>Button</Button>
         </div>
       ))}
     </div>
   ),
 };
 
-/** Large uses label-l (18/22), Medium and Small use label-m (16/20). Small has a reduced height of 40px. */
 export const Sizes: Story = {
   render: () => (
     <div style={sectionStyle}>
       {(['Large', 'Medium', 'Small'] as const).map((size) => (
         <div key={size} style={rowStyle}>
           <span style={labelStyle}>{size}</span>
-          <Button size={size}>Label</Button>
+          <Button size={size}>Button</Button>
         </div>
       ))}
     </div>
   ),
 };
 
-/** Hover and Active states are applied via CSS pseudo-classes. Disabled reduces opacity to 0.4 and removes interactivity. */
-export const States: Story = {
-  render: () => (
-    <div style={sectionStyle}>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Default</span>
-        <Button>Label</Button>
-      </div>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Disabled</span>
-        <Button disabled>Label</Button>
-      </div>
-    </div>
-  ),
-};
-
-/** Icons are 24x24 and placed before (leading) or after (trailing) the label. Icon color inherits from the button text color. */
-export const Icons: Story = {
-  render: () => (
-    <div style={sectionStyle}>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Leading</span>
-        <Button leadingIcon={<PlaceholderIcon />}>Label</Button>
-      </div>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Trailing</span>
-        <Button trailingIcon={<PlaceholderIcon />}>Label</Button>
-      </div>
-    </div>
-  ),
-};
-
-/** By default the button hugs its content with a minimum width. Set `fullWidth` to stretch to the parent container. */
-export const Container: Story = {
-  render: () => (
-    <div style={sectionStyle}>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Hugging</span>
-        <Button>Label</Button>
-      </div>
-      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', maxWidth: '400px' }}>
-        <span style={labelStyle}>Full width</span>
-        <Button fullWidth>Label</Button>
-      </div>
-    </div>
-  ),
-};
-
-/** Complete matrix of all types x sizes showing default and disabled states. Hover and active states are visible on interaction. */
 export const AllVariants: Story = {
   render: () => {
     const cellStyle: React.CSSProperties = {
@@ -235,9 +169,9 @@ export const AllVariants: Story = {
     };
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-        {(['Primary', 'Secondary', 'Tertiary'] as const).map((type) => (
-          <div key={type}>
-            <div style={headingStyle}>{type}</div>
+        {(['Primary', 'Secondary', 'Tertiary'] as const).map((variant) => (
+          <div key={variant}>
+            <div style={headingStyle}>{variant}</div>
             <div
               style={{
                 display: 'grid',
@@ -246,7 +180,6 @@ export const AllVariants: Story = {
                 alignItems: 'center',
               }}
             >
-              {/* Header row */}
               <div />
               <div style={headerStyle}>Default</div>
               <div style={headerStyle}>Disabled</div>
@@ -255,13 +188,13 @@ export const AllVariants: Story = {
                 <React.Fragment key={size}>
                   <span style={labelStyle}>{size}</span>
                   <div style={cellStyle}>
-                    <Button type={type} size={size}>
-                      Label
+                    <Button variant={variant} size={size}>
+                      Button
                     </Button>
                   </div>
                   <div style={cellStyle}>
-                    <Button type={type} size={size} disabled>
-                      Label
+                    <Button variant={variant} size={size} disabled>
+                      Button
                     </Button>
                   </div>
                 </React.Fragment>
@@ -272,4 +205,20 @@ export const AllVariants: Story = {
       </div>
     );
   },
+};
+
+export const FullWidth: Story = {
+  render: () => (
+    <div style={{ maxWidth: '400px', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+      <Button variant="Primary" fullWidth>
+        Primary full width
+      </Button>
+      <Button variant="Secondary" fullWidth>
+        Secondary full width
+      </Button>
+      <Button variant="Tertiary" fullWidth>
+        Tertiary full width
+      </Button>
+    </div>
+  ),
 };
