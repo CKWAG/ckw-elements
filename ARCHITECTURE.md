@@ -94,25 +94,25 @@ ckw-elements/
 
 ### Tech Stack
 
-| Tool               | Version   | Purpose                                    |
-| ------------------ | --------- | ------------------------------------------ |
-| pnpm               | >= 10     | Monorepo package manager (workspaces)      |
-| Node.js            | >= 20     | Runtime                                    |
-| Style Dictionary   | 4.x       | Token transformation (JSON → CSS/JS)       |
-| Tokens Studio      | (Plugin)  | Figma plugin — exports Variables as JSON   |
-| React              | 19        | Component library framework                |
-| TypeScript         | 5.x       | Type safety (strict mode planned)          |
-| Storybook          | 8.6       | Documentation site + component explorer    |
-| Vite               | 6.x       | Build tool (via @storybook/react-vite)     |
+| Tool             | Version  | Purpose                                  |
+| ---------------- | -------- | ---------------------------------------- |
+| pnpm             | >= 10    | Monorepo package manager (workspaces)    |
+| Node.js          | >= 20    | Runtime                                  |
+| Style Dictionary | 4.x      | Token transformation (JSON → CSS/JS)     |
+| Tokens Studio    | (Plugin) | Figma plugin — exports Variables as JSON |
+| React            | 19       | Component library framework              |
+| TypeScript       | 5.x      | Type safety (strict mode planned)        |
+| Storybook        | 8.6      | Documentation site + component explorer  |
+| Vite             | 6.x      | Build tool (via @storybook/react-vite)   |
 
 ### Package Status
 
-| Package                    | npm Scope               | Status   | Published |
-| -------------------------- | ----------------------- | -------- | --------- |
-| `packages/tokens`          | `@ckw-elements/tokens`  | Done     | Not yet   |
-| `packages/components`      | `@ckw-elements/components` | Scaffold | Not yet |
-| `packages/icons`           | `@ckw-elements/icons`   | Scaffold | Not yet   |
-| `apps/storybook`           | `@ckw-elements/storybook` | Active | Private   |
+| Package               | npm Scope                  | Status   | Published |
+| --------------------- | -------------------------- | -------- | --------- |
+| `packages/tokens`     | `@ckw-elements/tokens`     | Done     | Not yet   |
+| `packages/components` | `@ckw-elements/components` | Scaffold | Not yet   |
+| `packages/icons`      | `@ckw-elements/icons`      | Scaffold | Not yet   |
+| `apps/storybook`      | `@ckw-elements/storybook`  | Active   | Private   |
 
 ---
 
@@ -202,60 +202,60 @@ decisions from Figma into consumable CSS and JavaScript outputs.
 
 `transform-tokens.mjs` maps Tokens Studio sets to DTCG paths:
 
-| Tokens Studio Set           | DTCG Path                     | Count |
-| --------------------------- | ----------------------------- | ----- |
-| `Primitive Colors/Value`    | `primitive.color.*`           | 79    |
-| `Semantic Colors/Light Mode`| `semantic.color.*`            | 76    |
-| `Typography/Desktop`        | `typography.desktop.*`        | 48    |
-| `Typography/Mobile`         | `typography.mobile.*`         | 48    |
-| `Spacing/Value`             | `primitive.spacing.*`         | 15    |
-| `Borders/Value`             | `primitive.border-radius.*`   | 7     |
-| `Borders/Value`             | `primitive.border-weight.*`   | 4     |
-| `Shadows/Value`             | `primitive.shadow.*`          | 3     |
-| `Gradients/Value`           | `primitive.gradient.*`        | 1     |
-| `Typography/Desktop`        | `primitive.font-family.brand` | 1     |
-| `Specification/Value`       | SKIPPED (internal specs)      | —     |
+| Tokens Studio Set            | DTCG Path                     | Count |
+| ---------------------------- | ----------------------------- | ----- |
+| `Primitive Colors/Value`     | `primitive.color.*`           | 79    |
+| `Semantic Colors/Light Mode` | `semantic.color.*`            | 76    |
+| `Typography/Desktop`         | `typography.desktop.*`        | 48    |
+| `Typography/Mobile`          | `typography.mobile.*`         | 48    |
+| `Spacing/Value`              | `primitive.spacing.*`         | 15    |
+| `Borders/Value`              | `primitive.border-radius.*`   | 7     |
+| `Borders/Value`              | `primitive.border-weight.*`   | 4     |
+| `Shadows/Value`              | `primitive.shadow.*`          | 3     |
+| `Gradients/Value`            | `primitive.gradient.*`        | 1     |
+| `Typography/Desktop`         | `primitive.font-family.brand` | 1     |
+| `Specification/Value`        | SKIPPED (internal specs)      | —     |
 
 ### Style Dictionary Custom Transforms
 
-| Transform Name           | What It Does                                              |
-| ------------------------ | --------------------------------------------------------- |
-| `name/ckw-strip-prefix`  | Strips `primitive.`, `semantic.color.`, `typography.{mode}.` from paths to create clean CSS variable names |
-| `value/ckw-font-weight`  | Converts `"Book"` → `"325"`, `"Medium"` → `"500"`        |
+| Transform Name          | What It Does                                                                                               |
+| ----------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `name/ckw-strip-prefix` | Strips `primitive.`, `semantic.color.`, `typography.{mode}.` from paths to create clean CSS variable names |
+| `value/ckw-font-weight` | Converts `"Book"` → `"325"`, `"Medium"` → `"500"`                                                          |
 
 ### Style Dictionary Custom Formats
 
-| Format Name       | Output File      | What It Generates                                  |
-| ----------------- | ---------------- | -------------------------------------------------- |
-| `ckw/tokens-css`  | `dist/tokens.css`| Single CSS file with 12 structured blocks          |
-| `ckw/tokens-js`   | `dist/tokens.js` | JS module with named exports + default export      |
+| Format Name      | Output File       | What It Generates                             |
+| ---------------- | ----------------- | --------------------------------------------- |
+| `ckw/tokens-css` | `dist/tokens.css` | Single CSS file with 12 structured blocks     |
+| `ckw/tokens-js`  | `dist/tokens.js`  | JS module with named exports + default export |
 
 ### Token Count Summary (282 Total)
 
-| Category            | Count | CSS Variable Pattern                     |
-| ------------------- | ----- | ---------------------------------------- |
-| Primitive colors    | 79    | `--color-{group}-{step}`                 |
-| Semantic colors     | 76    | `--{name}` (e.g. `--text-primary`)       |
-| Spacing             | 15    | `--spacing-{size}`                       |
-| Border radius       | 7     | `--border-radius-{size}`                 |
-| Border weight       | 4     | `--border-weight-{size}`                 |
-| Font family         | 1     | `--font-family-brand`                    |
-| Shadows             | 3     | `--shadow-{size}`                        |
-| Gradient            | 1     | `--gradient-brand`                    |
-| Typography desktop  | 48    | `--{style}-{prop}` (e.g. `--heading-l-size`) |
-| Typography mobile   | 48    | Same names, inside `@media` block        |
-| **Total**           | **282** |                                        |
+| Category           | Count   | CSS Variable Pattern                         |
+| ------------------ | ------- | -------------------------------------------- |
+| Primitive colors   | 79      | `--color-{group}-{step}`                     |
+| Semantic colors    | 76      | `--{name}` (e.g. `--text-primary`)           |
+| Spacing            | 15      | `--spacing-{size}`                           |
+| Border radius      | 7       | `--border-radius-{size}`                     |
+| Border weight      | 4       | `--border-weight-{size}`                     |
+| Font family        | 1       | `--font-family-brand`                        |
+| Shadows            | 3       | `--shadow-{size}`                            |
+| Gradient           | 1       | `--gradient-brand`                           |
+| Typography desktop | 48      | `--{style}-{prop}` (e.g. `--heading-l-size`) |
+| Typography mobile  | 48      | Same names, inside `@media` block            |
+| **Total**          | **282** |                                              |
 
 ### What Gets Committed vs. Generated
 
 | File              | Committed | Generated | Published to npm |
 | ----------------- | --------- | --------- | ---------------- |
 | `tokens-raw.json` | Yes       | No        | No               |
-| `tokens.json`     | Yes       | Yes*      | Yes              |
+| `tokens.json`     | Yes       | Yes\*     | Yes              |
 | `dist/tokens.css` | No        | Yes       | Yes              |
 | `dist/tokens.js`  | No        | Yes       | Yes              |
 
-*`tokens.json` is generated by `transform-tokens.mjs` but committed to Git
+\*`tokens.json` is generated by `transform-tokens.mjs` but committed to Git
 for traceability — every token change is visible in PR diffs.
 
 ---
@@ -273,7 +273,7 @@ weights — without any semantic meaning. They never change based on theme.
 ```css
 :root {
   /* Colors — 8 groups with 11-step scales + 2 neutrals */
-  --color-green-300: #86bc46;       /* Brand color */
+  --color-green-300: #86bc46; /* Brand color */
   --color-green-600: #365f10;
   --color-grey-800: #232623;
   --color-neutrals-white: #ffffff;
@@ -291,7 +291,7 @@ weights — without any semantic meaning. They never change based on theme.
 
 ### Layer 2: Semantic Tokens (References)
 
-Semantic tokens give meaning to primitives. They describe *purpose*, not appearance.
+Semantic tokens give meaning to primitives. They describe _purpose_, not appearance.
 They reference primitives via `var()` — this is what enables theming.
 
 ```css
@@ -341,7 +341,7 @@ Dark mode is structurally prepared from day one, even though no dark mode exists
 }
 
 /* Dark mode — placeholder, will be filled when designed in Figma */
-[data-theme="dark"] {
+[data-theme='dark'] {
   /* When dark mode is designed:
      --text-primary: var(--color-grey-100);
      --background-default: var(--color-grey-900);
@@ -350,6 +350,7 @@ Dark mode is structurally prepared from day one, even though no dark mode exists
 ```
 
 When dark mode is eventually designed in Figma:
+
 1. Export new token values via Tokens Studio
 2. Run `pnpm tokens:sync`
 3. The `[data-theme="dark"]` block fills automatically
@@ -357,8 +358,8 @@ When dark mode is eventually designed in Figma:
 
 ### Semantic Color Categories (76 Tokens)
 
-| Category    | Count | Examples                                         |
-| ----------- | ----- | ------------------------------------------------ |
+| Category    | Count | Examples                                          |
+| ----------- | ----- | ------------------------------------------------- |
 | Text        | 6     | `--text-primary`, `--text-on-interactive-primary` |
 | Interactive | 7     | `--interactive-primary`, `--interactive-text`     |
 | Background  | 8     | `--background-default`, `--background-canvas`     |
@@ -376,20 +377,20 @@ When dark mode is eventually designed in Figma:
 The typography system has **16 styles** across 5 categories, using **Gotham** as the
 brand typeface with two weights:
 
-| Weight Name | CSS Value | Usage                                |
-| ----------- | --------- | ------------------------------------ |
-| Book        | 325       | Body text, Display, Lead             |
-| Medium      | 500       | Headings, emphasized variants        |
+| Weight Name | CSS Value | Usage                         |
+| ----------- | --------- | ----------------------------- |
+| Book        | 325       | Body text, Display, Lead      |
+| Medium      | 500       | Headings, emphasized variants |
 
 ### Categories
 
 | Category | Styles | Responsive | Description                                 |
 | -------- | ------ | ---------- | ------------------------------------------- |
-| Display  | 2      | Yes        | Hero headlines, use once per page            |
-| Heading  | 4      | Yes        | Content structure (XL, L, M, S)              |
-| Lead     | 2      | Yes        | Introductory copy below headings             |
-| Body     | 6      | No         | Primary reading text (L, M, S + Emphasized)  |
-| Caption  | 2      | No         | Labels, metadata, footnotes                  |
+| Display  | 2      | Yes        | Hero headlines, use once per page           |
+| Heading  | 4      | Yes        | Content structure (XL, L, M, S)             |
+| Lead     | 2      | Yes        | Introductory copy below headings            |
+| Body     | 6      | No         | Primary reading text (L, M, S + Emphasized) |
+| Caption  | 2      | No         | Labels, metadata, footnotes                 |
 
 ### Three Output Layers
 
@@ -537,9 +538,7 @@ Storybook's Docs addon applies its own styles to all content. To prevent these f
 overriding the documentation's custom styling, all MDX page content is wrapped in:
 
 ```jsx
-<div className="sb-unstyled">
-  {/* All page content */}
-</div>
+<div className="sb-unstyled">{/* All page content */}</div>
 ```
 
 And CSS selectors in `docs.css` use `.sb-unstyled .class-name` with `!important`
@@ -547,13 +546,13 @@ on font properties. This is Storybook's official opt-out mechanism.
 
 ### Foundation Pages (5)
 
-| Page         | Data Source (from adapter)                    | Components Used           |
-| ------------ | -------------------------------------------- | ------------------------- |
-| Typography   | `typographyCategories`                       | `TypographySample`        |
-| Colors       | `primitiveColors`, `semanticColors`, `gradientToken` | `ColorGrid`, `ColorSwatch`, `TokenTable` |
-| Spacings     | `spacingTokens`                              | `SpacingBar`              |
-| Borders      | `borderRadiusTokens`, `borderWeightTokens`   | `BorderPreview`           |
-| Shadows      | `shadowTokens`                               | `ShadowCard`, `TokenTable`|
+| Page       | Data Source (from adapter)                           | Components Used                          |
+| ---------- | ---------------------------------------------------- | ---------------------------------------- |
+| Typography | `typographyCategories`                               | `TypographySample`                       |
+| Colors     | `primitiveColors`, `semanticColors`, `gradientToken` | `ColorGrid`, `ColorSwatch`, `TokenTable` |
+| Spacings   | `spacingTokens`                                      | `SpacingBar`                             |
+| Borders    | `borderRadiusTokens`, `borderWeightTokens`           | `BorderPreview`                          |
+| Shadows    | `shadowTokens`                                       | `ShadowCard`, `TokenTable`               |
 
 ### Sidebar Order
 
@@ -603,6 +602,7 @@ Step 7    If everything looks good:
 ```
 
 **What updates automatically:**
+
 - `tokens.json` — new values from transform
 - `dist/tokens.css` — regenerated CSS Custom Properties
 - `dist/tokens.js` — regenerated JS exports
@@ -610,6 +610,7 @@ Step 7    If everything looks good:
 - Storybook live previews — CSS Custom Properties update via `tokens.css`
 
 **What does NOT update automatically:**
+
 - `.storybook/theme.ts` — has hardcoded hex values for Storybook UI chrome
 - Category descriptions in `data/tokens.ts` — editorial text, not from Figma
 
@@ -695,14 +696,14 @@ pnpm --filter @ckw-elements/storybook run build
 
 ### E. Quick Reference — All Commands
 
-| Command                                            | What It Does                     |
-| -------------------------------------------------- | -------------------------------- |
-| `pnpm install`                                     | Install all workspace deps       |
-| `pnpm tokens:sync`                                 | Transform + build tokens         |
-| `pnpm --filter @ckw-elements/tokens run build`     | Build tokens only (skip transform) |
-| `pnpm --filter @ckw-elements/storybook run dev`    | Start Storybook dev server       |
-| `pnpm --filter @ckw-elements/storybook run build`  | Build Storybook for deployment   |
-| `pnpm -r run build`                                | Build all workspace packages     |
+| Command                                           | What It Does                       |
+| ------------------------------------------------- | ---------------------------------- |
+| `pnpm install`                                    | Install all workspace deps         |
+| `pnpm tokens:sync`                                | Transform + build tokens           |
+| `pnpm --filter @ckw-elements/tokens run build`    | Build tokens only (skip transform) |
+| `pnpm --filter @ckw-elements/storybook run dev`   | Start Storybook dev server         |
+| `pnpm --filter @ckw-elements/storybook run build` | Build Storybook for deployment     |
+| `pnpm -r run build`                               | Build all workspace packages       |
 
 ---
 
@@ -712,28 +713,28 @@ pnpm --filter @ckw-elements/storybook run build
 
 #### Medium Priority
 
-| #  | Location                   | Issue                                                 |
-| -- | -------------------------- | ----------------------------------------------------- |
-| M1 | `transform-tokens.mjs`     | Gradient `$type` is `"color"` but value is a CSS `linear-gradient()`. Technically incorrect per DTCG spec, works in practice. |
-| M3 | `.storybook/theme.ts`      | All brand colors are hardcoded hex values. Could import from `tokens.js` to stay in sync with the pipeline. Storybook's `create()` API requires raw strings, not `var()`. |
+| #   | Location               | Issue                                                                                                                                                                     |
+| --- | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| M1  | `transform-tokens.mjs` | Gradient `$type` is `"color"` but value is a CSS `linear-gradient()`. Technically incorrect per DTCG spec, works in practice.                                             |
+| M3  | `.storybook/theme.ts`  | All brand colors are hardcoded hex values. Could import from `tokens.js` to stay in sync with the pipeline. Storybook's `create()` API requires raw strings, not `var()`. |
 
 #### Low Priority
 
-| #  | Location                   | Issue                                                 |
-| -- | -------------------------- | ----------------------------------------------------- |
-| L3 | No `tsconfig.json`         | Entire repo has no TypeScript config. IDE type-checking depends on Storybook's internal Vite config. Adding `tsconfig.json` is a known future task. |
-| L4 | `dist/tokens.js`           | No `.d.ts` TypeScript declarations. TS consumers get no autocomplete. |
-| L9 | All 7 TSX components       | `import React from 'react'` is present. Required until `tsconfig.json` with `"jsx": "react-jsx"` is added — without it, the automatic JSX transform is not active and removing the import causes "React is not defined" runtime errors. |
+| #   | Location             | Issue                                                                                                                                                                                                                                   |
+| --- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| L3  | No `tsconfig.json`   | Entire repo has no TypeScript config. IDE type-checking depends on Storybook's internal Vite config. Adding `tsconfig.json` is a known future task.                                                                                     |
+| L4  | `dist/tokens.js`     | No `.d.ts` TypeScript declarations. TS consumers get no autocomplete.                                                                                                                                                                   |
+| L9  | All 7 TSX components | `import React from 'react'` is present. Required until `tsconfig.json` with `"jsx": "react-jsx"` is added — without it, the automatic JSX transform is not active and removing the import causes "React is not defined" runtime errors. |
 
 ### Open Decisions
 
-| Question                          | Options                              | Status       |
-| --------------------------------- | ------------------------------------ | ------------ |
-| npm publishing                    | Public npm vs. private GitHub Packages | Not decided |
-| Figma Code Connect               | Requires Org/Enterprise plan — does CKW have it? | Not confirmed |
-| GitHub repo visibility            | Public or private?                   | Not decided  |
-| Figma API Token for CI/CD         | Needed for automated pipeline        | Not created  |
-| GitHub Pages for Storybook        | Deploy docs site publicly?           | Not decided  |
+| Question                   | Options                                          | Status        |
+| -------------------------- | ------------------------------------------------ | ------------- |
+| npm publishing             | Public npm vs. private GitHub Packages           | Not decided   |
+| Figma Code Connect         | Requires Org/Enterprise plan — does CKW have it? | Not confirmed |
+| GitHub repo visibility     | Public or private?                               | Not decided   |
+| Figma API Token for CI/CD  | Needed for automated pipeline                    | Not created   |
+| GitHub Pages for Storybook | Deploy docs site publicly?                       | Not decided   |
 
 ---
 
@@ -779,13 +780,13 @@ pnpm --filter @ckw-elements/storybook run build
 
 ### External Dependencies (Key)
 
-| Package              | Used By     | Purpose                            |
-| -------------------- | ----------- | ---------------------------------- |
-| `style-dictionary`   | tokens      | Token transformation engine        |
-| `react` + `react-dom`| components, storybook | UI framework              |
-| `typescript`         | components  | Type safety (dev dependency)       |
-| `storybook`          | storybook   | Documentation framework            |
-| `@storybook/react-vite` | storybook | Vite-based Storybook builder    |
+| Package                 | Used By               | Purpose                      |
+| ----------------------- | --------------------- | ---------------------------- |
+| `style-dictionary`      | tokens                | Token transformation engine  |
+| `react` + `react-dom`   | components, storybook | UI framework                 |
+| `typescript`            | components            | Type safety (dev dependency) |
+| `storybook`             | storybook             | Documentation framework      |
+| `@storybook/react-vite` | storybook             | Vite-based Storybook builder |
 
 ### Data Flow (End to End)
 
@@ -826,45 +827,45 @@ Quick lookup for every file in the monorepo and its purpose.
 
 ### Root
 
-| File                   | Purpose                                    |
-| ---------------------- | ------------------------------------------ |
-| `package.json`         | Workspace root, shared scripts             |
-| `pnpm-workspace.yaml`  | Defines workspace members                  |
-| `.gitignore`           | Excludes node_modules, dist, etc.          |
-| `ARCHITECTURE.md`      | This document                              |
+| File                  | Purpose                           |
+| --------------------- | --------------------------------- |
+| `package.json`        | Workspace root, shared scripts    |
+| `pnpm-workspace.yaml` | Defines workspace members         |
+| `.gitignore`          | Excludes node_modules, dist, etc. |
+| `ARCHITECTURE.md`     | This document                     |
 
 ### `packages/tokens/`
 
-| File                           | Purpose                                       | Committed | Generated |
-| ------------------------------ | --------------------------------------------- | --------- | --------- |
-| `package.json`                 | Package identity, exports, scripts            | Yes       | No        |
-| `tokens-raw.json`              | Verbatim Tokens Studio export (3364 lines)    | Yes       | No        |
+| File                          | Purpose                                       | Committed | Generated |
+| ----------------------------- | --------------------------------------------- | --------- | --------- |
+| `package.json`                | Package identity, exports, scripts            | Yes       | No        |
+| `tokens-raw.json`             | Verbatim Tokens Studio export (3364 lines)    | Yes       | No        |
 | `transform-tokens.mjs`        | Raw → DTCG transformation script (484 lines)  | Yes       | No        |
-| `tokens.json`                  | Clean DTCG format (1236 lines)                | Yes       | Yes*      |
+| `tokens.json`                 | Clean DTCG format (1236 lines)                | Yes       | Yes\*     |
 | `build-tokens.mjs`            | Style Dictionary runner (26 lines)            | Yes       | No        |
 | `style-dictionary.config.mjs` | Custom transforms + formats (504 lines)       | Yes       | No        |
-| `dist/tokens.css`              | CSS Custom Properties + Utilities (451 lines) | No        | Yes       |
-| `dist/tokens.js`               | JS named + default exports (591 lines)        | No        | Yes       |
+| `dist/tokens.css`             | CSS Custom Properties + Utilities (451 lines) | No        | Yes       |
+| `dist/tokens.js`              | JS named + default exports (591 lines)        | No        | Yes       |
 
 ### `apps/storybook/`
 
-| File                              | Purpose                                    |
-| --------------------------------- | ------------------------------------------ |
-| `.storybook/main.ts`             | Story discovery, addons, framework config   |
-| `.storybook/preview.ts`          | Global CSS imports, sidebar order           |
-| `.storybook/theme.ts`            | CKW-branded Storybook UI theme              |
-| `public/ckw-logo.svg`            | CKW corporate logo                          |
-| `public/fonts/Gotham-Book.woff2`   | Gotham Book WOFF2 (weight 325, primary)   |
-| `public/fonts/Gotham-Medium.woff2` | Gotham Medium WOFF2 (weight 500, primary) |
-| `public/fonts/Gotham-Book.otf`     | Gotham Book OTF (fallback)                |
-| `public/fonts/Gotham-Medium.otf`   | Gotham Medium OTF (fallback)              |
-| `public/fonts/Roboto-latin.woff2`  | Roboto variable font (specs UI text)      |
-| `public/fonts/Roboto-latin-ext.woff2` | Roboto latin-ext subset                |
-| `public/fonts/JetBrainsMono-500-latin.woff2` | JetBrains Mono (specs code font) |
-| `public/fonts/JetBrainsMono-500-latin-ext.woff2` | JetBrains Mono latin-ext subset |
-| `.storybook/manager.ts`          | Storybook Manager UI config (theme)         |
-| `.storybook/manager-head.html`   | Manager `<head>` injection (sidebar emoji CSS) |
-| `src/docs.css`                   | Master docs stylesheet (specs design lang.) |
-| `src/data/tokens.ts`             | Adapter: tokens.json → typed arrays         |
-| `src/components/*.tsx`           | 7 React components for docs rendering       |
-| `src/foundations/*.mdx`          | 5 MDX documentation pages                   |
+| File                                             | Purpose                                        |
+| ------------------------------------------------ | ---------------------------------------------- |
+| `.storybook/main.ts`                             | Story discovery, addons, framework config      |
+| `.storybook/preview.ts`                          | Global CSS imports, sidebar order              |
+| `.storybook/theme.ts`                            | CKW-branded Storybook UI theme                 |
+| `public/ckw-logo.svg`                            | CKW corporate logo                             |
+| `public/fonts/Gotham-Book.woff2`                 | Gotham Book WOFF2 (weight 325, primary)        |
+| `public/fonts/Gotham-Medium.woff2`               | Gotham Medium WOFF2 (weight 500, primary)      |
+| `public/fonts/Gotham-Book.otf`                   | Gotham Book OTF (fallback)                     |
+| `public/fonts/Gotham-Medium.otf`                 | Gotham Medium OTF (fallback)                   |
+| `public/fonts/Roboto-latin.woff2`                | Roboto variable font (specs UI text)           |
+| `public/fonts/Roboto-latin-ext.woff2`            | Roboto latin-ext subset                        |
+| `public/fonts/JetBrainsMono-500-latin.woff2`     | JetBrains Mono (specs code font)               |
+| `public/fonts/JetBrainsMono-500-latin-ext.woff2` | JetBrains Mono latin-ext subset                |
+| `.storybook/manager.ts`                          | Storybook Manager UI config (theme)            |
+| `.storybook/manager-head.html`                   | Manager `<head>` injection (sidebar emoji CSS) |
+| `src/docs.css`                                   | Master docs stylesheet (specs design lang.)    |
+| `src/data/tokens.ts`                             | Adapter: tokens.json → typed arrays            |
+| `src/components/*.tsx`                           | 7 React components for docs rendering          |
+| `src/foundations/*.mdx`                          | 5 MDX documentation pages                      |

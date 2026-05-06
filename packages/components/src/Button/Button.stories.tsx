@@ -30,7 +30,8 @@ const meta: Meta<typeof Button> = {
     size: {
       control: 'select',
       options: ['Large', 'Medium', 'Small'],
-      description: 'Size of the button. Large uses label-l typography, Medium and Small use label-m.',
+      description:
+        'Size of the button. Large uses label-l typography, Medium and Small use label-m.',
       table: { defaultValue: { summary: 'Large' } },
     },
     disabled: {
@@ -241,10 +242,14 @@ export const AllVariants: Story = {
                 <React.Fragment key={size}>
                   <span style={labelStyle}>{size}</span>
                   <div style={cellStyle}>
-                    <Button type={type} size={size}>Label</Button>
+                    <Button type={type} size={size}>
+                      Label
+                    </Button>
                   </div>
                   <div style={cellStyle}>
-                    <Button type={type} size={size} disabled>Label</Button>
+                    <Button type={type} size={size} disabled>
+                      Label
+                    </Button>
                   </div>
                 </React.Fragment>
               ))}

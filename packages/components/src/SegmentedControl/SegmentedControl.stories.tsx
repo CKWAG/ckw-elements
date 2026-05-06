@@ -16,7 +16,6 @@ function PlaceholderIcon() {
   );
 }
 
-
 const meta: Meta<typeof SegmentedControl> = {
   title: 'Components/Segmented Control',
   component: SegmentedControl,
@@ -375,19 +374,34 @@ export const AllVariants: Story = {
             <div style={rowStyle}>
               <span style={labelStyle}>Label only</span>
               <div style={{ flex: 1 }}>
-                <SegmentedControl segments={segments3} activeValue="a" type="Fill" contentMode="label" />
+                <SegmentedControl
+                  segments={segments3}
+                  activeValue="a"
+                  type="Fill"
+                  contentMode="label"
+                />
               </div>
             </div>
             <div style={rowStyle}>
               <span style={labelStyle}>Icon + Label</span>
               <div style={{ flex: 1 }}>
-                <SegmentedControl segments={segments3} activeValue="a" type="Fill" contentMode="icon-label" />
+                <SegmentedControl
+                  segments={segments3}
+                  activeValue="a"
+                  type="Fill"
+                  contentMode="icon-label"
+                />
               </div>
             </div>
             <div style={rowStyle}>
               <span style={labelStyle}>Icon compact</span>
               <div style={{ flex: 1 }}>
-                <SegmentedControl segments={segments3} activeValue="a" type="Fill" contentMode="icon-compact" />
+                <SegmentedControl
+                  segments={segments3}
+                  activeValue="a"
+                  type="Fill"
+                  contentMode="icon-compact"
+                />
               </div>
             </div>
           </div>

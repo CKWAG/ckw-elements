@@ -59,19 +59,10 @@ export function Button({
     .join(' ');
 
   return (
-    <button
-      className={classes}
-      type={htmlType}
-      disabled={disabled}
-      onClick={onClick}
-    >
-      {leadingIcon && (
-        <span className="ckw-button__icon">{leadingIcon}</span>
-      )}
+    <button className={classes} type={htmlType} disabled={disabled} onClick={onClick}>
+      {leadingIcon && <span className="ckw-button__icon">{leadingIcon}</span>}
       {children}
-      {trailingIcon && (
-        <span className="ckw-button__icon">{trailingIcon}</span>
-      )}
+      {trailingIcon && <span className="ckw-button__icon">{trailingIcon}</span>}
     </button>
   );
 }

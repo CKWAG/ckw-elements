@@ -121,10 +121,7 @@ const fieldWidth: React.CSSProperties = {
 export const Playground: Story = {
   render: ({ icon, value, ...args }) => (
     <div style={{ maxWidth: '320px' }}>
-      <InputField
-        {...args}
-        icon={icon ? <PlaceholderIcon /> : undefined}
-      />
+      <InputField {...args} icon={icon ? <PlaceholderIcon /> : undefined} />
     </div>
   ),
 };
@@ -137,13 +134,15 @@ export const Playground: Story = {
 export const Empty: Story = {
   render: () => (
     <div style={sectionStyle}>
-      {([
-        ['Default', {}],
-        ['Hover', {}],
-        ['Active', {}],
-        ['Error', { errorText: 'Error text' }],
-        ['Disabled', { disabled: true }],
-      ] as const).map(([label, props]) => (
+      {(
+        [
+          ['Default', {}],
+          ['Hover', {}],
+          ['Active', {}],
+          ['Error', { errorText: 'Error text' }],
+          ['Disabled', { disabled: true }],
+        ] as const
+      ).map(([label, props]) => (
         <div key={label} style={rowStyle}>
           <span style={labelStyle}>{label}</span>
           <div style={fieldWidth}>
@@ -163,13 +162,15 @@ export const Empty: Story = {
 export const Filled: Story = {
   render: () => (
     <div style={sectionStyle}>
-      {([
-        ['Default', { value: 'Input' }],
-        ['Hover', { value: 'Input' }],
-        ['Active', { value: 'Input' }],
-        ['Error', { value: 'Input', errorText: 'Error text' }],
-        ['Disabled', { value: 'Input', disabled: true }],
-      ] as const).map(([label, props]) => (
+      {(
+        [
+          ['Default', { value: 'Input' }],
+          ['Hover', { value: 'Input' }],
+          ['Active', { value: 'Input' }],
+          ['Error', { value: 'Input', errorText: 'Error text' }],
+          ['Disabled', { value: 'Input', disabled: true }],
+        ] as const
+      ).map(([label, props]) => (
         <div key={label} style={rowStyle}>
           <span style={labelStyle}>{label}</span>
           <div style={fieldWidth}>

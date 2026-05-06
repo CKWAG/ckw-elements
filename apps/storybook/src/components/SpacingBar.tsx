@@ -25,9 +25,7 @@ export function SpacingBar({ token }: SpacingBarProps) {
       </td>
 
       {/* Pixel value */}
-      <td style={{ verticalAlign: 'middle', fontWeight: 500 }}>
-        {token.value}
-      </td>
+      <td style={{ verticalAlign: 'middle', fontWeight: 500 }}>{token.value}</td>
 
       {/* Visual bar */}
       <td style={{ verticalAlign: 'middle' }}>

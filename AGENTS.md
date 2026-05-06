@@ -6,18 +6,25 @@ Practical reference for AI coding agents. For full architecture details see `ARC
 
 ## Build / Lint / Test Commands
 
-| What | Command |
-|------|---------|
-| Install deps | `pnpm install` |
-| Token pipeline (transform + build) | `pnpm tokens:sync` (root shortcut) |
-| Token transform only | `pnpm --filter @ckw-elements/tokens run tokens:transform` |
-| Token build only (from existing tokens.json) | `pnpm --filter @ckw-elements/tokens run build` |
-| Start Storybook dev server | `pnpm --filter @ckw-elements/storybook run dev` |
-| Build Storybook for deployment | `pnpm --filter @ckw-elements/storybook run build` |
-| Build all packages | `pnpm -r run build` |
+| What                                         | Command                                                   |
+| -------------------------------------------- | --------------------------------------------------------- |
+| Install deps                                 | `pnpm install`                                            |
+| Token pipeline (transform + build)           | `pnpm tokens:sync` (root shortcut)                        |
+| Token transform only                         | `pnpm --filter @ckw-elements/tokens run tokens:transform` |
+| Token build only (from existing tokens.json) | `pnpm --filter @ckw-elements/tokens run build`            |
+| Format code                                  | `pnpm format`                                             |
+| Check formatting (CI)                        | `pnpm format:check`                                       |
+| Start Storybook dev server                   | `pnpm --filter @ckw-elements/storybook run dev`           |
+| Build Storybook for deployment               | `pnpm --filter @ckw-elements/storybook run build`         |
+| Build all packages                           | `pnpm -r run build`                                       |
 
-**No linter, test runner, or formatter is configured.** There is no `tsconfig.json`, no
-ESLint, no Prettier, no Vitest/Jest. Code style is enforced by convention only.
+**Prettier** is configured (`.prettierrc.json`). Formatting is enforced via:
+
+- **Pre-commit hook** — Husky + lint-staged auto-formats staged files on commit.
+- **CI check** — GitHub Actions runs `pnpm format:check` on push/PR to `main`.
+
+No linter or test runner is configured. There is no `tsconfig.json`, no ESLint,
+no Vitest/Jest.
 
 Engine requirements: **Node >= 20**, **pnpm >= 10**.
 
@@ -58,9 +65,12 @@ tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v4
 ## Critical Rules
 
 1. **Components use ONLY semantic tokens**, never primitives:
+
    ```css
-   /* WRONG */  background: var(--color-green-600);
-   /* RIGHT */  background: var(--interactive-primary);
+   /* WRONG */
+   background: var(--color-green-600);
+   /* RIGHT */
+   background: var(--interactive-primary);
    ```
 
 2. **`import React from 'react'` is REQUIRED** in all TSX files. No `tsconfig.json` means
@@ -81,12 +91,14 @@ tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v4
 ## Code Style
 
 ### Formatting
+
 - 2-space indentation
 - Single quotes for strings
 - Semicolons required
 - Trailing commas in multiline arrays/objects
 
 ### TypeScript / React
+
 - `strict: true` intent (no tsconfig yet, but write as if strict)
 - Props: always `interface`, never `type`
 - Variant unions: `export type ButtonType = 'Primary' | 'Secondary'` — no `enum`
@@ -97,27 +109,31 @@ tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v4
 - JSDoc comment above every exported function
 
 ### Import Order
+
 ```tsx
-import React from 'react';                            // 1. React (always first, required)
-import type { StorybookConfig } from '@storybook/…';  // 2. External type imports
-import { usesReferences } from 'style-dictionary/…';  // 3. External value imports
-import type { ColorToken } from '../data/tokens';     // 4. Local type imports
-import { ColorSwatch } from './ColorSwatch';           // 5. Local value imports
+import React from 'react'; // 1. React (always first, required)
+import type { StorybookConfig } from '@storybook/…'; // 2. External type imports
+import { usesReferences } from 'style-dictionary/…'; // 3. External value imports
+import type { ColorToken } from '../data/tokens'; // 4. Local type imports
+import { ColorSwatch } from './ColorSwatch'; // 5. Local value imports
 ```
 
 ### Styling
+
 - Inline `style={{ }}` for token references: `style={{ color: 'var(--text-primary)' }}`
 - CSS class names from `docs.css` for docs layout: `className="docs-section"`
 - No Tailwind in the monorepo
 - Never hardcode hex colors — always use `var(--token-name)`
 
 ### Scripts (.mjs files)
+
 - ESM (`import`/`export`), not CommonJS
 - `const` for variables
 - JSDoc block comments for documentation
 - Use `node:` prefixed imports (`node:fs`, `node:path`, `node:url`)
 
 ### Error Handling
+
 - No `console.log` in committed code (except token pipeline summary output)
 - Guard against missing data with early returns, not try/catch around rendering
 - Validate token references exist before using them
@@ -127,6 +143,7 @@ import { ColorSwatch } from './ColorSwatch';           // 5. Local value imports
 ## Storybook Conventions
 
 ### MDX Foundation Pages
+
 ```mdx
 import { Meta } from '@storybook/blocks';
 import { MyComponent } from '../components/MyComponent';
@@ -145,6 +162,7 @@ import { myData } from '../data/tokens';
 ```
 
 ### Config Files
+
 - `main.ts`, `preview.ts`, `theme.ts` — use `export default`
 - `manager.ts` — uses `addons.setConfig()` from `@storybook/manager-api`
 - `manager-head.html` — CSS injected into Manager `<head>` (fragile DOM selectors)
@@ -160,20 +178,20 @@ Only these title CSS classes exist in `docs.css`: `specs-title-4xl`, `specs-titl
 
 ## Files You Should Never Modify
 
-| Path | Reason |
-|------|--------|
-| `packages/tokens/dist/*` | Generated by Style Dictionary |
+| Path                              | Reason                                                 |
+| --------------------------------- | ------------------------------------------------------ |
+| `packages/tokens/dist/*`          | Generated by Style Dictionary                          |
 | `packages/tokens/tokens-raw.json` | Verbatim Figma export, only replaced via Tokens Studio |
-| `node_modules/` | Package manager managed |
+| `node_modules/`                   | Package manager managed                                |
 
 ---
 
 ## Known Issues
 
-| # | Issue |
-|---|-------|
-| M1 | Gradient `$type` is `"color"` but value is `linear-gradient()` — works in practice |
-| M3 | `theme.ts` brand colors are hardcoded hex (Storybook `create()` needs raw strings) |
-| L3 | No `tsconfig.json` — known future task |
-| L4 | No `.d.ts` declarations for `dist/tokens.js` |
-| L9 | React import required in all TSX until tsconfig is added |
+| #   | Issue                                                                              |
+| --- | ---------------------------------------------------------------------------------- |
+| M1  | Gradient `$type` is `"color"` but value is `linear-gradient()` — works in practice |
+| M3  | `theme.ts` brand colors are hardcoded hex (Storybook `create()` needs raw strings) |
+| L3  | No `tsconfig.json` — known future task                                             |
+| L4  | No `.d.ts` declarations for `dist/tokens.js`                                       |
+| L9  | React import required in all TSX until tsconfig is added                           |

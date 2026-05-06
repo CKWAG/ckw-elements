@@ -6,9 +6,7 @@ const config: StorybookConfig = {
     '../../../packages/components/src/**/*.mdx',
     '../../../packages/components/src/**/*.stories.tsx',
   ],
-  addons: [
-    '@storybook/addon-essentials',
-  ],
+  addons: ['@storybook/addon-essentials'],
   framework: '@storybook/react-vite',
   staticDirs: ['../public'],
 };

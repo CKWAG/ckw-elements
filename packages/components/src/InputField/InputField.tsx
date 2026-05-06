@@ -113,16 +113,16 @@ export function InputField({
     hasError && 'ckw-input-field--error',
     disabled && 'ckw-input-field--disabled',
     className,
-  ].filter(Boolean).join(' ');
+  ]
+    .filter(Boolean)
+    .join(' ');
 
   return (
     <div className={rootClasses}>
       {/* Label row */}
       <div className="ckw-input-field__label-row">
         <span className="ckw-input-field__label">{label}</span>
-        {optional && (
-          <span className="ckw-input-field__optional">(optional)</span>
-        )}
+        {optional && <span className="ckw-input-field__optional">(optional)</span>}
         {showInfo && (
           <button
             type="button"
@@ -150,9 +150,7 @@ export function InputField({
             aria-invalid={hasError || undefined}
             aria-describedby={errorId}
           />
-          {icon && (
-            <span className="ckw-input-field__icon">{icon}</span>
-          )}
+          {icon && <span className="ckw-input-field__icon">{icon}</span>}
         </div>
       </div>
 

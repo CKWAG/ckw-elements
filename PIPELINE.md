@@ -92,6 +92,7 @@ Storybook ist unsere **Nachschlage-Seite** für das Design System. Es zeigt alle
 visuell an — Farbpaletten, Schriftmuster, Abstandsskala, Schatten, Rahmen.
 
 Designer und Entwickler finden hier:
+
 - Wie heisst welcher Token?
 - Welche Farbe steckt dahinter?
 - Wie sieht eine Schriftgrösse auf Desktop vs. Mobile aus?
@@ -116,12 +117,12 @@ Unser Token-System hat zwei Ebenen. Das ist der Schlüssel zu einem flexiblen De
 
 Primitive Tokens sind die **direkten Werte** — die Farbtöpfe im Lager.
 
-| Token | Wert | Beschreibung |
-|-------|------|--------------|
-| Grün/300 | `#86bc46` | Unser Markengrün |
-| Grün/600 | `#365f10` | Dunkles Grün |
-| Grau/800 | `#232623` | Fast Schwarz |
-| Neutrals/White | `#ffffff` | Reines Weiss |
+| Token          | Wert      | Beschreibung     |
+| -------------- | --------- | ---------------- |
+| Grün/300       | `#86bc46` | Unser Markengrün |
+| Grün/600       | `#365f10` | Dunkles Grün     |
+| Grau/800       | `#232623` | Fast Schwarz     |
+| Neutrals/White | `#ffffff` | Reines Weiss     |
 
 Es gibt **8 Farbgruppen** (Grün, Grau, Khaki, Blau, Gelb, Orange, Violett, Neutrals)
 mit jeweils 11 Abstufungen (50 bis 900) — insgesamt 79 Farbwerte.
@@ -134,12 +135,12 @@ und die Schriftart Gotham.
 Semantische Tokens beschreiben den **Zweck**, nicht den Wert.
 Sie sind die Etiketten auf den Farbtöpfen: "Diese Farbe ist für Buttons."
 
-| Token | Verweist auf | Zweck |
-|-------|-------------|-------|
-| `interactive-primary` | Grün/600 | Primäre Interaktionsfarbe (Buttons, Links) |
-| `text-primary` | Grau/800 | Haupttext-Farbe |
-| `background-default` | Neutrals/White | Standard-Hintergrund |
-| `status-error-text` | Orange/600 | Fehler-Text |
+| Token                 | Verweist auf   | Zweck                                      |
+| --------------------- | -------------- | ------------------------------------------ |
+| `interactive-primary` | Grün/600       | Primäre Interaktionsfarbe (Buttons, Links) |
+| `text-primary`        | Grau/800       | Haupttext-Farbe                            |
+| `background-default`  | Neutrals/White | Standard-Hintergrund                       |
+| `status-error-text`   | Orange/600     | Fehler-Text                                |
 
 Es gibt **76 semantische Farb-Tokens** in 7 Kategorien:
 Text, Interaktiv, Hintergrund, Rahmen, Status, Chart und Dekorativ.
@@ -184,11 +185,11 @@ Unser System ist technisch für Dark Mode vorbereitet, **auch wenn es noch keine
 Die semantischen Tokens haben aktuell nur einen Satz Werte — den Light Mode.
 Sobald in Figma ein Dark Mode definiert wird, kommt ein zweiter Satz dazu:
 
-| Token | Light Mode | Dark Mode (Zukunft) |
-|-------|-----------|-------------------|
-| `text-primary` | Grau/800 (dunkel) | z.B. Grau/100 (hell) |
-| `background-default` | Weiss | z.B. Grau/900 (fast schwarz) |
-| `interactive-primary` | Grün/600 | z.B. Grün/300 |
+| Token                 | Light Mode        | Dark Mode (Zukunft)          |
+| --------------------- | ----------------- | ---------------------------- |
+| `text-primary`        | Grau/800 (dunkel) | z.B. Grau/100 (hell)         |
+| `background-default`  | Weiss             | z.B. Grau/900 (fast schwarz) |
+| `interactive-primary` | Grün/600          | z.B. Grün/300                |
 
 Das Schöne daran: **Die Produkte und Komponenten müssen dafür nicht angepasst werden.**
 Sie verwenden weiterhin `text-primary` — nur der Wert dahinter ändert sich je nach Modus.
@@ -207,15 +208,15 @@ Sie verwenden weiterhin `text-primary` — nur der Wert dahinter ändert sich je
 
 ## Zusammenfassung
 
-| Frage | Antwort |
-|-------|---------|
-| **Wo werden Tokens definiert?** | In Figma (Variables) |
-| **Wie kommen sie in den Code?** | Export via Tokens Studio → `token-drop/` → Doppelklick → fertig |
-| **Wo kann ich sie nachschlagen?** | In Storybook (Foundations-Seiten) |
-| **Was wenn sich eine Farbe ändert?** | Neuer Export → Doppelklick → Storybook zeigt die Änderung |
-| **Warum zwei Ebenen?** | Primitiv = Rohmaterial, Semantisch = Bedeutung. Flexibel und konsistent. |
-| **Ist Dark Mode möglich?** | Ja, vorbereitet. Nur Figma-Werte definieren → Pipeline → fertig. |
-| **Wie viele Tokens gibt es?** | 282 (79 Primitiv-Farben, 76 Semantisch, Rest: Abstände, Schriften etc.) |
+| Frage                                | Antwort                                                                  |
+| ------------------------------------ | ------------------------------------------------------------------------ |
+| **Wo werden Tokens definiert?**      | In Figma (Variables)                                                     |
+| **Wie kommen sie in den Code?**      | Export via Tokens Studio → `token-drop/` → Doppelklick → fertig          |
+| **Wo kann ich sie nachschlagen?**    | In Storybook (Foundations-Seiten)                                        |
+| **Was wenn sich eine Farbe ändert?** | Neuer Export → Doppelklick → Storybook zeigt die Änderung                |
+| **Warum zwei Ebenen?**               | Primitiv = Rohmaterial, Semantisch = Bedeutung. Flexibel und konsistent. |
+| **Ist Dark Mode möglich?**           | Ja, vorbereitet. Nur Figma-Werte definieren → Pipeline → fertig.         |
+| **Wie viele Tokens gibt es?**        | 282 (79 Primitiv-Farben, 76 Semantisch, Rest: Abstände, Schriften etc.)  |
 
 ---
 

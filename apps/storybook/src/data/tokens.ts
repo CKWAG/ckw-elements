@@ -137,7 +137,14 @@ function isLeaf(node: unknown): node is { $value: string; $type: string } {
  * Groups not in this list are appended alphabetically at the end.
  */
 const COLOR_GROUP_ORDER = [
-  'green', 'grey', 'khaki', 'blue', 'yellow', 'orange', 'violet', 'neutrals',
+  'green',
+  'grey',
+  'khaki',
+  'blue',
+  'yellow',
+  'orange',
+  'violet',
+  'neutrals',
 ];
 
 function buildPrimitiveColors(): ColorGroup[] {
@@ -270,9 +277,12 @@ const TYPOGRAPHY_CATEGORY_META: {
       'Used for primary reading text across UI and content. Stays the same size on desktop and mobile to ensure consistent readability.',
     responsive: false,
     styleNames: [
-      'body-l', 'body-l-emphasized',
-      'body-m', 'body-m-emphasized',
-      'body-s', 'body-s-emphasized',
+      'body-l',
+      'body-l-emphasized',
+      'body-m',
+      'body-m-emphasized',
+      'body-s',
+      'body-s-emphasized',
     ],
   },
   {
@@ -302,11 +312,16 @@ const TYPOGRAPHY_CATEGORY_META: {
       'Used for numerical data displays such as KPIs, dashboards, and statistics. Available in Book (default) and Bold (emphasized) weights across five sizes.',
     responsive: false,
     styleNames: [
-      'metric-xl', 'metric-xl-emphasized',
-      'metric-l', 'metric-l-emphasized',
-      'metric-m', 'metric-m-emphasized',
-      'metric-s', 'metric-s-emphasized',
-      'metric-xs', 'metric-xs-emphasized',
+      'metric-xl',
+      'metric-xl-emphasized',
+      'metric-l',
+      'metric-l-emphasized',
+      'metric-m',
+      'metric-m-emphasized',
+      'metric-s',
+      'metric-s-emphasized',
+      'metric-xs',
+      'metric-xs-emphasized',
     ],
   },
 ];
@@ -374,8 +389,6 @@ function buildTypographyCategories(): TypographyCategory[] {
 
 export const typographyCategories: TypographyCategory[] = buildTypographyCategories();
 
-
-
 // ============================================
 // Spacing Tokens (15)
 // ============================================
@@ -384,8 +397,21 @@ export const typographyCategories: TypographyCategory[] = buildTypographyCategor
  * Desired display order for spacing tokens (smallest → largest).
  */
 const SPACING_ORDER = [
-  'none', '3xs', '2xs', 'xs', 's', 'm', 'l', 'xl',
-  '2xl', '3xl', '4xl', '5xl', '6xl', '7xl', '8xl',
+  'none',
+  '3xs',
+  '2xs',
+  'xs',
+  's',
+  'm',
+  'l',
+  'xl',
+  '2xl',
+  '3xl',
+  '4xl',
+  '5xl',
+  '6xl',
+  '7xl',
+  '8xl',
 ];
 
 function buildSpacingTokens(): SpacingToken[] {
@@ -394,17 +420,15 @@ function buildSpacingTokens(): SpacingToken[] {
     { $value: string; $type: string }
   >;
 
-  return SPACING_ORDER
-    .filter((name) => spacingNode[name] !== undefined)
-    .map((name) => {
-      const token = spacingNode[name];
-      return {
-        name,
-        cssVar: `--spacing-${name}`,
-        value: token.$value,
-        rem: pxToRem(token.$value),
-      };
-    });
+  return SPACING_ORDER.filter((name) => spacingNode[name] !== undefined).map((name) => {
+    const token = spacingNode[name];
+    return {
+      name,
+      cssVar: `--spacing-${name}`,
+      value: token.$value,
+      rem: pxToRem(token.$value),
+    };
+  });
 }
 
 export const spacingTokens: SpacingToken[] = buildSpacingTokens();
@@ -421,13 +445,11 @@ function buildShadowTokens(): ShadowToken[] {
     { $value: string; $type: string }
   >;
 
-  return SHADOW_ORDER
-    .filter((name) => shadowNode[name] !== undefined)
-    .map((name) => ({
-      name,
-      cssVar: `--shadow-${name}`,
-      value: shadowNode[name].$value,
-    }));
+  return SHADOW_ORDER.filter((name) => shadowNode[name] !== undefined).map((name) => ({
+    name,
+    cssVar: `--shadow-${name}`,
+    value: shadowNode[name].$value,
+  }));
 }
 
 export const shadowTokens: ShadowToken[] = buildShadowTokens();
@@ -444,13 +466,11 @@ function buildBorderRadiusTokens(): BorderRadiusToken[] {
     { $value: string; $type: string }
   >;
 
-  return BORDER_RADIUS_ORDER
-    .filter((name) => brNode[name] !== undefined)
-    .map((name) => ({
-      name,
-      cssVar: `--border-radius-${name}`,
-      value: brNode[name].$value,
-    }));
+  return BORDER_RADIUS_ORDER.filter((name) => brNode[name] !== undefined).map((name) => ({
+    name,
+    cssVar: `--border-radius-${name}`,
+    value: brNode[name].$value,
+  }));
 }
 
 export const borderRadiusTokens: BorderRadiusToken[] = buildBorderRadiusTokens();
@@ -467,13 +487,11 @@ function buildBorderWeightTokens(): BorderWeightToken[] {
     { $value: string; $type: string }
   >;
 
-  return BORDER_WEIGHT_ORDER
-    .filter((name) => bwNode[name] !== undefined)
-    .map((name) => ({
-      name,
-      cssVar: `--border-weight-${name}`,
-      value: bwNode[name].$value,
-    }));
+  return BORDER_WEIGHT_ORDER.filter((name) => bwNode[name] !== undefined).map((name) => ({
+    name,
+    cssVar: `--border-weight-${name}`,
+    value: bwNode[name].$value,
+  }));
 }
 
 export const borderWeightTokens: BorderWeightToken[] = buildBorderWeightTokens();
@@ -485,6 +503,6 @@ export const borderWeightTokens: BorderWeightToken[] = buildBorderWeightTokens()
 export const gradientToken = {
   name: 'brand',
   cssVar: '--gradient-brand',
-  value: (tokensJson.primitive.gradient as Record<string, { $value: string; $type: string }>)
-    .brand.$value,
+  value: (tokensJson.primitive.gradient as Record<string, { $value: string; $type: string }>).brand
+    .$value,
 };

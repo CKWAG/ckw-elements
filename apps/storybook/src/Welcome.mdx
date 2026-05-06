@@ -1,0 +1,264 @@
+import { Meta } from '@storybook/blocks';
+
+<Meta title="Welcome" />
+
+<div className="sb-unstyled">
+
+<div className="docs-page-title">CKW Design System</div>
+
+<div className="docs-description">
+  The single source of truth for CKW's digital products. Tokens, components, and guidelines — from
+  Figma to code. Built as a pnpm monorepo, powered by Style Dictionary v4 and React 19.
+</div>
+
+<div className="docs-section" style={{ marginTop: '48px' }}>
+  <div className="docs-section-title">Explore</div>
+
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+    gap: 'var(--spacing-m)',
+    marginTop: 'var(--spacing-l)',
+  }}>
+
+    <div style={{
+      padding: 'var(--spacing-xl)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+    }}>
+      <div style={{
+        fontSize: '28px',
+        marginBottom: 'var(--spacing-xs)',
+      }}>🔠</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-2xs)',
+      }}>Typography</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        fontWeight: 'var(--body-s-weight)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}>Gotham typeface, 28 styles across Display, Heading, Body, Caption, Label, and Metric.</div>
+    </div>
+
+    <div style={{
+      padding: 'var(--spacing-xl)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+    }}>
+      <div style={{
+        fontSize: '28px',
+        marginBottom: 'var(--spacing-xs)',
+      }}>🎨</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-2xs)',
+      }}>Colors</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        fontWeight: 'var(--body-s-weight)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}>79 primitives across 7 hues, 76 semantic tokens for surfaces, text, borders, and status.</div>
+    </div>
+
+    <div style={{
+      padding: 'var(--spacing-xl)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+    }}>
+      <div style={{
+        fontSize: '28px',
+        marginBottom: 'var(--spacing-xs)',
+      }}>📏</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-2xs)',
+      }}>Spacings</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        fontWeight: 'var(--body-s-weight)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}>15 spacing tokens from 0px to 120px for consistent layout rhythm.</div>
+    </div>
+
+    <div style={{
+      padding: 'var(--spacing-xl)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+    }}>
+      <div style={{
+        fontSize: '28px',
+        marginBottom: 'var(--spacing-xs)',
+      }}>🔲</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-2xs)',
+      }}>Borders</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        fontWeight: 'var(--body-s-weight)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}>7 border-radius and 4 border-weight tokens for consistent container shaping.</div>
+    </div>
+
+    <div style={{
+      padding: 'var(--spacing-xl)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+    }}>
+      <div style={{
+        fontSize: '28px',
+        marginBottom: 'var(--spacing-xs)',
+      }}>☁️</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-2xs)',
+      }}>Shadows</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        fontWeight: 'var(--body-s-weight)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}>5 elevation levels plus a brand gradient for depth and hierarchy.</div>
+    </div>
+
+    <div style={{
+      padding: 'var(--spacing-xl)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+    }}>
+      <div style={{
+        fontSize: '28px',
+        marginBottom: 'var(--spacing-xs)',
+      }}>🧩</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-2xs)',
+      }}>Components</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        fontWeight: 'var(--body-s-weight)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}>Button, Input Field, Segmented Control — built with semantic tokens only.</div>
+    </div>
+
+  </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Architecture</div>
+
+<div className="docs-description">
+  Tokens are authored in Figma, exported via Tokens Studio, and transformed into CSS Custom
+  Properties and JavaScript modules through a two-step pipeline.
+</div>
+
+<pre>
+  <code>{`Figma Variables
+  └─ Tokens Studio export ──▸ tokens-raw.json
+                                    │
+                          transform-tokens.mjs
+                                    │
+                                    ▾
+                              tokens.json (DTCG)
+                                    │
+                           Style Dictionary v4
+                                    │
+                        ┌───────────┴───────────┐
+                        ▾                       ▾
+                  tokens.css              tokens.js
+                  (CSS Custom Props)      (JS named exports)`}</code>
+</pre>
+
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Two-Layer Token Model</div>
+
+  <div style={{
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: 'var(--spacing-m)',
+    marginTop: 'var(--spacing-l)',
+    maxWidth: '600px',
+  }}>
+    <div style={{
+      padding: 'var(--spacing-l)',
+      borderRadius: 'var(--border-radius-s)',
+      background: 'var(--background-canvas)',
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-xs)',
+      }}>Primitive</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}>Raw values — colors, spacing, radii. Never used directly in components.</div>
+      <code style={{ marginTop: 'var(--spacing-xs)', display: 'inline-block' }}>--color-green-600</code>
+    </div>
+    <div style={{
+      padding: 'var(--spacing-l)',
+      borderRadius: 'var(--border-radius-s)',
+      background: 'var(--background-active)',
+      border: '1px solid var(--border-highlight)',
+    }}>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-xs)',
+      }}>Semantic</div>
+      <div style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}>Purpose-driven — describes intent. Components use only these.</div>
+      <code style={{ marginTop: 'var(--spacing-xs)', display: 'inline-block' }}>--interactive-primary</code>
+    </div>
+  </div>
+</div>
+
+</div>

@@ -222,7 +222,7 @@ function transform() {
     'semantic.color': 0,
     'typography.desktop': 0,
     'typography.mobile': 0,
-    'skipped': 0,
+    skipped: 0,
   };
 
   // -------------------------------------------------------------------------
@@ -268,7 +268,10 @@ function transform() {
   //    - Utility group -> SKIP
   //    - All other groups -> typography.{desktop|mobile}.{style}.{property}
   // -------------------------------------------------------------------------
-  for (const [setKey, mode] of [['Typography/Desktop', 'desktop'], ['Typography/Mobile', 'mobile']]) {
+  for (const [setKey, mode] of [
+    ['Typography/Desktop', 'desktop'],
+    ['Typography/Mobile', 'mobile'],
+  ]) {
     const typoSet = raw[setKey];
     if (!typoSet) continue;
 

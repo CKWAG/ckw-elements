@@ -91,7 +91,7 @@ export function SegmentedControl({
     if (!hasAnimated) {
       requestAnimationFrame(() => setHasAnimated(true));
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeValue, segmentsKey, type, contentMode, hasAnimated]);
 
   // For compact mode: the grid transition changes segment widths over 250ms.
@@ -127,18 +127,16 @@ export function SegmentedControl({
     .join(' ');
 
   return (
-    <div
-      className={classes}
-      role="tablist"
-      ref={containerRef}
-    >
+    <div className={classes} role="tablist" ref={containerRef}>
       {/* Sliding indicator */}
       {indicator && (
         <div
           className={[
             'ckw-segmented-control__indicator',
             hasAnimated ? 'ckw-segmented-control__indicator--animated' : '',
-          ].filter(Boolean).join(' ')}
+          ]
+            .filter(Boolean)
+            .join(' ')}
           style={{
             transform: `translateX(${indicator.left}px)`,
             width: `${indicator.width}px`,
@@ -190,9 +188,7 @@ export function SegmentedControl({
                 {segment.icon && (
                   <span className="ckw-segmented-control__icon">{segment.icon}</span>
                 )}
-                {segment.label && (
-                  <span className={labelClasses}>{segment.label}</span>
-                )}
+                {segment.label && <span className={labelClasses}>{segment.label}</span>}
               </span>
             ) : (
               <>

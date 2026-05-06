@@ -18,7 +18,10 @@ interface TypographySampleProps {
  */
 export function TypographySample({ style, responsive }: TypographySampleProps) {
   const tokenPrefix = style.cssClass.replace('text-', '');
-  const desktopLineHeightPercent = computeLineHeightPercent(style.desktop.size, style.desktop.height);
+  const desktopLineHeightPercent = computeLineHeightPercent(
+    style.desktop.size,
+    style.desktop.height,
+  );
   const mobileLineHeightPercent = computeLineHeightPercent(style.mobile.size, style.mobile.height);
 
   return (
@@ -30,9 +33,7 @@ export function TypographySample({ style, responsive }: TypographySampleProps) {
 
       {/* Desktop sample — uses CSS Utility Class from pipeline */}
       <td style={{ verticalAlign: 'middle' }}>
-        <div className={`type-sample ${style.cssClass}`}>
-          {style.name}
-        </div>
+        <div className={`type-sample ${style.cssClass}`}>{style.name}</div>
         <div className="type-sample-meta">
           Gotham, {style.desktop.weightName}, {style.desktop.size}, {desktopLineHeightPercent}
         </div>

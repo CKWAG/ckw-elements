@@ -11,12 +11,17 @@ interface ShadowCardProps {
  */
 export function ShadowCard({ token }: ShadowCardProps) {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px', padding: '24px' }}>
+    <div
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        gap: '16px',
+        padding: '24px',
+      }}
+    >
       {/* Shadow preview card */}
-      <div
-        className="shadow-card"
-        style={{ boxShadow: `var(${token.cssVar})` }}
-      />
+      <div className="shadow-card" style={{ boxShadow: `var(${token.cssVar})` }} />
 
       {/* Label */}
       <div style={{ textAlign: 'center' }}>

@@ -119,7 +119,8 @@
   overflow: hidden;
 }
 
-.ckw-segmented-control--fill .ckw-segmented-control__segment--compact.ckw-segmented-control__segment--active {
+.ckw-segmented-control--fill
+  .ckw-segmented-control__segment--compact.ckw-segmented-control__segment--active {
   min-width: max-content;
   overflow: visible;
 }

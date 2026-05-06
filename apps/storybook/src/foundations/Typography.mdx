@@ -8,26 +8,27 @@ import { typographyCategories } from '../data/tokens';
 
 <div className="docs-page-title">Typography</div>
 <div className="docs-description">
-  CKW Elements uses <strong>Gotham</strong> as its brand typeface with three weights:
-  Book (325), Medium (500), and Bold (700). The type scale has 28 styles across Display, Heading, Lead,
-  Body, Caption, Label, Overline, and Metric categories. Display, Heading, and Lead styles are responsive —
-  they have different values for Desktop and Mobile.
+  CKW Elements uses <strong>Gotham</strong> as its brand typeface with three weights: Book (325),
+  Medium (500), and Bold (700). The type scale has 28 styles across Display, Heading, Lead, Body,
+  Caption, Label, Overline, and Metric categories. Display, Heading, and Lead styles are responsive
+  — they have different values for Desktop and Mobile.
 </div>
 
 <div className="docs-section">
   <div className="docs-section-title">Tokens</div>
 
-  {typographyCategories.map((cat) => (
-    <div key={cat.category} className="docs-subsection">
-      <div className="docs-subsection-header">
-        <span className="specs-title-xl">{cat.category}</span>
-        {cat.tag && <span className="docs-tag">{cat.tag}</span>}
-        {cat.responsive
-          ? <span className="docs-tag">Responsive</span>
-          : <span className="docs-tag">Desktop &amp; Mobile</span>
-        }
-      </div>
-      <div className="docs-subsection-description">{cat.description}</div>
+{typographyCategories.map((cat) => (
+
+<div key={cat.category} className="docs-subsection">
+<div className="docs-subsection-header">
+<span className="specs-title-xl">{cat.category}</span>
+{cat.tag && <span className="docs-tag">{cat.tag}</span>}
+{cat.responsive
+? <span className="docs-tag">Responsive</span>
+: <span className="docs-tag">Desktop &amp; Mobile</span>
+}
+</div>
+<div className="docs-subsection-description">{cat.description}</div>
 
       <table className="docs-table">
         <thead>
@@ -50,26 +51,29 @@ import { typographyCategories } from '../data/tokens';
         </tbody>
       </table>
     </div>
-  ))}
+
+))}
+
 </div>
 
 <div className="docs-section">
   <div className="docs-section-title">Usage</div>
 
-  ```html
-  <!-- Using the utility class directly on an HTML element -->
-  <h2 class="text-heading-l">My Heading</h2>
-  ```
+```html
+<!-- Using the utility class directly on an HTML element -->
+<h2 class="text-heading-l">My Heading</h2>
+```
 
-  ```css
-  /* Using individual tokens in custom CSS */
-  .my-heading {
-    font-family: var(--font-family-brand);
-    font-size: var(--heading-l-size);
-    line-height: var(--heading-l-height);
-    font-weight: var(--heading-l-weight);
-  }
-  ```
+```css
+/* Using individual tokens in custom CSS */
+.my-heading {
+  font-family: var(--font-family-brand);
+  font-size: var(--heading-l-size);
+  line-height: var(--heading-l-height);
+  font-weight: var(--heading-l-weight);
+}
+```
+
 </div>
 
 </div>

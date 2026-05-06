@@ -22,7 +22,10 @@ export function TokenTable({ columns, children }: TokenTableProps) {
         <thead>
           <tr>
             {columns.map((col, index) => (
-              <th key={`${col.header}-${index}`} style={col.width ? { width: col.width } : undefined}>
+              <th
+                key={`${col.header}-${index}`}
+                style={col.width ? { width: col.width } : undefined}
+              >
                 {col.header}
               </th>
             ))}
@@ -48,9 +51,5 @@ interface TokenTableCellProps {
 }
 
 export function TokenTableCell({ children, mono }: TokenTableCellProps) {
-  return (
-    <td className={mono ? 'cell-mono' : undefined}>
-      {children}
-    </td>
-  );
+  return <td className={mono ? 'cell-mono' : undefined}>{children}</td>;
 }
