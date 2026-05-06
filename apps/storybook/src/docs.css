@@ -264,6 +264,30 @@
 }
 
 /* ============================================
+   Hero Banner — Welcome page header
+   ============================================ */
+
+.sb-unstyled .hero-banner {
+  position: relative;
+  width: calc(100% + 64px);
+  margin: -16px -32px 0;
+  border-radius: var(--border-radius-m);
+  overflow: hidden;
+  aspect-ratio: 1500 / 400;
+  min-height: 200px;
+  max-height: 400px;
+}
+
+.sb-unstyled .hero-banner__bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: right center;
+}
+
+/* ============================================
    Documentation Base Styles
    ============================================ */
 

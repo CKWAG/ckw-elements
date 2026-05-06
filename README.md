@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src=".github/header_graphic_text.png" alt="CKW Elements – The CKW Design System for a harmonized and accessible user experience across digital touchpoints." width="100%" />
+
 # CKW Elements
 
 **Design tokens and component library for CKW AG**
