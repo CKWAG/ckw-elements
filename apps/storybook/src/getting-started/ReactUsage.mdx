@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
-<Meta title="Components/React/Usage" />
+<Meta title="Getting Started/React" />
 
 <div className="sb-unstyled">
   <div className="docs-page-title">React Components</div>
@@ -87,34 +87,3 @@ function MyPage() {
   );
 }
 ```
-
-<div className="sb-unstyled">
-  <div className="docs-section" style={{ marginTop: '48px' }}>
-    <div className="docs-section-title">Available Components</div>
-  </div>
-</div>
-
-| Component          | Description                                         | Docs                                                                   |
-| ------------------ | --------------------------------------------------- | ---------------------------------------------------------------------- |
-| `Button`           | Primary action trigger with 3 types, 3 sizes, icons | [Button docs](?path=/docs/components-button--docs)                     |
-| `InputField`       | Text input with label, helper text, and states      | [InputField docs](?path=/docs/components-inputfield--docs)             |
-| `SegmentedControl` | Tab-like selection between options                  | [SegmentedControl docs](?path=/docs/components-segmentedcontrol--docs) |
-
-<div className="sb-unstyled">
-  <div className="docs-section" style={{ marginTop: '48px' }}>
-    <div className="docs-section-title">Choosing React vs MUI</div>
-    <div className="docs-subsection-description">
-      Use the native React components when you want minimal dependencies and full control over
-      styling. Use the MUI subpath when your app already uses Material UI and you want CKW-themed
-      MUI components that integrate with <code>ThemeProvider</code> and the <code>sx</code> prop
-      system.
-    </div>
-  </div>
-</div>
-
-|              | React (`/react`)                 | MUI (`/mui`)                     |
-| ------------ | -------------------------------- | -------------------------------- |
-| Dependencies | React only                       | React + MUI + Emotion            |
-| Bundle size  | Minimal                          | Larger (MUI runtime)             |
-| Styling      | CSS classes + tokens             | MUI theme + sx prop              |
-| Best for     | Lightweight apps, custom designs | MUI-based apps needing CKW brand |
