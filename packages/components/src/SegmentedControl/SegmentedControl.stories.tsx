@@ -133,8 +133,19 @@ function PlaygroundRenderer({
   );
 }
 
+interface PlaygroundArgs {
+  type: 'Default' | 'Fill';
+  contentMode: 'label' | 'icon-label' | 'icon-compact';
+  segmentCount: number;
+  label1: string;
+  label2: string;
+  label3: string;
+  label4: string;
+  label5: string;
+}
+
 /** Interactive playground — use the controls panel to change props. */
-export const Playground: Story = {
+export const Playground: StoryObj<PlaygroundArgs> = {
   argTypes: {
     segmentCount: {
       control: { type: 'range', min: 2, max: 5, step: 1 },
@@ -178,7 +189,7 @@ export const Playground: Story = {
     label4: 'Label',
     label5: 'Label',
   } as Record<string, unknown>,
-  render: (args: Record<string, unknown>) => (
+  render: (args) => (
     <PlaygroundRenderer
       type={(args.type as 'Default' | 'Fill') || 'Default'}
       contentMode={(args.contentMode as 'label' | 'icon-label' | 'icon-compact') || 'label'}

@@ -8,6 +8,7 @@
   "scripts": {
     "build": "pnpm -r run build",
     "lint": "pnpm -r run lint",
+    "typecheck": "tsc -p packages/components && tsc -p apps/storybook",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
@@ -36,6 +37,7 @@
   "devDependencies": {
     "husky": "^9.1.7",
     "lint-staged": "^17.0.2",
-    "prettier": "^3.8.3"
+    "prettier": "^3.8.3",
+    "typescript": "^5.9.0"
   }
 }
