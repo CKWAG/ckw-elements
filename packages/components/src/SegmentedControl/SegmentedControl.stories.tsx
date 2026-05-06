@@ -17,7 +17,7 @@ function PlaceholderIcon() {
 }
 
 const meta: Meta<typeof SegmentedControl> = {
-  title: 'Components/Segmented Control',
+  title: 'Components/Segmented Control/React',
   component: SegmentedControl,
   tags: ['!autodocs', '!dev'],
   argTypes: {

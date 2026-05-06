@@ -17,7 +17,7 @@ function PlaceholderIcon() {
 }
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/React/Button',
+  title: 'Components/Button/React',
   parameters: {
     docs: { source: { type: 'dynamic' } },
   },

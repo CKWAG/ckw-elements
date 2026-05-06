@@ -17,7 +17,7 @@ function PlaceholderIcon() {
 }
 
 const meta: Meta<typeof InputField> = {
-  title: 'Components/Input Field',
+  title: 'Components/Input Field/React',
   component: InputField,
   tags: ['!autodocs', '!dev'],
   argTypes: {

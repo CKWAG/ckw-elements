@@ -16,7 +16,7 @@ function PlaceholderIcon() {
 }
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/MUI/Button',
+  title: 'Components/Button/MUI',
   component: Button,
   tags: ['!autodocs', '!dev'],
   argTypes: {
