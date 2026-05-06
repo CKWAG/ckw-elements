@@ -42,6 +42,8 @@ jobs:
 
       - name: Build Storybook
         run: pnpm --filter @ckw-elements/storybook run build
+        env:
+          STORYBOOK_BASE: /ckw-elements/
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

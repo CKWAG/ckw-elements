@@ -12,8 +12,8 @@ export default create({
 
   // Brand
   brandTitle: 'CKW Elements',
-  brandImage: '/ckw-logo.svg',
-  brandUrl: '/',
+  brandImage: './ckw-logo.svg',
+  brandUrl: './',
 
   // Colors — CKW brand green + grey palette
   colorPrimary: '#365f10', // interactive-primary (green-600)

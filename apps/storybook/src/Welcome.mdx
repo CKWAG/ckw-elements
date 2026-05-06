@@ -181,33 +181,6 @@ import { Meta } from '@storybook/blocks';
 </div>
 
 <div className="docs-section">
-  <div className="docs-section-title">Architecture</div>
-
-<div className="docs-description">
-  Tokens are authored in Figma, exported via Tokens Studio, and transformed into CSS Custom
-  Properties and JavaScript modules through a two-step pipeline.
-</div>
-
-<pre>
-  <code>{`Figma Variables
-  └─ Tokens Studio export ──▸ tokens-raw.json
-                                    │
-                          transform-tokens.mjs
-                                    │
-                                    ▾
-                              tokens.json (DTCG)
-                                    │
-                           Style Dictionary v4
-                                    │
-                        ┌───────────┴───────────┐
-                        ▾                       ▾
-                  tokens.css              tokens.js
-                  (CSS Custom Props)      (JS named exports)`}</code>
-</pre>
-
-</div>
-
-<div className="docs-section">
   <div className="docs-section-title">Two-Layer Token Model</div>
 
   <div style={{
