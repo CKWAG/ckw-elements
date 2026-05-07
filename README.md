@@ -181,7 +181,7 @@ Licensed under the [Apache License, Version 2.0](./LICENSE).
 
 **Excluded from the open-source license** (see [NOTICE](./NOTICE)):
 
-| Asset                                  | Reason                                                                     |
-| -------------------------------------- | -------------------------------------------------------------------------- |
-| `apps/storybook/public/ckw-logo.svg`   | CKW AG trademark                                                           |
-| `apps/storybook/public/fonts/Gotham-*` | Commercial font ([Hoefler & Co.](https://www.typography.com/fonts/gotham)) |
+| Asset                                  | Reason                                                 |
+| -------------------------------------- | ------------------------------------------------------ |
+| `apps/storybook/public/ckw-logo.svg`   | CKW AG trademark                                       |
+| `apps/storybook/public/fonts/Gotham-*` | Commercial font ([Monotype](https://www.monotype.com)) |

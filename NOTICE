@@ -22,7 +22,7 @@ open-source license:
 FONT NOTICE
 ================================================================================
 
-The Gotham typeface (Hoefler & Co.) included in this repository is proprietary
+The Gotham typeface (Monotype) included in this repository is proprietary
 and is NOT licensed under the Apache License, Version 2.0. These files are
 included solely for rendering the documentation site. All rights reserved by
 the respective license holder.
@@ -35,8 +35,8 @@ The following files are excluded from the open-source license:
   - apps/storybook/public/fonts/Gotham-Medium.woff2
 
 You may NOT redistribute, sublicense, or use these font files outside of this
-repository without obtaining your own license from Hoefler & Co.
-(https://www.typography.com/fonts/gotham).
+repository without obtaining your own license from Monotype
+(https://www.monotype.com).
 
 The following fonts ARE included under their respective open-source licenses:
 
