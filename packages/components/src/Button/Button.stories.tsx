@@ -17,7 +17,7 @@ function PlaceholderIcon() {
 }
 
 const meta: Meta<typeof Button> = {
-  title: 'Components/Button/React',
+  title: 'Components/Button',
   parameters: {
     docs: { source: { type: 'dynamic' } },
   },
@@ -88,27 +88,7 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 // ---------------------------------------------------------------------------
-// Default — interactive canvas with source shown on the Docs page
-// ---------------------------------------------------------------------------
-
-/** Interactive playground — use the controls panel to change props. */
-export const Default: Story = {
-  render: ({ leadingIcon, trailingIcon, ...args }) => {
-    // Only one icon at a time — leading takes precedence
-    const showLeading = Boolean(leadingIcon);
-    const showTrailing = Boolean(trailingIcon) && !showLeading;
-    return (
-      <Button
-        {...args}
-        leadingIcon={showLeading ? <PlaceholderIcon /> : undefined}
-        trailingIcon={showTrailing ? <PlaceholderIcon /> : undefined}
-      />
-    );
-  },
-};
-
-// ---------------------------------------------------------------------------
-// Embedded examples — rendered inside the Docs page via autodocs
+// Embedded examples — rendered inside the Docs page via Overview.mdx
 // ---------------------------------------------------------------------------
 
 const sectionStyle: React.CSSProperties = {

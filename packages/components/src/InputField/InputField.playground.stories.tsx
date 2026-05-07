@@ -23,10 +23,8 @@ const meta: Meta<typeof InputField> = {
     layout: 'padded',
     docs: {
       source: {
-        transform: (code: string) => {
-          const indent = code.replace(/^/gm, '  ');
-          return `import { ThemeProvider } from '@mui/material/styles';\nimport { ckwTheme } from '@ckw-elements/components/mui/theme';\nimport { InputField } from '@ckw-elements/components/mui';\n\n<ThemeProvider theme={ckwTheme}>\n${indent}\n</ThemeProvider>`;
-        },
+        transform: (code: string) =>
+          `import { InputField } from '@ckw-elements/components';\n\n${code}`,
       },
     },
   },
@@ -69,10 +67,17 @@ const meta: Meta<typeof InputField> = {
       description: 'Show an info icon next to the label.',
       table: { defaultValue: { summary: 'false' } },
     },
+    onChange: { control: false, table: { disable: true } },
+    onFocus: { control: false, table: { disable: true } },
+    onBlur: { control: false, table: { disable: true } },
+    onInfoClick: { control: false, table: { disable: true } },
+    type: { control: false, table: { disable: true } },
+    className: { control: false, table: { disable: true } },
   },
   args: {
     label: 'Label',
     placeholder: 'Placeholder',
+    value: '',
     disabled: false,
     optional: false,
     errorText: '',
@@ -85,11 +90,11 @@ export default meta;
 
 type Story = StoryObj<typeof InputField>;
 
-export const MUIPlayground: Story = {
-  name: 'MUI Playground',
-  render: ({ icon, value, ...args }) => (
+export const ReactPlayground: Story = {
+  name: 'React Playground',
+  render: ({ icon, ...args }) => (
     <div style={{ maxWidth: '320px' }}>
-      <InputField {...args} value={value} icon={icon ? <PlaceholderIcon /> : undefined} />
+      <InputField {...args} icon={icon ? <PlaceholderIcon /> : undefined} />
     </div>
   ),
 };

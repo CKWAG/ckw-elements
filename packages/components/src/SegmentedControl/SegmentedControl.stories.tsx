@@ -2,7 +2,6 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { SegmentedControl } from './SegmentedControl';
 
-/** Placeholder icon for demos (24×24 shield). */
 function PlaceholderIcon() {
   return (
     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -17,9 +16,17 @@ function PlaceholderIcon() {
 }
 
 const meta: Meta<typeof SegmentedControl> = {
-  title: 'Components/Segmented Control/React',
+  title: 'Components/Segmented Control',
   component: SegmentedControl,
   tags: ['!autodocs', '!dev'],
+  parameters: {
+    docs: {
+      source: {
+        transform: (code: string) =>
+          `import { SegmentedControl } from '@ckw-elements/components';\n\n${code}`,
+      },
+    },
+  },
   argTypes: {
     type: {
       control: 'radio',
@@ -35,16 +42,12 @@ const meta: Meta<typeof SegmentedControl> = {
     },
     activeValue: {
       control: 'text',
-      description: 'The value of the currently active segment.',
+      description: 'The currently active segment value.',
+      table: { defaultValue: { summary: 'a' } },
     },
-    segments: {
-      control: false,
-      table: { disable: true },
-    },
-    onChange: {
-      control: false,
-      table: { disable: true },
-    },
+    segments: { control: false, table: { disable: true } },
+    onChange: { control: false, table: { disable: true } },
+    className: { control: false, table: { disable: true } },
   },
   args: {
     type: 'Default',
@@ -56,10 +59,6 @@ const meta: Meta<typeof SegmentedControl> = {
 export default meta;
 
 type Story = StoryObj<typeof SegmentedControl>;
-
-// ---------------------------------------------------------------------------
-// Shared layout styles
-// ---------------------------------------------------------------------------
 
 const sectionStyle: React.CSSProperties = {
   display: 'flex',
@@ -82,144 +81,13 @@ const labelStyle: React.CSSProperties = {
   minWidth: '100px',
 };
 
-// ---------------------------------------------------------------------------
-// Playground
-// ---------------------------------------------------------------------------
-
-/** Wrapper component so hooks and segment references stay stable across re-renders. */
-function PlaygroundRenderer({
-  type,
-  contentMode,
-  segmentCount,
-  labels,
-}: {
-  type: 'Default' | 'Fill';
-  contentMode: 'label' | 'icon-label' | 'icon-compact';
-  segmentCount: number;
-  labels: string[];
-}) {
-  const showIcons = contentMode !== 'label';
-  const values = ['a', 'b', 'c', 'd', 'e'];
-
-  const segments = React.useMemo(() => {
-    const icon = showIcons ? <PlaceholderIcon /> : undefined;
-    return values.slice(0, segmentCount).map((v, i) => ({
-      value: v,
-      label: labels[i] || `Segment ${i + 1}`,
-      ...(icon ? { icon } : {}),
-    }));
-  }, [segmentCount, showIcons, labels[0], labels[1], labels[2], labels[3], labels[4]]);
-
-  const [active, setActive] = React.useState('a');
-
-  // Reset active if it falls outside the new count
-  React.useEffect(() => {
-    const validValues = values.slice(0, segmentCount);
-    if (!validValues.includes(active)) {
-      setActive(validValues[0]);
-    }
-  }, [segmentCount, active]);
-
-  return (
-    <div style={{ maxWidth: '600px' }}>
-      <SegmentedControl
-        type={type}
-        contentMode={contentMode}
-        segments={segments}
-        activeValue={active}
-        onChange={setActive}
-      />
-    </div>
-  );
-}
-
-interface PlaygroundArgs {
-  type: 'Default' | 'Fill';
-  contentMode: 'label' | 'icon-label' | 'icon-compact';
-  segmentCount: number;
-  label1: string;
-  label2: string;
-  label3: string;
-  label4: string;
-  label5: string;
-}
-
-/** Interactive playground — use the controls panel to change props. */
-export const Playground: StoryObj<PlaygroundArgs> = {
-  argTypes: {
-    segmentCount: {
-      control: { type: 'range', min: 2, max: 5, step: 1 },
-      description: 'Number of segments to display.',
-      table: { defaultValue: { summary: '3' }, category: 'Segments' },
-    },
-    label1: {
-      control: 'text',
-      description: 'Label for segment 1.',
-      table: { category: 'Segments' },
-    },
-    label2: {
-      control: 'text',
-      description: 'Label for segment 2.',
-      table: { category: 'Segments' },
-    },
-    label3: {
-      control: 'text',
-      description: 'Label for segment 3.',
-      table: { category: 'Segments' },
-    },
-    label4: {
-      control: 'text',
-      description: 'Label for segment 4.',
-      table: { category: 'Segments' },
-    },
-    label5: {
-      control: 'text',
-      description: 'Label for segment 5.',
-      table: { category: 'Segments' },
-    },
-    segments: { control: false, table: { disable: true } },
-    onChange: { control: false, table: { disable: true } },
-    activeValue: { control: false, table: { disable: true } },
-  } as Record<string, unknown>,
-  args: {
-    segmentCount: 3,
-    label1: 'Label',
-    label2: 'Label',
-    label3: 'Label',
-    label4: 'Label',
-    label5: 'Label',
-  } as Record<string, unknown>,
-  render: (args) => (
-    <PlaygroundRenderer
-      type={(args.type as 'Default' | 'Fill') || 'Default'}
-      contentMode={(args.contentMode as 'label' | 'icon-label' | 'icon-compact') || 'label'}
-      segmentCount={(args.segmentCount as number) || 3}
-      labels={[
-        args.label1 as string,
-        args.label2 as string,
-        args.label3 as string,
-        args.label4 as string,
-        args.label5 as string,
-      ]}
-    />
-  ),
-};
-
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
-
-/** Default (auto-width) and Fill (equal-width stretch) layout types. */
 export const Types: Story = {
   render: () => {
-    const segments5 = [
+    const segments3 = [
       { value: 'a', label: 'Label' },
       { value: 'b', label: 'Label' },
       { value: 'c', label: 'Label' },
-      { value: 'd', label: 'Label' },
-      { value: 'e', label: 'Label' },
     ];
-    const segments3 = segments5.slice(0, 3);
     return (
       <div style={sectionStyle}>
         <div style={rowStyle}>
@@ -237,11 +105,6 @@ export const Types: Story = {
   },
 };
 
-// ---------------------------------------------------------------------------
-// Icon Variants
-// ---------------------------------------------------------------------------
-
-/** Label only, Icon + Label, and Icon compact content modes. */
 export const Icons: Story = {
   render: () => {
     const segments = [
@@ -268,15 +131,6 @@ export const Icons: Story = {
   },
 };
 
-// ---------------------------------------------------------------------------
-// States
-// ---------------------------------------------------------------------------
-
-/**
- * Individual segment states: Default, Hover, Active.
- * Renders standalone segments (not full controls) to isolate each state.
- * Hover is force-applied via inline background-color.
- */
 export const States: Story = {
   render: () => {
     const segmentBase: React.CSSProperties = {
@@ -327,21 +181,13 @@ export const States: Story = {
   },
 };
 
-// ---------------------------------------------------------------------------
-// All Variants
-// ---------------------------------------------------------------------------
-
-/** Complete matrix showing all type × content mode combinations. */
 export const AllVariants: Story = {
   render: () => {
-    const segments5 = [
+    const segments3 = [
       { value: 'a', label: 'Label', icon: <PlaceholderIcon /> },
       { value: 'b', label: 'Label', icon: <PlaceholderIcon /> },
       { value: 'c', label: 'Label', icon: <PlaceholderIcon /> },
-      { value: 'd', label: 'Label', icon: <PlaceholderIcon /> },
-      { value: 'e', label: 'Label', icon: <PlaceholderIcon /> },
     ];
-    const segments3 = segments5.slice(0, 3);
 
     const headerStyle: React.CSSProperties = {
       fontFamily: 'var(--font-family-brand), sans-serif',
@@ -359,7 +205,6 @@ export const AllVariants: Story = {
 
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-        {/* Default type */}
         <div>
           <div style={headerStyle}>Default</div>
           <div style={groupStyle}>
@@ -378,7 +223,6 @@ export const AllVariants: Story = {
           </div>
         </div>
 
-        {/* Fill type */}
         <div>
           <div style={headerStyle}>Fill</div>
           <div style={groupStyle}>

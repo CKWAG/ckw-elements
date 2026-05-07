@@ -23,73 +23,71 @@ const meta: Meta<typeof Button> = {
     layout: 'padded',
     docs: {
       source: {
-        transform: (code: string) => {
-          const indent = code.replace(/^/gm, '  ');
-          return `import { ThemeProvider } from '@mui/material/styles';\nimport { ckwTheme } from '@ckw-elements/components/mui/theme';\nimport { Button } from '@ckw-elements/components/mui';\n\n<ThemeProvider theme={ckwTheme}>\n${indent}\n</ThemeProvider>`;
-        },
+        transform: (code: string) =>
+          `import { Button } from '@ckw-elements/components';\n\n${code}`,
       },
     },
   },
   argTypes: {
     children: {
       name: 'Text',
-      description: 'Text content within the button.',
       control: { type: 'text' },
+      description: 'Text content within the button.',
       table: { category: 'Content' },
     },
-    variant: {
-      name: 'Variant',
-      description:
-        'Visual style variant. Primary → contained, Secondary → outlined, Tertiary → text.',
+    type: {
+      name: 'Type',
       control: { type: 'inline-radio' },
       options: ['Primary', 'Secondary', 'Tertiary'],
+      description:
+        'Visual style variant. Primary uses gradient background, Secondary is outlined, Tertiary is text-only.',
       table: { category: 'General', defaultValue: { summary: 'Primary' } },
     },
     size: {
       name: 'Size',
-      description: 'Button size. Large and Medium are 48px height, Small is 40px.',
       control: { type: 'inline-radio' },
       options: ['Large', 'Medium', 'Small'],
+      description:
+        'Button size. Large uses label-l typography (18/22), Medium and Small use label-m (16/20).',
       table: { category: 'General', defaultValue: { summary: 'Large' } },
     },
     fullWidth: {
       name: 'Full width',
-      description: 'Stretch to fill the parent container width.',
       control: { type: 'boolean' },
+      description: 'Stretch to fill the parent container width.',
       table: { category: 'General', defaultValue: { summary: 'false' } },
     },
-    startIcon: {
-      name: 'Start icon',
-      description: 'Show an icon before the label.',
+    leadingIcon: {
+      name: 'Leading icon',
       control: { type: 'boolean' },
+      description: 'Show an icon before the label.',
       table: { category: 'Icon', defaultValue: { summary: 'false' } },
     },
-    endIcon: {
-      name: 'End icon',
-      description: 'Show an icon after the label.',
+    trailingIcon: {
+      name: 'Trailing icon',
       control: { type: 'boolean' },
+      description: 'Show an icon after the label.',
       table: { category: 'Icon', defaultValue: { summary: 'false' } },
     },
     disabled: {
       name: 'Disabled',
+      control: { type: 'boolean' },
       description:
         'When set to true, makes the component appear inactive and disables its functionality.',
-      control: { type: 'boolean' },
       table: { category: 'States', defaultValue: { summary: 'false' } },
     },
     onClick: { control: false, table: { disable: true } },
     htmlType: { control: false, table: { disable: true } },
-    href: { control: false, table: { disable: true } },
-    sx: { control: false, table: { disable: true } },
+    className: { control: false, table: { disable: true } },
   },
   args: {
     children: 'Button',
-    variant: 'Primary',
+    type: 'Primary',
     size: 'Large',
     disabled: false,
     fullWidth: false,
-    startIcon: false,
-    endIcon: false,
+    leadingIcon: false,
+    trailingIcon: false,
   },
 };
 
@@ -97,16 +95,16 @@ export default meta;
 
 type Story = StoryObj<typeof Button>;
 
-export const MUIPlayground: Story = {
-  name: 'MUI Playground',
-  render: ({ startIcon, endIcon, ...args }) => {
-    const showStart = Boolean(startIcon);
-    const showEnd = Boolean(endIcon) && !showStart;
+export const ReactPlayground: Story = {
+  name: 'React Playground',
+  render: ({ leadingIcon, trailingIcon, ...args }) => {
+    const showLeading = Boolean(leadingIcon);
+    const showTrailing = Boolean(trailingIcon) && !showLeading;
     return (
       <Button
         {...args}
-        startIcon={showStart ? <PlaceholderIcon /> : undefined}
-        endIcon={showEnd ? <PlaceholderIcon /> : undefined}
+        leadingIcon={showLeading ? <PlaceholderIcon /> : undefined}
+        trailingIcon={showTrailing ? <PlaceholderIcon /> : undefined}
       />
     );
   },
