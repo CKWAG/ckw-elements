@@ -1,7 +1,5 @@
-import { Meta } from '@storybook/addon-docs/blocks';
-import { Button } from './Button';
-import { Button as MuiButton } from '../mui/Button';
-import React from 'react';
+import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as ButtonStories from './Button.stories';
 
 <Meta title="Components/Button" />
 
@@ -9,193 +7,110 @@ import React from 'react';
   <div className="docs-page-title">Button</div>
   <div className="docs-description">
     Buttons allow users to trigger actions within the interface. They are used to submit forms,
-    confirm choices, or initiate processes. Available as a lightweight React component and as a
-    themed Material UI component — both produce identical visuals using CKW design tokens.
+    confirm choices, or initiate processes. The component supports three visual types (Primary,
+    Secondary, Tertiary), three sizes (Large, Medium, Small), optional leading or trailing icons,
+    and a full-width container mode.
   </div>
 </div>
 
 <div className="sb-unstyled">
-  <div className="docs-section">
-    <div className="docs-section-title">Visual Overview</div>
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
     <div className="docs-subsection-description">
-      Three visual types communicate hierarchy. Both implementations render identically.
+      Use the controls below to interactively configure the Button component.
     </div>
   </div>
 </div>
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: '48px', marginTop: '24px' }}>
-  <div>
-    <div className="sb-unstyled">
-      <div
-        style={{
-          fontFamily: 'var(--font-family-brand), sans-serif',
-          fontSize: '14px',
-          fontWeight: 500,
-          color: 'var(--text-secondary)',
-          marginBottom: '16px',
-        }}
-      >
-        React
-      </div>
-    </div>
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
-      <Button type="Primary">Primary</Button>
-      <Button type="Secondary">Secondary</Button>
-      <Button type="Tertiary">Tertiary</Button>
-    </div>
-  </div>
-  <div>
-    <div className="sb-unstyled">
-      <div
-        style={{
-          fontFamily: 'var(--font-family-brand), sans-serif',
-          fontSize: '14px',
-          fontWeight: 500,
-          color: 'var(--text-secondary)',
-          marginBottom: '16px',
-        }}
-      >
-        MUI
-      </div>
-    </div>
-    <div style={{ display: 'flex', gap: '16px', alignItems: 'center', flexWrap: 'wrap' }}>
-      <MuiButton variant="Primary">Primary</MuiButton>
-      <MuiButton variant="Secondary">Secondary</MuiButton>
-      <MuiButton variant="Tertiary">Tertiary</MuiButton>
-    </div>
-  </div>
+<div style={{ marginTop: '24px' }}>
+  <Primary />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls />
 </div>
 
 <div className="sb-unstyled">
   <div className="docs-section">
-    <div className="docs-section-title">Choose Your Implementation</div>
+    <div className="docs-section-title">Types</div>
     <div className="docs-subsection-description">
-      Pick the implementation that fits your project. Both use the same design tokens and produce
-      identical visual output.
+      The three visual types communicate hierarchy: Primary for the main action, Secondary for
+      alternative actions, Tertiary for low-emphasis actions.
     </div>
   </div>
 </div>
 
-<div
-  className="sb-unstyled"
-  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px', marginTop: '24px' }}
->
-  <div
-    style={{
-      padding: '24px',
-      border: '1px solid var(--border-soft)',
-      borderRadius: 'var(--border-radius-s)',
-    }}
-  >
-    <div
-      style={{
-        fontFamily: 'var(--font-family-brand), sans-serif',
-        fontSize: '18px',
-        fontWeight: 500,
-        color: 'var(--text-primary)',
-        marginBottom: '8px',
-      }}
-    >
-      React
-    </div>
-    <div
-      style={{
-        fontFamily: 'var(--font-family-brand), sans-serif',
-        fontSize: '14px',
-        color: 'var(--text-secondary)',
-        lineHeight: 1.6,
-      }}
-    >
-      Lightweight, zero-dependency component. CSS-only styling with design tokens. Best for projects
-      that don't use MUI.
-    </div>
-  </div>
-  <div
-    style={{
-      padding: '24px',
-      border: '1px solid var(--border-soft)',
-      borderRadius: 'var(--border-radius-s)',
-    }}
-  >
-    <div
-      style={{
-        fontFamily: 'var(--font-family-brand), sans-serif',
-        fontSize: '18px',
-        fontWeight: 500,
-        color: 'var(--text-primary)',
-        marginBottom: '8px',
-      }}
-    >
-      MUI
-    </div>
-    <div
-      style={{
-        fontFamily: 'var(--font-family-brand), sans-serif',
-        fontSize: '14px',
-        color: 'var(--text-secondary)',
-        lineHeight: 1.6,
-      }}
-    >
-      Material UI Button with CKW theme applied. Full MUI feature set (sx prop, slots, etc.). Best
-      for projects already using MUI.
-    </div>
-  </div>
+<div style={{ marginTop: '24px' }}>
+  <Story of={ButtonStories.Types} />
 </div>
 
 <div className="sb-unstyled">
   <div className="docs-section">
-    <div className="docs-section-title">Anatomy</div>
+    <div className="docs-section-title">Sizes</div>
     <div className="docs-subsection-description">
-      Both implementations share the same anatomy and token usage.
+      Large uses label-l (18/22), Medium and Small use label-m (16/20). Small has a reduced height
+      of 40 px.
     </div>
   </div>
 </div>
 
-<div className="sb-unstyled" style={{ marginTop: '16px' }}>
-  <table className="docs-table">
-    <thead>
-      <tr>
-        <th>Property</th>
-        <th>Token</th>
-        <th>Value</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Height (Large/Medium)</td>
-        <td className="cell-mono">48px</td>
-        <td>Fixed</td>
-      </tr>
-      <tr>
-        <td>Height (Small)</td>
-        <td className="cell-mono">40px</td>
-        <td>Fixed</td>
-      </tr>
-      <tr>
-        <td>Border radius</td>
-        <td className="cell-mono">--border-radius-full</td>
-        <td>99999px (pill)</td>
-      </tr>
-      <tr>
-        <td>Font (Large)</td>
-        <td className="cell-mono">--label-l-*</td>
-        <td>Gotham Medium 18/22</td>
-      </tr>
-      <tr>
-        <td>Font (Medium/Small)</td>
-        <td className="cell-mono">--label-m-*</td>
-        <td>Gotham Medium 16/20</td>
-      </tr>
-      <tr>
-        <td>Primary background</td>
-        <td className="cell-mono">--gradient-brand</td>
-        <td>Linear gradient 210°</td>
-      </tr>
-      <tr>
-        <td>Primary hover</td>
-        <td className="cell-mono">--interactive-primary-hover</td>
-        <td>Solid green-700</td>
-      </tr>
-    </tbody>
-  </table>
+<div style={{ marginTop: '24px' }}>
+  <Story of={ButtonStories.Sizes} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">States</div>
+    <div className="docs-subsection-description">
+      Hover and Active states are applied via CSS pseudo-classes. Disabled reduces opacity to 0.4
+      and removes interactivity.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={ButtonStories.States} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Icons</div>
+    <div className="docs-subsection-description">
+      Icons are 24 × 24 and placed before (leading) or after (trailing) the label. A button may have
+      a leading OR a trailing icon — never both at the same time. Icon color inherits from the
+      button text color.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={ButtonStories.Icons} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Container</div>
+    <div className="docs-subsection-description">
+      By default the button hugs its content with a minimum width. Set <code>fullWidth</code> to
+      stretch it to the parent container.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={ButtonStories.Container} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">All Variants</div>
+    <div className="docs-subsection-description">
+      Complete matrix of all types × sizes showing default and disabled states. Hover and active
+      states are visible on interaction.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={ButtonStories.AllVariants} />
 </div>
