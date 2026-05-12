@@ -213,63 +213,47 @@ export function InputField({
               component: 'div',
             },
           }}
-          sx={{
-            '& .MuiOutlinedInput-root': {
-              height: '44px',
-              borderRadius: 'var(--border-radius-s)',
-              backgroundColor: disabled ? 'var(--background-canvas)' : 'var(--background-input)',
-              boxShadow: hasError ? 'inset 0 0 0 1px var(--status-error-border)' : 'none',
-              fontFamily: 'var(--font-family-brand), sans-serif',
-              fontSize: 'var(--body-m-emphasized-size)',
-              lineHeight: 'var(--body-m-emphasized-height)',
-              fontWeight: 'var(--body-m-emphasized-weight)',
-              color: disabled ? 'var(--text-tertiary)' : 'var(--text-primary)',
-              '& fieldset': {
-                borderColor: hasError ? 'var(--status-error-border)' : 'var(--border-strong)',
-                borderWidth: '1px',
+          sx={[
+            {
+              '& .MuiOutlinedInput-root': {
+                height: '44px',
+                borderRadius: 'var(--border-radius-s)',
+                backgroundColor: disabled ? 'var(--background-canvas)' : 'var(--background-input)',
+                fontFamily: 'var(--font-family-brand), sans-serif',
+                fontSize: 'var(--body-m-emphasized-size)',
+                lineHeight: 'var(--body-m-emphasized-height)',
+                fontWeight: 'var(--body-m-emphasized-weight)',
+                color: disabled ? 'var(--text-tertiary)' : 'var(--text-primary)',
               },
-              '&:hover fieldset': {
-                borderColor: hasError ? 'var(--status-error-border)' : 'var(--border-hover)',
-                borderWidth: '1px',
-              },
-              '&.Mui-focused fieldset': {
-                borderColor: hasError ? 'var(--status-error-border)' : 'var(--border-active)',
-                borderWidth: '2px',
-              },
-              '&.Mui-disabled': {
-                backgroundColor: 'var(--background-canvas)',
-                '& fieldset': {
-                  borderColor: 'var(--border-soft)',
+              '& .MuiOutlinedInput-input': {
+                padding: '0 var(--spacing-m)',
+                height: '44px',
+                boxSizing: 'border-box',
+                '&::placeholder': {
+                  color: 'var(--text-tertiary)',
+                  opacity: 1,
+                },
+                '&.Mui-disabled': {
+                  WebkitTextFillColor: 'var(--text-tertiary)',
                 },
               },
-            },
-            '& .MuiOutlinedInput-input': {
-              padding: '0 var(--spacing-m)',
-              height: '44px',
-              boxSizing: 'border-box',
-              '&::placeholder': {
-                color: 'var(--text-tertiary)',
-                opacity: 1,
+              '& .MuiOutlinedInput-input.MuiOutlinedInput-inputAdornedEnd': {
+                paddingRight: 0,
               },
-              '&.Mui-disabled': {
-                WebkitTextFillColor: 'var(--text-tertiary)',
+              '& .MuiFormHelperText-root': {
+                margin: '0',
+                marginLeft: 0,
+                marginRight: 0,
+                marginTop: 'var(--spacing-xs)',
+                padding: 0,
+                fontSize: 'var(--caption-size)',
+                lineHeight: 'var(--caption-height)',
+                fontWeight: 'var(--caption-weight)',
+                fontFamily: 'var(--font-family-brand), sans-serif',
               },
             },
-            '& .MuiOutlinedInput-input.MuiOutlinedInput-inputAdornedEnd': {
-              paddingRight: 0,
-            },
-            '& .MuiFormHelperText-root': {
-              margin: '0',
-              marginLeft: 0,
-              marginRight: 0,
-              padding: 0,
-              fontSize: 'var(--caption-size)',
-              lineHeight: 'var(--caption-height)',
-              fontWeight: 'var(--caption-weight)',
-              fontFamily: 'var(--font-family-brand), sans-serif',
-            },
-            ...sx,
-          }}
+            ...(Array.isArray(sx) ? sx : sx ? [sx] : []),
+          ]}
         />
       </div>
     </ThemeProvider>

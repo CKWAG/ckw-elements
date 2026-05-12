@@ -289,5 +289,48 @@ export const ckwTheme = createTheme({
         disableRipple: true,
       },
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          outline: `${borderWeightM} solid transparent`,
+          outlineOffset: '0px',
+          transition:
+            'outline-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease',
+          '&:hover:not(.Mui-disabled):not(.Mui-error):not(.Mui-focused)': {
+            outlineColor: 'var(--border-hover)',
+          },
+          '&:hover:not(.Mui-disabled):not(.Mui-error):not(.Mui-focused) .MuiOutlinedInput-notchedOutline':
+            {
+              borderColor: 'var(--border-strong)',
+              borderWidth: borderWeightS,
+            },
+          '&.Mui-focused:not(.Mui-error)': {
+            outlineColor: 'var(--border-hover)',
+            backgroundColor: 'var(--background-active)',
+            boxShadow: 'inset 0 0 0 1px var(--border-active)',
+          },
+          '&.Mui-focused:not(.Mui-error) .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'var(--border-active)',
+            borderWidth: borderWeightM,
+          },
+          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'var(--status-error-border)',
+            borderWidth: borderWeightS,
+            boxShadow: 'inset 0 0 0 1px var(--status-error-border)',
+          },
+          '&.Mui-disabled': {
+            backgroundColor: 'var(--background-canvas)',
+          },
+          '&.Mui-disabled .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'var(--border-soft)',
+          },
+        },
+        notchedOutline: {
+          borderColor: 'var(--border-strong)',
+          borderWidth: borderWeightS,
+          transition: 'border-color 150ms ease',
+        },
+      },
+    },
   },
 });

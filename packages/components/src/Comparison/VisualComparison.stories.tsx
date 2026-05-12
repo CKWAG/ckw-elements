@@ -286,8 +286,9 @@ export const InputFieldComparison: StoryObj = {
         sharedProps: { value: 'Input text' },
         reactClassName: 'ckw-input-field--state-hover',
         muiSx: {
-          '& .MuiOutlinedInput-root fieldset': {
-            borderColor: 'var(--border-hover)',
+          '& .MuiOutlinedInput-root': {
+            outline: 'var(--border-weight-m) solid var(--border-hover)',
+            outlineOffset: '0px',
           },
         },
       },
@@ -312,8 +313,9 @@ export const InputFieldComparison: StoryObj = {
         muiSx: {
           '& .MuiOutlinedInput-root': {
             backgroundColor: 'var(--background-active)',
-            outline: 'var(--border-weight-m) solid var(--border-active)',
-            outlineOffset: '2px',
+            outline: 'var(--border-weight-m) solid var(--border-hover)',
+            outlineOffset: '0px',
+            boxShadow: 'inset 0 0 0 1px var(--border-active)',
           },
           '& .MuiOutlinedInput-root fieldset': {
             borderColor: 'var(--border-active)',
