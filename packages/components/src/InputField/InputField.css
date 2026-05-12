@@ -22,6 +22,13 @@
   gap: var(--spacing-xs);
   align-items: flex-start;
   width: 100%;
+  box-sizing: border-box;
+}
+
+.ckw-input-field *,
+.ckw-input-field *::before,
+.ckw-input-field *::after {
+  box-sizing: border-box;
 }
 
 /* ============================================
