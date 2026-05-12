@@ -292,6 +292,14 @@ export const ckwTheme = createTheme({
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
+          height: '44px',
+          borderRadius: 'var(--border-radius-s)',
+          backgroundColor: 'var(--background-input)',
+          fontFamily,
+          fontSize: 'var(--body-m-emphasized-size)',
+          lineHeight: 'var(--body-m-emphasized-height)',
+          fontWeight: 'var(--body-m-emphasized-weight)',
+          color: 'var(--text-primary)',
           outline: `${borderWeightM} solid transparent`,
           outlineOffset: '0px',
           transition:
@@ -320,15 +328,44 @@ export const ckwTheme = createTheme({
           },
           '&.Mui-disabled': {
             backgroundColor: 'var(--background-canvas)',
+            color: 'var(--text-tertiary)',
           },
           '&.Mui-disabled .MuiOutlinedInput-notchedOutline': {
             borderColor: 'var(--border-soft)',
+          },
+        },
+        input: {
+          padding: `0 ${spacingM}`,
+          height: '44px',
+          boxSizing: 'border-box',
+          '&::placeholder': {
+            color: 'var(--text-tertiary)',
+            opacity: 1,
+          },
+          '&.Mui-disabled': {
+            WebkitTextFillColor: 'var(--text-tertiary)',
+          },
+          '&.MuiOutlinedInput-inputAdornedEnd': {
+            paddingRight: 0,
           },
         },
         notchedOutline: {
           borderColor: 'var(--border-strong)',
           borderWidth: borderWeightS,
           transition: 'border-color 150ms ease',
+        },
+      },
+    },
+    MuiFormHelperText: {
+      styleOverrides: {
+        root: {
+          margin: 0,
+          marginTop: 'var(--spacing-xs)',
+          padding: 0,
+          fontFamily,
+          fontSize: 'var(--caption-size)',
+          lineHeight: 'var(--caption-height)',
+          fontWeight: 'var(--caption-weight)',
         },
       },
     },
