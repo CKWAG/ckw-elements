@@ -162,6 +162,20 @@ export const States: Story = {
       color: 'var(--text-on-interactive-secondary)',
     };
 
+    const focusVisibleStyle: React.CSSProperties = {
+      ...segmentBase,
+      outline: 'var(--border-weight-m) solid var(--border-active)',
+      outlineOffset: '2px',
+    };
+
+    const disabledStyle: React.CSSProperties = {
+      ...segmentBase,
+      color: 'var(--text-tertiary)',
+      backgroundColor: 'var(--background-canvas)',
+      borderColor: 'var(--border-soft)',
+      cursor: 'not-allowed',
+    };
+
     return (
       <div style={sectionStyle}>
         <div style={rowStyle}>
@@ -175,6 +189,14 @@ export const States: Story = {
         <div style={rowStyle}>
           <span style={labelStyle}>Active</span>
           <span style={activeStyle}>Label</span>
+        </div>
+        <div style={rowStyle}>
+          <span style={labelStyle}>Focus visible</span>
+          <span style={focusVisibleStyle}>Label</span>
+        </div>
+        <div style={rowStyle}>
+          <span style={labelStyle}>Disabled</span>
+          <span style={disabledStyle}>Label</span>
         </div>
       </div>
     );

@@ -57,8 +57,9 @@ export const Empty: Story = {
       {(
         [
           ['Default', {}],
-          ['Hover', {}],
-          ['Active', {}],
+          ['Hover', { className: 'ckw-input-field--state-hover' }],
+          ['Active', { className: 'ckw-input-field--state-active' }],
+          ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
           ['Error', { errorText: 'Error text' }],
           ['Disabled', { disabled: true }],
         ] as const
@@ -80,8 +81,9 @@ export const Filled: Story = {
       {(
         [
           ['Default', { value: 'Input' }],
-          ['Hover', { value: 'Input' }],
-          ['Active', { value: 'Input' }],
+          ['Hover', { value: 'Input', className: 'ckw-input-field--state-hover' }],
+          ['Active', { value: 'Input', className: 'ckw-input-field--state-active' }],
+          ['Focus visible', { value: 'Input', className: 'ckw-input-field--state-focus-visible' }],
           ['Error', { value: 'Input', errorText: 'Error text' }],
           ['Disabled', { value: 'Input', disabled: true }],
         ] as const
@@ -126,8 +128,9 @@ export const AllVariants: Story = {
   render: () => {
     const states: Array<[string, Record<string, unknown>]> = [
       ['Default', {}],
-      ['Hover', {}],
-      ['Active', {}],
+      ['Hover', { className: 'ckw-input-field--state-hover' }],
+      ['Active', { className: 'ckw-input-field--state-active' }],
+      ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
       ['Error', { errorText: 'Error text' }],
       ['Disabled', { disabled: true }],
     ];

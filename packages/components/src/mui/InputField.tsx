@@ -111,13 +111,14 @@ export function InputField({
       style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '4px',
+        gap: 'var(--spacing-2xs)',
+        paddingLeft: 'var(--spacing-2xs)',
+        paddingRight: 'var(--spacing-2xs)',
         fontFamily: 'var(--font-family-brand), sans-serif',
         fontSize: 'var(--label-s-size)',
         lineHeight: 'var(--label-s-height)',
         fontWeight: 'var(--label-s-weight)',
         color: disabled ? 'var(--text-tertiary)' : 'var(--text-primary)',
-        marginBottom: '4px',
       }}
     >
       {label}
@@ -125,7 +126,9 @@ export function InputField({
         <span
           style={{
             color: 'var(--text-secondary)',
-            fontWeight: 325,
+            fontSize: 'var(--caption-size)',
+            lineHeight: 'var(--caption-height)',
+            fontWeight: 'var(--caption-weight)',
           }}
         >
           (optional)
@@ -154,10 +157,18 @@ export function InputField({
 
   return (
     <ThemeProvider theme={ckwTheme}>
-      <div className={className} style={{ display: 'flex', flexDirection: 'column' }}>
+      <div
+        className={className}
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 'var(--spacing-xs)',
+        }}
+      >
         {labelContent}
         <MuiTextField
           variant="outlined"
+          fullWidth
           type={type}
           placeholder={placeholder}
           value={value}
@@ -172,7 +183,8 @@ export function InputField({
                 style={{
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '4px',
+                  gap: 'var(--spacing-2xs)',
+                  width: '100%',
                   color: 'var(--status-error-text)',
                 }}
               >
@@ -189,7 +201,7 @@ export function InputField({
                     style={{
                       display: 'flex',
                       alignItems: 'center',
-                      color: 'var(--text-secondary)',
+                      color: disabled ? 'var(--text-tertiary)' : 'var(--text-primary)',
                     }}
                   >
                     {icon}
@@ -206,6 +218,7 @@ export function InputField({
               height: '44px',
               borderRadius: 'var(--border-radius-s)',
               backgroundColor: disabled ? 'var(--background-canvas)' : 'var(--background-input)',
+              boxShadow: hasError ? 'inset 0 0 0 1px var(--status-error-border)' : 'none',
               fontFamily: 'var(--font-family-brand), sans-serif',
               fontSize: 'var(--body-m-emphasized-size)',
               lineHeight: 'var(--body-m-emphasized-height)',
@@ -231,7 +244,7 @@ export function InputField({
               },
             },
             '& .MuiOutlinedInput-input': {
-              padding: '0 var(--spacing-xs)',
+              padding: '0 var(--spacing-m)',
               height: '44px',
               boxSizing: 'border-box',
               '&::placeholder': {
@@ -242,8 +255,13 @@ export function InputField({
                 WebkitTextFillColor: 'var(--text-tertiary)',
               },
             },
+            '& .MuiOutlinedInput-input.MuiOutlinedInput-inputAdornedEnd': {
+              paddingRight: 0,
+            },
             '& .MuiFormHelperText-root': {
-              margin: '4px 0 0 0',
+              margin: '0',
+              marginLeft: 0,
+              marginRight: 0,
               padding: 0,
               fontSize: 'var(--caption-size)',
               lineHeight: 'var(--caption-height)',

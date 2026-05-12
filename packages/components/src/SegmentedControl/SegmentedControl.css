@@ -213,3 +213,22 @@
 .ckw-segmented-control__segment--active .ckw-segmented-control__icon {
   color: var(--text-on-interactive-secondary);
 }
+
+/* ============================================
+   Docs-only forced states
+   ============================================ */
+
+.ckw-segmented-control--state-hover
+  .ckw-segmented-control__segment:first-child:not(.ckw-segmented-control__segment--active) {
+  background-color: var(--background-hover);
+}
+
+.ckw-segmented-control--state-focus-visible .ckw-segmented-control__segment:first-child {
+  outline: var(--border-weight-m) solid var(--border-active);
+  outline-offset: 2px;
+}
+
+.ckw-segmented-control--state-disabled {
+  opacity: 0.4;
+  pointer-events: none;
+}

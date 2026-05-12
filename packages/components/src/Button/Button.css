@@ -194,3 +194,42 @@
   width: 100%;
   height: 100%;
 }
+
+/* ============================================
+   Docs-only forced states
+   ============================================ */
+
+.ckw-button--state-hover.ckw-button--primary::before {
+  opacity: 0;
+}
+
+.ckw-button--state-hover.ckw-button--secondary {
+  background-color: var(--interactive-secondary-hover);
+}
+
+.ckw-button--state-hover.ckw-button--tertiary {
+  background-color: var(--interactive-secondary-hover);
+}
+
+.ckw-button--state-active.ckw-button--primary {
+  background-color: var(--interactive-primary-active);
+}
+
+.ckw-button--state-active.ckw-button--primary::before {
+  opacity: 0;
+}
+
+.ckw-button--state-active.ckw-button--secondary {
+  background-color: var(--interactive-secondary-active);
+  border-width: var(--border-weight-m);
+  border-color: var(--border-active);
+}
+
+.ckw-button--state-active.ckw-button--tertiary {
+  background-color: var(--interactive-secondary-active);
+}
+
+.ckw-button--state-focus-visible {
+  outline: var(--border-weight-m) solid var(--border-active);
+  outline-offset: 2px;
+}

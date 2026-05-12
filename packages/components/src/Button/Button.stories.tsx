@@ -152,13 +152,49 @@ export const Sizes: Story = {
 export const States: Story = {
   render: () => (
     <div style={sectionStyle}>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Default</span>
-        <Button>Label</Button>
-      </div>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Disabled</span>
-        <Button disabled>Label</Button>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '80px repeat(5, 1fr)',
+          gap: '0',
+          alignItems: 'center',
+        }}
+      >
+        <div />
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Default</div>
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Hover</div>
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Active</div>
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Focus visible</div>
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Disabled</div>
+
+        {(['Primary', 'Secondary', 'Tertiary'] as const).map((type) => (
+          <React.Fragment key={type}>
+            <span style={labelStyle}>{type}</span>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type}>Label</Button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type} className="ckw-button--state-hover">
+                Label
+              </Button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type} className="ckw-button--state-active">
+                Label
+              </Button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type} className="ckw-button--state-focus-visible">
+                Label
+              </Button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type} disabled>
+                Label
+              </Button>
+            </div>
+          </React.Fragment>
+        ))}
       </div>
     </div>
   ),

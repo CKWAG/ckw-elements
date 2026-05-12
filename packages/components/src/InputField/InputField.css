@@ -241,3 +241,28 @@
 .ckw-input-field--disabled .ckw-input-field__icon {
   color: var(--text-tertiary);
 }
+
+/* ============================================
+   Docs-only forced states
+   ============================================ */
+
+.ckw-input-field--state-hover:not(.ckw-input-field--error):not(.ckw-input-field--disabled)
+  .ckw-input-field__inner {
+  outline-color: var(--border-hover);
+}
+
+.ckw-input-field--state-active:not(.ckw-input-field--error):not(.ckw-input-field--disabled)
+  .ckw-input-field__inner {
+  outline-color: var(--border-hover);
+  border-color: var(--border-active);
+  box-shadow: inset 0 0 0 1px var(--border-active);
+  background-color: var(--background-active);
+}
+
+.ckw-input-field--state-focus-visible:not(.ckw-input-field--error):not(.ckw-input-field--disabled)
+  .ckw-input-field__inner {
+  outline-color: var(--border-hover);
+  border-color: var(--border-active);
+  box-shadow: inset 0 0 0 1px var(--border-active);
+  background-color: var(--background-active);
+}
