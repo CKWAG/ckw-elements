@@ -438,6 +438,12 @@ const segments3 = [
   { value: 'c', label: 'Label', icon: <PlaceholderIcon /> },
 ];
 
+const segmentsLabelOnly = [
+  { value: 'a', label: 'Label' },
+  { value: 'b', label: 'Label' },
+  { value: 'c', label: 'Label' },
+];
+
 export const ReactSegmentDefault: Story = {
   render: () => (
     <div style={segmentWrap}>
@@ -493,7 +499,7 @@ export const ReactSegmentMiddleActive: Story = {
 export const MuiSegmentDefault: Story = {
   render: () => (
     <div style={segmentWrap}>
-      <MuiSegmentedControl segments={segments3} activeValue="a" type="Default" />
+      <MuiSegmentedControl segments={segmentsLabelOnly} activeValue="a" type="Default" />
     </div>
   ),
 };
@@ -501,7 +507,7 @@ export const MuiSegmentDefault: Story = {
 export const MuiSegmentFill: Story = {
   render: () => (
     <div style={{ ...segmentWrap, width: '400px' }}>
-      <MuiSegmentedControl segments={segments3} activeValue="a" type="Fill" />
+      <MuiSegmentedControl segments={segmentsLabelOnly} activeValue="a" type="Fill" />
     </div>
   ),
 };
@@ -525,7 +531,7 @@ export const MuiSegmentIconCompact: Story = {
 export const MuiSegmentMiddleActive: Story = {
   render: () => (
     <div style={segmentWrap}>
-      <MuiSegmentedControl segments={segments3} activeValue="b" type="Default" />
+      <MuiSegmentedControl segments={segmentsLabelOnly} activeValue="b" type="Default" />
     </div>
   ),
 };
