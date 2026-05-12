@@ -2,7 +2,6 @@ import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { InputField } from './InputField';
 
-/** Placeholder icon for demos (20×20 shield). */
 function PlaceholderIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -20,64 +19,11 @@ const meta: Meta<typeof InputField> = {
   title: 'Components/Input Field',
   component: InputField,
   tags: ['!autodocs', '!dev'],
-  argTypes: {
-    label: {
-      control: 'text',
-      description: 'Label text above the input.',
-      table: { defaultValue: { summary: 'Label' } },
-    },
-    placeholder: {
-      control: 'text',
-      description: 'Placeholder text shown when empty.',
-      table: { defaultValue: { summary: 'Placeholder' } },
-    },
-    value: {
-      control: 'text',
-      description: 'Current input value.',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the field is disabled.',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    optional: {
-      control: 'boolean',
-      description: 'Show "(optional)" next to the label.',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    errorText: {
-      control: 'text',
-      description: 'Error text below the input. Shows error state when non-empty.',
-    },
-    icon: {
-      control: 'boolean',
-      description: 'Show a trailing icon inside the input.',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    showInfo: {
-      control: 'boolean',
-      description: 'Show an info icon next to the label.',
-      table: { defaultValue: { summary: 'false' } },
-    },
-  },
-  args: {
-    label: 'Label',
-    placeholder: 'Placeholder',
-    disabled: false,
-    optional: false,
-    errorText: '',
-    icon: false,
-    showInfo: false,
-  },
 };
 
 export default meta;
 
 type Story = StoryObj<typeof InputField>;
-
-// ---------------------------------------------------------------------------
-// Shared layout styles
-// ---------------------------------------------------------------------------
 
 const sectionStyle: React.CSSProperties = {
   display: 'flex',
@@ -101,50 +47,25 @@ const labelStyle: React.CSSProperties = {
   paddingTop: '12px',
 };
 
-const headingStyle: React.CSSProperties = {
-  fontFamily: 'var(--font-family-brand), sans-serif',
-  fontSize: '20px',
-  fontWeight: 500,
-  color: 'var(--text-primary)',
-  marginBottom: '8px',
-};
-
 const fieldWidth: React.CSSProperties = {
   width: '220px',
 };
 
-// ---------------------------------------------------------------------------
-// Playground
-// ---------------------------------------------------------------------------
-
-/** Interactive playground — use the controls panel to change props. */
-export const Playground: Story = {
-  render: ({ icon, value, ...args }) => (
-    <div style={{ maxWidth: '320px' }}>
-      <InputField {...args} icon={icon ? <PlaceholderIcon /> : undefined} />
-    </div>
-  ),
-};
-
-// ---------------------------------------------------------------------------
-// Empty States
-// ---------------------------------------------------------------------------
-
-/** Empty input fields across all five states. */
 export const Empty: Story = {
   render: () => (
     <div style={sectionStyle}>
       {(
         [
           ['Default', {}],
-          ['Hover', {}],
-          ['Active', {}],
+          ['Hover', { className: 'ckw-input-field--state-hover' }],
+          ['Active', { className: 'ckw-input-field--state-active' }],
+          ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
           ['Error', { errorText: 'Error text' }],
           ['Disabled', { disabled: true }],
         ] as const
-      ).map(([label, props]) => (
-        <div key={label} style={rowStyle}>
-          <span style={labelStyle}>{label}</span>
+      ).map(([stateLabel, props]) => (
+        <div key={stateLabel} style={rowStyle}>
+          <span style={labelStyle}>{stateLabel}</span>
           <div style={fieldWidth}>
             <InputField {...props} />
           </div>
@@ -154,25 +75,21 @@ export const Empty: Story = {
   ),
 };
 
-// ---------------------------------------------------------------------------
-// Filled States
-// ---------------------------------------------------------------------------
-
-/** Filled input fields across all five states. */
 export const Filled: Story = {
   render: () => (
     <div style={sectionStyle}>
       {(
         [
           ['Default', { value: 'Input' }],
-          ['Hover', { value: 'Input' }],
-          ['Active', { value: 'Input' }],
+          ['Hover', { value: 'Input', className: 'ckw-input-field--state-hover' }],
+          ['Active', { value: 'Input', className: 'ckw-input-field--state-active' }],
+          ['Focus visible', { value: 'Input', className: 'ckw-input-field--state-focus-visible' }],
           ['Error', { value: 'Input', errorText: 'Error text' }],
           ['Disabled', { value: 'Input', disabled: true }],
         ] as const
-      ).map(([label, props]) => (
-        <div key={label} style={rowStyle}>
-          <span style={labelStyle}>{label}</span>
+      ).map(([stateLabel, props]) => (
+        <div key={stateLabel} style={rowStyle}>
+          <span style={labelStyle}>{stateLabel}</span>
           <div style={fieldWidth}>
             <InputField {...props} />
           </div>
@@ -182,11 +99,6 @@ export const Filled: Story = {
   ),
 };
 
-// ---------------------------------------------------------------------------
-// Specials
-// ---------------------------------------------------------------------------
-
-/** Special features: trailing icon, optional label, info icon. */
 export const Specials: Story = {
   render: () => (
     <div style={sectionStyle}>
@@ -212,17 +124,13 @@ export const Specials: Story = {
   ),
 };
 
-// ---------------------------------------------------------------------------
-// All Variants
-// ---------------------------------------------------------------------------
-
-/** Complete matrix: Empty and Filled across all states. */
 export const AllVariants: Story = {
   render: () => {
     const states: Array<[string, Record<string, unknown>]> = [
       ['Default', {}],
-      ['Hover', {}],
-      ['Active', {}],
+      ['Hover', { className: 'ckw-input-field--state-hover' }],
+      ['Active', { className: 'ckw-input-field--state-active' }],
+      ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
       ['Error', { errorText: 'Error text' }],
       ['Disabled', { disabled: true }],
     ];
@@ -257,9 +165,9 @@ export const AllVariants: Story = {
           <div style={headerStyle}>Empty</div>
           <div style={headerStyle}>Filled</div>
 
-          {states.map(([label, props]) => (
-            <React.Fragment key={label}>
-              <span style={labelStyle}>{label}</span>
+          {states.map(([stateLabel, props]) => (
+            <React.Fragment key={stateLabel}>
+              <span style={labelStyle}>{stateLabel}</span>
               <div style={cellStyle}>
                 <div style={fieldWidth}>
                   <InputField {...props} />

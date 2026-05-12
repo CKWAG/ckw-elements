@@ -11,6 +11,7 @@ const preview: Preview = {
   parameters: {
     docs: {
       theme: ckwTheme,
+      codePanel: true,
     },
     options: {
       storySort: {
@@ -21,7 +22,14 @@ const preview: Preview = {
           'Foundations',
           ['Typography', 'Colors', 'Spacings', 'Borders', 'Shadows'],
           'Components',
-          ['Button', 'Input Field', 'Segmented Control'],
+          [
+            'Button',
+            ['Overview', 'React Playground', 'MUI Playground'],
+            'Input Field',
+            ['Overview', 'React Playground', 'MUI Playground'],
+            'Segmented Control',
+            ['Overview', 'React Playground', 'MUI Playground'],
+          ],
         ],
       },
     },

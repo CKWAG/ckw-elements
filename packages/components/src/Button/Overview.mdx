@@ -1,7 +1,7 @@
-import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Story } from '@storybook/addon-docs/blocks';
 import * as ButtonStories from './Button.stories';
 
-<Meta of={ButtonStories} />
+<Meta title="Components/Button" />
 
 <div className="sb-unstyled">
   <div className="docs-page-title">Button</div>
@@ -11,23 +11,6 @@ import * as ButtonStories from './Button.stories';
     Secondary, Tertiary), three sizes (Large, Medium, Small), optional leading or trailing icons,
     and a full-width container mode.
   </div>
-</div>
-
-<div className="sb-unstyled">
-  <div className="docs-section" style={{ marginTop: '48px' }}>
-    <div className="docs-section-title">Playground</div>
-    <div className="docs-subsection-description">
-      Use the controls below to interactively configure the Button component.
-    </div>
-  </div>
-</div>
-
-<div style={{ marginTop: '24px' }}>
-  <Primary />
-</div>
-
-<div style={{ marginTop: '16px' }}>
-  <Controls />
 </div>
 
 <div className="sb-unstyled">
@@ -62,8 +45,8 @@ import * as ButtonStories from './Button.stories';
   <div className="docs-section">
     <div className="docs-section-title">States</div>
     <div className="docs-subsection-description">
-      Hover and Active states are applied via CSS pseudo-classes. Disabled reduces opacity to 0.4
-      and removes interactivity.
+      Hover, Active, and Focus visible states are applied via CSS pseudo-classes. Disabled reduces
+      opacity to 0.4 and removes interactivity.
     </div>
   </div>
 </div>

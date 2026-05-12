@@ -18,6 +18,7 @@
     "tokens.json"
   ],
   "main": "./dist/tokens.js",
+  "types": "./dist/tokens.d.ts",
   "exports": {
     ".": "./dist/tokens.js",
     "./tokens.css": "./dist/tokens.css",

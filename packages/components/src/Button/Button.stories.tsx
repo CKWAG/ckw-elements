@@ -18,49 +18,62 @@ function PlaceholderIcon() {
 
 const meta: Meta<typeof Button> = {
   title: 'Components/Button',
+  parameters: {
+    docs: { source: { type: 'dynamic' } },
+  },
   component: Button,
   tags: ['!autodocs', '!dev'],
   argTypes: {
+    children: {
+      name: 'Text',
+      control: { type: 'text' },
+      description: 'Text content within the button.',
+      table: { category: 'Content' },
+    },
     type: {
-      control: 'select',
+      name: 'Type',
+      control: { type: 'inline-radio' },
       options: ['Primary', 'Secondary', 'Tertiary'],
-      description: 'Visual style variant.',
-      table: { defaultValue: { summary: 'Primary' } },
+      description:
+        'Visual style variant. Primary uses gradient background, Secondary is outlined, Tertiary is text-only.',
+      table: { category: 'General', defaultValue: { summary: 'Primary' } },
     },
     size: {
-      control: 'select',
+      name: 'Size',
+      control: { type: 'inline-radio' },
       options: ['Large', 'Medium', 'Small'],
       description:
-        'Size of the button. Large uses label-l typography, Medium and Small use label-m.',
-      table: { defaultValue: { summary: 'Large' } },
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Whether the button is disabled.',
-      table: { defaultValue: { summary: 'false' } },
+        'Button size. Large uses label-l typography (18/22), Medium and Small use label-m (16/20).',
+      table: { category: 'General', defaultValue: { summary: 'Large' } },
     },
     fullWidth: {
-      control: 'boolean',
-      description: 'Stretch to fill the parent width.',
-      table: { defaultValue: { summary: 'false' } },
-    },
-    children: {
-      control: 'text',
-      description: 'The visible button label.',
+      name: 'Full width',
+      control: { type: 'boolean' },
+      description: 'Stretch to fill the parent container width.',
+      table: { category: 'General', defaultValue: { summary: 'false' } },
     },
     leadingIcon: {
-      control: 'boolean',
-      description: 'Show a leading icon before the label.',
-      table: { defaultValue: { summary: 'false' } },
+      name: 'Leading icon',
+      control: { type: 'boolean' },
+      description: 'Show an icon before the label.',
+      table: { category: 'Icon', defaultValue: { summary: 'false' } },
     },
     trailingIcon: {
-      control: 'boolean',
-      description: 'Show a trailing icon after the label.',
-      table: { defaultValue: { summary: 'false' } },
+      name: 'Trailing icon',
+      control: { type: 'boolean' },
+      description: 'Show an icon after the label.',
+      table: { category: 'Icon', defaultValue: { summary: 'false' } },
+    },
+    disabled: {
+      name: 'Disabled',
+      control: { type: 'boolean' },
+      description:
+        'When set to true, makes the component appear inactive and disables its functionality.',
+      table: { category: 'States', defaultValue: { summary: 'false' } },
     },
   },
   args: {
-    children: 'Label',
+    children: 'Button',
     type: 'Primary',
     size: 'Large',
     disabled: false,
@@ -75,27 +88,7 @@ export default meta;
 type Story = StoryObj<typeof Button>;
 
 // ---------------------------------------------------------------------------
-// Playground — the only "story", shown as an interactive canvas on the Docs page
-// ---------------------------------------------------------------------------
-
-/** Interactive playground — use the controls panel to change props. */
-export const Playground: Story = {
-  render: ({ leadingIcon, trailingIcon, ...args }) => {
-    // Only one icon at a time — leading takes precedence
-    const showLeading = Boolean(leadingIcon);
-    const showTrailing = Boolean(trailingIcon) && !showLeading;
-    return (
-      <Button
-        {...args}
-        leadingIcon={showLeading ? <PlaceholderIcon /> : undefined}
-        trailingIcon={showTrailing ? <PlaceholderIcon /> : undefined}
-      />
-    );
-  },
-};
-
-// ---------------------------------------------------------------------------
-// Embedded examples — rendered inside the Docs page via autodocs
+// Embedded examples — rendered inside the Docs page via Overview.mdx
 // ---------------------------------------------------------------------------
 
 const sectionStyle: React.CSSProperties = {
@@ -159,13 +152,49 @@ export const Sizes: Story = {
 export const States: Story = {
   render: () => (
     <div style={sectionStyle}>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Default</span>
-        <Button>Label</Button>
-      </div>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Disabled</span>
-        <Button disabled>Label</Button>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '80px repeat(5, 1fr)',
+          gap: '0',
+          alignItems: 'center',
+        }}
+      >
+        <div />
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Default</div>
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Hover</div>
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Active</div>
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Focus visible</div>
+        <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Disabled</div>
+
+        {(['Primary', 'Secondary', 'Tertiary'] as const).map((type) => (
+          <React.Fragment key={type}>
+            <span style={labelStyle}>{type}</span>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type}>Label</Button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type} className="ckw-button--state-hover">
+                Label
+              </Button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type} className="ckw-button--state-active">
+                Label
+              </Button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type} className="ckw-button--state-focus-visible">
+                Label
+              </Button>
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
+              <Button type={type} disabled>
+                Label
+              </Button>
+            </div>
+          </React.Fragment>
+        ))}
       </div>
     </div>
   ),

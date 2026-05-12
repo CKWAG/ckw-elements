@@ -1,0 +1,89 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/React" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">React Components</div>
+  <div className="docs-description">
+    Native React components built with CKW design tokens. No external UI framework dependency — just
+    React and CSS custom properties. These are the same components available from the root package
+    export, re-exported under the <code>/react</code> subpath for explicit framework selection.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Installation</div>
+    <div className="docs-subsection-description">
+      No additional dependencies beyond React are required.
+    </div>
+  </div>
+</div>
+
+```bash
+npm install @ckw-elements/components @ckw-elements/tokens
+```
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Import Paths</div>
+    <div className="docs-subsection-description">
+      Components can be imported from either the root or the <code>/react</code> subpath. Both
+      exports are identical.
+    </div>
+  </div>
+</div>
+
+```tsx
+// Root import (default)
+import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+
+// Explicit React subpath (identical)
+import { Button, InputField, SegmentedControl } from '@ckw-elements/components/react';
+```
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Token Setup</div>
+    <div className="docs-subsection-description">
+      Import the token CSS file once in your app entry point. Components rely on CSS custom
+      properties being available in the document.
+    </div>
+  </div>
+</div>
+
+```css
+/* app entry point (e.g., main.css, global.css, or index.css) */
+@import '@ckw-elements/tokens/tokens.css';
+```
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Button Example</div>
+    <div className="docs-subsection-description">
+      The Button component supports three visual types (Primary, Secondary, Tertiary), three sizes
+      (Large, Medium, Small), optional icons, and full-width mode.
+    </div>
+  </div>
+</div>
+
+```tsx
+import React from 'react';
+import { Button } from '@ckw-elements/components/react';
+
+function MyPage() {
+  return (
+    <div>
+      <Button type="Primary" size="Large" onClick={() => alert('clicked')}>
+        Submit
+      </Button>
+      <Button type="Secondary" size="Medium">
+        Cancel
+      </Button>
+      <Button type="Tertiary" size="Small">
+        Learn more
+      </Button>
+    </div>
+  );
+}
+```

@@ -33,5 +33,10 @@ storybook-static/
 # TypeScript build info
 *.tsbuildinfo
 
+# Playwright
+tests/screenshots/
+tests/results/
+playwright-report/
+
 # Token drop folder (JSON exports from Tokens Studio)
 token-drop/*.json
