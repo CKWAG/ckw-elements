@@ -163,6 +163,7 @@ export function InputField({
           display: 'flex',
           flexDirection: 'column',
           gap: 'var(--spacing-xs)',
+          width: '100%',
         }}
       >
         {labelContent}
