@@ -57,7 +57,7 @@ export function SegmentedControl({
           display: 'inline-flex',
           flexDirection: 'row',
           width: type === 'Fill' ? '100%' : undefined,
-          padding: 'var(--spacing-3xs)',
+          padding: 'var(--spacing-2xs)',
           gap: 'var(--spacing-3xs)',
           borderRadius: '99999px',
           backgroundColor: 'var(--background-control)',

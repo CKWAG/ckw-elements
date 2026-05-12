@@ -42,6 +42,7 @@
   top: var(--spacing-2xs);
   bottom: var(--spacing-2xs);
   left: 0;
+  box-sizing: border-box;
   background-color: var(--background-active);
   border: var(--border-weight-s) solid var(--border-active);
   border-radius: var(--border-radius-full);

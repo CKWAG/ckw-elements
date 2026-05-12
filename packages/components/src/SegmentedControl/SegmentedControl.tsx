@@ -81,7 +81,8 @@ export function SegmentedControl({
     }
     const cRect = container.getBoundingClientRect();
     const aRect = activeEl.getBoundingClientRect();
-    setIndicator({ left: aRect.left - cRect.left, width: aRect.width });
+    const borderLeft = parseFloat(getComputedStyle(container).borderLeftWidth) || 0;
+    setIndicator({ left: aRect.left - cRect.left - borderLeft, width: aRect.width });
   }, [activeValue]);
 
   // Position on mount + when active changes
