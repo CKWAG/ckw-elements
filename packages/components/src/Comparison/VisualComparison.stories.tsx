@@ -34,9 +34,10 @@ const sectionTitleStyle: React.CSSProperties = {
 
 const gridStyle: React.CSSProperties = {
   display: 'grid',
-  gridTemplateColumns: '100px 1fr 1fr',
+  gridTemplateColumns: '100px auto auto',
   gap: '16px 24px',
   alignItems: 'start',
+  width: 'fit-content',
 };
 
 const columnHeaderStyle: React.CSSProperties = {
