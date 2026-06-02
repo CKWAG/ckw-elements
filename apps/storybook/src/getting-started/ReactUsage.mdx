@@ -6,8 +6,8 @@ import { Meta } from '@storybook/addon-docs/blocks';
   <div className="docs-page-title">React Components</div>
   <div className="docs-description">
     Native React components built with CKW design tokens. No external UI framework dependency — just
-    React and CSS custom properties. These are the same components available from the root package
-    export, re-exported under the <code>/react</code> subpath for explicit framework selection.
+    React and CSS custom properties. The package ships compiled ESM, TypeScript declarations, and
+    CSS side effects for direct use in React applications.
   </div>
 </div>
 
@@ -47,7 +47,9 @@ import { Button, InputField, SegmentedControl } from '@ckw-elements/components/r
     <div className="docs-section-title">Token Setup</div>
     <div className="docs-subsection-description">
       Import the token CSS file once in your app entry point. Components rely on CSS custom
-      properties being available in the document.
+      properties being available in the document. Component CSS is imported by the component
+      package; import the aggregate stylesheet only if your bundler does not process package CSS
+      side effects.
     </div>
   </div>
 </div>
@@ -55,6 +57,27 @@ import { Button, InputField, SegmentedControl } from '@ckw-elements/components/r
 ```css
 /* app entry point (e.g., main.css, global.css, or index.css) */
 @import '@ckw-elements/tokens/tokens.css';
+
+/* optional fallback for bundlers that ignore package CSS side effects */
+@import '@ckw-elements/components/styles.css';
+```
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Package Exports</div>
+    <div className="docs-subsection-description">
+      The component package exposes the root import, an explicit React subpath, aggregate CSS, and
+      package metadata.
+    </div>
+  </div>
+</div>
+
+```json
+{
+  "@ckw-elements/components": "React components",
+  "@ckw-elements/components/react": "Explicit React component exports",
+  "@ckw-elements/components/styles.css": "All component CSS"
+}
 ```
 
 <div className="sb-unstyled">

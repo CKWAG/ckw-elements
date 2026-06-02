@@ -4,7 +4,10 @@ import './SegmentedControl.css';
 export type SegmentedControlType = 'Default' | 'Fill';
 export type SegmentedControlContentMode = 'label' | 'icon-label' | 'icon-compact';
 
-interface Segment {
+const useIsomorphicLayoutEffect =
+  typeof window === 'undefined' ? React.useEffect : React.useLayoutEffect;
+
+export interface Segment {
   /** Unique value identifying this segment. */
   value: string;
   /** Visible label text. */
@@ -13,7 +16,7 @@ interface Segment {
   icon?: React.ReactNode;
 }
 
-interface SegmentedControlProps {
+export interface SegmentedControlProps {
   /** Array of segments to render. Minimum 2. */
   segments: Segment[];
   /** The `value` of the currently active segment. */
@@ -86,7 +89,7 @@ export function SegmentedControl({
   }, [activeValue]);
 
   // Position on mount + when active changes
-  React.useLayoutEffect(() => {
+  useIsomorphicLayoutEffect(() => {
     updateIndicator();
 
     if (!hasAnimated) {

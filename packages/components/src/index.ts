@@ -1,7 +1,12 @@
 // @ckw-elements/components — public exports
-export { Button } from './Button';
-export type { ButtonType, ButtonSize } from './Button';
-export { InputField } from './InputField';
-export type { InputFieldState } from './InputField';
-export { SegmentedControl } from './SegmentedControl';
-export type { SegmentedControlType, SegmentedControlContentMode } from './SegmentedControl';
+export { Button } from './Button/index.js';
+export type { ButtonProps, ButtonSize, ButtonType } from './Button/index.js';
+export { InputField } from './InputField/index.js';
+export type { InputFieldProps, InputFieldState } from './InputField/index.js';
+export { SegmentedControl } from './SegmentedControl/index.js';
+export type {
+  Segment,
+  SegmentedControlContentMode,
+  SegmentedControlProps,
+  SegmentedControlType,
+} from './SegmentedControl/index.js';

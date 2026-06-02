@@ -1,0 +1,137 @@
+# CKW Elements - AI Agent Guide
+
+CKW Elements is a token-first React design system. Build UI by importing tokens and components from the packages instead of copying styles from Storybook.
+
+## Install
+
+```bash
+npm install @ckw-elements/tokens @ckw-elements/components
+```
+
+## Required App Setup
+
+Import token CSS once in the app entry point:
+
+```css
+@import '@ckw-elements/tokens/tokens.css';
+```
+
+React applications can import components from either package root or the explicit React subpath:
+
+```tsx
+import React from 'react';
+import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+```
+
+```tsx
+import React from 'react';
+import { Button, InputField, SegmentedControl } from '@ckw-elements/components/react';
+```
+
+If a bundler does not process CSS side-effect imports from packages, import the aggregate component CSS explicitly:
+
+```css
+@import '@ckw-elements/components/styles.css';
+```
+
+## Token Assets
+
+These files are published with the deployed documentation for agents and build tooling:
+
+- `tokens/tokens.css`: CSS custom properties and typography utility classes.
+- `tokens/tokens.js`: JavaScript named exports and a default token map.
+- `tokens/tokens.d.ts`: TypeScript declarations for JavaScript token exports.
+- `tokens/tokens.json`: DTCG token source.
+
+The npm token package also exports:
+
+```ts
+import tokens, { interactivePrimary, spacingM } from '@ckw-elements/tokens';
+import '@ckw-elements/tokens/tokens.css';
+import rawTokens from '@ckw-elements/tokens/tokens.json';
+```
+
+## Styling Rules
+
+- Use only semantic tokens for component colors: `--text-primary`, `--background-default`, `--interactive-primary`, `--border-soft`.
+- Do not use primitive color tokens in product components: avoid `--color-green-600`, `--color-grey-800`, and similar primitives.
+- Never hardcode hex colors in repository UI code except Storybook theme configuration where Storybook requires raw colors.
+- Use CKW green for primary actions. Do not substitute blue as the primary brand color.
+- Use `font-family: var(--font-family-brand), sans-serif`.
+- Prefer token spacing, radii, shadows, border weights, and typography variables over raw CSS values.
+
+## Component APIs
+
+### Button
+
+```tsx
+<Button type="Primary" size="Large">Save</Button>
+```
+
+- `type`: `Primary`, `Secondary`, `Tertiary`
+- `size`: `Large`, `Medium`, `Small`
+- `disabled`: boolean
+- `fullWidth`: boolean
+- `leadingIcon`: React node
+- `trailingIcon`: React node
+- `htmlType`: `button`, `submit`, `reset`
+
+### InputField
+
+```tsx
+<InputField label="Name" placeholder="Enter name" errorText={error} />
+```
+
+- `label`: string
+- `placeholder`: string
+- `value`: string
+- `onChange`: React input change handler
+- `disabled`: boolean
+- `optional`: boolean
+- `errorText`: string
+- `icon`: React node
+- `showInfo`: boolean
+
+### SegmentedControl
+
+```tsx
+<SegmentedControl
+  segments={[
+    { value: 'list', label: 'List' },
+    { value: 'grid', label: 'Grid' },
+  ]}
+  activeValue="list"
+  onChange={setView}
+/>
+```
+
+- `segments`: array of `{ value, label, icon }`
+- `activeValue`: string
+- `onChange`: `(value: string) => void`
+- `type`: `Default`, `Fill`
+- `contentMode`: `label`, `icon-label`, `icon-compact`
+
+## Agent Skills
+
+Use these deployed prompt files when an AI agent needs CKW-specific behavior:
+
+- `skills/ckw-prototyping.md`: use for rapid UI prototyping.
+- `skills/ckw-components.md`: use for reusable React components.
+
+## Storybook Fetch Notes
+
+Storybook builds to static files. It is not server-side rendered HTML per route. Agents should fetch these plain-text/static assets first:
+
+- `llms.txt`
+- `llms-full.txt`
+- `tokens/tokens.css`
+- `tokens/tokens.json`
+- `skills/ckw-prototyping.md`
+- `skills/ckw-components.md`
+
+For story metadata, fetch Storybook's generated index from the deployed build:
+
+- `index.json`
+- `stories.json` if available in the deployed Storybook version
+
+Use Storybook URLs for visual inspection and the static assets above for code generation context.

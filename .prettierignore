@@ -1,6 +1,7 @@
 node_modules
 pnpm-lock.yaml
 packages/tokens/dist
+packages/components/dist
 packages/tokens/tokens-raw.json
 apps/storybook/storybook-static
 *.woff2

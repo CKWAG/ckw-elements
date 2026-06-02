@@ -19,18 +19,18 @@
 
 ## Overview
 
-CKW Elements is a design system that bridges Figma and code. Tokens are authored as Figma Variables, exported via Tokens Studio, and transformed into **CSS Custom Properties** and **JavaScript modules** through Style Dictionary v4.
+CKW Elements is a design system that bridges Figma and code. Tokens are authored as Figma Variables, exported via Tokens Studio, and transformed into **CSS Custom Properties**, **JavaScript modules**, and **TypeScript declarations** through Style Dictionary v4.
 
-The result: a single source of truth for colors, typography, spacing, borders, shadows, and components — consumed by any web project via a simple CSS import.
+The result: a single source of truth for colors, typography, spacing, borders, shadows, and React components that can be consumed directly from npm packages.
 
 ## What's Included
 
-| Package                                             | Status         | Description                                                 |
-| --------------------------------------------------- | -------------- | ----------------------------------------------------------- |
-| [`@ckw-elements/tokens`](./packages/tokens)         | ✅ Active      | 282 design tokens (CSS + JS)                                |
-| [`@ckw-elements/components`](./packages/components) | 🚧 In progress | React component library                                     |
-| [`@ckw-elements/icons`](./packages/icons)           | 📋 Planned     | Icon set                                                    |
-| [`@ckw-elements/storybook`](./apps/storybook)       | ✅ Active      | [Documentation site](https://ckwag.github.io/ckw-elements/) |
+| Package                                             | Status     | Description                                                 |
+| --------------------------------------------------- | ---------- | ----------------------------------------------------------- |
+| [`@ckw-elements/tokens`](./packages/tokens)         | ✅ Active  | 282 design tokens (CSS + JS)                                |
+| [`@ckw-elements/components`](./packages/components) | ✅ Active  | React component library (ESM + types + CSS)                 |
+| [`@ckw-elements/icons`](./packages/icons)           | 📋 Planned | Icon set                                                    |
+| [`@ckw-elements/storybook`](./apps/storybook)       | ✅ Active  | [Documentation site](https://ckwag.github.io/ckw-elements/) |
 
 ## Quick Start
 
@@ -45,7 +45,56 @@ pnpm --filter @ckw-elements/storybook run dev
 
 Storybook opens at [localhost:6006](http://localhost:6006) with the full token documentation.
 
-## Usage
+## React Usage
+
+Install the packages in any React application:
+
+```bash
+npm install @ckw-elements/tokens @ckw-elements/components
+```
+
+Import token CSS once in your app entry point:
+
+```css
+@import '@ckw-elements/tokens/tokens.css';
+```
+
+Then import components directly:
+
+```tsx
+import React from 'react';
+import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+
+export function Example() {
+  return (
+    <form>
+      <InputField label="Name" placeholder="Enter name" />
+      <SegmentedControl
+        segments={[
+          { value: 'monthly', label: 'Monthly' },
+          { value: 'yearly', label: 'Yearly' },
+        ]}
+        activeValue="monthly"
+      />
+      <Button type="Primary">Save</Button>
+    </form>
+  );
+}
+```
+
+The package also exposes an explicit React subpath:
+
+```tsx
+import { Button } from '@ckw-elements/components/react';
+```
+
+If a bundler does not process CSS side-effect imports from packages, import component CSS explicitly:
+
+```css
+@import '@ckw-elements/components/styles.css';
+```
+
+## Token Usage
 
 Import the token CSS file into your project:
 
@@ -71,6 +120,24 @@ Then use semantic tokens in your styles:
 ```
 
 > **Rule:** Always use semantic tokens (`--interactive-primary`), never primitives (`--color-green-600`). This enables theming and ensures consistency.
+
+Token values can also be imported from JavaScript:
+
+```ts
+import tokens, { interactivePrimary, spacingM } from '@ckw-elements/tokens';
+import rawTokens from '@ckw-elements/tokens/tokens.json';
+```
+
+## AI Agent Support
+
+The repository includes [AGENTS.md](./AGENTS.md) for coding agents. The deployed Storybook also exposes plain-text resources that are easier for agents to fetch than a rendered browser UI:
+
+- `llms.txt` — short entrypoint
+- `llms-full.txt` — package usage, component APIs, and rules
+- `tokens/tokens.css`, `tokens/tokens.js`, `tokens/tokens.json` — generated token assets
+- `skills/ckw-prototyping.md` and `skills/ckw-components.md` — reusable agent prompts
+
+Storybook itself builds as a static web application. It is not server-side rendered per documentation route; for agent workflows, use the static files above and Storybook's generated `index.json` for story metadata.
 
 ## Token Architecture
 
@@ -99,15 +166,16 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for full pipeline details.
 
 ## Scripts
 
-| Command                                           | Description                             |
-| ------------------------------------------------- | --------------------------------------- |
-| `pnpm install`                                    | Install dependencies                    |
-| `pnpm tokens:sync`                                | Full token pipeline (transform + build) |
-| `pnpm format`                                     | Format code (Prettier)                  |
-| `pnpm format:check`                               | Check formatting (CI)                   |
-| `pnpm --filter @ckw-elements/storybook run dev`   | Start Storybook                         |
-| `pnpm --filter @ckw-elements/storybook run build` | Build Storybook                         |
-| `pnpm -r run build`                               | Build all packages                      |
+| Command                                            | Description                             |
+| -------------------------------------------------- | --------------------------------------- |
+| `pnpm install`                                     | Install dependencies                    |
+| `pnpm tokens:sync`                                 | Full token pipeline (transform + build) |
+| `pnpm --filter @ckw-elements/components run build` | Build React component package           |
+| `pnpm format`                                      | Format code (Prettier)                  |
+| `pnpm format:check`                                | Check formatting (CI)                   |
+| `pnpm --filter @ckw-elements/storybook run dev`    | Start Storybook                         |
+| `pnpm --filter @ckw-elements/storybook run build`  | Build Storybook                         |
+| `pnpm -r run build`                                | Build all packages                      |
 
 ## Tech Stack
 

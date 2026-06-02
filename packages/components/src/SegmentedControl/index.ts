@@ -1,2 +1,7 @@
-export { SegmentedControl } from './SegmentedControl';
-export type { SegmentedControlType, SegmentedControlContentMode } from './SegmentedControl';
+export { SegmentedControl } from './SegmentedControl.js';
+export type {
+  Segment,
+  SegmentedControlContentMode,
+  SegmentedControlProps,
+  SegmentedControlType,
+} from './SegmentedControl.js';

@@ -14,7 +14,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
   <div className="docs-section-title">Install</div>
 
 ```bash
-npm install @ckw-elements/tokens
+npm install @ckw-elements/tokens @ckw-elements/components
 ```
 
 ```css
@@ -32,6 +32,73 @@ npm install @ckw-elements/tokens
   }}>
     All 282 design tokens are now available as <code>var(--token-name)</code> in your CSS.
   </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Agent-Readable Deployment Files</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  Storybook is deployed as a static app. Agents should fetch these plain-text and generated files
+  before trying to inspect the interactive UI.
+</div>
+
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th style={{ width: '220px' }}>File</th>
+        <th>Use</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="cell-mono">llms.txt</td>
+        <td>Short package and rule entrypoint for agents.</td>
+      </tr>
+      <tr>
+        <td className="cell-mono">llms-full.txt</td>
+        <td>Full React usage guide, component APIs, token rules, and fetch notes.</td>
+      </tr>
+      <tr>
+        <td className="cell-mono">tokens/tokens.css</td>
+        <td>Generated CSS custom properties and typography utility classes.</td>
+      </tr>
+      <tr>
+        <td className="cell-mono">tokens/tokens.json</td>
+        <td>DTCG token source for tools that need structured data.</td>
+      </tr>
+      <tr>
+        <td className="cell-mono">index.json</td>
+        <td>Storybook-generated story index for deployed story metadata.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Storybook Rendering</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+  }}
+>
+  Storybook does not server-side render every docs route into standalone HTML. It builds a static
+  web application and hydrates the manager and preview in the browser. For agent workflows, use the
+  static files above for context and use Storybook pages for visual verification.
+</div>
 </div>
 
 <div className="docs-section">

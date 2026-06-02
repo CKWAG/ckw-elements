@@ -16,7 +16,7 @@
  */
 
 import StyleDictionary from 'style-dictionary';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { copyFileSync, readFileSync, writeFileSync } from 'node:fs';
 import config from './style-dictionary.config.mjs';
 
 const sd = new StyleDictionary(config);
@@ -29,12 +29,19 @@ try {
 }
 
 const js = readFileSync('dist/tokens.js', 'utf8');
-const dts = js
-  .match(/^export const \w+/gm)
+const namedExports = (js.match(/^export const \w+/gm) ?? [])
   .map((m) => `${m.replace('export const', 'export declare const')}: string;`)
   .join('\n');
-writeFileSync('dist/tokens.d.ts', dts + '\n');
+const defaultExport = [
+  '',
+  'declare const tokens: Record<string, string>;',
+  'export default tokens;',
+  '',
+].join('\n');
+writeFileSync('dist/tokens.d.ts', namedExports + defaultExport);
+copyFileSync('tokens.json', 'dist/tokens.json');
 
 console.log('  Generated dist/tokens.css');
 console.log('  Generated dist/tokens.js');
-console.log('  Generated dist/tokens.d.ts\n');
+console.log('  Generated dist/tokens.d.ts');
+console.log('  Generated dist/tokens.json\n');

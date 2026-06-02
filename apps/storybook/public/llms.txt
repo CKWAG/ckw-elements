@@ -1,0 +1,37 @@
+# CKW Elements
+
+CKW Elements is CKW's design system for React applications. It ships design tokens and React components as npm packages.
+
+## Primary Resources
+
+- Full AI guide: llms-full.txt
+- Token CSS: tokens/tokens.css
+- Token JavaScript: tokens/tokens.js
+- Token JSON: tokens/tokens.json
+- React prototyping skill: skills/ckw-prototyping.md
+- React component skill: skills/ckw-components.md
+
+## Packages
+
+- `@ckw-elements/tokens`: CSS custom properties, JavaScript token exports, and DTCG JSON.
+- `@ckw-elements/components`: React components that use CKW semantic tokens.
+
+## Core Rules
+
+- Import `@ckw-elements/tokens/tokens.css` once in the application entry point.
+- Use semantic tokens like `var(--interactive-primary)`, not primitive tokens like `var(--color-green-600)`, in product components.
+- CKW brand color is green. Do not make primary UI blue.
+- CKW brand font is Gotham via `var(--font-family-brand), sans-serif`.
+- React TSX files in this repository must keep `import React from 'react';`.
+
+## React Usage
+
+```tsx
+import React from 'react';
+import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+import '@ckw-elements/tokens/tokens.css';
+```
+
+```css
+@import '@ckw-elements/tokens/tokens.css';
+```
