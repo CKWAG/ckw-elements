@@ -117,7 +117,7 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for full pipeline details.
 | [Style Dictionary 4](https://amzn.github.io/style-dictionary) | Token transformation     |
 | [React 19](https://react.dev)                                 | Component framework      |
 | [TypeScript 5](https://www.typescriptlang.org)                | Type safety              |
-| [Storybook 8](https://storybook.js.org)                       | Documentation            |
+| [Storybook 10](https://storybook.js.org)                      | Documentation            |
 | [Vite 6](https://vite.dev)                                    | Build tool               |
 | [Prettier](https://prettier.io)                               | Code formatting          |
 

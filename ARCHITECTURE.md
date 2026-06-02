@@ -106,7 +106,7 @@ ckw-elements/
 | Tokens Studio    | (Plugin) | Figma plugin — exports Variables as JSON |
 | React            | 19       | Component library framework              |
 | TypeScript       | 5.x      | Type safety (strict mode planned)        |
-| Storybook        | 8.6      | Documentation site + component explorer  |
+| Storybook        | 10.x     | Documentation site + component explorer  |
 | Vite             | 6.x      | Build tool (via @storybook/react-vite)   |
 
 ### Package Status
@@ -766,7 +766,7 @@ pnpm --filter @ckw-elements/storybook run build
 │ Depends on:              │      │ Depends on:              │
 │ • tokens (for CSS vars)  │      │ • tokens (CSS + JSON)    │
 │ • react (peer dep)       │      │ • components (stories)   │
-│                          │      │ • storybook 8.6          │
+│                          │      │ • storybook 10           │
 │ Status: Scaffold         │      │ • react 19               │
 └──────────┬───────────────┘      │                          │
            │                      │ Status: Active           │

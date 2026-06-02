@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from './Button';
 
 /** Placeholder icon from Figma (Icon/placeholder — shield with checkmark). */
@@ -16,13 +16,13 @@ function PlaceholderIcon() {
   );
 }
 
-const meta: Meta<typeof Button> = {
+const meta = {
   title: 'Components/Button',
   parameters: {
     docs: { source: { type: 'dynamic' } },
   },
   component: Button,
-  tags: ['!autodocs', '!dev'],
+  tags: ['!autodocs'],
   argTypes: {
     children: {
       name: 'Text',
@@ -81,11 +81,11 @@ const meta: Meta<typeof Button> = {
     leadingIcon: false,
     trailingIcon: false,
   },
-};
+} satisfies Meta<typeof Button>;
 
 export default meta;
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof meta>;
 
 // ---------------------------------------------------------------------------
 // Embedded examples — rendered inside the Docs page via Overview.mdx

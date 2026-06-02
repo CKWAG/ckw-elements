@@ -6,7 +6,7 @@
   /* Replace default doc icons with emojis in Foundations sidebar.
      DOM structure: div.sidebar-item > a > div(icon-wrapper) + text
      The icon wrapper is the first div child of the link.
-     FRAGILE: depends on Storybook 8.6 internal DOM — re-check on upgrades. */
+     FRAGILE: depends on Storybook 10 internal DOM — re-check on upgrades. */
 
   /* Hide the icon-wrapper div (contains the SVG) */
   [data-item-id*='foundations-'].sidebar-item a > div:first-child {

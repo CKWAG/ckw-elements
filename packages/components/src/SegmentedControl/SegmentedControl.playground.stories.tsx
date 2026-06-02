@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react';
 import { SegmentedControl } from './SegmentedControl';
 
 function PlaceholderIcon() {
@@ -15,7 +15,13 @@ function PlaceholderIcon() {
   );
 }
 
-const meta: Meta<typeof SegmentedControl> = {
+const defaultSegments = [
+  { value: 'a', label: 'Label' },
+  { value: 'b', label: 'Label' },
+  { value: 'c', label: 'Label' },
+];
+
+const meta = {
   title: 'Components/Segmented Control',
   component: SegmentedControl,
   tags: ['!autodocs'],
@@ -51,15 +57,16 @@ const meta: Meta<typeof SegmentedControl> = {
     className: { control: false, table: { disable: true } },
   },
   args: {
+    segments: defaultSegments,
     type: 'Default',
     contentMode: 'label',
     activeValue: 'a',
   },
-};
+} satisfies Meta<typeof SegmentedControl>;
 
 export default meta;
 
-type Story = StoryObj<typeof SegmentedControl>;
+type Story = StoryObj<typeof meta>;
 
 export const ReactPlayground: Story = {
   name: 'React Playground',
