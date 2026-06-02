@@ -43,6 +43,9 @@ jobs:
       - name: Build tokens
         run: pnpm --filter @ckw-elements/tokens run build
 
+      - name: Build components
+        run: pnpm --filter @ckw-elements/components run build
+
       - name: Build Storybook
         run: pnpm --filter @ckw-elements/storybook run build
         env:

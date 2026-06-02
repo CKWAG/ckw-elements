@@ -1,5 +1,6 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react';
+import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { SegmentedControl } from './SegmentedControl';
 
 function PlaceholderIcon() {
@@ -15,11 +16,18 @@ function PlaceholderIcon() {
   );
 }
 
-const meta: Meta<typeof SegmentedControl> = {
+const defaultSegments = [
+  { value: 'a', label: 'Label' },
+  { value: 'b', label: 'Label' },
+  { value: 'c', label: 'Label' },
+];
+
+const meta = {
   title: 'Components/Segmented Control',
   component: SegmentedControl,
-  tags: ['!autodocs', '!dev'],
+  tags: ['!autodocs'],
   parameters: {
+    design: getFigmaDesignParameter(figmaReferences.segmentedControl),
     docs: {
       source: {
         transform: (code: string) =>
@@ -50,15 +58,24 @@ const meta: Meta<typeof SegmentedControl> = {
     className: { control: false, table: { disable: true } },
   },
   args: {
+    segments: defaultSegments,
     type: 'Default',
     contentMode: 'label',
     activeValue: 'a',
   },
-};
+} satisfies Meta<typeof SegmentedControl>;
 
 export default meta;
 
-type Story = StoryObj<typeof SegmentedControl>;
+type Story = StoryObj<typeof meta>;
+
+/** Basic segmented control with three label-only segments. */
+export const Basic: Story = {
+  args: {
+    segments: defaultSegments,
+    activeValue: 'a',
+  },
+};
 
 const sectionStyle: React.CSSProperties = {
   display: 'flex',
@@ -127,6 +144,27 @@ export const Icons: Story = {
           <SegmentedControl segments={segments} activeValue="a" contentMode="icon-compact" />
         </div>
       </div>
+    );
+  },
+};
+
+/** Controlled example showing how application state owns the active segment. */
+export const Controlled: Story = {
+  render: () => {
+    const [activeValue, setActiveValue] = React.useState('list');
+    const segments = [
+      { value: 'list', label: 'List' },
+      { value: 'grid', label: 'Grid' },
+      { value: 'map', label: 'Map' },
+    ];
+
+    return (
+      <SegmentedControl
+        segments={segments}
+        activeValue={activeValue}
+        onChange={setActiveValue}
+        type="Default"
+      />
     );
   },
 };

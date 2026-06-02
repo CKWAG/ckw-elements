@@ -366,3 +366,5 @@ export declare const mobileMetricXsHeight: string;
 export declare const mobileMetricXsEmphasizedWeight: string;
 export declare const mobileMetricXsEmphasizedSize: string;
 export declare const mobileMetricXsEmphasizedHeight: string;
+declare const tokens: Record<string, string>;
+export default tokens;

@@ -8,7 +8,13 @@ const config: StorybookConfig = {
   ],
   addons: ['@storybook/addon-docs'],
   framework: '@storybook/react-vite',
-  staticDirs: ['../public'],
+  staticDirs: [
+    '../public',
+    {
+      from: '../../../packages/tokens/dist',
+      to: '/tokens',
+    },
+  ],
   viteFinal: async (config) => {
     if (process.env.STORYBOOK_BASE) {
       config.base = process.env.STORYBOOK_BASE;

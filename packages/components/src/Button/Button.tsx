@@ -4,7 +4,7 @@ import './Button.css';
 export type ButtonType = 'Primary' | 'Secondary' | 'Tertiary';
 export type ButtonSize = 'Large' | 'Medium' | 'Small';
 
-interface ButtonProps {
+export interface ButtonProps {
   /** The visible button label. */
   children: React.ReactNode;
   /** Visual style variant. */

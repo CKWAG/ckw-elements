@@ -3,7 +3,7 @@ import './InputField.css';
 
 export type InputFieldState = 'Default' | 'Hover' | 'Active' | 'Error' | 'Disabled';
 
-interface InputFieldProps {
+export interface InputFieldProps {
   /** Label text above the input. */
   label?: string;
   /** Placeholder text shown when empty. */
@@ -107,7 +107,8 @@ export function InputField({
   className,
 }: InputFieldProps) {
   const hasError = Boolean(errorText);
-  const errorId = hasError ? `ckw-input-error-${React.useId()}` : undefined;
+  const generatedErrorId = React.useId();
+  const errorId = hasError ? `ckw-input-error-${generatedErrorId}` : undefined;
   const rootClasses = [
     'ckw-input-field',
     hasError && 'ckw-input-field--error',

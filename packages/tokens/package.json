@@ -11,7 +11,8 @@
     "tokens:transform": "node transform-tokens.mjs",
     "tokens:build": "node build-tokens.mjs",
     "tokens:sync": "node transform-tokens.mjs && node build-tokens.mjs",
-    "build": "node build-tokens.mjs"
+    "build": "node build-tokens.mjs",
+    "prepack": "pnpm run build"
   },
   "files": [
     "dist/",
@@ -19,10 +20,19 @@
   ],
   "main": "./dist/tokens.js",
   "types": "./dist/tokens.d.ts",
+  "sideEffects": [
+    "**/*.css"
+  ],
   "exports": {
-    ".": "./dist/tokens.js",
+    ".": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.js"
+    },
     "./tokens.css": "./dist/tokens.css",
-    "./tokens.js": "./dist/tokens.js",
+    "./tokens.js": {
+      "types": "./dist/tokens.d.ts",
+      "import": "./dist/tokens.js"
+    },
     "./tokens.json": "./tokens.json"
   },
   "devDependencies": {

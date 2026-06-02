@@ -12,9 +12,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
-    "tokens:sync": "pnpm --filter @ckw-elements/tokens run tokens:sync",
-    "test:visual": "playwright test",
-    "test:visual:ui": "playwright test --ui"
+    "tokens:sync": "pnpm --filter @ckw-elements/tokens run tokens:sync"
   },
   "engines": {
     "node": ">=20",
@@ -37,12 +35,8 @@
     "*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
-    "@playwright/test": "^1.59.1",
-    "@types/pngjs": "^6.0.5",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.2",
-    "pixelmatch": "^7.2.0",
-    "pngjs": "^7.0.0",
     "prettier": "^3.8.3",
     "typescript": "^5.9.0"
   }

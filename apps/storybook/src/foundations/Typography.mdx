@@ -1,4 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../../../../packages/components/src/storybook/DesignReference';
+import { figmaReferences } from '../../../../packages/components/src/storybook/figmaLinks';
 import { TypographySample } from '../components/TypographySample';
 import { typographyCategories } from '../data/tokens';
 
@@ -13,6 +15,8 @@ import { typographyCategories } from '../data/tokens';
   Caption, Label, Overline, and Metric categories. Display, Heading, and Lead styles are responsive
   — they have different values for Desktop and Mobile.
 </div>
+
+<DesignReference reference={figmaReferences.typography} />
 
 <div className="docs-section">
   <div className="docs-section-title">Tokens</div>

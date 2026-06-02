@@ -1,0 +1,130 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { figmaReferences } from '../../../../packages/components/src/storybook/figmaLinks';
+
+<Meta title="Getting Started/Storybook Standards" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Storybook Standards</div>
+  <div className="docs-description">
+    CKW Elements stories document implementation, design source, states, and usage patterns in one
+    place. Keep new component stories consistent with these standards.
+  </div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Component Story Shape</div>
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th style={{ width: '220px' }}>Story</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="cell-name">Basic</td>
+        <td>Default component setup with minimal props.</td>
+      </tr>
+      <tr>
+        <td className="cell-name">Types / Variants</td>
+        <td>Visual hierarchy, content modes, and layout variants.</td>
+      </tr>
+      <tr>
+        <td className="cell-name">States</td>
+        <td>Default, hover, active, focus-visible, disabled, and error states where relevant.</td>
+      </tr>
+      <tr>
+        <td className="cell-name">Controlled Usage</td>
+        <td>
+          State ownership examples for inputs, selection controls, and future form components.
+        </td>
+      </tr>
+      <tr>
+        <td className="cell-name">React Playground</td>
+        <td>Interactive controls for the package API that product teams import.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+  <div className="docs-section">
+    <div className="docs-section-title">Design Source Links</div>
+    <div className="docs-subsection-description">
+      Every component overview should include a Figma source link through the shared
+      <code> DesignReference</code> helper. Use exact node links from the CKW Elements Figma file
+      whenever possible.
+    </div>
+
+```tsx
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+
+<DesignReference reference={figmaReferences.button} />;
+```
+
+    <div className="docs-subsection-description">
+      Stories should also include <code>parameters.design</code>. It is ignored by default, but it
+      keeps stories ready for a Figma design addon if the repository adopts one later.
+    </div>
+
+    <table className="docs-table">
+      <thead>
+        <tr>
+          <th style={{ width: '220px' }}>Source</th>
+          <th style={{ width: '140px' }}>Node</th>
+          <th>Figma Link</th>
+        </tr>
+      </thead>
+      <tbody>
+        {[
+          figmaReferences.button,
+          figmaReferences.inputField,
+          figmaReferences.segmentedControl,
+          figmaReferences.typography,
+          figmaReferences.colors,
+          figmaReferences.spacings,
+          figmaReferences.borders,
+          figmaReferences.shadows,
+          figmaReferences.layoutGuide,
+        ].map((reference) => (
+          <tr key={reference.nodeId}>
+            <td className="cell-name">{reference.componentName}</td>
+            <td className="cell-mono">{reference.nodeId}</td>
+            <td>
+              <a href={reference.url} target="_blank" rel="noreferrer">
+                Open in Figma
+              </a>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+
+  </div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Controls And Behavior</div>
+  <div className="docs-subsection-description">
+    Use Args for common props so designers and developers can explore behavior without changing
+    code. For stateful controls, include a controlled story that shows how application state owns
+    the current value.
+  </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Accessibility</div>
+  <div className="docs-subsection-description">
+    Component documentation must call out keyboard and screen-reader expectations. At minimum,
+    document focus-visible behavior, labels, disabled states, error states, and ARIA attributes that
+    the component owns.
+  </div>
+</div>
+
+  <div className="docs-section">
+    <div className="docs-section-title">Testing Addons</div>
+    <div className="docs-subsection-description">
+      Interaction, accessibility, and visual-regression addons are useful for mature design-system
+      workflows. CKW Elements does not currently add these dependencies because the repository has
+      no configured test runner. Add them only as an explicit tooling decision.
+    </div>
+  </div>
+</div>

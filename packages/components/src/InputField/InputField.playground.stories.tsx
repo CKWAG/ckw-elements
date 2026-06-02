@@ -1,5 +1,6 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react';
+import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { InputField } from './InputField';
 
 function PlaceholderIcon() {
@@ -15,12 +16,13 @@ function PlaceholderIcon() {
   );
 }
 
-const meta: Meta<typeof InputField> = {
+const meta = {
   title: 'Components/Input Field',
   component: InputField,
   tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
+    design: getFigmaDesignParameter(figmaReferences.inputField),
     docs: {
       source: {
         transform: (code: string) =>
@@ -84,11 +86,11 @@ const meta: Meta<typeof InputField> = {
     icon: false,
     showInfo: false,
   },
-};
+} satisfies Meta<typeof InputField>;
 
 export default meta;
 
-type Story = StoryObj<typeof InputField>;
+type Story = StoryObj<typeof meta>;
 
 export const ReactPlayground: Story = {
   name: 'React Playground',

@@ -1,5 +1,6 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { Meta, StoryObj } from '@storybook/react';
+import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { Button } from './Button';
 
 function PlaceholderIcon() {
@@ -15,12 +16,13 @@ function PlaceholderIcon() {
   );
 }
 
-const meta: Meta<typeof Button> = {
+const meta = {
   title: 'Components/Button',
   component: Button,
   tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
+    design: getFigmaDesignParameter(figmaReferences.button),
     docs: {
       source: {
         transform: (code: string) =>
@@ -89,11 +91,11 @@ const meta: Meta<typeof Button> = {
     leadingIcon: false,
     trailingIcon: false,
   },
-};
+} satisfies Meta<typeof Button>;
 
 export default meta;
 
-type Story = StoryObj<typeof Button>;
+type Story = StoryObj<typeof meta>;
 
 export const ReactPlayground: Story = {
   name: 'React Playground',

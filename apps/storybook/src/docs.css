@@ -363,6 +363,83 @@
 }
 
 /* ============================================
+   Design Reference — Figma source links
+   ============================================ */
+
+.sb-unstyled .docs-design-reference {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing-xl);
+  align-items: flex-start;
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-l);
+  border: var(--border-weight-s) solid var(--border-soft);
+  border-radius: var(--border-radius-s);
+  background: var(--background-canvas);
+}
+
+.sb-unstyled .docs-design-reference__eyebrow {
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--caption-size) !important;
+  font-weight: var(--caption-weight) !important;
+  line-height: var(--caption-height) !important;
+  color: var(--text-tertiary) !important;
+  text-transform: uppercase;
+  margin-bottom: var(--spacing-2xs);
+}
+
+.sb-unstyled .docs-design-reference__title {
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--heading-s-size) !important;
+  font-weight: var(--heading-s-weight) !important;
+  line-height: var(--heading-s-height) !important;
+  color: var(--text-primary) !important;
+  margin-bottom: var(--spacing-xs);
+}
+
+.sb-unstyled .docs-design-reference__note {
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+  font-weight: var(--body-s-weight) !important;
+  line-height: 1.5 !important;
+  color: var(--text-secondary) !important;
+  max-width: 560px;
+}
+
+.sb-unstyled .docs-design-reference__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-xs);
+  flex-shrink: 0;
+}
+
+.sb-unstyled .docs-design-reference__link {
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--label-m-size) !important;
+  font-weight: var(--label-m-weight) !important;
+  line-height: var(--label-m-height) !important;
+  color: var(--interactive-text) !important;
+  text-decoration: none !important;
+}
+
+.sb-unstyled .docs-design-reference__link:hover {
+  color: var(--interactive-text-hover) !important;
+  text-decoration: underline !important;
+}
+
+@media (max-width: 767px) {
+  .sb-unstyled .docs-design-reference {
+    flex-direction: column;
+  }
+
+  .sb-unstyled .docs-design-reference__meta {
+    align-items: flex-start;
+  }
+}
+
+/* ============================================
    Table Styles
    ============================================ */
 

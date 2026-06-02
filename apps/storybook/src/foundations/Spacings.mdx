@@ -1,4 +1,6 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../../../../packages/components/src/storybook/DesignReference';
+import { figmaReferences } from '../../../../packages/components/src/storybook/figmaLinks';
 import { SpacingBar } from '../components/SpacingBar';
 import { spacingTokens } from '../data/tokens';
 
@@ -11,6 +13,8 @@ import { spacingTokens } from '../data/tokens';
   A consistent spacing scale with 15 steps, from <code>none</code> (0px) to <code>8xl</code>{' '}
   (120px). Use these tokens for margins, padding, and gaps to maintain visual rhythm across the UI.
 </div>
+
+<DesignReference reference={figmaReferences.spacings} />
 
 <div className="docs-section">
   <div className="docs-section-title">Tokens</div>

@@ -1,0 +1,34 @@
+# CKW Elements
+
+CKW Elements is CKW's React design system. Use it through package imports, not copied Storybook output.
+
+## Repository Resources
+
+- Agent instructions: AGENTS.md
+- Architecture: ARCHITECTURE.md
+- Pipeline guide: PIPELINE.md
+- Token package: packages/tokens
+- Component package: packages/components
+- Storybook app: apps/storybook
+- Deployed-agent entrypoint: apps/storybook/public/llms.txt
+- CKW Figma design system: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System
+
+## Package Usage
+
+```css
+@import '@ckw-elements/tokens/tokens.css';
+```
+
+```tsx
+import React from 'react';
+import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+```
+
+## Core Rules
+
+- Components use semantic tokens only.
+- Do not use primitive color tokens in product components.
+- Brand color is green, not blue.
+- Font is Gotham through `var(--font-family-brand), sans-serif`.
+- Keep `import React from 'react';` in TSX files in this repository.
+- Do not introduce Turborepo, Nx, Tailwind, ESLint, or test runners unless explicitly requested.
