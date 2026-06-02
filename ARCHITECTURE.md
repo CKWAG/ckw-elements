@@ -48,10 +48,14 @@ ckw-elements/
 │   │       ├── tokens.css            CSS Custom Properties + Utility Classes
 │   │       └── tokens.js            JavaScript named + default exports
 │   │
-│   ├── components/               @ckw-elements/components ......... SCAFFOLD
+│   ├── components/               @ckw-elements/components ......... ACTIVE
 │   │   ├── package.json
 │   │   └── src/
-│   │       └── index.ts            Empty barrel (no components yet)
+│   │       ├── index.ts            React component exports
+│   │       ├── react/              Explicit React subpath exports
+│   │       ├── Button/             Button component, styles, stories, docs
+│   │       ├── InputField/         Input field component, styles, stories, docs
+│   │       └── SegmentedControl/   Segmented control component, styles, stories, docs
 │   │
 │   └── icons/                    @ckw-elements/icons .............. SCAFFOLD
 │       ├── package.json
@@ -110,7 +114,7 @@ ckw-elements/
 | Package               | npm Scope                  | Status   | Published |
 | --------------------- | -------------------------- | -------- | --------- |
 | `packages/tokens`     | `@ckw-elements/tokens`     | Done     | Not yet   |
-| `packages/components` | `@ckw-elements/components` | Scaffold | Not yet   |
+| `packages/components` | `@ckw-elements/components` | Active   | Not yet   |
 | `packages/icons`      | `@ckw-elements/icons`      | Scaffold | Not yet   |
 | `apps/storybook`      | `@ckw-elements/storybook`  | Active   | Private   |
 

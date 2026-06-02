@@ -14,10 +14,6 @@
     "./react": {
       "types": "./src/react/index.ts",
       "import": "./src/react/index.ts"
-    },
-    "./mui": {
-      "types": "./src/mui/index.ts",
-      "import": "./src/mui/index.ts"
     }
   },
   "scripts": {
@@ -32,28 +28,11 @@
   },
   "peerDependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@mui/material": "^7.0.0 || ^8.0.0 || ^9.0.0",
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@mui/material": {
-      "optional": true
-    },
-    "@emotion/react": {
-      "optional": true
-    },
-    "@emotion/styled": {
-      "optional": true
-    }
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "@mui/material": "^9.0.0",
-    "@emotion/react": "^11.0.0",
-    "@emotion/styled": "^11.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "typescript": "^5.9.0"
