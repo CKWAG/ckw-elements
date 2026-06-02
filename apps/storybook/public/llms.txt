@@ -10,6 +10,7 @@ CKW Elements is CKW's design system for React applications. It ships design toke
 - Token JSON: tokens/tokens.json
 - React prototyping skill: skills/ckw-prototyping.md
 - React component skill: skills/ckw-components.md
+- CKW Figma design system: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System
 
 ## Packages
 

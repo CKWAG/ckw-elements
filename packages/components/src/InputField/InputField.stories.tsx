@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { InputField } from './InputField';
 
 function PlaceholderIcon() {
@@ -19,11 +20,22 @@ const meta = {
   title: 'Components/Input Field',
   component: InputField,
   tags: ['!autodocs'],
+  parameters: {
+    design: getFigmaDesignParameter(figmaReferences.inputField),
+  },
 } satisfies Meta<typeof InputField>;
 
 export default meta;
 
 type Story = StoryObj<typeof meta>;
+
+/** Basic input field with default label and placeholder. */
+export const Basic: Story = {
+  args: {
+    label: 'Label',
+    placeholder: 'Placeholder',
+  },
+};
 
 const sectionStyle: React.CSSProperties = {
   display: 'flex',
@@ -122,6 +134,24 @@ export const Specials: Story = {
       </div>
     </div>
   ),
+};
+
+/** Controlled example showing how application state owns the input value. */
+export const Controlled: Story = {
+  render: () => {
+    const [value, setValue] = React.useState('Initial value');
+
+    return (
+      <div style={{ width: '320px' }}>
+        <InputField
+          label="Controlled input"
+          placeholder="Type something"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+        />
+      </div>
+    );
+  },
 };
 
 export const AllVariants: Story = {

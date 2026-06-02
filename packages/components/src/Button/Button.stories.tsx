@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { Button } from './Button';
 
 /** Placeholder icon from Figma (Icon/placeholder — shield with checkmark). */
@@ -19,6 +20,7 @@ function PlaceholderIcon() {
 const meta = {
   title: 'Components/Button',
   parameters: {
+    design: getFigmaDesignParameter(figmaReferences.button),
     docs: { source: { type: 'dynamic' } },
   },
   component: Button,
@@ -87,6 +89,13 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+/** Basic button with default type and size. */
+export const Basic: Story = {
+  args: {
+    children: 'Button',
+  },
+};
+
 // ---------------------------------------------------------------------------
 // Embedded examples — rendered inside the Docs page via Overview.mdx
 // ---------------------------------------------------------------------------
@@ -150,6 +159,13 @@ export const Sizes: Story = {
 
 /** Hover and Active states are applied via CSS pseudo-classes. Disabled reduces opacity to 0.4 and removes interactivity. */
 export const States: Story = {
+  args: {
+    children: 'Buttonads asd asd as',
+    disabled: true,
+    leadingIcon: true,
+    trailingIcon: true,
+  },
+
   render: () => (
     <div style={sectionStyle}>
       <div

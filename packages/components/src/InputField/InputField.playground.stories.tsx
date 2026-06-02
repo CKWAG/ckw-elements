@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { InputField } from './InputField';
 
 function PlaceholderIcon() {
@@ -21,6 +22,7 @@ const meta = {
   tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
+    design: getFigmaDesignParameter(figmaReferences.inputField),
     docs: {
       source: {
         transform: (code: string) =>

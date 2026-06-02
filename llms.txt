@@ -11,6 +11,7 @@ CKW Elements is CKW's React design system. Use it through package imports, not c
 - Component package: packages/components
 - Storybook app: apps/storybook
 - Deployed-agent entrypoint: apps/storybook/public/llms.txt
+- CKW Figma design system: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System
 
 ## Package Usage
 

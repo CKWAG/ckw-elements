@@ -1,4 +1,6 @@
 import { Meta, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
 import * as ButtonStories from './Button.stories';
 
 <Meta title="Components/Button" />
@@ -11,6 +13,23 @@ import * as ButtonStories from './Button.stories';
     Secondary, Tertiary), three sizes (Large, Medium, Small), optional leading or trailing icons,
     and a full-width container mode.
   </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.button} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Basic</div>
+    <div className="docs-subsection-description">
+      Default button setup for the most common action pattern.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={ButtonStories.Basic} />
 </div>
 
 <div className="sb-unstyled">
@@ -82,6 +101,17 @@ import * as ButtonStories from './Button.stories';
 
 <div style={{ marginTop: '24px' }}>
   <Story of={ButtonStories.Container} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      Use native button behavior for actions. Keep labels concise and descriptive, preserve focus
+      visible styling, and set <code>htmlType="submit"</code> only for form submission buttons.
+      Disabled buttons must not be used as the only way to explain why an action is unavailable.
+    </div>
+  </div>
 </div>
 
 <div className="sb-unstyled">

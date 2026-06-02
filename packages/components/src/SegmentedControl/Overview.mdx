@@ -1,4 +1,6 @@
 import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
 import * as SegmentedControlStories from './SegmentedControl.stories';
 
 <Meta title="Components/Segmented Control" />
@@ -11,6 +13,10 @@ import * as SegmentedControlStories from './SegmentedControl.stories';
     keeping the interface clear, lightweight, and easy to scan. The component supports label-only,
     icon + label, and icon-compact modes, as well as Default and Fill layout types.
   </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.segmentedControl} />
 </div>
 
 <div className="sb-unstyled">
@@ -29,6 +35,19 @@ import * as SegmentedControlStories from './SegmentedControl.stories';
 
 <div style={{ marginTop: '16px' }}>
   <Controls />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Basic</div>
+    <div className="docs-subsection-description">
+      Default setup for switching between a small set of mutually exclusive options.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SegmentedControlStories.Basic} />
 </div>
 
 <div className="sb-unstyled">
@@ -61,6 +80,20 @@ import * as SegmentedControlStories from './SegmentedControl.stories';
 
 <div className="sb-unstyled">
   <div className="docs-section">
+    <div className="docs-section-title">Controlled Usage</div>
+    <div className="docs-subsection-description">
+      Keep segmented controls controlled when they switch application views, filters, or
+      user-selected modes.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SegmentedControlStories.Controlled} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
     <div className="docs-section-title">State</div>
     <div className="docs-subsection-description">
       Each segment has five states: Default (transparent background), Hover (subtle background
@@ -72,6 +105,17 @@ import * as SegmentedControlStories from './SegmentedControl.stories';
 
 <div style={{ marginTop: '24px' }}>
   <Story of={SegmentedControlStories.States} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      Segments render as tabs with <code>aria-selected</code>. Keep labels short and unique, provide
+      accessible labels for icon-only states, and preserve the focus-visible outline for keyboard
+      users.
+    </div>
+  </div>
 </div>
 
 <div className="sb-unstyled">

@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { SegmentedControl } from './SegmentedControl';
 
 function PlaceholderIcon() {
@@ -27,6 +28,7 @@ const meta = {
   tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
+    design: getFigmaDesignParameter(figmaReferences.segmentedControl),
     docs: {
       source: {
         transform: (code: string) =>
@@ -71,6 +73,7 @@ type Story = StoryObj<typeof meta>;
 export const ReactPlayground: Story = {
   name: 'React Playground',
   render: ({ type, contentMode, activeValue }) => {
+    const [currentValue, setCurrentValue] = React.useState(activeValue);
     const showIcons = contentMode !== 'label';
     const segments = [
       { value: 'a', label: 'Label', ...(showIcons ? { icon: <PlaceholderIcon /> } : {}) },
@@ -78,13 +81,18 @@ export const ReactPlayground: Story = {
       { value: 'c', label: 'Label', ...(showIcons ? { icon: <PlaceholderIcon /> } : {}) },
     ];
 
+    React.useEffect(() => {
+      setCurrentValue(activeValue);
+    }, [activeValue]);
+
     return (
       <div style={{ maxWidth: '600px' }}>
         <SegmentedControl
           type={type}
           contentMode={contentMode}
           segments={segments}
-          activeValue={activeValue}
+          activeValue={currentValue}
+          onChange={setCurrentValue}
         />
       </div>
     );

@@ -1,4 +1,6 @@
 import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
 import * as InputFieldStories from './InputField.stories';
 
 <Meta title="Components/Input Field" />
@@ -12,6 +14,10 @@ import * as InputFieldStories from './InputField.stories';
     Active, Focus visible, Error, Disabled) and optional features like trailing icons, optional
     labels, and info tooltips.
   </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.inputField} />
 </div>
 
 <div className="sb-unstyled">
@@ -29,6 +35,19 @@ import * as InputFieldStories from './InputField.stories';
 
 <div style={{ marginTop: '16px' }}>
   <Controls />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Basic</div>
+    <div className="docs-subsection-description">
+      Default input field setup for forms that need a label and placeholder.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={InputFieldStories.Basic} />
 </div>
 
 <div className="sb-unstyled">
@@ -73,6 +92,31 @@ import * as InputFieldStories from './InputField.stories';
 
 <div style={{ marginTop: '24px' }}>
   <Story of={InputFieldStories.Specials} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Controlled Usage</div>
+    <div className="docs-subsection-description">
+      Use controlled state when the surrounding application owns validation, submission, or
+      persistence logic.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={InputFieldStories.Controlled} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      Every input needs a visible label. Error text is connected to the input with
+      <code> aria-describedby</code>, and error state sets <code>aria-invalid</code>. Keep helper
+      and error copy specific enough to let users recover.
+    </div>
+  </div>
 </div>
 
 <div className="sb-unstyled">

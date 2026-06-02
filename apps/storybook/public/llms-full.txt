@@ -118,6 +118,21 @@ Use these deployed prompt files when an AI agent needs CKW-specific behavior:
 - `skills/ckw-prototyping.md`: use for rapid UI prototyping.
 - `skills/ckw-components.md`: use for reusable React components.
 
+## Figma Design Sources
+
+Use the CKW Design System file as the design source of truth:
+
+- Design system file: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System
+- Button: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=825-3416&m=dev
+- Input Field: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=100-443&m=dev
+- Segmented Control: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=928-624&m=dev
+- Typography: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=4-28&m=dev
+- Colors: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=2-73&m=dev
+- Spacings: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=2-74&m=dev
+- Borders: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=106-1809&m=dev
+- Shadows: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=2-76&m=dev
+- Layout guide: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=464-131&m=dev
+
 ## Storybook Fetch Notes
 
 Storybook builds to static files. It is not server-side rendered HTML per route. Agents should fetch these plain-text/static assets first:

@@ -10,5 +10,5 @@
     "sourceMap": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts"],
-  "exclude": ["src/**/*.stories.tsx", "src/**/*.playground.stories.tsx"]
+  "exclude": ["src/**/*.stories.tsx", "src/**/*.playground.stories.tsx", "src/storybook"]
 }
