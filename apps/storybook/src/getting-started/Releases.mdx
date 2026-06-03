@@ -1,0 +1,56 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { packageVersions, releaseNotes } from '../data/releases';
+
+<Meta title="Getting Started/Releases" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Versions & Releases</div>
+  <div className="docs-description">
+    Public npm package versions and release notes for CKW Elements. The data comes from package
+    metadata and package changelogs, so Storybook reflects the released artifacts.
+  </div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Package Versions</div>
+  <div className="release-version-grid">
+    {packageVersions.map((entry) => (
+      <div className="release-version-card" key={entry.name}>
+        <div className="release-version-card__name">{entry.name}</div>
+        <div className="release-version-card__version">v{entry.version}</div>
+        <div className="release-version-card__links">
+          <a href={entry.npmUrl}>npm</a>
+          <span aria-hidden="true">/</span>
+          <a href={entry.changelogUrl}>Changelog</a>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+  <div className="docs-section">
+    <div className="docs-section-title">Release Notes</div>
+    <div className="release-note-list">
+      {releaseNotes.map((release) => (
+        <div className="release-note" key={`${release.packageName}-${release.version}`}>
+          <div className="release-note__meta">
+            <span className="release-note__package">{release.packageName}</span>
+            <span className="release-note__version">v{release.version}</span>
+          </div>
+          {release.sections.map((section) => (
+            <div
+              className="release-note__section"
+              key={`${release.packageName}-${release.version}-${section.heading}`}
+            >
+              <div className="release-note__heading">{section.heading}</div>
+              <ul className="release-note__items">
+                {section.items.map((item) => (
+                  <li key={`${release.packageName}-${release.version}-${section.heading}-${item}`}>{item}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</div>

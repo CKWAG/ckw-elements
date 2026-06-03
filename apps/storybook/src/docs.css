@@ -333,6 +333,117 @@
 }
 
 /* ============================================
+   Release Notes — Package versions and changelog entries
+   ============================================ */
+
+.sb-unstyled .release-version-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--spacing-m);
+  max-width: 760px;
+}
+
+.sb-unstyled .release-version-card,
+.sb-unstyled .release-note {
+  border: var(--border-weight-s) solid var(--border-soft);
+  border-radius: var(--border-radius-s);
+  background: var(--background-default);
+}
+
+.sb-unstyled .release-version-card {
+  padding: var(--spacing-l);
+}
+
+.sb-unstyled .release-version-card__name,
+.sb-unstyled .release-note__package,
+.sb-unstyled .release-note__heading {
+  font-family: var(--font-family-brand), sans-serif !important;
+  color: var(--text-primary) !important;
+}
+
+.sb-unstyled .release-version-card__name,
+.sb-unstyled .release-note__package {
+  font-size: var(--body-s-size) !important;
+  font-weight: var(--body-s-emphasized-weight) !important;
+  line-height: var(--body-s-height) !important;
+}
+
+.sb-unstyled .release-version-card__version {
+  margin-top: var(--spacing-s);
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--heading-l-size) !important;
+  font-weight: var(--heading-l-weight) !important;
+  line-height: var(--heading-l-height) !important;
+  color: var(--text-primary) !important;
+}
+
+.sb-unstyled .release-version-card__links {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: center;
+  margin-top: var(--spacing-m);
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+  color: var(--text-tertiary) !important;
+}
+
+.sb-unstyled .release-version-card__links a {
+  color: var(--interactive-primary) !important;
+  text-decoration: none;
+}
+
+.sb-unstyled .release-note-list {
+  display: grid;
+  gap: var(--spacing-m);
+  max-width: 860px;
+}
+
+.sb-unstyled .release-note {
+  padding: var(--spacing-l);
+}
+
+.sb-unstyled .release-note__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  align-items: baseline;
+}
+
+.sb-unstyled .release-note__version {
+  display: inline-block;
+  padding: var(--spacing-3xs) var(--spacing-xs);
+  border-radius: var(--border-radius-s);
+  background: var(--background-active);
+  color: var(--interactive-primary) !important;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: var(--caption-size) !important;
+  line-height: var(--caption-height) !important;
+}
+
+.sb-unstyled .release-note__section {
+  margin-top: var(--spacing-l);
+}
+
+.sb-unstyled .release-note__heading {
+  font-size: var(--label-m-size) !important;
+  font-weight: var(--label-m-weight) !important;
+  line-height: var(--label-m-height) !important;
+}
+
+.sb-unstyled .release-note__items {
+  margin: var(--spacing-xs) 0 0 var(--spacing-m) !important;
+  padding: 0 !important;
+  color: var(--text-secondary) !important;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+  line-height: 1.6 !important;
+}
+
+.sb-unstyled .release-note__items li + li {
+  margin-top: var(--spacing-2xs);
+}
+
+/* ============================================
    Subsection — Category groups within a section
    ============================================ */
 

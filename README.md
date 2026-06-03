@@ -176,6 +176,8 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for full pipeline details.
 | `pnpm --filter @ckw-elements/storybook run dev`    | Start Storybook                         |
 | `pnpm --filter @ckw-elements/storybook run build`  | Build Storybook                         |
 | `pnpm -r run build`                                | Build all packages                      |
+| `pnpm changeset`                                   | Add package release intent              |
+| `pnpm release:validate`                            | Validate build, release metadata, pack  |
 
 ## Tech Stack
 
@@ -242,6 +244,7 @@ ckw-elements-design/
 - **[Live Documentation](https://ckwag.github.io/ckw-elements/)** — Browse tokens and components interactively
 - **[ARCHITECTURE.md](./ARCHITECTURE.md)** — Pipeline spec, Style Dictionary config, data flow
 - **[PIPELINE.md](./PIPELINE.md)** — Non-technical guide for designers (German)
+- **[RELEASE.md](./RELEASE.md)** — Versioning, release validation, and npm publishing process
 
 ## License
 

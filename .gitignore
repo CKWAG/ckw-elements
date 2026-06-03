@@ -25,6 +25,7 @@ Thumbs.db
 *.log
 npm-debug.log*
 pnpm-debug.log*
+.npm-pack-cache/
 
 # Build cache
 .cache/

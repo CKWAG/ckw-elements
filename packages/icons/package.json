@@ -1,6 +1,7 @@
 {
   "name": "@ckw-elements/icons",
   "version": "0.0.1",
+  "private": true,
   "description": "CKW Elements Icon Library",
   "license": "Apache-2.0",
   "type": "module",
