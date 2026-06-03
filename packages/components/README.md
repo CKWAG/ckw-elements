@@ -26,11 +26,14 @@ Component CSS is imported as package side effects. If your bundler does not proc
 
 ```tsx
 import React from 'react';
-import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
 
 export function Example() {
   return (
     <form>
+      <InlineMessage status="Info" title="Statusmeldung">
+        Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+      </InlineMessage>
       <InputField label="Name" placeholder="Enter name" />
       <SegmentedControl
         segments={[

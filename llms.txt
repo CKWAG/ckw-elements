@@ -21,7 +21,7 @@ CKW Elements is CKW's React design system. Use it through package imports, not c
 
 ```tsx
 import React from 'react';
-import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
 ```
 
 ## Core Rules

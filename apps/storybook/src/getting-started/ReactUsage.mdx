@@ -36,10 +36,15 @@ npm install @ckw-elements/components @ckw-elements/tokens
 
 ```tsx
 // Root import (default)
-import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
 
 // Explicit React subpath (identical)
-import { Button, InputField, SegmentedControl } from '@ckw-elements/components/react';
+import {
+  Button,
+  InlineMessage,
+  InputField,
+  SegmentedControl,
+} from '@ckw-elements/components/react';
 ```
 
 <div className="sb-unstyled">
@@ -97,6 +102,9 @@ import { Button } from '@ckw-elements/components/react';
 function MyPage() {
   return (
     <div>
+      <InlineMessage status="Info" title="Statusmeldung">
+        Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+      </InlineMessage>
       <Button type="Primary" size="Large" onClick={() => alert('clicked')}>
         Submit
       </Button>

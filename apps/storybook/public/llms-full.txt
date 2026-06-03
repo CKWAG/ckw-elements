@@ -20,12 +20,12 @@ React applications can import components from either package root or the explici
 
 ```tsx
 import React from 'react';
-import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
 ```
 
 ```tsx
 import React from 'react';
-import { Button, InputField, SegmentedControl } from '@ckw-elements/components/react';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components/react';
 ```
 
 If a bundler does not process CSS side-effect imports from packages, import the aggregate component CSS explicitly:
@@ -92,6 +92,21 @@ import rawTokens from '@ckw-elements/tokens/tokens.json';
 - `icon`: React node
 - `showInfo`: boolean
 
+### InlineMessage
+
+```tsx
+<InlineMessage status="Info" title="Statusmeldung">
+  Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+</InlineMessage>
+```
+
+- `status`: `Info`, `Success`, `Error`
+- `title`: React node
+- `children`: React node
+- `icon`: React node
+- `showIcon`: boolean
+- `breakpoint`: `Auto`, `Desktop`, `Mobile`
+
 ### SegmentedControl
 
 ```tsx
@@ -125,6 +140,7 @@ Use the CKW Design System file as the design source of truth:
 - Design system file: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System
 - Button: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=825-3416&m=dev
 - Input Field: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=100-443&m=dev
+- Inline Message: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=695-342&m=dev
 - Segmented Control: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=928-624&m=dev
 - Typography: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=4-28&m=dev
 - Colors: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=2-73&m=dev

@@ -33,6 +33,13 @@ export const figmaReferences = {
     scope: 'component-node',
     note: 'Exact Input Field component source in the CKW Elements Figma design system.',
   },
+  inlineMessage: {
+    componentName: 'Inline Message',
+    url: getFigmaNodeUrl('695:342'),
+    nodeId: '695:342',
+    scope: 'component-node',
+    note: 'Exact Inline Message component source in the CKW Elements Figma design system.',
+  },
   segmentedControl: {
     componentName: 'Segmented Control',
     url: getFigmaNodeUrl('928:624'),
