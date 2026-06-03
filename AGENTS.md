@@ -37,7 +37,7 @@ Engine requirements: **Node >= 20**, **pnpm >= 10**.
 ckw-elements/                       # pnpm workspaces root ("type": "module")
 ├── packages/tokens/                # @ckw-elements/tokens (ACTIVE — 282 tokens)
 ├── packages/components/            # @ckw-elements/components (ACTIVE — React package)
-├── packages/icons/                 # @ckw-elements/icons (scaffold)
+├── packages/icons/                 # @ckw-elements/icons (ACTIVE — React SVG icon set)
 ├── apps/storybook/                 # @ckw-elements/storybook (ACTIVE)
 ├── token-drop/                     # Drop folder for Tokens Studio JSON exports
 ├── pnpm-workspace.yaml             # packages: ['packages/*', 'apps/*']

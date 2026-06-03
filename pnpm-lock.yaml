@@ -37,6 +37,9 @@ importers:
       '@ckw-elements/components':
         specifier: workspace:*
         version: link:../../packages/components
+      '@ckw-elements/icons':
+        specifier: workspace:*
+        version: link:../../packages/icons
       '@ckw-elements/tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
@@ -71,6 +74,9 @@ importers:
 
   packages/components:
     dependencies:
+      '@ckw-elements/icons':
+        specifier: workspace:*
+        version: link:../icons
       '@ckw-elements/tokens':
         specifier: workspace:*
         version: link:../tokens
@@ -91,7 +97,17 @@ importers:
         specifier: ^5.9.0
         version: 5.9.3
 
-  packages/icons: {}
+  packages/icons:
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.0
+        version: 19.2.14
+      react:
+        specifier: ^19.0.0
+        version: 19.2.4
+      typescript:
+        specifier: ^5.9.0
+        version: 5.9.3
 
   packages/tokens:
     devDependencies:

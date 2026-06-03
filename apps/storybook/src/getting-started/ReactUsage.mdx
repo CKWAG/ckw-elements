@@ -15,13 +15,14 @@ import { Meta } from '@storybook/addon-docs/blocks';
   <div className="docs-section" style={{ marginTop: '48px' }}>
     <div className="docs-section-title">Installation</div>
     <div className="docs-subsection-description">
-      No additional dependencies beyond React are required.
+      No additional dependencies beyond React are required. Install icons when your application
+      renders icon-enabled component states or imports icons directly.
     </div>
   </div>
 </div>
 
 ```bash
-npm install @ckw-elements/components @ckw-elements/tokens
+npm install @ckw-elements/components @ckw-elements/icons @ckw-elements/tokens
 ```
 
 <div className="sb-unstyled">
@@ -37,6 +38,7 @@ npm install @ckw-elements/components @ckw-elements/tokens
 ```tsx
 // Root import (default)
 import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
+import { IconSearch } from '@ckw-elements/icons';
 
 // Explicit React subpath (identical)
 import {
@@ -81,7 +83,9 @@ import {
 {
   "@ckw-elements/components": "React components",
   "@ckw-elements/components/react": "Explicit React component exports",
-  "@ckw-elements/components/styles.css": "All component CSS"
+  "@ckw-elements/components/styles.css": "All component CSS",
+  "@ckw-elements/icons": "React SVG icon components",
+  "@ckw-elements/icons/react": "Explicit React icon exports"
 }
 ```
 
@@ -98,6 +102,7 @@ import {
 ```tsx
 import React from 'react';
 import { Button } from '@ckw-elements/components/react';
+import { IconArrowRight, IconSearch } from '@ckw-elements/icons/react';
 
 function MyPage() {
   return (
@@ -105,7 +110,13 @@ function MyPage() {
       <InlineMessage status="Info" title="Statusmeldung">
         Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
       </InlineMessage>
-      <Button type="Primary" size="Large" onClick={() => alert('clicked')}>
+      <InputField label="Search" icon={<IconSearch size={20} />} />
+      <Button
+        type="Primary"
+        size="Large"
+        trailingIcon={<IconArrowRight />}
+        onClick={() => alert('clicked')}
+      >
         Submit
       </Button>
       <Button type="Secondary" size="Medium">

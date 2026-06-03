@@ -1,0 +1,28 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { iconMetadata } from '@ckw-elements/icons';
+import { DesignReference } from '../../../../packages/components/src/storybook/DesignReference';
+import { figmaReferences } from '../../../../packages/components/src/storybook/figmaLinks';
+import { IconCopyGrid, IconPlayground } from '../components/IconCopyGrid';
+
+<Meta title="Foundations/Icons" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Icons</div>
+  <div className="docs-description">
+    CKW Elements icons are exported from Figma as 24px SVG React components. They inherit
+    <code>currentColor</code> and can be rendered by component export or by typed icon name.
+  </div>
+
+<DesignReference reference={figmaReferences.icons} />
+
+<div className="docs-section">
+  <div className="docs-section-title">Playground</div>
+  <IconPlayground />
+</div>
+
+  <div className="docs-section">
+    <div className="docs-section-title">Icon Index</div>
+    <div className="docs-description">{iconMetadata.length} icons from the CKW Elements Figma icon index.</div>
+    <IconCopyGrid />
+  </div>
+</div>

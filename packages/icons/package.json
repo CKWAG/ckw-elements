@@ -1,14 +1,58 @@
 {
   "name": "@ckw-elements/icons",
   "version": "0.0.1",
-  "private": true,
-  "description": "CKW Elements Icon Library",
+  "description": "CKW Elements icon library",
   "license": "Apache-2.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CKWAG/ckw-elements-design.git",
+    "directory": "packages/icons"
+  },
+  "homepage": "https://ckwag.github.io/ckw-elements/",
+  "bugs": {
+    "url": "https://github.com/CKWAG/ckw-elements-design/issues"
+  },
+  "keywords": [
+    "ckw",
+    "design-system",
+    "icons",
+    "react"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "scripts": {
-    "build": "echo 'build step — will be configured'"
+    "build": "tsc -p tsconfig.build.json",
+    "prepack": "pnpm run build",
+    "lint": "echo 'lint step — will be configured with eslint'"
   },
   "files": [
-    "dist/"
-  ]
+    "dist/",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "peerDependencies": {
+    "react": ">=18 <20"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "react": "^19.0.0",
+    "typescript": "^5.9.0"
+  }
 }

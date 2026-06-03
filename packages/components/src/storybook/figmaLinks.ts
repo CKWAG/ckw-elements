@@ -82,6 +82,13 @@ export const figmaReferences = {
     scope: 'foundation-node',
     note: 'Shadow foundation source in the CKW Elements Figma design system.',
   },
+  icons: {
+    componentName: 'Icons',
+    url: getFigmaNodeUrl('164:2100'),
+    nodeId: '164:2100',
+    scope: 'foundation-node',
+    note: 'Icon foundation and index source in the CKW Elements Figma design system.',
+  },
   layoutGuide: {
     componentName: 'Layout Guide',
     url: getFigmaNodeUrl('464:131'),

@@ -8,10 +8,10 @@ npm publishing.
 Only these packages are published:
 
 - `@ckw-elements/tokens`
+- `@ckw-elements/icons`
 - `@ckw-elements/components`
 
-`@ckw-elements/storybook` is private documentation, and `@ckw-elements/icons`
-stays private until the icon package has real build output.
+`@ckw-elements/storybook` is private documentation.
 
 ## Pull Request Workflow
 

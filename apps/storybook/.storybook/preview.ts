@@ -20,9 +20,11 @@ const preview: Preview = {
           'Getting Started',
           ['React', 'Releases', 'Storybook Standards', 'Prototyping with AI Agents'],
           'Foundations',
-          ['Typography', 'Colors', 'Spacings', 'Borders', 'Shadows'],
+          ['Typography', 'Colors', 'Spacings', 'Borders', 'Shadows', 'Icons'],
           'Components',
           [
+            'Icon',
+            ['React Playground'],
             'Button',
             ['Overview', 'React Playground'],
             'Input Field',

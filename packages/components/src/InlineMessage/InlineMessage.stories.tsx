@@ -1,20 +1,8 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
+import { IconPlaceholder } from '@ckw-elements/icons';
 import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { InlineMessage } from './InlineMessage';
-
-function PlaceholderIcon() {
-  return (
-    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M2.833 3.666c0-.46.373-.833.834-.833h16.666c.461 0 .834.373.834.833v16.667c0 .46-.373.833-.834.833H3.667a.833.833 0 0 1-.834-.833V3.666Zm1.667.834v15h15v-15h-15Zm3.773 1.348a.833.833 0 0 1 .856.041l1.431.955.85-.85a.833.833 0 0 1 1.18 0l.85.85 1.431-.955A.833.833 0 0 1 16.167 6.583v2.5a4.167 4.167 0 0 1-3.334 4.082v2.895c.167-.244.37-.49.604-.724 1.009-1.008 2.222-1.43 2.71-.942.488.488.066 1.701-.942 2.71-.729.729-1.363 1.152-1.955 1.146h-2.5c-.592.006-1.226-.417-1.955-1.146-1.008-1.009-1.43-2.222-.942-2.71.488-.488 1.701-.066 2.71.942.234.234.437.48.604.724v-2.895a4.167 4.167 0 0 1-3.334-4.082v-2.5c0-.307.17-.59.44-.735ZM9.5 8.14v.943a2.5 2.5 0 1 0 5 0V8.14l-.704.47a.833.833 0 0 1-1.052-.104L12 7.762l-.744.744a.833.833 0 0 1-1.052.104L9.5 8.14Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
 
 const meta = {
   title: 'Components/Inline Message',
@@ -170,7 +158,7 @@ export const Icon: Story = {
       <div style={rowStyle}>
         <span style={labelStyle}>Custom</span>
         <div style={desktopFrameStyle}>
-          <InlineMessage title="Statusmeldung" icon={<PlaceholderIcon />}>
+          <InlineMessage title="Statusmeldung" icon={<IconPlaceholder size={28} />}>
             Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
           </InlineMessage>
         </div>

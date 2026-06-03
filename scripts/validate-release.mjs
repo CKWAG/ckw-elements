@@ -45,12 +45,23 @@ const publicPackages = [
     requiredExports: ['.', './react', './styles.css', './package.json'],
     requiredFilesEntries: ['dist/', 'CHANGELOG.md', 'README.md'],
   },
+  {
+    name: '@ckw-elements/icons',
+    directory: 'packages/icons',
+    requiredFiles: [
+      'CHANGELOG.md',
+      'README.md',
+      'dist/index.d.ts',
+      'dist/index.js',
+      'dist/react/index.d.ts',
+      'dist/react/index.js',
+    ],
+    requiredExports: ['.', './react', './package.json'],
+    requiredFilesEntries: ['dist/', 'CHANGELOG.md', 'README.md'],
+  },
 ];
 
-const privatePackages = [
-  { name: '@ckw-elements/storybook', directory: 'apps/storybook' },
-  { name: '@ckw-elements/icons', directory: 'packages/icons' },
-];
+const privatePackages = [{ name: '@ckw-elements/storybook', directory: 'apps/storybook' }];
 
 const rootPackage = readJson('package.json');
 const changesetConfig = readJson('.changeset/config.json');
