@@ -29,7 +29,7 @@ CKW Elements is CKW's design system for React applications. It ships design toke
 
 ```tsx
 import React from 'react';
-import { Button, InputField, SegmentedControl } from '@ckw-elements/components';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
 import '@ckw-elements/tokens/tokens.css';
 ```
 

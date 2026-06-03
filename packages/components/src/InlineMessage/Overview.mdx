@@ -1,0 +1,128 @@
+import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+import * as InlineMessageStories from './InlineMessage.stories';
+
+<Meta title="Components/Inline Message" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Inline Message</div>
+  <div className="docs-description">
+    Inline Messages provide contextual feedback directly within page content. Use them for status
+    updates, confirmations, limitations, or errors that are not time-critical and should remain
+    visible near the related content.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.inlineMessage} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to configure status, title, icon visibility, and breakpoint behavior.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Primary />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Basic</div>
+    <div className="docs-subsection-description">
+      Default Inline Message setup with an info status, title, body text, and status-colored icon.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={InlineMessageStories.Basic} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Status</div>
+    <div className="docs-subsection-description">
+      Status variants use semantic status tokens for the left rail and icon color: Info, Success,
+      and Error.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={InlineMessageStories.Statuses} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Title</div>
+    <div className="docs-subsection-description">
+      Use a title when the message needs a concise headline. Omit it for short body-only feedback.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={InlineMessageStories.Title} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Icon</div>
+    <div className="docs-subsection-description">
+      The component renders a default status icon. Consumers can provide a custom React node or hide
+      the icon area when the surrounding UI already provides the visual cue.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={InlineMessageStories.Icon} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Breakpoint</div>
+    <div className="docs-subsection-description">
+      Auto mode follows the viewport. Desktop and Mobile can be forced for documentation and visual
+      parity with the Figma component variants.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={InlineMessageStories.Breakpoints} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      Inline Messages use <code>role=&quot;note&quot;</code> by default because they are persistent
+      contextual feedback, not temporary alerts. Use clear text that describes the condition and the
+      next action.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">All Variants</div>
+    <div className="docs-subsection-description">
+      Representative matrix for status, title visibility, icon visibility, and mobile layout.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={InlineMessageStories.AllVariants} />
+</div>

@@ -85,6 +85,7 @@ export function Card({ title, children, variant = 'default' }: CardProps) {
 | Input                  | `--background-input`          | `--border-medium`         | `--text-primary`                  |
 | Input (focused)        | `--background-input`          | `--border-active`         | `--text-primary`                  |
 | Input (error)          | `--background-input`          | `--status-error-border`   | `--status-error-text`             |
+| Inline message         | `--background-default`        | status rail token         | `--text-primary`                  |
 | Button primary         | `--interactive-primary`       | none                      | `--text-on-interactive-primary`   |
 | Button primary (hover) | `--interactive-primary-hover` | none                      | `--text-on-interactive-primary`   |
 | Button secondary       | `--interactive-secondary`     | `--interactive-primary`   | `--text-on-interactive-secondary` |

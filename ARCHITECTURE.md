@@ -58,6 +58,7 @@ ckw-elements/
 │   │       ├── react/              Explicit React subpath exports
 │   │       ├── Button/             Button component, styles, stories, docs
 │   │       ├── InputField/         Input field component, styles, stories, docs
+│   │       ├── InlineMessage/      Inline message component, styles, stories, docs
 │   │       └── SegmentedControl/   Segmented control component, styles, stories, docs
 │   │
 │   └── icons/                    @ckw-elements/icons .............. SCAFFOLD
@@ -738,10 +739,10 @@ pnpm --filter @ckw-elements/storybook run build
 
 #### Low Priority
 
-| #   | Location             | Issue                                                                                                                                                                                                                                   |
-| --- | -------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| L3  | No `tsconfig.json`   | Entire repo has no TypeScript config. IDE type-checking depends on Storybook's internal Vite config. Adding `tsconfig.json` is a known future task.                                                                                     |
-| L9  | All 7 TSX components | `import React from 'react'` is present. Required until `tsconfig.json` with `"jsx": "react-jsx"` is added — without it, the automatic JSX transform is not active and removing the import causes "React is not defined" runtime errors. |
+| #   | Location           | Issue                                                                                                                                                                                                                                   |
+| --- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| L3  | No `tsconfig.json` | Entire repo has no TypeScript config. IDE type-checking depends on Storybook's internal Vite config. Adding `tsconfig.json` is a known future task.                                                                                     |
+| L9  | All TSX components | `import React from 'react'` is present. Required until `tsconfig.json` with `"jsx": "react-jsx"` is added — without it, the automatic JSX transform is not active and removing the import causes "React is not defined" runtime errors. |
 
 ### Open Decisions
 
