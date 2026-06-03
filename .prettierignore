@@ -1,4 +1,5 @@
 node_modules
+.npm-pack-cache
 pnpm-lock.yaml
 packages/tokens/dist
 packages/components/dist

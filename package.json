@@ -7,12 +7,19 @@
   "description": "CKW Elements Design System — Monorepo",
   "scripts": {
     "build": "pnpm -r run build",
+    "changeset": "changeset",
     "lint": "pnpm -r run lint",
     "typecheck": "tsc -p packages/components && tsc -p apps/storybook",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "prepare": "husky",
-    "tokens:sync": "pnpm --filter @ckw-elements/tokens run tokens:sync"
+    "release:build": "pnpm --filter @ckw-elements/tokens run build && pnpm --filter @ckw-elements/components run build && pnpm --filter @ckw-elements/storybook run build",
+    "release:check": "node scripts/validate-release.mjs",
+    "release:pack": "npm pack ./packages/tokens --dry-run --cache ./.npm-pack-cache && npm pack ./packages/components --dry-run --cache ./.npm-pack-cache",
+    "release:publish": "pnpm --filter @ckw-elements/tokens run build && pnpm --filter @ckw-elements/components run build && node scripts/validate-release.mjs --publish && changeset publish",
+    "release:validate": "pnpm format:check && pnpm typecheck && pnpm release:build && pnpm release:check && pnpm release:pack",
+    "tokens:sync": "pnpm --filter @ckw-elements/tokens run tokens:sync",
+    "version:packages": "changeset version"
   },
   "engines": {
     "node": ">=20",
@@ -35,6 +42,8 @@
     "*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^0.7.0",
+    "@changesets/cli": "^2.31.0",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.2",
     "prettier": "^3.8.3",

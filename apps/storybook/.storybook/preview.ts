@@ -18,7 +18,7 @@ const preview: Preview = {
         order: [
           'Welcome',
           'Getting Started',
-          ['React', 'Storybook Standards', 'Prototyping with AI Agents'],
+          ['React', 'Releases', 'Storybook Standards', 'Prototyping with AI Agents'],
           'Foundations',
           ['Typography', 'Colors', 'Spacings', 'Borders', 'Shadows'],
           'Components',

@@ -4,6 +4,21 @@
   "description": "CKW Elements Design Tokens — generated from Figma Variables",
   "license": "Apache-2.0",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CKWAG/ckw-elements-design.git",
+    "directory": "packages/tokens"
+  },
+  "homepage": "https://ckwag.github.io/ckw-elements/",
+  "bugs": {
+    "url": "https://github.com/CKWAG/ckw-elements-design/issues"
+  },
+  "keywords": [
+    "ckw",
+    "design-system",
+    "design-tokens",
+    "style-dictionary"
+  ],
   "engines": {
     "node": ">=20"
   },
@@ -16,8 +31,13 @@
   },
   "files": [
     "dist/",
+    "CHANGELOG.md",
+    "README.md",
     "tokens.json"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "./dist/tokens.js",
   "types": "./dist/tokens.d.ts",
   "sideEffects": [
@@ -33,7 +53,8 @@
       "types": "./dist/tokens.d.ts",
       "import": "./dist/tokens.js"
     },
-    "./tokens.json": "./tokens.json"
+    "./tokens.json": "./tokens.json",
+    "./package.json": "./package.json"
   },
   "devDependencies": {
     "style-dictionary": "^4.3.0"
