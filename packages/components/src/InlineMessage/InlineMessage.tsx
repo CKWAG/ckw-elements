@@ -1,4 +1,9 @@
 import React from 'react';
+import {
+  IconCheckCircleFilled,
+  IconInformation,
+  IconWarningCircleFilled,
+} from '@ckw-elements/icons';
 import './InlineMessage.css';
 
 export type InlineMessageStatus = 'Info' | 'Success' | 'Error';
@@ -29,41 +34,14 @@ interface InlineMessageDefaultIconProps {
 
 function InlineMessageDefaultIcon({ status }: InlineMessageDefaultIconProps) {
   if (status === 'Success') {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M12 2.5C6.753 2.5 2.5 6.753 2.5 12S6.753 21.5 12 21.5s9.5-4.253 9.5-9.5S17.247 2.5 12 2.5Zm4.53 7.03a.75.75 0 0 0-1.06-1.06l-4.72 4.72-2.22-2.22a.75.75 0 1 0-1.06 1.06l2.75 2.75a.75.75 0 0 0 1.06 0l5.25-5.25Z"
-          fill="currentColor"
-        />
-      </svg>
-    );
+    return <IconCheckCircleFilled />;
   }
 
   if (status === 'Error') {
-    return (
-      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          fillRule="evenodd"
-          clipRule="evenodd"
-          d="M12 2.5C6.753 2.5 2.5 6.753 2.5 12S6.753 21.5 12 21.5s9.5-4.253 9.5-9.5S17.247 2.5 12 2.5Zm-.75 5.25a.75.75 0 0 1 1.5 0v5a.75.75 0 0 1-1.5 0v-5ZM12 16a1 1 0 1 0 0 2 1 1 0 0 0 0-2Z"
-          fill="currentColor"
-        />
-      </svg>
-    );
+    return <IconWarningCircleFilled />;
   }
 
-  return (
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M12 2.5C6.753 2.5 2.5 6.753 2.5 12S6.753 21.5 12 21.5s9.5-4.253 9.5-9.5S17.247 2.5 12 2.5Zm.75 5.25h-1.5v1.5h1.5v-1.5Zm-2 4h1.5v4.5h1.25v1.5h-4v-1.5h1.25v-4.5Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
+  return <IconInformation />;
 }
 
 /**

@@ -333,6 +333,178 @@
 }
 
 /* ============================================
+   Icons — Playground and copy grid
+   ============================================ */
+
+.sb-unstyled .icon-playground {
+  display: grid;
+  grid-template-columns: minmax(120px, 180px) minmax(280px, 1fr);
+  gap: var(--spacing-xl);
+  max-width: 920px;
+  padding: var(--spacing-l);
+  border: var(--border-weight-s) solid var(--border-soft);
+  border-radius: var(--border-radius-s);
+  background: var(--background-default);
+}
+
+.sb-unstyled .icon-playground__preview {
+  display: grid;
+  place-items: center;
+  min-height: 180px;
+  color: var(--text-primary);
+  border: var(--border-weight-s) solid var(--border-soft);
+  border-radius: var(--border-radius-s);
+  background: var(--background-canvas);
+}
+
+.sb-unstyled .icon-playground__controls {
+  display: grid;
+  grid-template-columns: minmax(180px, 1fr) minmax(96px, 120px);
+  gap: var(--spacing-m);
+}
+
+.sb-unstyled .icon-playground__field {
+  display: grid;
+  gap: var(--spacing-2xs);
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+  font-weight: var(--body-s-emphasized-weight) !important;
+  color: var(--text-primary) !important;
+}
+
+.sb-unstyled .icon-playground__field:last-child {
+  grid-column: 1 / -1;
+}
+
+.sb-unstyled .icon-playground__field select,
+.sb-unstyled .icon-playground__field input {
+  width: 100%;
+  min-height: 40px;
+  box-sizing: border-box;
+  padding: var(--spacing-xs) var(--spacing-s);
+  border: var(--border-weight-s) solid var(--border-medium);
+  border-radius: var(--border-radius-s);
+  background: var(--background-default);
+  color: var(--text-primary);
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+}
+
+.sb-unstyled .icon-playground__field select:focus-visible,
+.sb-unstyled .icon-playground__field input:focus-visible,
+.sb-unstyled .icon-copy-button:focus-visible {
+  outline: var(--border-weight-m) solid var(--border-active);
+  outline-offset: var(--spacing-3xs);
+}
+
+.sb-unstyled .icon-playground__code {
+  grid-column: 2;
+  display: grid;
+  gap: var(--spacing-s);
+  min-width: 0;
+}
+
+.sb-unstyled .icon-playground__code pre {
+  min-height: 96px;
+  margin: 0;
+  padding: var(--spacing-m);
+  border-radius: var(--border-radius-s);
+  background: var(--background-canvas);
+  border: var(--border-weight-s) solid var(--border-soft);
+}
+
+.sb-unstyled .icon-playground__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+}
+
+.sb-unstyled .icon-copy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--spacing-m);
+}
+
+.sb-unstyled .icon-copy-card {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: var(--spacing-s);
+  min-height: 72px;
+  padding: var(--spacing-m);
+  border: var(--border-weight-s) solid var(--border-soft);
+  border-radius: var(--border-radius-s);
+  color: var(--text-primary);
+  background: var(--background-default);
+}
+
+.sb-unstyled .icon-copy-card__meta {
+  display: grid;
+  gap: var(--spacing-2xs);
+  min-width: 0;
+}
+
+.sb-unstyled .icon-copy-card__meta .token-badge {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sb-unstyled .icon-copy-card__component {
+  overflow: hidden;
+  color: var(--text-tertiary);
+  font-family: 'JetBrains Mono', 'Fira Code', monospace !important;
+  font-size: var(--caption-size) !important;
+  line-height: var(--caption-height) !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sb-unstyled .icon-copy-button {
+  min-width: 72px;
+  min-height: 32px;
+  padding: var(--spacing-2xs) var(--spacing-xs);
+  border: var(--border-weight-s) solid var(--border-medium);
+  border-radius: var(--border-radius-s);
+  color: var(--interactive-text);
+  background: var(--background-default);
+  cursor: pointer;
+  font-family: var(--font-family-brand), sans-serif !important;
+  font-size: var(--body-s-size) !important;
+  font-weight: var(--body-s-emphasized-weight) !important;
+  line-height: var(--body-s-height) !important;
+  white-space: nowrap;
+}
+
+.sb-unstyled .icon-copy-button:hover {
+  border-color: var(--interactive-primary-hover);
+  color: var(--interactive-primary-hover);
+  background: var(--background-hover);
+}
+
+@media (max-width: 767px) {
+  .sb-unstyled .icon-playground {
+    grid-template-columns: 1fr;
+  }
+
+  .sb-unstyled .icon-playground__code {
+    grid-column: 1;
+  }
+
+  .sb-unstyled .icon-playground__controls {
+    grid-template-columns: 1fr;
+  }
+
+  .sb-unstyled .icon-copy-card {
+    grid-template-columns: 32px minmax(0, 1fr);
+  }
+
+  .sb-unstyled .icon-copy-card .icon-copy-button {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+  }
+}
+
+/* ============================================
    Release Notes — Package versions and changelog entries
    ============================================ */
 

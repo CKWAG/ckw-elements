@@ -61,9 +61,10 @@ ckw-elements/
 │   │       ├── InlineMessage/      Inline message component, styles, stories, docs
 │   │       └── SegmentedControl/   Segmented control component, styles, stories, docs
 │   │
-│   └── icons/                    @ckw-elements/icons .............. SCAFFOLD
+│   └── icons/                    @ckw-elements/icons .............. ACTIVE
 │       ├── package.json
-│       └── src/                    Empty (no icons yet)
+│       ├── dist/                   GENERATED — npm package output
+│       └── src/                    React SVG icon exports
 │
 ├── apps/
 │   └── storybook/                @ckw-elements/storybook .......... ACTIVE
@@ -115,12 +116,12 @@ ckw-elements/
 
 ### Package Status
 
-| Package               | npm Scope                  | Status   | Published |
-| --------------------- | -------------------------- | -------- | --------- |
-| `packages/tokens`     | `@ckw-elements/tokens`     | Done     | Not yet   |
-| `packages/components` | `@ckw-elements/components` | Active   | Not yet   |
-| `packages/icons`      | `@ckw-elements/icons`      | Scaffold | Not yet   |
-| `apps/storybook`      | `@ckw-elements/storybook`  | Active   | Private   |
+| Package               | npm Scope                  | Status | Published |
+| --------------------- | -------------------------- | ------ | --------- |
+| `packages/tokens`     | `@ckw-elements/tokens`     | Done   | Not yet   |
+| `packages/components` | `@ckw-elements/components` | Active | Not yet   |
+| `packages/icons`      | `@ckw-elements/icons`      | Active | Not yet   |
+| `apps/storybook`      | `@ckw-elements/storybook`  | Active | Private   |
 
 ---
 
@@ -779,6 +780,7 @@ pnpm --filter @ckw-elements/storybook run build
 │                          │      │                          │
 │ Depends on:              │      │ Depends on:              │
 │ • tokens (for CSS vars)  │      │ • tokens (CSS + JSON)    │
+│ • icons (status SVGs)    │      │ • icons (docs examples)  │
 │ • react (peer dep)       │      │ • components (stories)   │
 │                          │      │ • storybook 10           │
 │ Status: Active           │      │ • react 19               │
@@ -789,10 +791,10 @@ pnpm --filter @ckw-elements/storybook run build
 
 ┌──────────────────────────┐
 │ @ckw-elements/icons      │
-│ (standalone)             │
+│ React SVG exports        │
 │                          │
-│ No dependencies          │
-│ Status: Scaffold         │
+│ Peer dependency: react   │
+│ Status: Active           │
 └──────────────────────────┘
 ```
 
@@ -802,7 +804,7 @@ pnpm --filter @ckw-elements/storybook run build
 | ----------------------- | --------------------- | ---------------------------- |
 | `style-dictionary`      | tokens                | Token transformation engine  |
 | `react` + `react-dom`   | components, storybook | UI framework                 |
-| `typescript`            | components            | Type safety (dev dependency) |
+| `typescript`            | components, icons     | Type safety (dev dependency) |
 | `storybook`             | storybook             | Documentation framework      |
 | `@storybook/react-vite` | storybook             | Vite-based Storybook builder |
 

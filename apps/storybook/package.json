@@ -6,11 +6,14 @@
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
+    "predev": "pnpm --filter @ckw-elements/icons run build",
     "dev": "storybook dev -p 6006",
+    "prebuild": "pnpm --filter @ckw-elements/icons run build",
     "build": "storybook build"
   },
   "dependencies": {
     "@ckw-elements/components": "workspace:*",
+    "@ckw-elements/icons": "workspace:*",
     "@ckw-elements/tokens": "workspace:*"
   },
   "devDependencies": {

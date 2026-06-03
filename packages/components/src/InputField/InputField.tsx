@@ -1,4 +1,5 @@
 import React from 'react';
+import { IconInformation, IconWarningCircle } from '@ckw-elements/icons';
 import './InputField.css';
 
 export type InputFieldState = 'Default' | 'Hover' | 'Active' | 'Error' | 'Disabled';
@@ -32,54 +33,6 @@ export interface InputFieldProps {
   type?: string;
   /** Additional CSS class names on the root element. */
   className?: string;
-}
-
-/**
- * Warning circle icon for error messages (16×16).
- * @internal
- */
-function WarningIcon() {
-  return (
-    <svg
-      width="16"
-      height="16"
-      viewBox="0 0 16 16"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M8 1.333A6.667 6.667 0 1 0 8 14.667 6.667 6.667 0 0 0 8 1.333ZM7.333 5.333a.667.667 0 0 1 1.334 0v2.334a.667.667 0 0 1-1.334 0V5.333ZM8 10a.667.667 0 1 0 0 1.333A.667.667 0 0 0 8 10Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-/**
- * Info circle icon (18×18).
- * @internal
- */
-function InfoIcon() {
-  return (
-    <svg
-      width="18"
-      height="18"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M3.66667 12C3.66667 7.39762 7.39762 3.66667 12 3.66667C16.6023 3.66667 20.3333 7.39762 20.3333 12C20.3333 16.6023 16.6023 20.3333 12 20.3333C7.39762 20.3333 3.66667 16.6023 3.66667 12ZM12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM12.8333 6.16667V7.83333H11.1667V6.16667H12.8333ZM11.1667 11.1667H9.5V9.5H12.8333V15.3333H14.5V17H9.5V15.3333H11.1667V11.1667Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
 }
 
 /**
@@ -131,7 +84,7 @@ export function InputField({
             onClick={onInfoClick}
             aria-label="More information"
           >
-            <InfoIcon />
+            <IconInformation size={18} />
           </button>
         )}
       </div>
@@ -159,7 +112,7 @@ export function InputField({
       {hasError && (
         <div className="ckw-input-field__error" id={errorId}>
           <span className="ckw-input-field__error-icon">
-            <WarningIcon />
+            <IconWarningCircle size={16} />
           </span>
           <span className="ckw-input-field__error-text">{errorText}</span>
         </div>

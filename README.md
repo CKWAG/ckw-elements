@@ -25,12 +25,12 @@ The result: a single source of truth for colors, typography, spacing, borders, s
 
 ## What's Included
 
-| Package                                             | Status     | Description                                                 |
-| --------------------------------------------------- | ---------- | ----------------------------------------------------------- |
-| [`@ckw-elements/tokens`](./packages/tokens)         | ✅ Active  | 282 design tokens (CSS + JS)                                |
-| [`@ckw-elements/components`](./packages/components) | ✅ Active  | React component library (ESM + types + CSS)                 |
-| [`@ckw-elements/icons`](./packages/icons)           | 📋 Planned | Icon set                                                    |
-| [`@ckw-elements/storybook`](./apps/storybook)       | ✅ Active  | [Documentation site](https://ckwag.github.io/ckw-elements/) |
+| Package                                             | Status    | Description                                                 |
+| --------------------------------------------------- | --------- | ----------------------------------------------------------- |
+| [`@ckw-elements/tokens`](./packages/tokens)         | ✅ Active | 282 design tokens (CSS + JS)                                |
+| [`@ckw-elements/components`](./packages/components) | ✅ Active | React component library (ESM + types + CSS)                 |
+| [`@ckw-elements/icons`](./packages/icons)           | ✅ Active | React SVG icon set (ESM + types)                            |
+| [`@ckw-elements/storybook`](./apps/storybook)       | ✅ Active | [Documentation site](https://ckwag.github.io/ckw-elements/) |
 
 ## Quick Start
 
@@ -50,7 +50,7 @@ Storybook opens at [localhost:6006](http://localhost:6006) with the full token d
 Install the packages in any React application:
 
 ```bash
-npm install @ckw-elements/tokens @ckw-elements/components
+npm install @ckw-elements/tokens @ckw-elements/icons @ckw-elements/components
 ```
 
 Import token CSS once in your app entry point:
@@ -63,6 +63,7 @@ Then import components directly:
 
 ```tsx
 import React from 'react';
+import { IconSearch } from '@ckw-elements/icons';
 import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
 
 export function Example() {
@@ -71,7 +72,7 @@ export function Example() {
       <InlineMessage status="Info" title="Statusmeldung">
         Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
       </InlineMessage>
-      <InputField label="Name" placeholder="Enter name" />
+      <InputField label="Name" placeholder="Enter name" icon={<IconSearch size={20} />} />
       <SegmentedControl
         segments={[
           { value: 'monthly', label: 'Monthly' },
@@ -234,7 +235,7 @@ ckw-elements-design/
 ├── packages/
 │   ├── tokens/              282 design tokens (CSS + JS output)
 │   ├── components/          React component library
-│   └── icons/               Icon set (planned)
+│   └── icons/               React SVG icon set
 ├── apps/
 │   └── storybook/           Documentation site
 ├── ARCHITECTURE.md          Full technical reference
