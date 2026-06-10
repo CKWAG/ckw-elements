@@ -1,4 +1,4 @@
-# @ckw-elements/icons
+# @ckwag/elements-icons
 
 ## 0.0.1
 

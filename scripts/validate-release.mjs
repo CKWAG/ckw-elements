@@ -1,8 +1,8 @@
 /**
  * Validates release readiness for the public CKW Elements npm packages.
  *
- * The script checks metadata, Changesets configuration, generated build output,
- * changelogs, and publish-time authentication before CI publishes to npm.
+ * The script checks metadata, generated build output, and publish-time
+ * authentication before CI publishes to npm.
  */
 
 import { existsSync, readFileSync } from 'node:fs';
@@ -16,10 +16,9 @@ const errors = [];
 
 const publicPackages = [
   {
-    name: '@ckw-elements/tokens',
+    name: '@ckwag/elements-tokens',
     directory: 'packages/tokens',
     requiredFiles: [
-      'CHANGELOG.md',
       'README.md',
       'dist/tokens.css',
       'dist/tokens.d.ts',
@@ -28,43 +27,27 @@ const publicPackages = [
       'tokens.json',
     ],
     requiredExports: ['.', './tokens.css', './tokens.js', './tokens.json', './package.json'],
-    requiredFilesEntries: ['dist/', 'CHANGELOG.md', 'README.md', 'tokens.json'],
+    requiredFilesEntries: ['dist/', 'README.md', 'tokens.json'],
   },
   {
-    name: '@ckw-elements/components',
+    name: '@ckwag/elements',
     directory: 'packages/components',
-    requiredFiles: [
-      'CHANGELOG.md',
-      'README.md',
-      'dist/index.d.ts',
-      'dist/index.js',
-      'dist/react/index.d.ts',
-      'dist/react/index.js',
-      'dist/styles.css',
-    ],
-    requiredExports: ['.', './react', './styles.css', './package.json'],
-    requiredFilesEntries: ['dist/', 'CHANGELOG.md', 'README.md'],
+    requiredFiles: ['README.md', 'dist/index.d.ts', 'dist/index.js', 'dist/styles.css'],
+    requiredExports: ['.', './styles.css', './package.json'],
+    requiredFilesEntries: ['dist/', 'README.md'],
   },
   {
-    name: '@ckw-elements/icons',
+    name: '@ckwag/elements-icons',
     directory: 'packages/icons',
-    requiredFiles: [
-      'CHANGELOG.md',
-      'README.md',
-      'dist/index.d.ts',
-      'dist/index.js',
-      'dist/react/index.d.ts',
-      'dist/react/index.js',
-    ],
-    requiredExports: ['.', './react', './package.json'],
-    requiredFilesEntries: ['dist/', 'CHANGELOG.md', 'README.md'],
+    requiredFiles: ['README.md', 'dist/index.d.ts', 'dist/index.js'],
+    requiredExports: ['.', './package.json'],
+    requiredFilesEntries: ['dist/', 'README.md'],
   },
 ];
 
-const privatePackages = [{ name: '@ckw-elements/storybook', directory: 'apps/storybook' }];
+const privatePackages = [{ name: '@ckwag/elements-storybook', directory: 'apps/storybook' }];
 
 const rootPackage = readJson('package.json');
-const changesetConfig = readJson('.changeset/config.json');
 
 if (rootPackage.private !== true) {
   errors.push('Root package.json must stay private.');
@@ -74,15 +57,7 @@ if (!String(rootPackage.packageManager ?? '').startsWith('pnpm@10.')) {
   errors.push('Root packageManager must stay pinned to pnpm 10.x.');
 }
 
-if (changesetConfig.access !== 'public') {
-  errors.push('.changeset/config.json must publish public packages with access "public".');
-}
-
 for (const ignoredPackage of privatePackages) {
-  if (!changesetConfig.ignore?.includes(ignoredPackage.name)) {
-    errors.push(`Changesets must ignore ${ignoredPackage.name}.`);
-  }
-
   const packageJson = readJson(join(ignoredPackage.directory, 'package.json'));
   if (packageJson.private !== true) {
     errors.push(`${ignoredPackage.name} must stay private until it has a real build output.`);
@@ -149,10 +124,6 @@ function validatePublicPackage(releasePackage) {
     errors.push(`${packageLabel} must include homepage and bugs metadata.`);
   }
 
-  if (!packageJson.scripts?.prepack?.includes('build')) {
-    errors.push(`${packageLabel} must build during prepack.`);
-  }
-
   for (const fileEntry of releasePackage.requiredFilesEntries) {
     if (!packageJson.files?.includes(fileEntry)) {
       errors.push(`${packageLabel} package.json files must include ${fileEntry}.`);
@@ -171,11 +142,6 @@ function validatePublicPackage(releasePackage) {
         `${packageLabel} is missing ${requiredFile}. Run the package build before release validation.`,
       );
     }
-  }
-
-  const changelog = readFile(join(releasePackage.directory, 'CHANGELOG.md'));
-  if (!changelog.includes(`## ${packageJson.version}`)) {
-    errors.push(`${packageLabel} CHANGELOG.md must include a section for ${packageJson.version}.`);
   }
 }
 

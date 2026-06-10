@@ -9,7 +9,7 @@ import React from 'react'; // REQUIRED in all TSX files
 ```
 
 ```css
-@import '@ckw-elements/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 ```
 
 ## Component File Pattern

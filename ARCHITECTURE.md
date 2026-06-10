@@ -37,7 +37,7 @@ ckw-elements/
 │
 ├── packages/
 │   │
-│   ├── tokens/                   @ckw-elements/tokens .............. DONE
+│   ├── tokens/                   @ckwag/elements-tokens .............. DONE
 │   │   ├── tokens-raw.json         Verbatim Tokens Studio export (input)
 │   │   ├── transform-tokens.mjs    Restructures raw → DTCG format
 │   │   ├── tokens.json             Clean DTCG format (committed)
@@ -48,7 +48,7 @@ ckw-elements/
 │   │       ├── tokens.css            CSS Custom Properties + Utility Classes
 │   │       └── tokens.js            JavaScript named + default exports
 │   │
-│   ├── components/               @ckw-elements/components ......... ACTIVE
+│   ├── components/               @ckwag/elements ......... ACTIVE
 │   │   ├── package.json
 │   │   ├── build-components.mjs    Emits ESM, declarations, and CSS
 │   │   ├── tsconfig.build.json
@@ -61,13 +61,13 @@ ckw-elements/
 │   │       ├── InlineMessage/      Inline message component, styles, stories, docs
 │   │       └── SegmentedControl/   Segmented control component, styles, stories, docs
 │   │
-│   └── icons/                    @ckw-elements/icons .............. ACTIVE
+│   └── icons/                    @ckwag/elements-icons .............. ACTIVE
 │       ├── package.json
 │       ├── dist/                   GENERATED — npm package output
 │       └── src/                    React SVG icon exports
 │
 ├── apps/
-│   └── storybook/                @ckw-elements/storybook .......... ACTIVE
+│   └── storybook/                @ckwag/elements-storybook .......... ACTIVE
 │       ├── package.json
 │       ├── .storybook/
 │       │   ├── main.ts              Story discovery + addons + framework
@@ -116,12 +116,12 @@ ckw-elements/
 
 ### Package Status
 
-| Package               | npm Scope                  | Status | Published |
-| --------------------- | -------------------------- | ------ | --------- |
-| `packages/tokens`     | `@ckw-elements/tokens`     | Done   | Not yet   |
-| `packages/components` | `@ckw-elements/components` | Active | Not yet   |
-| `packages/icons`      | `@ckw-elements/icons`      | Active | Not yet   |
-| `apps/storybook`      | `@ckw-elements/storybook`  | Active | Private   |
+| Package               | npm Scope                   | Status | Published |
+| --------------------- | --------------------------- | ------ | --------- |
+| `packages/tokens`     | `@ckwag/elements-tokens`    | Done   | Not yet   |
+| `packages/components` | `@ckwag/elements`           | Active | Not yet   |
+| `packages/icons`      | `@ckwag/elements-icons`     | Active | Not yet   |
+| `apps/storybook`      | `@ckwag/elements-storybook` | Active | Private   |
 
 ---
 
@@ -477,12 +477,12 @@ Example — Heading L:
 ## 5. Storybook — Documentation Site
 
 Storybook is the **first consumer** of the token pipeline. It consumes all three
-outputs from `@ckw-elements/tokens`:
+outputs from `@ckwag/elements-tokens`:
 
 ### How Storybook Consumes Tokens
 
 ```
-@ckw-elements/tokens (workspace dependency)
+@ckwag/elements-tokens (workspace dependency)
        │
        ├─── tokens.css ──────▶ .storybook/preview.ts
        │                        Global CSS import. Makes all CSS Custom Properties
@@ -515,7 +515,7 @@ packages/tokens/dist/
 
 This file is the single point where `tokens.json` enters Storybook. It:
 
-1. Imports `tokens.json` from `@ckw-elements/tokens/tokens.json`
+1. Imports `tokens.json` from `@ckwag/elements-tokens/tokens.json`
 2. Transforms the nested DTCG structure into flat typed arrays
 3. Exports the same interfaces that all 11 consumer files expect
 
@@ -609,7 +609,7 @@ Step 5    Verify the changes:
           • Check git diff on dist/tokens.css — do the CSS values match?
           ↓
 Step 6    Start Storybook to visually verify:
-          pnpm --filter @ckw-elements/storybook run dev
+          pnpm --filter @ckwag/elements-storybook run dev
           ↓
 Step 7    If everything looks good:
           git add -A && git commit -m "tokens: update [what changed]"
@@ -691,10 +691,10 @@ Step 6    Export from barrel file:
           export { ComponentName } from './ComponentName';
           ↓
 Step 7    Build the package:
-          pnpm --filter @ckw-elements/components run build
+          pnpm --filter @ckwag/elements run build
           ↓
 Step 8    Verify in Storybook:
-          pnpm --filter @ckw-elements/storybook run dev
+          pnpm --filter @ckwag/elements-storybook run dev
 ```
 
 ### D. "I want to run Storybook locally"
@@ -705,25 +705,25 @@ cd ckw-elements
 pnpm install
 
 # Start development server
-pnpm --filter @ckw-elements/storybook run dev
+pnpm --filter @ckwag/elements-storybook run dev
 # → Opens at http://localhost:6006
 
 # Build for production
-pnpm --filter @ckw-elements/storybook run build
+pnpm --filter @ckwag/elements-storybook run build
 # → Output in apps/storybook/storybook-static/
 ```
 
 ### E. Quick Reference — All Commands
 
-| Command                                            | What It Does                       |
-| -------------------------------------------------- | ---------------------------------- |
-| `pnpm install`                                     | Install all workspace deps         |
-| `pnpm tokens:sync`                                 | Transform + build tokens           |
-| `pnpm --filter @ckw-elements/tokens run build`     | Build tokens only (skip transform) |
-| `pnpm --filter @ckw-elements/components run build` | Build React component package      |
-| `pnpm --filter @ckw-elements/storybook run dev`    | Start Storybook dev server         |
-| `pnpm --filter @ckw-elements/storybook run build`  | Build Storybook for deployment     |
-| `pnpm -r run build`                                | Build all workspace packages       |
+| Command                                             | What It Does                       |
+| --------------------------------------------------- | ---------------------------------- |
+| `pnpm install`                                      | Install all workspace deps         |
+| `pnpm tokens:sync`                                  | Transform + build tokens           |
+| `pnpm --filter @ckwag/elements-tokens run build`    | Build tokens only (skip transform) |
+| `pnpm --filter @ckwag/elements run build`           | Build React component package      |
+| `pnpm --filter @ckwag/elements-storybook run dev`   | Start Storybook dev server         |
+| `pnpm --filter @ckwag/elements-storybook run build` | Build Storybook for deployment     |
+| `pnpm -r run build`                                 | Build all workspace packages       |
 
 ---
 
@@ -763,7 +763,7 @@ pnpm --filter @ckw-elements/storybook run build
 
 ```
                   ┌─────────────────────────┐
-                  │  @ckw-elements/tokens   │
+                  │  @ckwag/elements-tokens   │
                   │  (Source of Truth)       │
                   │                         │
                   │  Exports:               │
@@ -775,7 +775,7 @@ pnpm --filter @ckw-elements/storybook run build
               ┌────────────┘       └────────────┐
               ▼                                 ▼
 ┌──────────────────────────┐      ┌──────────────────────────┐
-│ @ckw-elements/components │      │ @ckw-elements/storybook  │
+│ @ckwag/elements │      │ @ckwag/elements-storybook  │
 │ (workspace:*)            │      │ (workspace:*)            │
 │                          │      │                          │
 │ Depends on:              │      │ Depends on:              │
@@ -790,7 +790,7 @@ pnpm --filter @ckw-elements/storybook run build
                   consumed by     └──────────────────────────┘
 
 ┌──────────────────────────┐
-│ @ckw-elements/icons      │
+│ @ckwag/elements-icons      │
 │ React SVG exports        │
 │                          │
 │ Peer dependency: react   │
@@ -835,7 +835,7 @@ Style Dictionary v4                   │
      │                                     token tables + metadata
      │
      └──▶ Future: MyCKW, other products
-          install @ckw-elements/tokens
+          install @ckwag/elements-tokens
           import tokens.css
 ```
 

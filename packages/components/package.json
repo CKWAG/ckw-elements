@@ -1,5 +1,5 @@
 {
-  "name": "@ckw-elements/components",
+  "name": "@ckwag/elements",
   "version": "0.0.1",
   "description": "CKW Elements UI Components",
   "license": "Apache-2.0",
@@ -31,30 +31,25 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
-    "./react": {
-      "types": "./dist/react/index.d.ts",
-      "import": "./dist/react/index.js"
-    },
     "./styles.css": "./dist/styles.css",
     "./package.json": "./package.json"
   },
   "scripts": {
-    "prebuild": "pnpm --filter @ckw-elements/icons run build",
+    "prebuild": "pnpm --filter @ckwag/elements-icons run build",
     "build": "node build-components.mjs",
     "prepack": "pnpm run build",
     "lint": "echo 'lint step — will be configured with eslint'"
   },
   "files": [
     "dist/",
-    "CHANGELOG.md",
     "README.md"
   ],
   "publishConfig": {
     "access": "public"
   },
   "dependencies": {
-    "@ckw-elements/icons": "workspace:*",
-    "@ckw-elements/tokens": "workspace:*"
+    "@ckwag/elements-icons": "workspace:*",
+    "@ckwag/elements-tokens": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=18 <20",

@@ -33,13 +33,13 @@ jobs:
         run: pnpm typecheck
 
       - name: Build tokens
-        run: pnpm --filter @ckw-elements/tokens run build
+        run: pnpm --filter @ckwag/elements-tokens run build
 
       - name: Build components
-        run: pnpm --filter @ckw-elements/components run build
+        run: pnpm --filter @ckwag/elements run build
 
       - name: Build Storybook
-        run: pnpm --filter @ckw-elements/storybook run build
+        run: pnpm --filter @ckwag/elements-storybook run build
 
       - name: Validate release configuration
         run: pnpm release:check

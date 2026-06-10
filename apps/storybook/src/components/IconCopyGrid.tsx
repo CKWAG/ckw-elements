@@ -1,7 +1,7 @@
 import React from 'react';
 import type { ChangeEvent } from 'react';
-import { Icon, iconMetadata, iconNames } from '@ckw-elements/icons';
-import type { IconMetadata, IconName } from '@ckw-elements/icons';
+import { Icon, iconMetadata, iconNames } from '@ckwag/elements-icons';
+import type { IconMetadata, IconName } from '@ckwag/elements-icons';
 
 const DEFAULT_ICON_NAME = 'search';
 const DEFAULT_ICON_SIZE = 24;
@@ -51,7 +51,7 @@ function getIconPropsSnippet({ ariaLabel, size = DEFAULT_ICON_SIZE }: IconSnippe
 function getComponentSnippet(icon: IconMetadata, options: IconSnippetOptions): string {
   const props = getIconPropsSnippet(options);
 
-  return `import { ${icon.componentName} } from '@ckw-elements/icons';
+  return `import { ${icon.componentName} } from '@ckwag/elements-icons';
 
 <${icon.componentName} ${props} />`;
 }
@@ -59,7 +59,7 @@ function getComponentSnippet(icon: IconMetadata, options: IconSnippetOptions): s
 function getNameSnippet(icon: IconMetadata, options: IconSnippetOptions): string {
   const props = getIconPropsSnippet(options);
 
-  return `import { Icon } from '@ckw-elements/icons';
+  return `import { Icon } from '@ckwag/elements-icons';
 
 <Icon name="${icon.name}" ${props} />`;
 }

@@ -5,7 +5,7 @@ Use CKW design tokens for all UI output. Never hardcode colors, spacing, or radi
 ## Setup
 
 ```css
-@import '@ckw-elements/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 ```
 
 ## Rules

@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { InlineMessage } from './InlineMessage';
 
@@ -12,8 +12,7 @@ const meta = {
     design: getFigmaDesignParameter(figmaReferences.inlineMessage),
     docs: {
       source: {
-        transform: (code: string) =>
-          `import { InlineMessage } from '@ckw-elements/components';\n\n${code}`,
+        transform: (code: string) => `import { InlineMessage } from '@ckwag/elements';\n\n${code}`,
       },
     },
   },

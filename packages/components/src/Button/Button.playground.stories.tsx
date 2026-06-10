@@ -1,6 +1,6 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { IconPlaceholder } from '@ckw-elements/icons';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { IconPlaceholder } from '@ckwag/elements-icons';
 import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { Button } from './Button';
 
@@ -13,8 +13,7 @@ const meta = {
     design: getFigmaDesignParameter(figmaReferences.button),
     docs: {
       source: {
-        transform: (code: string) =>
-          `import { Button } from '@ckw-elements/components';\n\n${code}`,
+        transform: (code: string) => `import { Button } from '@ckwag/elements';\n\n${code}`,
       },
     },
   },

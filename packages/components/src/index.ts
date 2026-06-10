@@ -1,4 +1,4 @@
-// @ckw-elements/components — public exports
+// @ckwag/elements — public exports
 export { Button } from './Button/index.js';
 export type { ButtonProps, ButtonSize, ButtonType } from './Button/index.js';
 export { InputField } from './InputField/index.js';

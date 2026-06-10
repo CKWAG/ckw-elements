@@ -22,7 +22,7 @@ import { Meta } from '@storybook/addon-docs/blocks';
 </div>
 
 ```bash
-npm install @ckw-elements/components @ckw-elements/icons @ckw-elements/tokens
+npm install @ckwag/elements @ckwag/elements-icons @ckwag/elements-tokens
 ```
 
 <div className="sb-unstyled">
@@ -36,17 +36,8 @@ npm install @ckw-elements/components @ckw-elements/icons @ckw-elements/tokens
 </div>
 
 ```tsx
-// Root import (default)
-import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
-import { IconSearch } from '@ckw-elements/icons';
-
-// Explicit React subpath (identical)
-import {
-  Button,
-  InlineMessage,
-  InputField,
-  SegmentedControl,
-} from '@ckw-elements/components/react';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckwag/elements';
+import { IconSearch } from '@ckwag/elements-icons';
 ```
 
 <div className="sb-unstyled">
@@ -63,29 +54,26 @@ import {
 
 ```css
 /* app entry point (e.g., main.css, global.css, or index.css) */
-@import '@ckw-elements/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 
 /* optional fallback for bundlers that ignore package CSS side effects */
-@import '@ckw-elements/components/styles.css';
+@import '@ckwag/elements/styles.css';
 ```
 
 <div className="sb-unstyled">
   <div className="docs-section" style={{ marginTop: '48px' }}>
     <div className="docs-section-title">Package Exports</div>
     <div className="docs-subsection-description">
-      The component package exposes the root import, an explicit React subpath, aggregate CSS, and
-      package metadata.
+      The component and icon packages expose root imports, aggregate CSS, and package metadata.
     </div>
   </div>
 </div>
 
 ```json
 {
-  "@ckw-elements/components": "React components",
-  "@ckw-elements/components/react": "Explicit React component exports",
-  "@ckw-elements/components/styles.css": "All component CSS",
-  "@ckw-elements/icons": "React SVG icon components",
-  "@ckw-elements/icons/react": "Explicit React icon exports"
+  "@ckwag/elements": "React components",
+  "@ckwag/elements/styles.css": "All component CSS",
+  "@ckwag/elements-icons": "React SVG icon components"
 }
 ```
 
@@ -101,8 +89,8 @@ import {
 
 ```tsx
 import React from 'react';
-import { Button } from '@ckw-elements/components/react';
-import { IconArrowRight, IconSearch } from '@ckw-elements/icons/react';
+import { Button } from '@ckwag/elements';
+import { IconArrowRight, IconSearch } from '@ckwag/elements-icons';
 
 function MyPage() {
   return (

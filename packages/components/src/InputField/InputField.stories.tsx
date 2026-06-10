@@ -1,6 +1,6 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
-import { IconPlaceholder } from '@ckw-elements/icons';
+import type { Meta, StoryObj } from '@storybook/react-vite';
+import { IconPlaceholder } from '@ckwag/elements-icons';
 import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { InputField } from './InputField';
 

@@ -1,13 +1,11 @@
 name: Release Packages
 
 on:
-  push:
-    branches: [main]
-  workflow_dispatch:
+  release:
+    types: [published]
 
 permissions:
   contents: write
-  pull-requests: write
   id-token: write
 
 concurrency:
@@ -15,14 +13,12 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  release:
+  publish:
     runs-on: ubuntu-latest
     env:
       NPM_CONFIG_PROVENANCE: true
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
 
@@ -31,6 +27,16 @@ jobs:
           node-version: 22
           cache: 'pnpm'
           registry-url: 'https://registry.npmjs.org'
+
+      - name: Extract version from release tag
+        id: version
+        run: echo "value=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Set package versions
+        run: |
+          pnpm --filter @ckwag/elements-tokens pkg set version=${{ steps.version.outputs.value }}
+          pnpm --filter @ckwag/elements-icons pkg set version=${{ steps.version.outputs.value }}
+          pnpm --filter @ckwag/elements pkg set version=${{ steps.version.outputs.value }}
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -41,31 +47,17 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
-      - name: Build tokens
-        run: pnpm --filter @ckw-elements/tokens run build
+      - name: Build packages
+        run: |
+          pnpm --filter @ckwag/elements-tokens run build
+          pnpm --filter @ckwag/elements-icons run build
+          pnpm --filter @ckwag/elements run build
 
-      - name: Build components
-        run: pnpm --filter @ckw-elements/components run build
+      - name: Validate release
+        run: node scripts/validate-release.mjs --publish
 
-      - name: Build Storybook
-        run: pnpm --filter @ckw-elements/storybook run build
+      - name: Publish to npm
+        run: pnpm -r publish --no-git-checks --access public
         env:
-          STORYBOOK_BASE: /ckw-elements/
-
-      - name: Validate release configuration
-        run: pnpm release:check
-
-      - name: Dry-run npm packages
-        run: pnpm release:pack
-
-      - name: Version or publish packages
-        uses: changesets/action@v1
-        with:
-          version: pnpm version:packages
-          publish: pnpm release:publish
-          commit: 'chore: version packages'
-          title: 'chore: version packages'
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

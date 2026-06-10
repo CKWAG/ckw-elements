@@ -3,9 +3,9 @@
   "changelog": ["@changesets/changelog-github", { "repo": "CKWAG/ckw-elements-design" }],
   "commit": false,
   "fixed": [],
-  "linked": [["@ckw-elements/tokens", "@ckw-elements/components", "@ckw-elements/icons"]],
+  "linked": [["@ckwag/elements-tokens", "@ckwag/elements", "@ckwag/elements-icons"]],
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@ckw-elements/storybook"]
+  "ignore": ["@ckwag/elements-storybook"]
 }

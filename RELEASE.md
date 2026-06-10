@@ -7,11 +7,11 @@ npm publishing.
 
 Only these packages are published:
 
-- `@ckw-elements/tokens`
-- `@ckw-elements/icons`
-- `@ckw-elements/components`
+- `@ckwag/elements-tokens`
+- `@ckwag/elements-icons`
+- `@ckwag/elements`
 
-`@ckw-elements/storybook` is private documentation.
+`@ckwag/elements-storybook` is private documentation.
 
 ## Pull Request Workflow
 
@@ -38,7 +38,7 @@ to npm, and creates GitHub releases.
 ## Required Secret
 
 The repository must define `NPM_TOKEN` with publish permission for the
-`@ckw-elements` npm scope. GitHub Actions publishes with npm provenance enabled.
+`@ckwag` npm scope. GitHub Actions publishes with npm provenance enabled.
 
 ## Local Validation
 

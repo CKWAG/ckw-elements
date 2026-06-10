@@ -1,18 +1,18 @@
-# @ckw-elements/icons
+# @ckwag/elements-icons
 
 CKW Elements SVG icon set for React applications.
 
 ## Installation
 
 ```bash
-npm install @ckw-elements/icons
+npm install @ckwag/elements-icons
 ```
 
 ## Usage
 
 ```tsx
 import React from 'react';
-import { Icon, IconPlaceholder, IconSearch } from '@ckw-elements/icons';
+import { Icon, IconPlaceholder, IconSearch } from '@ckwag/elements-icons';
 
 export function Example() {
   return (

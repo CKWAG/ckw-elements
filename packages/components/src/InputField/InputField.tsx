@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconInformation, IconWarningCircle } from '@ckw-elements/icons';
+import { IconInformation, IconWarningCircle } from '@ckwag/elements-icons';
 import './InputField.css';
 
 export type InputFieldState = 'Default' | 'Hover' | 'Active' | 'Error' | 'Disabled';

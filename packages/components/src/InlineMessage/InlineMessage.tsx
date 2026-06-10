@@ -3,7 +3,7 @@ import {
   IconCheckCircleFilled,
   IconInformation,
   IconWarningCircleFilled,
-} from '@ckw-elements/icons';
+} from '@ckwag/elements-icons';
 import './InlineMessage.css';
 
 export type InlineMessageStatus = 'Info' | 'Success' | 'Error';

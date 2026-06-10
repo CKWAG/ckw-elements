@@ -16,12 +16,12 @@ CKW Elements is CKW's React design system. Use it through package imports, not c
 ## Package Usage
 
 ```css
-@import '@ckw-elements/tokens/tokens.css';
+@import '@ckwag/tokens/tokens.css';
 ```
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckwag/components';
 ```
 
 ## Core Rules
