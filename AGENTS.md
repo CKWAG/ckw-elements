@@ -45,7 +45,7 @@ ckw-elements/                       # pnpm workspaces root ("type": "module")
 └── PIPELINE.md                     # German non-technical pipeline docs (~170 lines)
 ```
 
-**Git remote:** `origin` → `https://github.com/CKWAG/ckw-elements-design.git`
+**Git remote:** `origin` → `https://github.com/CKWAG/ckw-elements.git`
 
 ---
 
