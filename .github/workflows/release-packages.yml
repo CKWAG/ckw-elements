@@ -30,16 +30,33 @@ jobs:
 
       - name: Extract version from release tag
         id: version
-        run: echo "value=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
-
-      - name: Set package versions
         run: |
-          pnpm --filter @ckwag/elements-tokens pkg set version=${{ steps.version.outputs.value }}
-          pnpm --filter @ckwag/elements-icons pkg set version=${{ steps.version.outputs.value }}
-          pnpm --filter @ckwag/elements pkg set version=${{ steps.version.outputs.value }}
+          set -euo pipefail
+          VERSION="${GITHUB_REF_NAME#v}"
+          if [ -z "$VERSION" ]; then
+            echo "::error::Cannot extract version from tag '$GITHUB_REF_NAME'"
+            exit 1
+          fi
+          echo "Release version: $VERSION"
+          echo "value=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
+
+      - name: Set and verify package versions
+        run: |
+          set -euo pipefail
+          VERSION='${{ steps.version.outputs.value }}'
+          [ -n "$VERSION" ] || { echo "::error::empty version output"; exit 1; }
+          for dir in packages/tokens packages/icons packages/components; do
+            ( cd "$dir" && pnpm pkg set version="$VERSION" )
+            GOT=$(node -p "require('./$dir/package.json').version")
+            if [ "$GOT" != "$VERSION" ]; then
+              echo "::error::version not applied in $dir (got '$GOT', expected '$VERSION')"
+              exit 1
+            fi
+            echo "$dir -> $GOT"
+          done
 
       - name: Check formatting
         run: pnpm format:check
@@ -59,5 +76,4 @@ jobs:
       - name: Publish to npm
         run: pnpm -r publish --no-git-checks --access public
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
