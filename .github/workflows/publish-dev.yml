@@ -1,0 +1,59 @@
+name: Publish Dev
+
+on:
+  workflow_run:
+    workflows: ['CI']
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+  id-token: write
+
+concurrency:
+  group: publish-dev
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    env:
+      NPM_CONFIG_PROVENANCE: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'pnpm'
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Compute dev version
+        id: version
+        run: |
+          BASE=$(node -p "require('./packages/tokens/package.json').version")
+          echo "value=${BASE}-dev.$(git rev-parse --short HEAD)" >> "$GITHUB_OUTPUT"
+
+      - name: Set package versions
+        run: |
+          pnpm --filter @ckwag/elements-tokens pkg set version=${{ steps.version.outputs.value }}
+          pnpm --filter @ckwag/elements-icons pkg set version=${{ steps.version.outputs.value }}
+          pnpm --filter @ckwag/elements pkg set version=${{ steps.version.outputs.value }}
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: |
+          pnpm --filter @ckwag/elements-tokens run build
+          pnpm --filter @ckwag/elements-icons run build
+          pnpm --filter @ckwag/elements run build
+
+      - name: Publish to npm (dev tag)
+        run: pnpm -r publish --tag dev --no-git-checks --access public
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

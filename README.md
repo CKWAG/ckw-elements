@@ -53,6 +53,12 @@ Install the packages in any React application:
 npm install @ckwag/elements-tokens @ckwag/elements-icons @ckwag/elements
 ```
 
+> **Development builds:** To use the latest unreleased version from `main`, install with the `dev` tag:
+>
+> ```bash
+> npm install @ckwag/elements-tokens@dev @ckwag/elements-icons@dev @ckwag/elements@dev
+> ```
+
 Import token CSS once in your app entry point:
 
 ```css
