@@ -1,11 +1,11 @@
-# @ckw-elements/tokens
+# @ckwag/elements-tokens
 
 Design tokens for CKW Elements, generated from Figma Variables through Tokens Studio and Style Dictionary.
 
 ## Install
 
 ```bash
-npm install @ckw-elements/tokens
+npm install @ckwag/elements-tokens
 ```
 
 ## CSS Usage
@@ -13,7 +13,7 @@ npm install @ckw-elements/tokens
 Import tokens once in your application entry CSS:
 
 ```css
-@import '@ckw-elements/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 ```
 
 Then use semantic tokens:
@@ -31,18 +31,18 @@ Then use semantic tokens:
 ## JavaScript Usage
 
 ```ts
-import tokens, { interactivePrimary, spacingM } from '@ckw-elements/tokens';
-import rawTokens from '@ckw-elements/tokens/tokens.json';
+import tokens, { interactivePrimary, spacingM } from '@ckwag/elements-tokens';
+import rawTokens from '@ckwag/elements-tokens/tokens.json';
 ```
 
 ## Exports
 
-| Export                             | Description                                    |
-| ---------------------------------- | ---------------------------------------------- |
-| `@ckw-elements/tokens`             | JavaScript named exports and default token map |
-| `@ckw-elements/tokens/tokens.css`  | CSS custom properties and typography utilities |
-| `@ckw-elements/tokens/tokens.js`   | Explicit JavaScript token module               |
-| `@ckw-elements/tokens/tokens.json` | DTCG token source                              |
+| Export                               | Description                                    |
+| ------------------------------------ | ---------------------------------------------- |
+| `@ckwag/elements-tokens`             | JavaScript named exports and default token map |
+| `@ckwag/elements-tokens/tokens.css`  | CSS custom properties and typography utilities |
+| `@ckwag/elements-tokens/tokens.js`   | Explicit JavaScript token module               |
+| `@ckwag/elements-tokens/tokens.json` | DTCG token source                              |
 
 ## Rules
 

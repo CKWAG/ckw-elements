@@ -2,7 +2,7 @@
  * CKW Elements — Documentation Stylesheet
  *
  * Styles the Storybook documentation chrome using the CKW design system tokens.
- * All colors reference semantic tokens from @ckw-elements/tokens/tokens.css.
+ * All colors reference semantic tokens from @ckwag/elements-tokens/tokens.css.
  * Typography uses Gotham (the CKW brand font).
  *
  * IMPORTANT: All custom docs elements use the .sb-unstyled class to opt out

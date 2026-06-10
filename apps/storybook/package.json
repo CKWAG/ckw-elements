@@ -1,20 +1,20 @@
 {
-  "name": "@ckw-elements/storybook",
+  "name": "@ckwag/elements-storybook",
   "version": "0.0.1",
   "private": true,
   "description": "CKW Elements Design System Documentation",
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
-    "predev": "pnpm --filter @ckw-elements/icons run build",
+    "predev": "pnpm --filter @ckwag/elements-icons run build",
     "dev": "storybook dev -p 6006",
-    "prebuild": "pnpm --filter @ckw-elements/icons run build",
+    "prebuild": "pnpm --filter @ckwag/elements-icons run build",
     "build": "storybook build"
   },
   "dependencies": {
-    "@ckw-elements/components": "workspace:*",
-    "@ckw-elements/icons": "workspace:*",
-    "@ckw-elements/tokens": "workspace:*"
+    "@ckwag/elements": "workspace:*",
+    "@ckwag/elements-icons": "workspace:*",
+    "@ckwag/elements-tokens": "workspace:*"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^10.3.6",

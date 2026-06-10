@@ -34,13 +34,13 @@ importers:
 
   apps/storybook:
     dependencies:
-      '@ckw-elements/components':
+      '@ckwag/elements':
         specifier: workspace:*
         version: link:../../packages/components
-      '@ckw-elements/icons':
+      '@ckwag/elements-icons':
         specifier: workspace:*
         version: link:../../packages/icons
-      '@ckw-elements/tokens':
+      '@ckwag/elements-tokens':
         specifier: workspace:*
         version: link:../../packages/tokens
     devDependencies:
@@ -74,10 +74,10 @@ importers:
 
   packages/components:
     dependencies:
-      '@ckw-elements/icons':
+      '@ckwag/elements-icons':
         specifier: workspace:*
         version: link:../icons
-      '@ckw-elements/tokens':
+      '@ckwag/elements-tokens':
         specifier: workspace:*
         version: link:../tokens
     devDependencies:

@@ -1,7 +1,7 @@
 /**
  * Input Field Component Styles
  *
- * Uses only semantic design tokens from @ckw-elements/tokens.
+ * Uses only semantic design tokens from @ckwag/elements-tokens.
  * States: Default, Hover, Active (focus), Error, Disabled.
  *
  * Border strategy (no layout shift):

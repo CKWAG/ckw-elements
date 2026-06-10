@@ -1,4 +1,4 @@
-# @ckw-elements/components
+# @ckwag/elements
 
 ## 0.0.1
 

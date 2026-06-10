@@ -6,18 +6,18 @@ Practical reference for AI coding agents. For full architecture details see `ARC
 
 ## Build / Lint / Test Commands
 
-| What                                         | Command                                                   |
-| -------------------------------------------- | --------------------------------------------------------- |
-| Install deps                                 | `pnpm install`                                            |
-| Token pipeline (transform + build)           | `pnpm tokens:sync` (root shortcut)                        |
-| Token transform only                         | `pnpm --filter @ckw-elements/tokens run tokens:transform` |
-| Token build only (from existing tokens.json) | `pnpm --filter @ckw-elements/tokens run build`            |
-| Build components                             | `pnpm --filter @ckw-elements/components run build`        |
-| Format code                                  | `pnpm format`                                             |
-| Check formatting (CI)                        | `pnpm format:check`                                       |
-| Start Storybook dev server                   | `pnpm --filter @ckw-elements/storybook run dev`           |
-| Build Storybook for deployment               | `pnpm --filter @ckw-elements/storybook run build`         |
-| Build all packages                           | `pnpm -r run build`                                       |
+| What                                         | Command                                                     |
+| -------------------------------------------- | ----------------------------------------------------------- |
+| Install deps                                 | `pnpm install`                                              |
+| Token pipeline (transform + build)           | `pnpm tokens:sync` (root shortcut)                          |
+| Token transform only                         | `pnpm --filter @ckwag/elements-tokens run tokens:transform` |
+| Token build only (from existing tokens.json) | `pnpm --filter @ckwag/elements-tokens run build`            |
+| Build components                             | `pnpm --filter @ckwag/elements run build`                   |
+| Format code                                  | `pnpm format`                                               |
+| Check formatting (CI)                        | `pnpm format:check`                                         |
+| Start Storybook dev server                   | `pnpm --filter @ckwag/elements-storybook run dev`           |
+| Build Storybook for deployment               | `pnpm --filter @ckwag/elements-storybook run build`         |
+| Build all packages                           | `pnpm -r run build`                                         |
 
 **Prettier** is configured (`.prettierrc.json`). Formatting is enforced via:
 
@@ -35,10 +35,10 @@ Engine requirements: **Node >= 20**, **pnpm >= 10**.
 
 ```
 ckw-elements/                       # pnpm workspaces root ("type": "module")
-├── packages/tokens/                # @ckw-elements/tokens (ACTIVE — 282 tokens)
-├── packages/components/            # @ckw-elements/components (ACTIVE — React package)
-├── packages/icons/                 # @ckw-elements/icons (ACTIVE — React SVG icon set)
-├── apps/storybook/                 # @ckw-elements/storybook (ACTIVE)
+├── packages/tokens/                # @ckwag/elements-tokens (ACTIVE — 282 tokens)
+├── packages/components/            # @ckwag/elements (ACTIVE — React package)
+├── packages/icons/                 # @ckwag/elements-icons (ACTIVE — React SVG icon set)
+├── apps/storybook/                 # @ckwag/elements-storybook (ACTIVE)
 ├── token-drop/                     # Drop folder for Tokens Studio JSON exports
 ├── pnpm-workspace.yaml             # packages: ['packages/*', 'apps/*']
 ├── ARCHITECTURE.md                 # Full architecture docs (870 lines)

@@ -1,5 +1,5 @@
 {
-  "name": "@ckw-elements/tokens",
+  "name": "@ckwag/elements-tokens",
   "version": "0.0.1",
   "description": "CKW Elements Design Tokens — generated from Figma Variables",
   "license": "Apache-2.0",

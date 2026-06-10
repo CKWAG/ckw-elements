@@ -1,7 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
-import { iconNames } from '@ckw-elements/icons';
-import type { IconName } from '@ckw-elements/icons';
+import { iconNames } from '@ckwag/elements-icons';
+import type { IconName } from '@ckwag/elements-icons';
 import { IconPlayground } from '../components/IconCopyGrid';
 
 interface IconStoryProps {
@@ -33,7 +33,7 @@ const meta = {
       name: 'Icon',
       control: { type: 'select' },
       options: iconNames,
-      description: 'Icon name from @ckw-elements/icons.',
+      description: 'Icon name from @ckwag/elements-icons.',
       table: { category: 'General', defaultValue: { summary: 'search' } },
     },
     size: {

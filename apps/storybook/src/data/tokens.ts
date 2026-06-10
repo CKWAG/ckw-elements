@@ -1,7 +1,7 @@
 /**
  * Token Data for Storybook Foundation Pages
  *
- * Adapter that imports tokens.json from @ckw-elements/tokens (the single source
+ * Adapter that imports tokens.json from @ckwag/elements-tokens (the single source
  * of truth) and transforms the DTCG structure into typed arrays consumed by
  * React helper components and MDX pages.
  *
@@ -9,7 +9,7 @@
  * When Figma tokens change and `pnpm tokens:sync` runs, this file auto-updates.
  */
 
-import tokensJson from '@ckw-elements/tokens/tokens.json';
+import tokensJson from '@ckwag/elements-tokens/tokens.json';
 
 // ============================================
 // Types

@@ -5,7 +5,7 @@ CKW Elements is a token-first React design system. Build UI by importing tokens 
 ## Install
 
 ```bash
-npm install @ckw-elements/tokens @ckw-elements/components
+npm install @ckwag/tokens @ckwag/components
 ```
 
 ## Required App Setup
@@ -13,25 +13,25 @@ npm install @ckw-elements/tokens @ckw-elements/components
 Import token CSS once in the app entry point:
 
 ```css
-@import '@ckw-elements/tokens/tokens.css';
+@import '@ckwag/tokens/tokens.css';
 ```
 
 React applications can import components from either package root or the explicit React subpath:
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckwag/components';
 ```
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components/react';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckwag/components/react';
 ```
 
 If a bundler does not process CSS side-effect imports from packages, import the aggregate component CSS explicitly:
 
 ```css
-@import '@ckw-elements/components/styles.css';
+@import '@ckwag/components/styles.css';
 ```
 
 ## Token Assets
@@ -46,9 +46,9 @@ These files are published with the deployed documentation for agents and build t
 The npm token package also exports:
 
 ```ts
-import tokens, { interactivePrimary, spacingM } from '@ckw-elements/tokens';
-import '@ckw-elements/tokens/tokens.css';
-import rawTokens from '@ckw-elements/tokens/tokens.json';
+import tokens, { interactivePrimary, spacingM } from '@ckwag/tokens';
+import '@ckwag/tokens/tokens.css';
+import rawTokens from '@ckwag/tokens/tokens.json';
 ```
 
 ## Styling Rules

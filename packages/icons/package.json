@@ -1,5 +1,5 @@
 {
-  "name": "@ckw-elements/icons",
+  "name": "@ckwag/elements-icons",
   "version": "0.0.1",
   "description": "CKW Elements icon library",
   "license": "Apache-2.0",
@@ -27,10 +27,6 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
-    },
-    "./react": {
-      "types": "./dist/react/index.d.ts",
-      "import": "./dist/react/index.js"
     },
     "./package.json": "./package.json"
   },

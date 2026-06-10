@@ -1,4 +1,4 @@
-// @ckw-elements/components/react — re-exports all React components
+// @ckwag/elements/react — re-exports all React components
 export { Button } from '../Button/index.js';
 export type { ButtonProps, ButtonSize, ButtonType } from '../Button/index.js';
 export { InputField } from '../InputField/index.js';

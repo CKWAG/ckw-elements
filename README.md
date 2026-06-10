@@ -25,12 +25,12 @@ The result: a single source of truth for colors, typography, spacing, borders, s
 
 ## What's Included
 
-| Package                                             | Status    | Description                                                 |
-| --------------------------------------------------- | --------- | ----------------------------------------------------------- |
-| [`@ckw-elements/tokens`](./packages/tokens)         | ✅ Active | 282 design tokens (CSS + JS)                                |
-| [`@ckw-elements/components`](./packages/components) | ✅ Active | React component library (ESM + types + CSS)                 |
-| [`@ckw-elements/icons`](./packages/icons)           | ✅ Active | React SVG icon set (ESM + types)                            |
-| [`@ckw-elements/storybook`](./apps/storybook)       | ✅ Active | [Documentation site](https://ckwag.github.io/ckw-elements/) |
+| Package                                         | Status    | Description                                                 |
+| ----------------------------------------------- | --------- | ----------------------------------------------------------- |
+| [`@ckwag/elements-tokens`](./packages/tokens)   | ✅ Active | 282 design tokens (CSS + JS)                                |
+| [`@ckwag/elements`](./packages/components)      | ✅ Active | React component library (ESM + types + CSS)                 |
+| [`@ckwag/elements-icons`](./packages/icons)     | ✅ Active | React SVG icon set (ESM + types)                            |
+| [`@ckwag/elements-storybook`](./apps/storybook) | ✅ Active | [Documentation site](https://ckwag.github.io/ckw-elements/) |
 
 ## Quick Start
 
@@ -38,7 +38,7 @@ The result: a single source of truth for colors, typography, spacing, borders, s
 git clone https://github.com/CKWAG/ckw-elements-design.git
 cd ckw-elements-design
 pnpm install
-pnpm --filter @ckw-elements/storybook run dev
+pnpm --filter @ckwag/elements-storybook run dev
 ```
 
 > **Prerequisites:** Node.js >= 20, pnpm >= 10
@@ -50,21 +50,21 @@ Storybook opens at [localhost:6006](http://localhost:6006) with the full token d
 Install the packages in any React application:
 
 ```bash
-npm install @ckw-elements/tokens @ckw-elements/icons @ckw-elements/components
+npm install @ckwag/elements-tokens @ckwag/elements-icons @ckwag/elements
 ```
 
 Import token CSS once in your app entry point:
 
 ```css
-@import '@ckw-elements/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 ```
 
 Then import components directly:
 
 ```tsx
 import React from 'react';
-import { IconSearch } from '@ckw-elements/icons';
-import { Button, InlineMessage, InputField, SegmentedControl } from '@ckw-elements/components';
+import { IconSearch } from '@ckwag/elements-icons';
+import { Button, InlineMessage, InputField, SegmentedControl } from '@ckwag/elements';
 
 export function Example() {
   return (
@@ -86,16 +86,10 @@ export function Example() {
 }
 ```
 
-The package also exposes an explicit React subpath:
-
-```tsx
-import { Button } from '@ckw-elements/components/react';
-```
-
 If a bundler does not process CSS side-effect imports from packages, import component CSS explicitly:
 
 ```css
-@import '@ckw-elements/components/styles.css';
+@import '@ckwag/elements/styles.css';
 ```
 
 ## Token Usage
@@ -103,7 +97,7 @@ If a bundler does not process CSS side-effect imports from packages, import comp
 Import the token CSS file into your project:
 
 ```css
-@import '@ckw-elements/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 ```
 
 Then use semantic tokens in your styles:
@@ -128,8 +122,8 @@ Then use semantic tokens in your styles:
 Token values can also be imported from JavaScript:
 
 ```ts
-import tokens, { interactivePrimary, spacingM } from '@ckw-elements/tokens';
-import rawTokens from '@ckw-elements/tokens/tokens.json';
+import tokens, { interactivePrimary, spacingM } from '@ckwag/elements-tokens';
+import rawTokens from '@ckwag/elements-tokens/tokens.json';
 ```
 
 ## AI Agent Support
@@ -170,18 +164,18 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for full pipeline details.
 
 ## Scripts
 
-| Command                                            | Description                             |
-| -------------------------------------------------- | --------------------------------------- |
-| `pnpm install`                                     | Install dependencies                    |
-| `pnpm tokens:sync`                                 | Full token pipeline (transform + build) |
-| `pnpm --filter @ckw-elements/components run build` | Build React component package           |
-| `pnpm format`                                      | Format code (Prettier)                  |
-| `pnpm format:check`                                | Check formatting (CI)                   |
-| `pnpm --filter @ckw-elements/storybook run dev`    | Start Storybook                         |
-| `pnpm --filter @ckw-elements/storybook run build`  | Build Storybook                         |
-| `pnpm -r run build`                                | Build all packages                      |
-| `pnpm changeset`                                   | Add package release intent              |
-| `pnpm release:validate`                            | Validate build, release metadata, pack  |
+| Command                                             | Description                             |
+| --------------------------------------------------- | --------------------------------------- |
+| `pnpm install`                                      | Install dependencies                    |
+| `pnpm tokens:sync`                                  | Full token pipeline (transform + build) |
+| `pnpm --filter @ckwag/elements run build`           | Build React component package           |
+| `pnpm format`                                       | Format code (Prettier)                  |
+| `pnpm format:check`                                 | Check formatting (CI)                   |
+| `pnpm --filter @ckwag/elements-storybook run dev`   | Start Storybook                         |
+| `pnpm --filter @ckwag/elements-storybook run build` | Build Storybook                         |
+| `pnpm -r run build`                                 | Build all packages                      |
+| `pnpm changeset`                                    | Add package release intent              |
+| `pnpm release:validate`                             | Validate build, release metadata, pack  |
 
 ## Tech Stack
 

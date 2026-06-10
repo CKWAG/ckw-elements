@@ -1,5 +1,5 @@
-import componentsPackage from '@ckw-elements/components/package.json';
-import tokensPackage from '@ckw-elements/tokens/package.json';
+import componentsPackage from '@ckwag/elements/package.json';
+import tokensPackage from '@ckwag/elements-tokens/package.json';
 import componentsChangelog from '../../../../packages/components/CHANGELOG.md?raw';
 import tokensChangelog from '../../../../packages/tokens/CHANGELOG.md?raw';
 
@@ -41,14 +41,14 @@ export const packageVersions: PackageVersion[] = [
   {
     name: componentsPackage.name,
     version: componentsPackage.version,
-    npmUrl: 'https://www.npmjs.com/package/@ckw-elements/components',
+    npmUrl: 'https://www.npmjs.com/package/@ckwag/elements',
     changelogUrl:
       'https://github.com/CKWAG/ckw-elements-design/blob/main/packages/components/CHANGELOG.md',
   },
   {
     name: tokensPackage.name,
     version: tokensPackage.version,
-    npmUrl: 'https://www.npmjs.com/package/@ckw-elements/tokens',
+    npmUrl: 'https://www.npmjs.com/package/@ckwag/elements-tokens',
     changelogUrl:
       'https://github.com/CKWAG/ckw-elements-design/blob/main/packages/tokens/CHANGELOG.md',
   },

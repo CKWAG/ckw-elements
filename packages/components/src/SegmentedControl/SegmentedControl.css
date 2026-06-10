@@ -1,7 +1,7 @@
 /**
  * Segmented Control Styles
  *
- * Uses only semantic design tokens from @ckw-elements/tokens.
+ * Uses only semantic design tokens from @ckwag/elements-tokens.
  * Container is a pill-shaped track with a sliding indicator behind segments.
  *
  * Types: Default (auto-width), Fill (equal-width stretch)

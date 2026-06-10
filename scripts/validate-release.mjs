@@ -16,7 +16,7 @@ const errors = [];
 
 const publicPackages = [
   {
-    name: '@ckw-elements/tokens',
+    name: '@ckwag/elements-tokens',
     directory: 'packages/tokens',
     requiredFiles: [
       'CHANGELOG.md',
@@ -31,7 +31,7 @@ const publicPackages = [
     requiredFilesEntries: ['dist/', 'CHANGELOG.md', 'README.md', 'tokens.json'],
   },
   {
-    name: '@ckw-elements/components',
+    name: '@ckwag/elements',
     directory: 'packages/components',
     requiredFiles: [
       'CHANGELOG.md',
@@ -46,7 +46,7 @@ const publicPackages = [
     requiredFilesEntries: ['dist/', 'CHANGELOG.md', 'README.md'],
   },
   {
-    name: '@ckw-elements/icons',
+    name: '@ckwag/elements-icons',
     directory: 'packages/icons',
     requiredFiles: [
       'CHANGELOG.md',
@@ -61,7 +61,7 @@ const publicPackages = [
   },
 ];
 
-const privatePackages = [{ name: '@ckw-elements/storybook', directory: 'apps/storybook' }];
+const privatePackages = [{ name: '@ckwag/elements-storybook', directory: 'apps/storybook' }];
 
 const rootPackage = readJson('package.json');
 const changesetConfig = readJson('.changeset/config.json');

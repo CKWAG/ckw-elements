@@ -1,4 +1,4 @@
-# @ckw-elements/tokens
+# @ckwag/elements-tokens
 
 ## 0.0.1
 

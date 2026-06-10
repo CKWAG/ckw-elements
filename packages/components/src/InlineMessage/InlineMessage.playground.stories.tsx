@@ -12,8 +12,7 @@ const meta = {
     design: getFigmaDesignParameter(figmaReferences.inlineMessage),
     docs: {
       source: {
-        transform: (code: string) =>
-          `import { InlineMessage } from '@ckw-elements/components';\n\n${code}`,
+        transform: (code: string) => `import { InlineMessage } from '@ckwag/elements';\n\n${code}`,
       },
     },
   },
