@@ -23,9 +23,31 @@ Only these packages are published:
 Documentation-only changes do not need a changeset unless they affect package
 usage, exports, or release notes.
 
-## Main Branch Workflow
+## Distribution Channels
 
-The `Release Packages` workflow runs on `main`.
+| Channel | npm dist-tag | Trigger                          | Install command                   |
+| ------- | ------------ | -------------------------------- | --------------------------------- |
+| Stable  | `latest`     | GitHub Release (`v*` tag)        | `npm install @ckwag/elements`     |
+| Dev     | `dev`        | Push to `main` (package changes) | `npm install @ckwag/elements@dev` |
+
+### Dev Channel
+
+Every push to `main` that touches `packages/` automatically publishes a
+pre-release version to npm under the `dev` dist-tag. The version format is
+`<base>-dev.<short-sha>` (e.g. `0.1.0-dev.a3f7b2c`).
+
+Install the latest development build:
+
+```bash
+npm install @ckwag/elements-tokens@dev @ckwag/elements-icons@dev @ckwag/elements@dev
+```
+
+The `dev` tag never overwrites `latest` — consumers using `npm install` without
+an explicit tag always get the last stable release.
+
+### Stable Channel
+
+The `Release Packages` workflow runs when a GitHub Release is published.
 
 If unreleased changesets exist, Changesets opens or updates a release pull
 request with package version bumps and generated changelogs. Review that pull

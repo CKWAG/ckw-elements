@@ -1,11 +1,13 @@
 # Deploy Storybook to GitHub Pages
-# Triggers on push to main and manual dispatch.
+# Triggers after CI passes on main, or via manual dispatch.
 # Uses the "GitHub Pages" deployment approach (actions/deploy-pages).
 
 name: Deploy Storybook
 
 on:
-  push:
+  workflow_run:
+    workflows: ['CI']
+    types: [completed]
     branches: [main]
   workflow_dispatch:
 
@@ -20,6 +22,9 @@ concurrency:
 
 jobs:
   build:
+    if: >
+      github.event_name == 'workflow_dispatch' ||
+      github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -34,14 +39,11 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Check formatting
-        run: pnpm format:check
-
-      - name: Typecheck
-        run: pnpm typecheck
-
       - name: Build tokens
         run: pnpm --filter @ckwag/elements-tokens run build
+
+      - name: Build icons
+        run: pnpm --filter @ckwag/elements-icons run build
 
       - name: Build components
         run: pnpm --filter @ckwag/elements run build

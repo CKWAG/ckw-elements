@@ -9,7 +9,29 @@ import { releaseNotes } from '../data/releases';
     Release history for CKW Elements packages.
   </div>
 
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Development Builds</div>
+    <div className="docs-subsection-description">
+      Every push to <code>main</code> publishes a pre-release version under the
+      <code>dev</code> dist-tag. Use these builds to test unreleased changes
+      before the next stable release.
+    </div>
+  </div>
+</div>
+
+```bash
+npm install @ckwag/elements-tokens@dev @ckwag/elements-icons@dev @ckwag/elements@dev
+```
+
+<div className="sb-unstyled">
+  <div className="docs-subsection-description" style={{ marginTop: '16px', marginBottom: '48px' }}>
+    The <code>dev</code> tag never affects the default <code>latest</code> tag.
+    Running <code>npm install @ckwag/elements</code> without an explicit tag
+    always resolves to the last stable release listed below.
+  </div>
+
   <div className="docs-section">
+    <div className="docs-section-title">Release History</div>
     <div className="release-note-list">
       {releaseNotes.map((release) => (
         <div className="release-note" key={release.version}>
