@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { IconPlaceholder } from '@ckwag/elements-icons';
 import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { SegmentedControl } from './SegmentedControl';

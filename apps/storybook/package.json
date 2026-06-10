@@ -17,14 +17,13 @@
     "@ckwag/elements-tokens": "workspace:*"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^10.3.6",
-    "@storybook/react": "^10.3.6",
-    "@storybook/react-vite": "^10.3.6",
+    "@storybook/addon-docs": "^10.4.3",
+    "@storybook/react-vite": "^10.4.3",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "storybook": "^10.3.6",
+    "storybook": "^10.4.3",
     "vite": "^6.4.2"
   }
 }

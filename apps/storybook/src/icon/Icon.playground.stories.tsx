@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Meta, StoryObj } from '@storybook/react';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 import { iconNames } from '@ckwag/elements-icons';
 import type { IconName } from '@ckwag/elements-icons';
 import { IconPlayground } from '../components/IconCopyGrid';
