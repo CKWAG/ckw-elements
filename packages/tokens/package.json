@@ -6,12 +6,12 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/CKWAG/ckw-elements-design.git",
+    "url": "https://github.com/CKWAG/ckw-elements.git",
     "directory": "packages/tokens"
   },
   "homepage": "https://ckwag.github.io/ckw-elements/",
   "bugs": {
-    "url": "https://github.com/CKWAG/ckw-elements-design/issues"
+    "url": "https://github.com/CKWAG/ckw-elements/issues"
   },
   "keywords": [
     "ckw",

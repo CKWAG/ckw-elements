@@ -35,8 +35,8 @@ The result: a single source of truth for colors, typography, spacing, borders, s
 ## Quick Start
 
 ```bash
-git clone https://github.com/CKWAG/ckw-elements-design.git
-cd ckw-elements-design
+git clone https://github.com/CKWAG/ckw-elements.git
+cd ckw-elements
 pnpm install
 pnpm --filter @ckwag/elements-storybook run dev
 ```
@@ -231,7 +231,7 @@ packages/components/src/ComponentName/
 ## Project Structure
 
 ```
-ckw-elements-design/
+ckw-elements/
 ├── packages/
 │   ├── tokens/              282 design tokens (CSS + JS output)
 │   ├── components/          React component library
