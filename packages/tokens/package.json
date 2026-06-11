@@ -48,6 +48,7 @@
       "import": "./dist/tokens.js"
     },
     "./tokens.css": "./dist/tokens.css",
+    "./tokens.layered.css": "./dist/tokens.layered.css",
     "./tokens.js": {
       "types": "./dist/tokens.d.ts",
       "import": "./dist/tokens.js"

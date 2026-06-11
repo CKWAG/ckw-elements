@@ -127,7 +127,7 @@ export const shadowXl = "0px 16px 48px 0px rgba(0, 0, 0, 0.14)";
 export const gradientBrand = "linear-gradient(210deg, #9ab20f 0%, #4e7818 100%)";
 
 // Font Family
-export const fontFamilyBrand = "Gotham";
+export const fontFamilyBrand = "Gotham, \"Helvetica Neue\", Arial, system-ui, sans-serif";
 
 // Semantic Colors
 export const textPrimary = "var(--color-grey-800)";
@@ -503,7 +503,7 @@ export default {
   "shadow-l": "0px 8px 32px 0px rgba(0, 0, 0, 0.1)",
   "shadow-xl": "0px 16px 48px 0px rgba(0, 0, 0, 0.14)",
   "gradient-brand": "linear-gradient(210deg, #9ab20f 0%, #4e7818 100%)",
-  "font-family-brand": "Gotham",
+  "font-family-brand": "Gotham, \"Helvetica Neue\", Arial, system-ui, sans-serif",
   "text-primary": "var(--color-grey-800)",
   "text-secondary": "var(--color-grey-600)",
   "text-tertiary": "var(--color-grey-400)",

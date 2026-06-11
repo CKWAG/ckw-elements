@@ -31,7 +31,12 @@
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
     },
+    "./react": {
+      "types": "./dist/react/index.d.ts",
+      "import": "./dist/react/index.js"
+    },
     "./styles.css": "./dist/styles.css",
+    "./styles.layered.css": "./dist/styles.layered.css",
     "./package.json": "./package.json"
   },
   "scripts": {

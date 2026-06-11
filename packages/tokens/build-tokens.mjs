@@ -29,6 +29,7 @@ try {
 }
 
 const js = readFileSync('dist/tokens.js', 'utf8');
+const css = readFileSync('dist/tokens.css', 'utf8');
 const namedExports = (js.match(/^export const \w+/gm) ?? [])
   .map((m) => `${m.replace('export const', 'export declare const')}: string;`)
   .join('\n');
@@ -39,9 +40,19 @@ const defaultExport = [
   '',
 ].join('\n');
 writeFileSync('dist/tokens.d.ts', namedExports + defaultExport);
+writeFileSync('dist/tokens.layered.css', wrapCssInLayer(css, 'ckw-tokens'));
 copyFileSync('tokens.json', 'dist/tokens.json');
 
 console.log('  Generated dist/tokens.css');
+console.log('  Generated dist/tokens.layered.css');
 console.log('  Generated dist/tokens.js');
 console.log('  Generated dist/tokens.d.ts');
 console.log('  Generated dist/tokens.json\n');
+
+/**
+ * Wrap generated CSS in an opt-in cascade layer for consumers that want explicit
+ * layer ordering without changing the default token import behavior.
+ */
+function wrapCssInLayer(source, layerName) {
+  return `@layer ${layerName} {\n${source}\n}\n`;
+}

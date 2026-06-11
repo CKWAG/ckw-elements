@@ -91,6 +91,17 @@ function composeShadowValue(value) {
 }
 
 /**
+ * Add a safe fallback stack to the licensed brand font contract.
+ */
+function formatFontFamilyValue(value) {
+  if (value === 'Gotham') {
+    return 'Gotham, "Helvetica Neue", Arial, system-ui, sans-serif';
+  }
+
+  return value;
+}
+
+/**
  * Convert a Tokens Studio semantic reference like "{Grey.800}" to a
  * DTCG-format reference like "{primitive.color.grey.800}".
  */
@@ -126,8 +137,6 @@ function convertReference(value) {
  *                       { style: "heading-xl", property: "size" }
  */
 function parseTypographyName(name) {
-  const properties = ['size', 'height', 'weight'];
-
   // Strategy: find which property suffix the name ends with (for size/height)
   // or contains as a segment (for weight, which can appear mid-name)
 
@@ -289,7 +298,7 @@ function transform() {
         if (mode === 'desktop') {
           for (const [name, token] of Object.entries(tokens)) {
             setNested(output, `primitive.font-family.${name.toLowerCase()}`, {
-              $value: token.$value,
+              $value: formatFontFamilyValue(token.$value),
               $type: 'fontFamily',
             });
             counts['primitive.font-family']++;

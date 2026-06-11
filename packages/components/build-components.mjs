@@ -41,6 +41,13 @@ const cssImports = cssFiles
 
 writeFileSync(join(distDir, 'styles.css'), `${cssImports.join('\n')}\n`);
 
+const layeredCssImports = cssFiles
+  .map((file) => relative(srcDir, file).split(sep).join('/'))
+  .sort()
+  .map((file) => `@import './${file}' layer(ckw-elements);`);
+
+writeFileSync(join(distDir, 'styles.layered.css'), `${layeredCssImports.join('\n')}\n`);
+
 /**
  * Recursively finds component CSS files below a directory.
  */

@@ -13,10 +13,188 @@ import { typographyCategories } from '../data/tokens';
   CKW Elements uses <strong>Gotham</strong> as its brand typeface with three weights: Book (325),
   Medium (500), and Bold (700). The type scale has 28 styles across Display, Heading, Lead, Body,
   Caption, Label, Overline, and Metric categories. Display, Heading, and Lead styles are responsive
-  — they have different values for Desktop and Mobile.
+  — they have different values for Desktop and Mobile. Consuming applications must provide their own
+  licensed Gotham font files; CKW Elements ships only the CSS contract and a fallback stack.
 </div>
 
 <DesignReference reference={figmaReferences.typography} />
+
+<div className="docs-section">
+  <div className="docs-section-title">Consumer contract</div>
+  <div className="docs-description">
+    The official typography API for React applications is the CKW-prefixed CSS utility class set,
+    for example <code>ckw-text-heading-l</code> and <code>ckw-text-body-m</code>. Raw CSS variables
+    remain available for custom styling, and the legacy unprefixed <code>text-*</code> utility
+    classes continue to work for backwards compatibility.
+  </div>
+
+```html
+<h1 class="ckw-text-heading-l">Dashboard</h1>
+<p class="ckw-text-body-m">Description text</p>
+<span class="ckw-text-caption">Helper text</span>
+```
+
+```css
+.custom-heading {
+  font-family: var(--text-heading-l-font-family);
+  font-size: var(--text-heading-l-font-size);
+  font-weight: var(--text-heading-l-font-weight);
+  line-height: var(--text-heading-l-line-height);
+}
+```
+
+  <div className="docs-description">
+    Font sizes are emitted in <code>rem</code> and line heights as unitless ratios in CSS output so
+    browser text scaling works as expected. The source DTCG tokens keep their Figma pixel values.
+  </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Licensed Gotham setup</div>
+  <div className="docs-description">
+    Storybook loads Gotham internally for documentation previews. Product applications must provide
+    their own licensed Gotham assets using the family name <code>Gotham</code>. CKW Elements expects
+    normal weights <code>325</code> (Book), <code>500</code> (Medium), and <code>700</code> (Bold)
+    when metric-emphasized styles are used. Use <code>font-display: swap</code> for UI text.
+  </div>
+
+```css
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Book.woff2') format('woff2');
+  font-weight: 325;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+```
+
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Usage matrix</div>
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th>UI case</th>
+        <th>Recommended typography</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Page title</td>
+        <td>
+          <span className="token-badge">heading-l</span> or{' '}
+          <span className="token-badge">heading-xl</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Section title</td>
+        <td>
+          <span className="token-badge">heading-m</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Card or panel title</td>
+        <td>
+          <span className="token-badge">heading-s</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Body text</td>
+        <td>
+          <span className="token-badge">body-m</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Small body text</td>
+        <td>
+          <span className="token-badge">body-s</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Helper or error text</td>
+        <td>
+          <span className="token-badge">caption</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Form label</td>
+        <td>
+          <span className="token-badge">label-s</span> or{' '}
+          <span className="token-badge">label-m</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Button text</td>
+        <td>
+          <span className="token-badge">label-l</span>, <span className="token-badge">label-m</span>
+          , or <span className="token-badge">label-s</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Navigation item</td>
+        <td>
+          <span className="token-badge">label-m</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Table header</td>
+        <td>
+          <span className="token-badge">label-s</span> or{' '}
+          <span className="token-badge">overline</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Table cell</td>
+        <td>
+          <span className="token-badge">body-s</span> or <span className="token-badge">body-m</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Metric value</td>
+        <td>
+          <span className="token-badge">metric-xl</span>,{' '}
+          <span className="token-badge">metric-l</span>, or{' '}
+          <span className="token-badge">metric-m</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Metric label</td>
+        <td>
+          <span className="token-badge">caption</span> or{' '}
+          <span className="token-badge">label-s</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Badge or pill text</td>
+        <td>
+          <span className="token-badge">caption-emphasized</span> or{' '}
+          <span className="token-badge">label-s</span>
+        </td>
+      </tr>
+      <tr>
+        <td>Code or monospace values</td>
+        <td>Use a product-local monospace style until a CKW mono token is designed.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 <div className="docs-section">
   <div className="docs-section-title">Tokens</div>
@@ -65,16 +243,16 @@ import { typographyCategories } from '../data/tokens';
 
 ```html
 <!-- Using the utility class directly on an HTML element -->
-<h2 class="text-heading-l">My Heading</h2>
+<h2 class="ckw-text-heading-l">My Heading</h2>
 ```
 
 ```css
-/* Using individual tokens in custom CSS */
+/* Using semantic recipe tokens in custom CSS */
 .my-heading {
-  font-family: var(--font-family-brand);
-  font-size: var(--heading-l-size);
-  line-height: var(--heading-l-height);
-  font-weight: var(--heading-l-weight);
+  font-family: var(--text-heading-l-font-family);
+  font-size: var(--text-heading-l-font-size);
+  line-height: var(--text-heading-l-line-height);
+  font-weight: var(--text-heading-l-font-weight);
 }
 ```
 

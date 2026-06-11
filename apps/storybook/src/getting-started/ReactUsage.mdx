@@ -44,10 +44,9 @@ import { IconSearch } from '@ckwag/elements-icons';
   <div className="docs-section" style={{ marginTop: '48px' }}>
     <div className="docs-section-title">Token Setup</div>
     <div className="docs-subsection-description">
-      Import the token CSS file once in your app entry point. Components rely on CSS custom
-      properties being available in the document. Component CSS is imported by the component
-      package; import the aggregate stylesheet only if your bundler does not process package CSS
-      side effects.
+      Import the token CSS file once before rendering CKW components. Component CSS is imported by
+      the component package; import the aggregate stylesheet explicitly when your bundler does not
+      process package CSS side effects or when you want one predictable global stylesheet import.
     </div>
   </div>
 </div>
@@ -62,6 +61,137 @@ import { IconSearch } from '@ckwag/elements-icons';
 
 <div className="sb-unstyled">
   <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Opt-in cascade layers</div>
+    <div className="docs-subsection-description">
+      The default imports above preserve existing cascade behavior. For applications that use CSS
+      cascade layers, import the layered files and declare the order once so app CSS predictably
+      wins over CKW package CSS.
+    </div>
+  </div>
+</div>
+
+```css
+@layer ckw-tokens, ckw-elements, app;
+
+@import '@ckwag/elements-tokens/tokens.layered.css';
+@import '@ckwag/elements/styles.layered.css';
+
+@layer app {
+  .page {
+    color: var(--text-primary);
+  }
+}
+```
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Gotham font contract</div>
+    <div className="docs-subsection-description">
+      Gotham is licensed and not bundled with CKW Elements. The token package defines
+      <code>--font-family-brand</code> as{' '}
+      <code>Gotham, "Helvetica Neue", Arial, system-ui, sans-serif</code>. Consuming applications
+      should provide licensed Gotham files under the family name
+      <code>Gotham</code> with normal weights <code>325</code>, <code>500</code>, and{' '}
+      <code>700</code>
+      when metric-emphasized styles are used.
+    </div>
+  </div>
+</div>
+
+```css
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Book.woff2') format('woff2');
+  font-weight: 325;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Gotham';
+  src: url('/fonts/Gotham-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+```
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Next.js App Router</div>
+    <div className="docs-subsection-description">
+      In Next.js App Router, import global CSS from <code>app/layout.tsx</code>. If you use
+      <code>next/font/local</code>, expose Gotham on a separate variable and bridge it back to the
+      CKW token in your global CSS. This keeps CKW components coupled to the design token, not to
+      Next.js internals.
+    </div>
+  </div>
+</div>
+
+```tsx
+// app/fonts.ts
+import localFont from 'next/font/local';
+
+export const gotham = localFont({
+  src: [
+    { path: '../public/fonts/Gotham-Book.woff2', weight: '325', style: 'normal' },
+    { path: '../public/fonts/Gotham-Medium.woff2', weight: '500', style: 'normal' },
+    { path: '../public/fonts/Gotham-Bold.woff2', weight: '700', style: 'normal' },
+  ],
+  variable: '--font-gotham',
+  display: 'swap',
+  fallback: ['Helvetica Neue', 'Arial', 'system-ui', 'sans-serif'],
+});
+```
+
+```tsx
+// app/layout.tsx
+import React from 'react';
+import '@ckwag/elements-tokens/tokens.css';
+import '@ckwag/elements/styles.css';
+import './globals.css';
+import { gotham } from './fonts';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="de" className={gotham.variable}>
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+```css
+/* app/globals.css — imported after CKW tokens in app/layout.tsx */
+:root {
+  --font-family-brand: var(--font-gotham, Gotham, 'Helvetica Neue', Arial, system-ui, sans-serif);
+}
+```
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">React and Next.js compatibility</div>
+    <div className="docs-subsection-description">
+      CKW Elements supports React 18 and React 19 through peer dependencies. Button and
+      InlineMessage are presentational components. InputField, PasswordInput, and SegmentedControl
+      are client components because they use React ids, state, refs, layout effects, or event-driven
+      interactivity. Props extend native HTML props where practical: Button extends native button
+      props, InputField extends native input props, and PasswordInput composes InputField while
+      omitting the internally controlled <code>type</code> and <code>icon</code> props.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
     <div className="docs-section-title">Package Exports</div>
     <div className="docs-subsection-description">
       The component and icon packages expose root imports, aggregate CSS, and package metadata.
@@ -72,7 +202,11 @@ import { IconSearch } from '@ckwag/elements-icons';
 ```json
 {
   "@ckwag/elements": "React components",
+  "@ckwag/elements/react": "React component subpath export",
   "@ckwag/elements/styles.css": "All component CSS",
+  "@ckwag/elements/styles.layered.css": "All component CSS in @layer ckw-elements",
+  "@ckwag/elements-tokens/tokens.css": "Design tokens and typography utilities",
+  "@ckwag/elements-tokens/tokens.layered.css": "Design tokens in @layer ckw-tokens",
   "@ckwag/elements-icons": "React SVG icon components"
 }
 ```
@@ -89,7 +223,7 @@ import { IconSearch } from '@ckwag/elements-icons';
 
 ```tsx
 import React from 'react';
-import { Button } from '@ckwag/elements';
+import { Button, InlineMessage, InputField } from '@ckwag/elements';
 import { IconArrowRight, IconSearch } from '@ckwag/elements-icons';
 
 function MyPage() {

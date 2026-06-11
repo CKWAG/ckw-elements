@@ -22,6 +22,16 @@ Component CSS is imported as package side effects. If your bundler does not proc
 @import '@ckwag/elements/styles.css';
 ```
 
+For cascade-layered apps, opt in to layered package CSS instead of the default imports:
+
+```css
+@layer ckw-tokens, ckw-elements, app;
+@import '@ckwag/elements-tokens/tokens.layered.css';
+@import '@ckwag/elements/styles.layered.css';
+```
+
+Gotham is licensed and is not bundled. Provide licensed Gotham files in your app with the family name `Gotham`; CKW tokens fall back to `"Helvetica Neue", Arial, system-ui, sans-serif` when Gotham is unavailable.
+
 ## Usage
 
 ```tsx
@@ -57,14 +67,17 @@ export function Example() {
 
 ## Exports
 
-| Export                       | Description             |
-| ---------------------------- | ----------------------- |
-| `@ckwag/elements`            | React component exports |
-| `@ckwag/elements/styles.css` | Aggregate component CSS |
+| Export                               | Description                                      |
+| ------------------------------------ | ------------------------------------------------ |
+| `@ckwag/elements`                    | React component exports                          |
+| `@ckwag/elements/react`              | React component subpath export                   |
+| `@ckwag/elements/styles.css`         | Aggregate component CSS                          |
+| `@ckwag/elements/styles.layered.css` | Aggregate component CSS in `@layer ckw-elements` |
 
 ## Rules
 
 - Import `@ckwag/elements-tokens/tokens.css` before rendering components.
 - Use semantic tokens for custom product UI.
+- Use `ckw-text-*` typography utility classes for product text styles.
 - Do not use primitive color tokens in product components.
 - CKW primary actions are green through `var(--interactive-primary)`.

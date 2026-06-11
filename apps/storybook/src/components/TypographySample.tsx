@@ -17,7 +17,7 @@ interface TypographySampleProps {
  * tokens.json data through the tokens adapter.
  */
 export function TypographySample({ style, responsive }: TypographySampleProps) {
-  const tokenPrefix = style.cssClass.replace('text-', '');
+  const tokenPrefix = style.cssClass.replace(/^ckw-text-/, '').replace(/^text-/, '');
   const desktopLineHeightPercent = computeLineHeightPercent(
     style.desktop.size,
     style.desktop.height,

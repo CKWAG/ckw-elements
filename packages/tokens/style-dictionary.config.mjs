@@ -20,7 +20,7 @@
  *     - --interactive-primary: var(--color-green-600)
  *   - Typography: responsive tokens with Desktop (default) and Mobile overrides
  *     - --display-l-size, --heading-xl-height, --body-m-weight
- *   - Typography Utility Classes: .text-display-l, .text-heading-xl, etc.
+ *   - Typography Utility Classes: .ckw-text-display-l, .text-display-l, etc.
  *
  * Components must NEVER use primitive color tokens directly — only semantic.
  */
@@ -121,6 +121,98 @@ function resolveSemanticRef(token, unfilteredTokens) {
   return token.$value;
 }
 
+/**
+ * Convert pixel typography sizes to rem for accessible browser text scaling.
+ */
+function pxToRem(value) {
+  const match = /^(\d+(?:\.\d+)?)px$/.exec(String(value));
+  if (!match) return value;
+
+  const rem = Number(match[1]) / 16;
+  return `${Number(rem.toFixed(4))}rem`;
+}
+
+/**
+ * Convert pixel line heights to unitless ratios when the matching size is known.
+ */
+function lineHeightToRatio(height, size) {
+  const heightMatch = /^(\d+(?:\.\d+)?)px$/.exec(String(height));
+  const sizeMatch = /^(\d+(?:\.\d+)?)px$/.exec(String(size));
+
+  if (!heightMatch || !sizeMatch) return height;
+
+  const sizeValue = Number(sizeMatch[1]);
+  if (sizeValue === 0) return height;
+
+  return String(Number((Number(heightMatch[1]) / sizeValue).toFixed(4)));
+}
+
+/**
+ * Build a style/property lookup map for typography conversion helpers.
+ */
+function buildTypographyValueMap(tokens) {
+  const map = new Map();
+  for (const token of tokens) {
+    map.set(`${token.path[2]}-${token.path[3]}`, token.$value);
+  }
+  return map;
+}
+
+/**
+ * Format typography token values for the CSS custom property output.
+ */
+function formatTypographyValue(token, tokenMap) {
+  const property = token.path[3];
+
+  if (property === 'size') {
+    return pxToRem(token.$value);
+  }
+
+  if (property === 'height') {
+    return lineHeightToRatio(token.$value, tokenMap.get(`${token.path[2]}-size`));
+  }
+
+  return token.$value;
+}
+
+/**
+ * Collect typography style names in first-seen token order.
+ */
+function collectTypographyStyleNames(tokens) {
+  const styleNames = new Set();
+  for (const token of tokens) {
+    styleNames.add(token.path[2]);
+  }
+  return styleNames;
+}
+
+/**
+ * Emit CKW-prefixed custom property duplicates without removing the legacy names.
+ */
+function appendCkwAliases(css, tokens, formatValue) {
+  for (const token of tokens) {
+    css += `  --ckw-${token.name}: ${formatValue(token)};\n`;
+  }
+  return css;
+}
+
+/**
+ * Emit composite typography recipe aliases such as --text-body-m-font-size.
+ */
+function appendTypographyRecipeAliases(css, styleNames) {
+  for (const style of styleNames) {
+    css += `  --text-${style}-font-family: var(--font-family-brand);\n`;
+    css += `  --text-${style}-font-size: var(--${style}-size);\n`;
+    css += `  --text-${style}-font-weight: var(--${style}-weight);\n`;
+    css += `  --text-${style}-line-height: var(--${style}-height);\n`;
+    css += `  --ckw-text-${style}-font-family: var(--ckw-font-family-brand);\n`;
+    css += `  --ckw-text-${style}-font-size: var(--ckw-${style}-size);\n`;
+    css += `  --ckw-text-${style}-font-weight: var(--ckw-${style}-weight);\n`;
+    css += `  --ckw-text-${style}-line-height: var(--ckw-${style}-height);\n`;
+  }
+  return css;
+}
+
 // ---------------------------------------------------------------------------
 // Custom format: ckw/tokens-css
 //
@@ -136,7 +228,7 @@ function resolveSemanticRef(token, unfilteredTokens) {
 //   9.  :root { typography — desktop (default) }
 //   10. @media (max-width: 767px) { typography — mobile overrides }
 //   11. [data-theme="dark"] { } — prepared for future dark mode
-//   12. Typography utility classes (.text-display-l, .text-heading-xl, etc.)
+//   12. Typography utility classes (.ckw-text-display-l, .text-display-l, etc.)
 // ---------------------------------------------------------------------------
 function formatTokensCSS({ dictionary }) {
   const header = [
@@ -162,6 +254,9 @@ function formatTokensCSS({ dictionary }) {
   } = categorizeTokens(dictionary.allTokens);
 
   const formatValue = (token) => resolveSemanticRef(token, dictionary.unfilteredTokens);
+  const typographyDesktopMap = buildTypographyValueMap(typographyDesktop);
+  const typographyMobileMap = buildTypographyValueMap(typographyMobile);
+  const typographyStyleNames = collectTypographyStyleNames(typographyDesktop);
 
   let css = header;
 
@@ -232,6 +327,7 @@ function formatTokensCSS({ dictionary }) {
   for (const t of primitiveFontFamily) {
     css += `  --${t.name}: ${t.$value};\n`;
   }
+  css = appendCkwAliases(css, primitiveFontFamily, (token) => token.$value);
   css += '}\n\n';
 
   // --- Semantic Colors ---
@@ -242,6 +338,7 @@ function formatTokensCSS({ dictionary }) {
   for (const t of semanticColors) {
     css += `  --${t.name}: ${formatValue(t)};\n`;
   }
+  css = appendCkwAliases(css, semanticColors, formatValue);
   css += '}\n\n';
 
   // --- Typography Desktop (default) ---
@@ -250,8 +347,12 @@ function formatTokensCSS({ dictionary }) {
   css += '   ============================================ */\n\n';
   css += ':root {\n';
   for (const t of typographyDesktop) {
-    css += `  --${t.name}: ${t.$value};\n`;
+    css += `  --${t.name}: ${formatTypographyValue(t, typographyDesktopMap)};\n`;
   }
+  css = appendCkwAliases(css, typographyDesktop, (token) =>
+    formatTypographyValue(token, typographyDesktopMap),
+  );
+  css = appendTypographyRecipeAliases(css, typographyStyleNames);
   css += '}\n\n';
 
   // --- Typography Mobile (responsive override) ---
@@ -269,7 +370,8 @@ function formatTokensCSS({ dictionary }) {
     css += '@media (max-width: 767px) {\n';
     css += '  :root {\n';
     for (const t of mobileOverrides) {
-      css += `    --${t.name}: ${t.$value};\n`;
+      css += `    --${t.name}: ${formatTypographyValue(t, typographyMobileMap)};\n`;
+      css += `    --ckw-${t.name}: ${formatTypographyValue(t, typographyMobileMap)};\n`;
     }
     css += '  }\n';
     css += '}\n\n';
@@ -286,27 +388,25 @@ function formatTokensCSS({ dictionary }) {
   css += '}\n\n';
 
   // --- Typography Utility Classes ---
-  // Generate .text-{style} classes that combine font-family, font-size,
-  // line-height, and font-weight using var() references.
+  // Generate .ckw-text-{style} classes as the official API and keep
+  // .text-{style} classes as backwards-compatible aliases.
   // These automatically adapt to mobile because the vars change via @media.
   css += '/* ============================================\n';
   css += '   Typography — Utility Classes\n';
   css += '   ============================================ */\n\n';
+  for (const style of typographyStyleNames) {
+    css += `.ckw-text-${style} {\n`;
+    css += `  font-family: var(--ckw-text-${style}-font-family);\n`;
+    css += `  font-size: var(--ckw-text-${style}-font-size);\n`;
+    css += `  line-height: var(--ckw-text-${style}-line-height);\n`;
+    css += `  font-weight: var(--ckw-text-${style}-font-weight);\n`;
+    css += '}\n\n';
 
-  // Collect unique typography style names from desktop tokens
-  const styleNames = new Set();
-  for (const t of typographyDesktop) {
-    // path: ['typography', 'desktop', '{style}', '{property}']
-    const style = t.path[2];
-    styleNames.add(style);
-  }
-
-  for (const style of styleNames) {
     css += `.text-${style} {\n`;
-    css += `  font-family: var(--font-family-brand);\n`;
-    css += `  font-size: var(--${style}-size);\n`;
-    css += `  line-height: var(--${style}-height);\n`;
-    css += `  font-weight: var(--${style}-weight);\n`;
+    css += `  font-family: var(--text-${style}-font-family);\n`;
+    css += `  font-size: var(--text-${style}-font-size);\n`;
+    css += `  line-height: var(--text-${style}-line-height);\n`;
+    css += `  font-weight: var(--text-${style}-font-weight);\n`;
     css += '}\n\n';
   }
 

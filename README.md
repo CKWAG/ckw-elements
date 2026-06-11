@@ -65,6 +65,21 @@ Import token CSS once in your app entry point:
 @import '@ckwag/elements-tokens/tokens.css';
 ```
 
+If your bundler does not process package CSS side effects, import component CSS explicitly after the tokens:
+
+```css
+@import '@ckwag/elements-tokens/tokens.css';
+@import '@ckwag/elements/styles.css';
+```
+
+Apps that use cascade layers can opt in to layered CSS exports:
+
+```css
+@layer ckw-tokens, ckw-elements, app;
+@import '@ckwag/elements-tokens/tokens.layered.css';
+@import '@ckwag/elements/styles.layered.css';
+```
+
 Then import components directly:
 
 ```tsx
@@ -99,12 +114,6 @@ export function Example() {
 }
 ```
 
-If a bundler does not process CSS side-effect imports from packages, import component CSS explicitly:
-
-```css
-@import '@ckwag/elements/styles.css';
-```
-
 ## Token Usage
 
 Import the token CSS file into your project:
@@ -131,6 +140,20 @@ Then use semantic tokens in your styles:
 ```
 
 > **Rule:** Always use semantic tokens (`--interactive-primary`), never primitives (`--color-green-600`). This enables theming and ensures consistency.
+
+CKW also emits `--ckw-*` aliases for semantic color and typography variables to reduce collisions in existing apps. The original unprefixed token names remain supported for compatibility.
+
+## Typography and Fonts
+
+Use the prefixed typography utility classes as the official React-app API:
+
+```tsx
+<h1 className="ckw-text-heading-l">Dashboard</h1>
+<p className="ckw-text-body-m">Description text</p>
+<span className="ckw-text-caption">Helper text</span>
+```
+
+Gotham is licensed and is not bundled with CKW Elements. Applications must provide licensed Gotham files themselves using the family name `Gotham`. The token `--font-family-brand` includes the fallback stack `Gotham, "Helvetica Neue", Arial, system-ui, sans-serif` so apps without Gotham still render consistently.
 
 Token values can also be imported from JavaScript:
 

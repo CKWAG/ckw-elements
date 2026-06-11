@@ -361,7 +361,7 @@ function buildTypographyCategories(): TypographyCategory[] {
 
       return {
         name: tokenKeyToDisplayName(key),
-        cssClass: `text-${key}`,
+        cssClass: `ckw-text-${key}`,
         desktop: {
           size: dt?.size?.$value ?? '16px',
           height: dt?.height?.$value ?? '24px',
