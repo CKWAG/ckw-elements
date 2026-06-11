@@ -1,24 +1,16 @@
+'use client';
+
 import React from 'react';
 import { IconInformation, IconWarningCircle } from '@ckwag/elements-icons';
 import './InputField.css';
 
 export type InputFieldState = 'Default' | 'Hover' | 'Active' | 'Error' | 'Disabled';
 
-export interface InputFieldProps {
+export interface InputFieldProps extends Omit<React.ComponentProps<'input'>, 'className' | 'type'> {
   /** Label text above the input. */
   label?: string;
   /** Placeholder text shown when empty. */
   placeholder?: string;
-  /** Current input value. */
-  value?: string;
-  /** Change handler. */
-  onChange?: React.ChangeEventHandler<HTMLInputElement>;
-  /** Focus handler. */
-  onFocus?: React.FocusEventHandler<HTMLInputElement>;
-  /** Blur handler. */
-  onBlur?: React.FocusEventHandler<HTMLInputElement>;
-  /** Whether the field is disabled. */
-  disabled?: boolean;
   /** Whether the field is optional (shows "(optional)" next to label). */
   optional?: boolean;
   /** Error text shown below the input. Pass a non-empty string to trigger the error state. */
@@ -30,7 +22,12 @@ export interface InputFieldProps {
   /** Info icon click handler. */
   onInfoClick?: React.MouseEventHandler<HTMLButtonElement>;
   /** HTML input type attribute. */
-  type?: string;
+  type?: React.HTMLInputTypeAttribute;
+  /**
+   * Id applied to the underlying `<input>` and wired to the `<label htmlFor>`.
+   * Auto-generated via `useId` when omitted; provide your own to override.
+   */
+  id?: string;
   /** Additional CSS class names on the root element. */
   className?: string;
 }
@@ -43,25 +40,30 @@ export interface InputFieldProps {
  * Hover and Active states are handled via CSS pseudo-classes in real usage;
  * the explicit state prop is primarily for Storybook documentation.
  */
-export function InputField({
-  label = 'Label',
-  placeholder = 'Placeholder',
-  value,
-  onChange,
-  onFocus,
-  onBlur,
-  disabled = false,
-  optional = false,
-  errorText,
-  icon,
-  showInfo = false,
-  onInfoClick,
-  type = 'text',
-  className,
-}: InputFieldProps) {
+export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(function InputField(
+  {
+    label = 'Label',
+    placeholder = 'Placeholder',
+    disabled = false,
+    optional = false,
+    errorText,
+    icon,
+    showInfo = false,
+    onInfoClick,
+    type = 'text',
+    id,
+    className,
+    'aria-describedby': ariaDescribedBy,
+    'aria-invalid': ariaInvalid,
+    ...inputProps
+  },
+  ref,
+) {
   const hasError = Boolean(errorText);
-  const generatedErrorId = React.useId();
-  const errorId = hasError ? `ckw-input-error-${generatedErrorId}` : undefined;
+  const reactId = React.useId();
+  const inputId = id ?? `ckw-input-${reactId}`;
+  const errorId = hasError ? `ckw-input-error-${reactId}` : undefined;
+  const describedBy = [ariaDescribedBy, errorId].filter(Boolean).join(' ') || undefined;
   const rootClasses = [
     'ckw-input-field',
     hasError && 'ckw-input-field--error',
@@ -75,7 +77,9 @@ export function InputField({
     <div className={rootClasses}>
       {/* Label row */}
       <div className="ckw-input-field__label-row">
-        <span className="ckw-input-field__label">{label}</span>
+        <label className="ckw-input-field__label" htmlFor={inputId}>
+          {label}
+        </label>
         {optional && <span className="ckw-input-field__optional">(optional)</span>}
         {showInfo && (
           <button
@@ -93,16 +97,15 @@ export function InputField({
       <div className="ckw-input-field__outer">
         <div className="ckw-input-field__inner">
           <input
+            {...inputProps}
+            ref={ref}
             className="ckw-input-field__input"
+            id={inputId}
             type={type}
             placeholder={placeholder}
-            value={value}
-            onChange={onChange}
-            onFocus={onFocus}
-            onBlur={onBlur}
             disabled={disabled}
-            aria-invalid={hasError || undefined}
-            aria-describedby={errorId}
+            aria-invalid={hasError ? true : ariaInvalid}
+            aria-describedby={describedBy}
           />
           {icon && <span className="ckw-input-field__icon">{icon}</span>}
         </div>
@@ -119,4 +122,4 @@ export function InputField({
       )}
     </div>
   );
-}
+});

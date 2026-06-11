@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import './SegmentedControl.css';
 
@@ -33,6 +35,10 @@ export interface SegmentedControlProps {
    *   uses CSS grid `0fr → 1fr` for smooth label animation.
    */
   contentMode?: SegmentedControlContentMode;
+  /** Accessible name for the radio group. */
+  'aria-label'?: string;
+  /** Id of an element that labels the radio group. */
+  'aria-labelledby'?: string;
   /** Additional CSS class names on the outer container. */
   className?: string;
 }
@@ -57,6 +63,8 @@ export function SegmentedControl({
   onChange,
   type = 'Default',
   contentMode = 'label',
+  'aria-label': ariaLabel,
+  'aria-labelledby': ariaLabelledby,
   className,
 }: SegmentedControlProps) {
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -121,6 +129,28 @@ export function SegmentedControl({
 
   // --- Render ---
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>, index: number) => {
+    const lastIndex = segments.length - 1;
+    let nextIndex = index;
+
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      nextIndex = index === lastIndex ? 0 : index + 1;
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      nextIndex = index === 0 ? lastIndex : index - 1;
+    } else if (event.key === 'Home') {
+      nextIndex = 0;
+    } else if (event.key === 'End') {
+      nextIndex = lastIndex;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    const nextSegment = segments[nextIndex];
+    onChange?.(nextSegment.value);
+    segmentRefs.current.get(nextSegment.value)?.focus();
+  };
+
   const classes = [
     'ckw-segmented-control',
     isCompact ? 'ckw-segmented-control--compact' : '',
@@ -131,7 +161,13 @@ export function SegmentedControl({
     .join(' ');
 
   return (
-    <div className={classes} role="tablist" ref={containerRef}>
+    <div
+      className={classes}
+      role="radiogroup"
+      aria-label={ariaLabel}
+      aria-labelledby={ariaLabelledby}
+      ref={containerRef}
+    >
       {/* Sliding indicator */}
       {indicator && (
         <div

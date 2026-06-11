@@ -19,10 +19,10 @@ const meta = {
       description: 'Text content within the button.',
       table: { category: 'Content' },
     },
-    type: {
-      name: 'Type',
+    variant: {
+      name: 'Variant',
       control: { type: 'inline-radio' },
-      options: ['Primary', 'Secondary', 'Tertiary'],
+      options: ['primary', 'secondary', 'tertiary'],
       description:
         'Visual style variant. Primary uses gradient background, Secondary is outlined, Tertiary is text-only.',
       table: { category: 'General', defaultValue: { summary: 'Primary' } },
@@ -60,15 +60,22 @@ const meta = {
         'When set to true, makes the component appear inactive and disables its functionality.',
       table: { category: 'States', defaultValue: { summary: 'false' } },
     },
+    loading: {
+      name: 'Loading',
+      control: { type: 'boolean' },
+      description: 'Shows a spinner in the leading slot, sets aria-busy, and disables interaction.',
+      table: { category: 'States', defaultValue: { summary: 'false' } },
+    },
   },
   args: {
     children: 'Button',
-    type: 'Primary',
+    variant: 'primary',
     size: 'Large',
     disabled: false,
     fullWidth: false,
     leadingIcon: false,
     trailingIcon: false,
+    loading: false,
   },
 } satisfies Meta<typeof Button>;
 
@@ -76,7 +83,7 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-/** Basic button with default type and size. */
+/** Basic button with default variant and size. */
 export const Basic: Story = {
   args: {
     children: 'Button',
@@ -116,14 +123,20 @@ const headingStyle: React.CSSProperties = {
   marginBottom: '8px',
 };
 
-/** The three visual types communicate hierarchy: Primary for the main action, Secondary for alternative actions, Tertiary for low-emphasis actions. */
-export const Types: Story = {
+const variantLabels = {
+  primary: 'Primary',
+  secondary: 'Secondary',
+  tertiary: 'Tertiary',
+} as const;
+
+/** The three visual variants communicate hierarchy: Primary for the main action, Secondary for alternative actions, Tertiary for low-emphasis actions. */
+export const Variants: Story = {
   render: () => (
     <div style={sectionStyle}>
-      {(['Primary', 'Secondary', 'Tertiary'] as const).map((type) => (
-        <div key={type} style={rowStyle}>
-          <span style={labelStyle}>{type}</span>
-          <Button type={type}>Label</Button>
+      {(['primary', 'secondary', 'tertiary'] as const).map((variant) => (
+        <div key={variant} style={rowStyle}>
+          <span style={labelStyle}>{variantLabels[variant]}</span>
+          <Button variant={variant}>Label</Button>
         </div>
       ))}
     </div>
@@ -170,34 +183,66 @@ export const States: Story = {
         <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Focus visible</div>
         <div style={{ ...labelStyle, textAlign: 'center', minWidth: '0' }}>Disabled</div>
 
-        {(['Primary', 'Secondary', 'Tertiary'] as const).map((type) => (
-          <React.Fragment key={type}>
-            <span style={labelStyle}>{type}</span>
+        {(['primary', 'secondary', 'tertiary'] as const).map((variant) => (
+          <React.Fragment key={variant}>
+            <span style={labelStyle}>{variantLabels[variant]}</span>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
-              <Button type={type}>Label</Button>
+              <Button variant={variant}>Label</Button>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
-              <Button type={type} className="ckw-button--state-hover">
+              <Button variant={variant} className="ckw-button--state-hover">
                 Label
               </Button>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
-              <Button type={type} className="ckw-button--state-active">
+              <Button variant={variant} className="ckw-button--state-active">
                 Label
               </Button>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
-              <Button type={type} className="ckw-button--state-focus-visible">
+              <Button variant={variant} className="ckw-button--state-focus-visible">
                 Label
               </Button>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', padding: '8px 0' }}>
-              <Button type={type} disabled>
+              <Button variant={variant} disabled>
                 Label
               </Button>
             </div>
           </React.Fragment>
         ))}
+      </div>
+    </div>
+  ),
+};
+
+/** When `loading` is set, a spinner replaces the leading icon, the label stays visible, `aria-busy` is set, and the button is disabled to prevent duplicate submits. The spinner color inherits from the button text color. */
+export const Loading: Story = {
+  render: () => (
+    <div style={sectionStyle}>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Primary</span>
+        <Button variant="primary" loading>
+          Label
+        </Button>
+      </div>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Secondary</span>
+        <Button variant="secondary" loading>
+          Label
+        </Button>
+      </div>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Tertiary</span>
+        <Button variant="tertiary" loading>
+          Label
+        </Button>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', gap: '16px', maxWidth: '400px' }}>
+        <span style={labelStyle}>Full width</span>
+        <Button fullWidth loading>
+          Label
+        </Button>
       </div>
     </div>
   ),
@@ -235,7 +280,7 @@ export const Container: Story = {
   ),
 };
 
-/** Complete matrix of all types x sizes showing default and disabled states. Hover and active states are visible on interaction. */
+/** Complete matrix of all variants x sizes showing default and disabled states. Hover and active states are visible on interaction. */
 export const AllVariants: Story = {
   render: () => {
     const cellStyle: React.CSSProperties = {
@@ -254,9 +299,9 @@ export const AllVariants: Story = {
     };
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-        {(['Primary', 'Secondary', 'Tertiary'] as const).map((type) => (
-          <div key={type}>
-            <div style={headingStyle}>{type}</div>
+        {(['primary', 'secondary', 'tertiary'] as const).map((variant) => (
+          <div key={variant}>
+            <div style={headingStyle}>{variantLabels[variant]}</div>
             <div
               style={{
                 display: 'grid',
@@ -274,12 +319,12 @@ export const AllVariants: Story = {
                 <React.Fragment key={size}>
                   <span style={labelStyle}>{size}</span>
                   <div style={cellStyle}>
-                    <Button type={type} size={size}>
+                    <Button variant={variant} size={size}>
                       Label
                     </Button>
                   </div>
                   <div style={cellStyle}>
-                    <Button type={type} size={size} disabled>
+                    <Button variant={variant} size={size} disabled>
                       Label
                     </Button>
                   </div>

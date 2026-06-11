@@ -20,12 +20,12 @@ React applications can import components from either package root or the explici
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, SegmentedControl } from '@ckwag/components';
+import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/components';
 ```
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, SegmentedControl } from '@ckwag/components/react';
+import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/components/react';
 ```
 
 If a bundler does not process CSS side-effect imports from packages, import the aggregate component CSS explicitly:
@@ -91,6 +91,18 @@ import rawTokens from '@ckwag/tokens/tokens.json';
 - `errorText`: string
 - `icon`: React node
 - `showInfo`: boolean
+
+### PasswordInput
+
+```tsx
+<PasswordInput label="Password" name="password" required autoComplete="current-password" />
+```
+
+- Inherits InputField props except `type` and `icon`
+- `visible`: controlled visibility state
+- `defaultVisible`: initial uncontrolled visibility state
+- `onVisibilityChange`: `(visible: boolean) => void`
+- `visibilityToggleButtonProps`: native toggle button props
 
 ### InlineMessage
 

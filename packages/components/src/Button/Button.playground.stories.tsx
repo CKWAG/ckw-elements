@@ -24,10 +24,10 @@ const meta = {
       description: 'Text content within the button.',
       table: { category: 'Content' },
     },
-    type: {
-      name: 'Type',
+    variant: {
+      name: 'Variant',
       control: { type: 'inline-radio' },
-      options: ['Primary', 'Secondary', 'Tertiary'],
+      options: ['primary', 'secondary', 'tertiary'],
       description:
         'Visual style variant. Primary uses gradient background, Secondary is outlined, Tertiary is text-only.',
       table: { category: 'General', defaultValue: { summary: 'Primary' } },
@@ -65,18 +65,25 @@ const meta = {
         'When set to true, makes the component appear inactive and disables its functionality.',
       table: { category: 'States', defaultValue: { summary: 'false' } },
     },
+    loading: {
+      name: 'Loading',
+      control: { type: 'boolean' },
+      description: 'Shows a spinner in the leading slot, sets aria-busy, and disables interaction.',
+      table: { category: 'States', defaultValue: { summary: 'false' } },
+    },
     onClick: { control: false, table: { disable: true } },
-    htmlType: { control: false, table: { disable: true } },
+    type: { control: false, table: { disable: true } },
     className: { control: false, table: { disable: true } },
   },
   args: {
     children: 'Button',
-    type: 'Primary',
+    variant: 'primary',
     size: 'Large',
     disabled: false,
     fullWidth: false,
     leadingIcon: false,
     trailingIcon: false,
+    loading: false,
   },
 } satisfies Meta<typeof Button>;
 

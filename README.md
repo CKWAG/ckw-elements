@@ -70,7 +70,13 @@ Then import components directly:
 ```tsx
 import React from 'react';
 import { IconSearch } from '@ckwag/elements-icons';
-import { Button, InlineMessage, InputField, SegmentedControl } from '@ckwag/elements';
+import {
+  Button,
+  InlineMessage,
+  InputField,
+  PasswordInput,
+  SegmentedControl,
+} from '@ckwag/elements';
 
 export function Example() {
   return (
@@ -79,6 +85,7 @@ export function Example() {
         Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
       </InlineMessage>
       <InputField label="Name" placeholder="Enter name" icon={<IconSearch size={20} />} />
+      <PasswordInput label="Password" name="password" required autoComplete="current-password" />
       <SegmentedControl
         segments={[
           { value: 'monthly', label: 'Monthly' },
@@ -86,7 +93,7 @@ export function Example() {
         ]}
         activeValue="monthly"
       />
-      <Button type="Primary">Save</Button>
+      <Button variant="primary">Save</Button>
     </form>
   );
 }

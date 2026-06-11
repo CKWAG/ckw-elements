@@ -1,0 +1,115 @@
+import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+import * as PasswordInputStories from './PasswordInput.stories';
+
+<Meta title="Components/Password Input" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Password Input</div>
+  <div className="docs-description">
+    Password Inputs collect secure text values while letting users reveal or hide the typed value.
+    The component reuses Input Field structure, labels, error messaging, generated ids, native input
+    props, and semantic-token styling, while owning the password/text type switch internally.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.inputField} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to interactively configure the Password Input component.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Primary />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Basic</div>
+    <div className="docs-subsection-description">
+      Default password input setup for sign-in and account forms.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={PasswordInputStories.Basic} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Empty</div>
+    <div className="docs-subsection-description">
+      Empty password inputs share the same interaction states as Input Field. The visibility toggle
+      is available unless the field is disabled.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={PasswordInputStories.Empty} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Filled</div>
+    <div className="docs-subsection-description">
+      Filled examples show hidden and visible password states, error messaging, and disabled fields.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={PasswordInputStories.Filled} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Controlled Usage</div>
+    <div className="docs-subsection-description">
+      Use controlled state when application logic owns the password value and visibility state.
+      Native props like <code>name</code>, <code>required</code>, and <code>autoComplete</code> pass
+      through to the underlying input.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={PasswordInputStories.Controlled} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      The toggle is a native button with <code>type="button"</code>, a stable
+      <code> aria-label</code>, and <code>aria-pressed</code> reflecting visibility. Pointer
+      interaction keeps focus on the input, while keyboard users can still tab to the toggle.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">All Variants</div>
+    <div className="docs-subsection-description">
+      Complete matrix showing hidden and visible values across all documented interaction states.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={PasswordInputStories.AllVariants} />
+</div>

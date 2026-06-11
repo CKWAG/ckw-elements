@@ -196,6 +196,34 @@
 }
 
 /* ============================================
+   Loading spinner
+   ============================================ */
+
+.ckw-button__spinner {
+  border-radius: var(--border-radius-full);
+  border: var(--border-weight-m) solid currentColor;
+  border-top-color: transparent;
+  opacity: 0.9;
+  animation: ckw-button-spin 600ms linear infinite;
+}
+
+.ckw-button--loading {
+  cursor: progress;
+}
+
+@keyframes ckw-button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ckw-button__spinner {
+    animation: none;
+  }
+}
+
+/* ============================================
    Docs-only forced states
    ============================================ */
 
