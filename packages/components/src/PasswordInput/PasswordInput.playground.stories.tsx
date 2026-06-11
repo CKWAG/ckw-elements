@@ -68,8 +68,8 @@ const meta = {
     className: { control: false, table: { disable: true } },
   },
   args: {
-    label: 'Password',
-    placeholder: 'Enter password',
+    label: 'Passwort',
+    placeholder: 'Passwort eingeben',
     value: '',
     disabled: false,
     optional: false,

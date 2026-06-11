@@ -19,8 +19,8 @@ type Story = StoryObj<typeof meta>;
 /** Basic password input with hidden value by default. */
 export const Basic: Story = {
   args: {
-    label: 'Password',
-    placeholder: 'Enter password',
+    label: 'Passwort',
+    placeholder: 'Passwort eingeben',
     autoComplete: 'current-password',
   },
 };
@@ -60,14 +60,14 @@ export const Empty: Story = {
           ['Hover', { className: 'ckw-input-field--state-hover' }],
           ['Active', { className: 'ckw-input-field--state-active' }],
           ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
-          ['Error', { errorText: 'Password is required' }],
+          ['Error', { errorText: 'Passwort ist erforderlich' }],
           ['Disabled', { disabled: true }],
         ] as const
       ).map(([stateLabel, props]) => (
         <div key={stateLabel} style={rowStyle}>
           <span style={labelStyle}>{stateLabel}</span>
           <div style={fieldWidth}>
-            <PasswordInput label="Password" placeholder="Enter password" {...props} />
+            <PasswordInput label="Passwort" placeholder="Passwort eingeben" {...props} />
           </div>
         </div>
       ))}
@@ -82,14 +82,14 @@ export const Filled: Story = {
         [
           ['Hidden', { defaultValue: 'correct-horse-battery-staple' }],
           ['Visible', { defaultValue: 'correct-horse-battery-staple', defaultVisible: true }],
-          ['Error', { defaultValue: 'short', errorText: 'Use at least 12 characters' }],
+          ['Error', { defaultValue: 'kurz', errorText: 'Mindestens 12 Zeichen verwenden' }],
           ['Disabled', { defaultValue: 'locked-password', disabled: true }],
         ] as const
       ).map(([stateLabel, props]) => (
         <div key={stateLabel} style={rowStyle}>
           <span style={labelStyle}>{stateLabel}</span>
           <div style={fieldWidth}>
-            <PasswordInput label="Password" {...props} />
+            <PasswordInput label="Passwort" {...props} />
           </div>
         </div>
       ))}
@@ -100,14 +100,14 @@ export const Filled: Story = {
 /** Controlled example showing how application state can own both value and visibility. */
 export const Controlled: Story = {
   render: () => {
-    const [password, setPassword] = React.useState('Initial value');
+    const [password, setPassword] = React.useState('Initialwert');
     const [visible, setVisible] = React.useState(false);
 
     return (
       <div style={{ width: '320px' }}>
         <PasswordInput
-          label="Controlled password"
-          placeholder="Enter password"
+          label="Kontrolliertes Passwort"
+          placeholder="Passwort eingeben"
           name="password"
           required
           autoComplete="current-password"
@@ -128,7 +128,7 @@ export const AllVariants: Story = {
       ['Hover', { className: 'ckw-input-field--state-hover' }],
       ['Active', { className: 'ckw-input-field--state-active' }],
       ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
-      ['Error', { errorText: 'Password is required' }],
+      ['Error', { errorText: 'Passwort ist erforderlich' }],
       ['Disabled', { disabled: true }],
     ];
 
@@ -167,14 +167,14 @@ export const AllVariants: Story = {
               <span style={labelStyle}>{stateLabel}</span>
               <div style={cellStyle}>
                 <div style={fieldWidth}>
-                  <PasswordInput label="Password" defaultValue="Password" {...props} />
+                  <PasswordInput label="Passwort" defaultValue="Passwort" {...props} />
                 </div>
               </div>
               <div style={cellStyle}>
                 <div style={fieldWidth}>
                   <PasswordInput
-                    label="Password"
-                    defaultValue="Password"
+                    label="Passwort"
+                    defaultValue="Passwort"
                     defaultVisible
                     {...props}
                   />

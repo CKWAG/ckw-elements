@@ -41,7 +41,7 @@ export const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputPro
     const isVisible = visible ?? uncontrolledVisible;
     const {
       className: toggleButtonClassName,
-      'aria-label': toggleAriaLabel = 'Toggle password visibility',
+      'aria-label': toggleAriaLabel = 'Passwort anzeigen oder verbergen',
       onClick: onToggleClick,
       onMouseDown: onToggleMouseDown,
       onPointerDown: onTogglePointerDown,
