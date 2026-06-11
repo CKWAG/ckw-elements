@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { IconInformation, IconWarningCircle } from '@ckwag/elements-icons';
 import './InputField.css';
@@ -31,6 +33,11 @@ export interface InputFieldProps {
   onInfoClick?: React.MouseEventHandler<HTMLButtonElement>;
   /** HTML input type attribute. */
   type?: string;
+  /**
+   * Id applied to the underlying `<input>` and wired to the `<label htmlFor>`.
+   * Auto-generated via `useId` when omitted; provide your own to override.
+   */
+  id?: string;
   /** Additional CSS class names on the root element. */
   className?: string;
 }
@@ -57,11 +64,13 @@ export function InputField({
   showInfo = false,
   onInfoClick,
   type = 'text',
+  id,
   className,
 }: InputFieldProps) {
   const hasError = Boolean(errorText);
-  const generatedErrorId = React.useId();
-  const errorId = hasError ? `ckw-input-error-${generatedErrorId}` : undefined;
+  const reactId = React.useId();
+  const inputId = id ?? `ckw-input-${reactId}`;
+  const errorId = hasError ? `ckw-input-error-${reactId}` : undefined;
   const rootClasses = [
     'ckw-input-field',
     hasError && 'ckw-input-field--error',
@@ -75,7 +84,9 @@ export function InputField({
     <div className={rootClasses}>
       {/* Label row */}
       <div className="ckw-input-field__label-row">
-        <span className="ckw-input-field__label">{label}</span>
+        <label className="ckw-input-field__label" htmlFor={inputId}>
+          {label}
+        </label>
         {optional && <span className="ckw-input-field__optional">(optional)</span>}
         {showInfo && (
           <button
@@ -94,6 +105,7 @@ export function InputField({
         <div className="ckw-input-field__inner">
           <input
             className="ckw-input-field__input"
+            id={inputId}
             type={type}
             placeholder={placeholder}
             value={value}

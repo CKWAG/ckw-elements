@@ -81,8 +81,8 @@ import { IconSearch } from '@ckwag/elements-icons';
   <div className="docs-section" style={{ marginTop: '48px' }}>
     <div className="docs-section-title">Button Example</div>
     <div className="docs-subsection-description">
-      The Button component supports three visual types (Primary, Secondary, Tertiary), three sizes
-      (Large, Medium, Small), optional icons, and full-width mode.
+      The Button component supports three visual variants (Primary, Secondary, Tertiary), three
+      sizes (Large, Medium, Small), optional icons, and full-width mode.
     </div>
   </div>
 </div>
@@ -100,17 +100,17 @@ function MyPage() {
       </InlineMessage>
       <InputField label="Search" icon={<IconSearch size={20} />} />
       <Button
-        type="Primary"
+        variant="primary"
         size="Large"
         trailingIcon={<IconArrowRight />}
         onClick={() => alert('clicked')}
       >
         Submit
       </Button>
-      <Button type="Secondary" size="Medium">
+      <Button variant="secondary" size="Medium">
         Cancel
       </Button>
-      <Button type="Tertiary" size="Small">
+      <Button variant="tertiary" size="Small">
         Learn more
       </Button>
     </div>

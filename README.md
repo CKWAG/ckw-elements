@@ -86,7 +86,7 @@ export function Example() {
         ]}
         activeValue="monthly"
       />
-      <Button type="Primary">Save</Button>
+      <Button variant="primary">Save</Button>
     </form>
   );
 }

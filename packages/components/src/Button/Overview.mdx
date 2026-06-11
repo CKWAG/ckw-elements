@@ -9,7 +9,7 @@ import * as ButtonStories from './Button.stories';
   <div className="docs-page-title">Button</div>
   <div className="docs-description">
     Buttons allow users to trigger actions within the interface. They are used to submit forms,
-    confirm choices, or initiate processes. The component supports three visual types (Primary,
+    confirm choices, or initiate processes. The component supports three visual variants (Primary,
     Secondary, Tertiary), three sizes (Large, Medium, Small), optional leading or trailing icons,
     and a full-width container mode.
   </div>
@@ -34,16 +34,16 @@ import * as ButtonStories from './Button.stories';
 
 <div className="sb-unstyled">
   <div className="docs-section">
-    <div className="docs-section-title">Types</div>
+    <div className="docs-section-title">Variants</div>
     <div className="docs-subsection-description">
-      The three visual types communicate hierarchy: Primary for the main action, Secondary for
+      The three visual variants communicate hierarchy: Primary for the main action, Secondary for
       alternative actions, Tertiary for low-emphasis actions.
     </div>
   </div>
 </div>
 
 <div style={{ marginTop: '24px' }}>
-  <Story of={ButtonStories.Types} />
+  <Story of={ButtonStories.Variants} />
 </div>
 
 <div className="sb-unstyled">
@@ -108,7 +108,7 @@ import * as ButtonStories from './Button.stories';
     <div className="docs-section-title">Accessibility</div>
     <div className="docs-subsection-description">
       Use native button behavior for actions. Keep labels concise and descriptive, preserve focus
-      visible styling, and set <code>htmlType="submit"</code> only for form submission buttons.
+      visible styling, and set native <code>type="submit"</code> only for form submission buttons.
       Disabled buttons must not be used as the only way to explain why an action is unavailable.
     </div>
   </div>
@@ -118,7 +118,7 @@ import * as ButtonStories from './Button.stories';
   <div className="docs-section">
     <div className="docs-section-title">All Variants</div>
     <div className="docs-subsection-description">
-      Complete matrix of all types × sizes showing default and disabled states. Hover and active
+      Complete matrix of all variants × sizes showing default and disabled states. Hover and active
       states are visible on interaction.
     </div>
   </div>

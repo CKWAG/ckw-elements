@@ -1,68 +1,79 @@
 import React from 'react';
 import './Button.css';
 
-export type ButtonType = 'Primary' | 'Secondary' | 'Tertiary';
+export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
 export type ButtonSize = 'Large' | 'Medium' | 'Small';
 
-export interface ButtonProps {
+export interface ButtonProps extends React.ComponentProps<'button'> {
   /** The visible button label. */
   children: React.ReactNode;
   /** Visual style variant. */
-  type?: ButtonType;
+  variant?: ButtonVariant;
   /** Size of the button. */
   size?: ButtonSize;
-  /** Whether the button is disabled. */
-  disabled?: boolean;
   /** Stretch to fill the parent width. */
   fullWidth?: boolean;
   /** Icon rendered before the label. */
   leadingIcon?: React.ReactNode;
   /** Icon rendered after the label. */
   trailingIcon?: React.ReactNode;
-  /** Click handler. */
-  onClick?: React.MouseEventHandler<HTMLButtonElement>;
-  /** HTML button type attribute. */
-  htmlType?: 'button' | 'submit' | 'reset';
-  /** Additional CSS class names. */
-  className?: string;
+  /** Shows a spinner in the leading slot, sets aria-busy, and disables interaction. */
+  loading?: boolean;
 }
 
 /**
  * Primary UI component for user interaction.
  *
- * Supports three visual types (Primary, Secondary, Tertiary), three sizes
+ * Supports three visual variants (Primary, Secondary, Tertiary), three sizes
  * (Large, Medium, Small), and optional leading/trailing icons. All styling
  * uses semantic design tokens — no hardcoded colors.
  */
-export function Button({
-  children,
-  type = 'Primary',
-  size = 'Large',
-  disabled = false,
-  fullWidth = false,
-  leadingIcon,
-  trailingIcon,
-  onClick,
-  htmlType = 'button',
-  className,
-}: ButtonProps) {
-  const typeClass = `ckw-button--${type.toLowerCase()}`;
+export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  {
+    children,
+    variant = 'primary',
+    size = 'Large',
+    disabled = false,
+    fullWidth = false,
+    leadingIcon,
+    trailingIcon,
+    loading = false,
+    className,
+    type = 'button',
+    'aria-busy': ariaBusy,
+    ...props
+  },
+  ref,
+) {
+  const variantClass = `ckw-button--${variant}`;
   const sizeClass = `ckw-button--${size.toLowerCase()}`;
   const classes = [
     'ckw-button',
-    typeClass,
+    variantClass,
     sizeClass,
     fullWidth ? 'ckw-button--full-width' : '',
+    loading ? 'ckw-button--loading' : '',
     className ?? '',
   ]
     .filter(Boolean)
     .join(' ');
 
   return (
-    <button className={classes} type={htmlType} disabled={disabled} onClick={onClick}>
-      {leadingIcon && <span className="ckw-button__icon">{leadingIcon}</span>}
+    <button
+      {...props}
+      ref={ref}
+      className={classes}
+      type={type}
+      disabled={disabled || loading}
+      aria-busy={loading ? true : ariaBusy}
+    >
+      {loading ? (
+        <span className="ckw-button__icon ckw-button__spinner" aria-hidden="true" />
+      ) : (
+        leadingIcon && <span className="ckw-button__icon">{leadingIcon}</span>
+      )}
       {children}
       {trailingIcon && <span className="ckw-button__icon">{trailingIcon}</span>}
     </button>
   );
-}
+});
