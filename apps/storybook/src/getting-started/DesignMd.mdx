@@ -1,0 +1,278 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Getting Started/DESIGN.md" />
+
+<div className="sb-unstyled">
+
+<div className="docs-page-title">DESIGN.md</div>
+<div className="docs-description">
+  Machine-readable design system specification following the{' '}
+  <a
+    href="https://github.com/google-labs-code/design.md"
+    style={{ color: 'var(--interactive-primary)' }}
+  >
+    google-labs-code/design.md
+  </a>{' '}
+  format. YAML front matter provides exact token values; markdown prose explains design rationale.
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">What is DESIGN.md?</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  DESIGN.md is a format specification that gives coding agents a persistent, structured
+  understanding of a design system. It combines machine-readable design tokens (YAML front matter)
+  with human-readable design rationale (markdown prose). Tokens give agents exact values. Prose
+  tells them <em>why</em> those values exist and how to apply them.
+</div>
+
+<div
+  style={{
+    padding: 'var(--spacing-l)',
+    borderRadius: 'var(--border-radius-s)',
+    background: 'var(--background-canvas)',
+    border: '1px solid var(--border-soft)',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  <div
+    style={{
+      fontFamily: 'var(--font-family-brand), sans-serif',
+      fontSize: 'var(--caption-size)',
+      fontWeight: 'var(--caption-weight)',
+      color: 'var(--text-tertiary)',
+      marginBottom: 'var(--spacing-xs)',
+      textTransform: 'uppercase',
+    }}
+  >
+    An agent that reads this file will:
+  </div>
+  <ul
+    style={{
+      fontFamily: 'var(--font-family-brand), sans-serif',
+      fontSize: 'var(--body-s-size)',
+      color: 'var(--text-primary)',
+      lineHeight: '1.6',
+      paddingLeft: 'var(--spacing-l)',
+      margin: 0,
+    }}
+  >
+    <li>Use deep forest green (#365f10) for all interactive elements</li>
+    <li>Set typography in Gotham at the correct weight/size for each role</li>
+    <li>Apply the 8px border-radius default for cards, buttons, and inputs</li>
+    <li>Follow the spacing scale for consistent layout rhythm</li>
+    <li>Never reference primitive color tokens in component code</li>
+  </ul>
+</div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Access</div>
+
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th style={{ width: '220px' }}>Location</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="cell-mono">DESIGN.md</td>
+        <td>Repository root — consumed by agents working in the repo</td>
+      </tr>
+      <tr>
+        <td className="cell-mono">/DESIGN.md</td>
+        <td>
+          Deployed as a static file with Storybook — agents can fetch it from the{' '}
+          <a href="DESIGN.md" style={{ color: 'var(--interactive-primary)' }}>
+            live URL
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Token Summary</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  The YAML front matter encodes these token categories from the CKW design system:
+</div>
+
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th style={{ width: '140px' }}>Category</th>
+        <th style={{ width: '80px' }}>Count</th>
+        <th>Includes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="cell-name">Colors</td>
+        <td>24</td>
+        <td>Semantic colors for text, backgrounds, borders, interactive, and status</td>
+      </tr>
+      <tr>
+        <td className="cell-name">Typography</td>
+        <td>13</td>
+        <td>Display, Heading, Body, Label, and Caption styles with font/size/weight/line-height</td>
+      </tr>
+      <tr>
+        <td className="cell-name">Spacing</td>
+        <td>15</td>
+        <td>Linear scale from 0px to 120px</td>
+      </tr>
+      <tr>
+        <td className="cell-name">Rounded</td>
+        <td>7</td>
+        <td>Border-radius from none to full (circle/pill)</td>
+      </tr>
+      <tr>
+        <td className="cell-name">Components</td>
+        <td>7</td>
+        <td>Button primary, button secondary, input field, and card with variant states</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Validate with CLI</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-m)',
+  }}
+>
+  Use the official <code>@google/design.md</code> CLI to lint and export:
+</div>
+
+```bash
+# Validate structure and check WCAG contrast
+npx @google/design.md lint DESIGN.md
+
+# Export to DTCG tokens.json
+npx @google/design.md export --format dtcg DESIGN.md
+
+# Export to Tailwind v4 CSS theme
+npx @google/design.md export --format css-tailwind DESIGN.md
+```
+
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Relationship to tokens.json</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+  }}
+>
+  <code>DESIGN.md</code> is a human- and agent-readable summary of the design system's identity and
+  key decisions. It does not replace <code>tokens.json</code> — the full 282-token DTCG source
+  remains the pipeline's input. DESIGN.md provides the <em>why</em> and a curated subset of tokens
+  that agents need for immediate understanding without parsing the full token tree.
+</div>
+
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: 'var(--spacing-m)',
+    marginTop: 'var(--spacing-l)',
+    maxWidth: '600px',
+  }}
+>
+  <div
+    style={{
+      padding: 'var(--spacing-l)',
+      borderRadius: 'var(--border-radius-s)',
+      background: 'var(--background-canvas)',
+    }}
+  >
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-xs)',
+      }}
+    >
+      DESIGN.md
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}
+    >
+      Agent-first. Design rationale + curated tokens. Fast context loading.
+    </div>
+  </div>
+  <div
+    style={{
+      padding: 'var(--spacing-l)',
+      borderRadius: 'var(--border-radius-s)',
+      background: 'var(--background-active)',
+      border: '1px solid var(--border-highlight)',
+    }}
+  >
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: 'var(--spacing-xs)',
+      }}
+    >
+      tokens.json
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--body-s-size)',
+        color: 'var(--text-secondary)',
+        lineHeight: '1.4',
+      }}
+    >
+      Pipeline source. Full 282-token DTCG tree. Style Dictionary input.
+    </div>
+  </div>
+</div>
+</div>
+
+</div>
