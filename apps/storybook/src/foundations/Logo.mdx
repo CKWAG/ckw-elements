@@ -1,0 +1,540 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Foundations/Logo" />
+
+<div className="sb-unstyled">
+
+<div className="docs-page-title">CKW Logo</div>
+<div className="docs-description">
+  The CKW logo represents the primary visual identifier of the brand and ensures consistent
+  recognition across all digital and physical touchpoints. It is used across products, interfaces,
+  communications, and marketing materials. Always use the official logo assets provided in this
+  design system. Do not alter the logo's proportions, colors, spacing, or alignment.
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Variants</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  The logo is available in two variants. Use the <strong>default</strong> variant on light
+  backgrounds and the <strong>inverted</strong> variant on dark backgrounds.
+</div>
+
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: 'var(--spacing-m)',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  <div>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 'var(--spacing-3xl) var(--spacing-2xl)',
+        borderRadius: 'var(--border-radius-s)',
+        border: '1px solid var(--border-soft)',
+        background: 'var(--background-default)',
+        marginBottom: 'var(--spacing-s)',
+      }}
+    >
+      <img src="logo-default.svg" alt="CKW Logo — default variant" style={{ width: '160px', height: 'auto' }} />
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: '2px',
+      }}
+    >
+      Default
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--caption-size)',
+        color: 'var(--text-tertiary)',
+      }}
+    >
+      For light backgrounds
+    </div>
+  </div>
+
+  <div>
+    <div
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: 'var(--spacing-3xl) var(--spacing-2xl)',
+        borderRadius: 'var(--border-radius-s)',
+        background: '#232623',
+        marginBottom: 'var(--spacing-s)',
+      }}
+    >
+      <img src="logo-inverted.svg" alt="CKW Logo — inverted variant" style={{ width: '160px', height: 'auto' }} />
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-m-size)',
+        fontWeight: 'var(--label-m-weight)',
+        color: 'var(--text-primary)',
+        marginBottom: '2px',
+      }}
+    >
+      Inverted
+    </div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--caption-size)',
+        color: 'var(--text-tertiary)',
+      }}
+    >
+      For dark backgrounds
+    </div>
+  </div>
+</div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Brand Colors in Logo</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  The logo uses two colors from the CKW palette. The green accent remains constant across both
+  variants — only the wordmark color changes.
+</div>
+
+<div style={{ display: 'flex', gap: 'var(--spacing-xl)', flexWrap: 'wrap' }}>
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 'var(--spacing-s)',
+    }}
+  >
+    <div
+      style={{
+        width: '32px',
+        height: '32px',
+        borderRadius: 'var(--border-radius-s)',
+        background: '#232623',
+        border: '1px solid var(--border-soft)',
+      }}
+    />
+    <div>
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: 'var(--label-s-size)',
+          fontWeight: 'var(--label-s-weight)',
+          color: 'var(--text-primary)',
+        }}
+      >
+        Wordmark (default)
+      </div>
+      <div className="specs-code" style={{ marginTop: '2px' }}>
+        #232623
+      </div>
+    </div>
+  </div>
+
+<div
+  style={{
+    display: 'flex',
+    alignItems: 'center',
+    gap: 'var(--spacing-s)',
+  }}
+>
+  <div
+    style={{
+      width: '32px',
+      height: '32px',
+      borderRadius: 'var(--border-radius-s)',
+      background: '#FFFFFF',
+      border: '1px solid var(--border-soft)',
+    }}
+  />
+  <div>
+    <div
+      style={{
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: 'var(--label-s-size)',
+        fontWeight: 'var(--label-s-weight)',
+        color: 'var(--text-primary)',
+      }}
+    >
+      Wordmark (inverted)
+    </div>
+    <div className="specs-code" style={{ marginTop: '2px' }}>
+      #FFFFFF
+    </div>
+  </div>
+</div>
+
+  <div
+    style={{
+      display: 'flex',
+      alignItems: 'center',
+      gap: 'var(--spacing-s)',
+    }}
+  >
+    <div
+      style={{
+        width: '32px',
+        height: '32px',
+        borderRadius: '50%',
+        background: '#C8DD2D',
+        border: '1px solid var(--border-soft)',
+      }}
+    />
+    <div>
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: 'var(--label-s-size)',
+          fontWeight: 'var(--label-s-weight)',
+          color: 'var(--text-primary)',
+        }}
+      >
+        Accent
+      </div>
+      <div className="specs-code" style={{ marginTop: '2px' }}>
+        #C8DD2D
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Guidelines</div>
+
+  <table className="docs-table">
+    <thead>
+      <tr>
+        <th style={{ width: '80px' }}>Rule</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td className="cell-name" style={{ color: 'var(--status-success-text)' }}>Do</td>
+        <td>Use the <strong>default</strong> variant on light surfaces and the <strong>inverted</strong> variant on dark surfaces</td>
+      </tr>
+      <tr>
+        <td className="cell-name" style={{ color: 'var(--status-success-text)' }}>Do</td>
+        <td>Maintain clear space around the logo equal to at least the height of the "C" letter</td>
+      </tr>
+      <tr>
+        <td className="cell-name" style={{ color: 'var(--status-success-text)' }}>Do</td>
+        <td>Use the SVG version for digital — it scales perfectly at any resolution</td>
+      </tr>
+      <tr>
+        <td className="cell-name" style={{ color: 'var(--status-success-text)' }}>Do</td>
+        <td>Ensure minimum width of 80px for legibility on screen</td>
+      </tr>
+      <tr>
+        <td className="cell-name" style={{ color: 'var(--status-error-text)' }}>Don't</td>
+        <td>Stretch, rotate, or skew the logo</td>
+      </tr>
+      <tr>
+        <td className="cell-name" style={{ color: 'var(--status-error-text)' }}>Don't</td>
+        <td>Change the logo colors or replace the green accent</td>
+      </tr>
+      <tr>
+        <td className="cell-name" style={{ color: 'var(--status-error-text)' }}>Don't</td>
+        <td>Place the logo on busy backgrounds that reduce contrast</td>
+      </tr>
+      <tr>
+        <td className="cell-name" style={{ color: 'var(--status-error-text)' }}>Don't</td>
+        <td>Add effects (drop shadow, glow, outline) to the logo</td>
+      </tr>
+      <tr>
+        <td className="cell-name" style={{ color: 'var(--status-error-text)' }}>Don't</td>
+        <td>Use CSS filters to simulate the inverted variant — use the proper asset</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Usage in Code</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-m)',
+  }}
+>
+  Reference the logo as a static asset from the deployed Storybook or import it directly in your
+  application. Choose the correct variant based on your background.
+</div>
+
+```html
+<!-- HTML: default variant (light backgrounds) -->
+<img src="https://ckwag.github.io/ckw-elements/logo-default.svg" alt="CKW" />
+
+<!-- HTML: inverted variant (dark backgrounds) -->
+<img src="https://ckwag.github.io/ckw-elements/logo-inverted.svg" alt="CKW" />
+```
+
+```tsx
+// React: import as asset (Vite/webpack)
+import React from 'react';
+import ckwLogoDefault from './assets/logo-default.svg';
+import ckwLogoInverted from './assets/logo-inverted.svg';
+
+export function Header({ variant = 'default' }) {
+  const src = variant === 'inverted' ? ckwLogoInverted : ckwLogoDefault;
+  return (
+    <header>
+      <img src={src} alt="CKW" width={120} />
+    </header>
+  );
+}
+```
+
+```css
+/* CSS: as background image */
+.brand-logo {
+  width: 160px;
+  height: 99px;
+  background: url('/logo-default.svg') no-repeat center;
+  background-size: contain;
+}
+
+/* Dark section */
+.dark-section .brand-logo {
+  background-image: url('/logo-inverted.svg');
+}
+```
+
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Download</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    fontWeight: 'var(--body-s-weight)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    marginBottom: 'var(--spacing-l)',
+  }}
+>
+  Download the official logo assets for use in applications, presentations, and documentation.
+</div>
+
+<div
+  style={{
+    display: 'grid',
+    gridTemplateColumns: '1fr 1fr',
+    gap: 'var(--spacing-m)',
+    maxWidth: '600px',
+  }}
+>
+  <a
+    href="logo-default.svg"
+    download="ckw-logo-default.svg"
+    style={{
+      padding: 'var(--spacing-l)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+      textDecoration: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 'var(--spacing-m)',
+      transition: 'border-color 0.15s',
+    }}
+  >
+    <div
+      style={{
+        width: '40px',
+        height: '40px',
+        borderRadius: 'var(--border-radius-s)',
+        background: 'var(--background-canvas)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+      }}
+    >
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path
+          d="M10 13L10 3M10 13L7 10M10 13L13 10M3 17H17"
+          stroke="var(--interactive-primary)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+    <div>
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: 'var(--label-m-size)',
+          fontWeight: 'var(--label-m-weight)',
+          color: 'var(--text-primary)',
+        }}
+      >
+        Default
+      </div>
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: 'var(--caption-size)',
+          color: 'var(--text-tertiary)',
+          marginTop: '2px',
+        }}
+      >
+        SVG · light backgrounds
+      </div>
+    </div>
+  </a>
+
+  <a
+    href="logo-inverted.svg"
+    download="ckw-logo-inverted.svg"
+    style={{
+      padding: 'var(--spacing-l)',
+      borderRadius: 'var(--border-radius-s)',
+      border: '1px solid var(--border-soft)',
+      background: 'var(--background-default)',
+      textDecoration: 'none',
+      display: 'flex',
+      alignItems: 'center',
+      gap: 'var(--spacing-m)',
+      transition: 'border-color 0.15s',
+    }}
+  >
+    <div
+      style={{
+        width: '40px',
+        height: '40px',
+        borderRadius: 'var(--border-radius-s)',
+        background: 'var(--background-canvas)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+      }}
+    >
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <path
+          d="M10 13L10 3M10 13L7 10M10 13L13 10M3 17H17"
+          stroke="var(--interactive-primary)"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
+    <div>
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: 'var(--label-m-size)',
+          fontWeight: 'var(--label-m-weight)',
+          color: 'var(--text-primary)',
+        }}
+      >
+        Inverted
+      </div>
+      <div
+        style={{
+          fontFamily: 'var(--font-family-brand), sans-serif',
+          fontSize: 'var(--caption-size)',
+          color: 'var(--text-tertiary)',
+          marginTop: '2px',
+        }}
+      >
+        SVG · dark backgrounds
+      </div>
+    </div>
+  </a>
+</div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">License</div>
+
+<div
+  style={{
+    fontFamily: 'var(--font-family-brand), sans-serif',
+    fontSize: 'var(--body-s-size)',
+    color: 'var(--text-secondary)',
+    lineHeight: '1.6',
+    padding: 'var(--spacing-l)',
+    borderRadius: 'var(--border-radius-s)',
+    background: 'var(--status-warning)',
+    border: '1px solid var(--status-warning-border)',
+  }}
+>
+  The CKW logo is a <strong>registered trademark of CKW AG</strong> and is excluded from the
+  open-source Apache 2.0 license. It may only be used in CKW-authorized projects and must not be
+  modified without written permission. See{' '}
+  <a
+    href="https://github.com/CKWAG/ckw-elements/blob/main/NOTICE"
+    style={{ color: 'var(--status-warning-text)' }}
+  >
+    NOTICE
+  </a>{' '}
+  for details.
+</div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-design-reference">
+    <div>
+      <div className="docs-design-reference__eyebrow">Design Source</div>
+      <div className="docs-design-reference__title">CKW Logo</div>
+      <div className="docs-design-reference__note">
+        Official logo component in the CKW Elements Figma file. Contains both default and inverted
+        variants with specifications.
+      </div>
+    </div>
+    <div className="docs-design-reference__meta">
+      <a
+        className="docs-design-reference__link"
+        href="https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=1639-725&m=dev"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Open in Figma ↗
+      </a>
+    </div>
+  </div>
+</div>
+
+</div>
