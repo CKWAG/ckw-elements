@@ -18,3 +18,5 @@ export type {
   SegmentedControlProps,
   SegmentedControlType,
 } from './SegmentedControl/index.js';
+export { LoadingSpinner } from './LoadingSpinner/index.js';
+export type { LoadingSpinnerProps } from './LoadingSpinner/index.js';

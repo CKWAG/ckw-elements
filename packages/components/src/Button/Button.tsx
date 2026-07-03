@@ -1,4 +1,5 @@
 import React from 'react';
+import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner.js';
 import './Button.css';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
@@ -68,7 +69,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
       aria-busy={loading ? true : ariaBusy}
     >
       {loading ? (
-        <span className="ckw-button__icon ckw-button__spinner" aria-hidden="true" />
+        <span className="ckw-button__icon ckw-button__spinner" aria-hidden="true">
+          <LoadingSpinner size={20} />
+        </span>
       ) : (
         leadingIcon && <span className="ckw-button__icon">{leadingIcon}</span>
       )}
