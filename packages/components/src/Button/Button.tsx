@@ -70,7 +70,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
     >
       {loading ? (
         <span className="ckw-button__icon ckw-button__spinner" aria-hidden="true">
-          <LoadingSpinner size={20} />
+          <LoadingSpinner size={24} />
         </span>
       ) : (
         leadingIcon && <span className="ckw-button__icon">{leadingIcon}</span>
