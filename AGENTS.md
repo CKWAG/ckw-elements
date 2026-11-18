@@ -66,6 +66,7 @@ Icons: `packages/icons/svg/*.svg` (+ `manifest.json`) are the source of truth, `
 them (`pnpm icons:generate`) and committed; CI runs `pnpm icons:check`. Never edit `src/index.tsx` or the SVGs by
 hand: icons enter through the Claude skill `.claude/skills/add-icons-to-figma` (Figma → `import-svgs.mjs`).
 Renamed or merged icons stay available via `packages/icons/aliases.json` until the next major version.
+Full icon guide (standard, pipeline, tools, policy): `packages/icons/CONTRIBUTING.md`.
 
 Public components: `Button` (`variant`, not `type`), `InputField`, `PasswordInput`,
 `InlineMessage`, `SegmentedControl`, `LoadingSpinner`. Icons live in `@ckwag/elements-icons`.

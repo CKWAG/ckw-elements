@@ -99,7 +99,8 @@ only needed for custom-drawn icons.
 
 Moves the finished icons from Figma into the repo as SVG sources. Only icons whose index row has status **Ready**
 are exported. Everything runs from the repo root `/Users/janosch/Documents/CKW/ckw-elements`. The repo pipeline is
-described in `ARCHITECTURE.md` ("D3. I added or changed icons in Figma") and `packages/icons/README.md`.
+described for humans in `packages/icons/CONTRIBUTING.md` (keep it in sync when you change this skill or the scripts)
+and in `ARCHITECTURE.md` ("D3. I added or changed icons in Figma").
 
 1. **List what Figma has.** Run `scripts/export-svgs.js` with `MODE = 'list'` through `use_figma` (it returns `tsv`:
    `name`, `figmaNodeId`, `hash` per line). Save the `tsv` text to a scratch file, tabs preserved.

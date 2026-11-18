@@ -747,7 +747,8 @@ See `RELEASE.md` for the full process. In short:
 ### D3. "I added or changed icons in Figma"
 
 Icons flow Figma → `svg/` → `src/` → Storybook and npm. The SVG files are the source of truth and are
-committed, so nothing in the build needs Figma or a token.
+committed, so nothing in the build needs Figma or a token. The full guide (standard, tools, formats, policy,
+troubleshooting) is `packages/icons/CONTRIBUTING.md`.
 
 ```
 Figma Icons index (rows with status "Ready")
@@ -796,6 +797,8 @@ pnpm --filter @ckwag/elements-storybook run build
 | `pnpm --filter @ckwag/elements-storybook run dev`   | Start Storybook dev server         |
 | `pnpm --filter @ckwag/elements-storybook run build` | Build Storybook for deployment     |
 | `pnpm -r run build`                                 | Build all workspace packages       |
+| `pnpm icons:generate`                               | Generate icon components from svg/ |
+| `pnpm icons:check`                                  | Fail if icons src is out of date   |
 | `pnpm typecheck`                                    | Typecheck icons, components, SB    |
 | `pnpm format:check`                                 | Prettier check (CI)                |
 | `pnpm changeset`                                    | Add release intent                 |
@@ -914,6 +917,18 @@ Style Dictionary v4                   │
           import tokens.css
 ```
 
+Icons have their own, shorter flow (see D3 and `packages/icons/CONTRIBUTING.md`):
+
+```
+Figma Icon Dropzone ──skill: check + place──▶ Figma Icon index (status Ready)
+                                                   │ skill: sync to code
+                                                   ▼
+                              packages/icons/svg/*.svg + manifest.json   ◄─── Single Source of Truth
+                                                   │ pnpm icons:generate
+                                                   ▼
+                              packages/icons/src/index.tsx ──▶ Storybook "Foundations/Icons", npm package
+```
+
 ---
 
 ## Appendix: File Reference
@@ -951,6 +966,21 @@ Quick lookup for every file in the monorepo and its purpose.
 | `dist/tokens.js`              | JS named + default exports (591 lines)        | No        | Yes       |
 | `dist/tokens.d.ts`            | TypeScript declarations for token JS          | No        | Yes       |
 | `dist/tokens.json`            | DTCG JSON copy for static docs                | No        | Yes       |
+
+### `packages/icons/`
+
+| File                 | Purpose                                                            | Committed | Generated |
+| -------------------- | ------------------------------------------------------------------ | --------- | --------- |
+| `svg/*.svg`          | One flat SVG per icon, `fill="currentColor"` (source of truth)     | Yes       | Yes\*     |
+| `svg/manifest.json`  | Icon name to Figma node id                                         | Yes       | Yes\*     |
+| `aliases.json`       | Deprecated icon names that still resolve to a current icon         | Yes       | No        |
+| `import-svgs.mjs`    | Writes `svg/` from the Figma export, prints hashes, prunes         | Yes       | No        |
+| `generate-icons.mjs` | Validates `svg/`, generates the React components, `--check` for CI | Yes       | No        |
+| `src/index.tsx`      | Generated React icon components and metadata                       | Yes       | Yes       |
+| `dist/`              | npm package output                                                 | No        | Yes       |
+| `CONTRIBUTING.md`    | Full icon guide: standard, pipeline, tools, formats, policy        | Yes       | No        |
+
+\* written only by `import-svgs.mjs` from the Figma icon index, never by hand.
 
 ### `apps/storybook/`
 

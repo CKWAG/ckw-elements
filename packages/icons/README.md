@@ -43,10 +43,10 @@ icon, so bundlers cannot drop the unused ones.
 
 ## Contributing icons
 
-Do not edit `src/index.tsx` or the files in `svg/` by hand.
+The full guide is in [CONTRIBUTING.md](./CONTRIBUTING.md): the icon standard, how icons get from Figma into this
+package, what each script does, file formats, the rename and deprecation policy and troubleshooting.
 
-- `svg/*.svg` and `svg/manifest.json` are the source of truth, written by `import-svgs.mjs` from the Figma icon index
-  (only icons with status "Ready"). See `.claude/skills/add-icons-to-figma`.
-- `aliases.json` maps deprecated names to current icons.
-- `pnpm icons:generate` rebuilds `src/index.tsx` from the SVGs and validates them (24px canvas, only `<path>`,
-  `fill="currentColor"`). `pnpm icons:check` fails when the committed source is out of date (runs in CI).
+In short: do not edit `src/index.tsx` or the files in `svg/` by hand. `svg/*.svg` and `svg/manifest.json` are the
+source of truth (written from the Figma icon index by the `add-icons-to-figma` Claude skill, only icons with status
+"Ready"). `pnpm icons:generate` rebuilds `src/index.tsx` and validates the SVGs, `pnpm icons:check` fails when the
+committed source is out of date (runs in CI).

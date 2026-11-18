@@ -259,3 +259,6 @@ im npm-Paket `@ckwag/elements-icons`.
 
 Wird ein Icon umbenannt oder zusammengelegt, funktioniert der alte Name weiter (Alias), bis
 die nächste Hauptversion erscheint. So geht bei Produkten nichts kaputt.
+
+Die ausführliche Anleitung (Regeln für Icons, alle Werkzeuge, Dateiformate, Fehlerbehebung) steht in
+`packages/icons/CONTRIBUTING.md`.

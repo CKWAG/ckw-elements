@@ -1,5 +1,5 @@
 import { Meta } from '@storybook/addon-docs/blocks';
-import { iconMetadata } from '@ckwag/elements-icons';
+import { deprecatedIconAliases, iconMetadata } from '@ckwag/elements-icons';
 import { DesignReference } from '../../../../packages/components/src/storybook/DesignReference';
 import { figmaReferences } from '../../../../packages/components/src/storybook/figmaLinks';
 import { IconCopyGrid, IconPlayground } from '../components/IconCopyGrid';
@@ -20,9 +20,57 @@ import { IconCopyGrid, IconPlayground } from '../components/IconCopyGrid';
   <IconPlayground />
 </div>
 
+<div className="docs-section">
+  <div className="docs-section-title">Icon Index</div>
+  <div className="docs-description">
+    {iconMetadata.length} icons from the CKW Elements Figma icon index.
+  </div>
+  <IconCopyGrid />
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Naming</div>
+  <div className="docs-description">
+    Names are kebab-case: <code>noun</code>, optionally followed by a modifier, a direction,
+    <code>-circle</code> and <code>-filled</code> (always last). Outline icons have no suffix, for
+    example
+    <code>arrow-left-circle</code> and <code>arrow-left-circle-filled</code>. The component name is
+    the PascalCase form with an <code>Icon</code> prefix: <code>IconArrowLeftCircle</code>.
+  </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Standard</div>
+  <div className="docs-description">
+    24px canvas, glyph at most 20px with a 2px safe area, 1.67px stroke with round caps and joins,
+    one flat vector in one colour (<code>currentColor</code>). Prefer named imports such as{' '}
+    <code>IconSearch</code> in apps: the by-name <code>Icon</code> component references every icon,
+    so bundlers cannot drop unused ones.
+  </div>
+</div>
+
+<div className="docs-section">
+  <div className="docs-section-title">Deprecated names</div>
+  <div className="docs-description">
+    Renamed or merged icons keep working until the next major version. They are not listed in the
+    index above.
+  </div>
+  <ul>
+    {Object.entries(deprecatedIconAliases).map(([oldName, newName]) => (
+      <li key={oldName}>
+        <code>{oldName}</code> is now <code>{newName}</code>
+      </li>
+    ))}
+  </ul>
+</div>
+
   <div className="docs-section">
-    <div className="docs-section-title">Icon Index</div>
-    <div className="docs-description">{iconMetadata.length} icons from the CKW Elements Figma icon index.</div>
-    <IconCopyGrid />
+    <div className="docs-section-title">Adding icons</div>
+    <div className="docs-description">
+      Designers drop new icons into the Icon Dropzone in Figma. The icon maintainer lets the Claude skill check them,
+      file them in the Figma icon index and sync them to <code>packages/icons/svg</code>. Never edit the generated
+      source by hand. The full guide is
+      <a href="https://github.com/CKWAG/ckw-elements/blob/main/packages/icons/CONTRIBUTING.md"> packages/icons/CONTRIBUTING.md</a>.
+    </div>
   </div>
 </div>
