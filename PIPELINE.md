@@ -247,3 +247,15 @@ Sie verwenden weiterhin `text-primary` — nur der Wert dahinter ändert sich je
 4.  Doppelklick auf "Start Token Sync.command"
 5.  Lehne dich zurück — Pipeline läuft, Storybook öffnet sich, Änderungen sind sichtbar ✓
 ```
+
+## Icons
+
+Icons laufen ähnlich, aber ohne Tokens Studio: Designer legen neue Icons in Figma in die
+Icon-Dropzone, Janosch lässt sie mit dem Claude-Skill `add-icons-to-figma` prüfen und
+einsortieren. Mit dem Schritt "Sync to code" landen die fertigen Icons (Status "Ready") als
+SVG-Dateien im Ordner `packages/icons/svg`. Daraus erzeugt `pnpm icons:generate` die
+React-Komponenten. Storybook zeigt sie automatisch an, und beim nächsten Release gibt es sie
+im npm-Paket `@ckwag/elements-icons`.
+
+Wird ein Icon umbenannt oder zusammengelegt, funktioniert der alte Name weiter (Alias), bis
+die nächste Hauptversion erscheint. So geht bei Produkten nichts kaputt.

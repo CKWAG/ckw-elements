@@ -1,0 +1,550 @@
+[
+  {
+    "name": "account-tie",
+    "figmaNodeId": "174:856"
+  },
+  {
+    "name": "add",
+    "figmaNodeId": "491:588"
+  },
+  {
+    "name": "add-circle",
+    "figmaNodeId": "164:3256"
+  },
+  {
+    "name": "arrow-down",
+    "figmaNodeId": "164:3260"
+  },
+  {
+    "name": "arrow-down-circle",
+    "figmaNodeId": "491:660"
+  },
+  {
+    "name": "arrow-down-circle-filled",
+    "figmaNodeId": "491:661"
+  },
+  {
+    "name": "arrow-left",
+    "figmaNodeId": "174:741"
+  },
+  {
+    "name": "arrow-left-circle",
+    "figmaNodeId": "491:714"
+  },
+  {
+    "name": "arrow-left-circle-filled",
+    "figmaNodeId": "491:689"
+  },
+  {
+    "name": "arrow-right",
+    "figmaNodeId": "174:750"
+  },
+  {
+    "name": "arrow-right-circle",
+    "figmaNodeId": "491:715"
+  },
+  {
+    "name": "arrow-right-circle-filled",
+    "figmaNodeId": "491:695"
+  },
+  {
+    "name": "arrow-up",
+    "figmaNodeId": "174:749"
+  },
+  {
+    "name": "arrow-up-circle",
+    "figmaNodeId": "491:716"
+  },
+  {
+    "name": "arrow-up-circle-filled",
+    "figmaNodeId": "491:701"
+  },
+  {
+    "name": "arrow-up-right",
+    "figmaNodeId": "174:744"
+  },
+  {
+    "name": "bank",
+    "figmaNodeId": "174:797"
+  },
+  {
+    "name": "bar-graph",
+    "figmaNodeId": "324:5946"
+  },
+  {
+    "name": "bar-graph-filled",
+    "figmaNodeId": "2076:432"
+  },
+  {
+    "name": "bar-graph-rising",
+    "figmaNodeId": "174:813"
+  },
+  {
+    "name": "battery",
+    "figmaNodeId": "1317:720"
+  },
+  {
+    "name": "bin",
+    "figmaNodeId": "174:829"
+  },
+  {
+    "name": "box",
+    "figmaNodeId": "174:830"
+  },
+  {
+    "name": "box-filled",
+    "figmaNodeId": "628:5805"
+  },
+  {
+    "name": "building",
+    "figmaNodeId": "492:696"
+  },
+  {
+    "name": "calendar",
+    "figmaNodeId": "174:875"
+  },
+  {
+    "name": "calendar-blank",
+    "figmaNodeId": "174:877"
+  },
+  {
+    "name": "calendar-restricted",
+    "figmaNodeId": "174:876"
+  },
+  {
+    "name": "check",
+    "figmaNodeId": "174:917"
+  },
+  {
+    "name": "check-box-filled",
+    "figmaNodeId": "491:653"
+  },
+  {
+    "name": "check-circle-filled",
+    "figmaNodeId": "176:945"
+  },
+  {
+    "name": "chevron-down",
+    "figmaNodeId": "177:1013"
+  },
+  {
+    "name": "chevron-down-circle",
+    "figmaNodeId": "2177:480"
+  },
+  {
+    "name": "chevron-down-circle-filled",
+    "figmaNodeId": "2177:438"
+  },
+  {
+    "name": "chevron-large-down",
+    "figmaNodeId": "2177:398"
+  },
+  {
+    "name": "chevron-large-left",
+    "figmaNodeId": "2177:418"
+  },
+  {
+    "name": "chevron-large-right",
+    "figmaNodeId": "2177:428"
+  },
+  {
+    "name": "chevron-large-up",
+    "figmaNodeId": "2177:408"
+  },
+  {
+    "name": "chevron-left",
+    "figmaNodeId": "177:976"
+  },
+  {
+    "name": "chevron-left-circle",
+    "figmaNodeId": "2177:492"
+  },
+  {
+    "name": "chevron-left-circle-filled",
+    "figmaNodeId": "2177:448"
+  },
+  {
+    "name": "chevron-right",
+    "figmaNodeId": "177:975"
+  },
+  {
+    "name": "chevron-right-circle",
+    "figmaNodeId": "2177:504"
+  },
+  {
+    "name": "chevron-right-circle-filled",
+    "figmaNodeId": "2177:458"
+  },
+  {
+    "name": "chevron-up",
+    "figmaNodeId": "177:977"
+  },
+  {
+    "name": "chevron-up-circle",
+    "figmaNodeId": "2177:516"
+  },
+  {
+    "name": "chevron-up-circle-filled",
+    "figmaNodeId": "2177:468"
+  },
+  {
+    "name": "chevron-up-down",
+    "figmaNodeId": "805:243"
+  },
+  {
+    "name": "circle",
+    "figmaNodeId": "177:1538"
+  },
+  {
+    "name": "clock",
+    "figmaNodeId": "491:786"
+  },
+  {
+    "name": "clock-quarter",
+    "figmaNodeId": "491:800"
+  },
+  {
+    "name": "close",
+    "figmaNodeId": "491:824"
+  },
+  {
+    "name": "close-circle-filled",
+    "figmaNodeId": "491:838"
+  },
+  {
+    "name": "cloudy",
+    "figmaNodeId": "491:842"
+  },
+  {
+    "name": "coins",
+    "figmaNodeId": "326:6453"
+  },
+  {
+    "name": "coins-filled",
+    "figmaNodeId": "2077:447"
+  },
+  {
+    "name": "copy",
+    "figmaNodeId": "2177:526"
+  },
+  {
+    "name": "download",
+    "figmaNodeId": "537:545"
+  },
+  {
+    "name": "drop",
+    "figmaNodeId": "2177:550"
+  },
+  {
+    "name": "envelopes",
+    "figmaNodeId": "491:856"
+  },
+  {
+    "name": "external-link",
+    "figmaNodeId": "492:461"
+  },
+  {
+    "name": "faq",
+    "figmaNodeId": "537:573"
+  },
+  {
+    "name": "file",
+    "figmaNodeId": "492:104"
+  },
+  {
+    "name": "file-download",
+    "figmaNodeId": "492:107"
+  },
+  {
+    "name": "file-upload",
+    "figmaNodeId": "492:110"
+  },
+  {
+    "name": "graph-ascend",
+    "figmaNodeId": "492:168"
+  },
+  {
+    "name": "heart",
+    "figmaNodeId": "535:984"
+  },
+  {
+    "name": "heater",
+    "figmaNodeId": "492:182"
+  },
+  {
+    "name": "high-voltage-pole",
+    "figmaNodeId": "495:146"
+  },
+  {
+    "name": "history",
+    "figmaNodeId": "1673:1317"
+  },
+  {
+    "name": "hourglass",
+    "figmaNodeId": "492:186"
+  },
+  {
+    "name": "house",
+    "figmaNodeId": "373:797"
+  },
+  {
+    "name": "house-filled",
+    "figmaNodeId": "625:5762"
+  },
+  {
+    "name": "hyperlink",
+    "figmaNodeId": "492:475"
+  },
+  {
+    "name": "hyperlink-break",
+    "figmaNodeId": "535:942"
+  },
+  {
+    "name": "inbox",
+    "figmaNodeId": "492:746"
+  },
+  {
+    "name": "information",
+    "figmaNodeId": "492:545"
+  },
+  {
+    "name": "keys",
+    "figmaNodeId": "492:561"
+  },
+  {
+    "name": "leaf",
+    "figmaNodeId": "492:577"
+  },
+  {
+    "name": "letter",
+    "figmaNodeId": "535:988"
+  },
+  {
+    "name": "lightbulb",
+    "figmaNodeId": "492:581"
+  },
+  {
+    "name": "lightning",
+    "figmaNodeId": "492:601"
+  },
+  {
+    "name": "lightning-filled",
+    "figmaNodeId": "625:5787"
+  },
+  {
+    "name": "list",
+    "figmaNodeId": "492:597"
+  },
+  {
+    "name": "lock",
+    "figmaNodeId": "492:598"
+  },
+  {
+    "name": "log-out",
+    "figmaNodeId": "492:637"
+  },
+  {
+    "name": "log-out-door",
+    "figmaNodeId": "492:651"
+  },
+  {
+    "name": "megaphone",
+    "figmaNodeId": "492:732"
+  },
+  {
+    "name": "menu",
+    "figmaNodeId": "2177:572"
+  },
+  {
+    "name": "message",
+    "figmaNodeId": "492:750"
+  },
+  {
+    "name": "meter",
+    "figmaNodeId": "537:559"
+  },
+  {
+    "name": "minus-circle",
+    "figmaNodeId": "492:754"
+  },
+  {
+    "name": "more-horizontal",
+    "figmaNodeId": "2177:584"
+  },
+  {
+    "name": "more-vertical",
+    "figmaNodeId": "2177:596"
+  },
+  {
+    "name": "no-fire",
+    "figmaNodeId": "492:779"
+  },
+  {
+    "name": "oven",
+    "figmaNodeId": "492:795"
+  },
+  {
+    "name": "paper",
+    "figmaNodeId": "495:132"
+  },
+  {
+    "name": "paper-filled",
+    "figmaNodeId": "625:5801"
+  },
+  {
+    "name": "paperclip",
+    "figmaNodeId": "493:127"
+  },
+  {
+    "name": "peak-power",
+    "figmaNodeId": "326:6465"
+  },
+  {
+    "name": "pencil",
+    "figmaNodeId": "493:141"
+  },
+  {
+    "name": "people",
+    "figmaNodeId": "535:794"
+  },
+  {
+    "name": "person",
+    "figmaNodeId": "2177:562"
+  },
+  {
+    "name": "person-filled",
+    "figmaNodeId": "2177:538"
+  },
+  {
+    "name": "phone",
+    "figmaNodeId": "496:179"
+  },
+  {
+    "name": "placeholder",
+    "figmaNodeId": "324:5980"
+  },
+  {
+    "name": "plug",
+    "figmaNodeId": "533:506"
+  },
+  {
+    "name": "plug-filled",
+    "figmaNodeId": "1033:792"
+  },
+  {
+    "name": "power-button",
+    "figmaNodeId": "493:155"
+  },
+  {
+    "name": "price-tag",
+    "figmaNodeId": "535:970"
+  },
+  {
+    "name": "qr-code",
+    "figmaNodeId": "533:523"
+  },
+  {
+    "name": "question",
+    "figmaNodeId": "533:531"
+  },
+  {
+    "name": "question-filled",
+    "figmaNodeId": "535:956"
+  },
+  {
+    "name": "reactive-energy",
+    "figmaNodeId": "324:5958"
+  },
+  {
+    "name": "redo-arrow",
+    "figmaNodeId": "533:565"
+  },
+  {
+    "name": "ruler",
+    "figmaNodeId": "533:569"
+  },
+  {
+    "name": "search",
+    "figmaNodeId": "533:615"
+  },
+  {
+    "name": "security",
+    "figmaNodeId": "533:619"
+  },
+  {
+    "name": "settings",
+    "figmaNodeId": "533:623"
+  },
+  {
+    "name": "shopping-cart",
+    "figmaNodeId": "533:637"
+  },
+  {
+    "name": "snowflake",
+    "figmaNodeId": "533:651"
+  },
+  {
+    "name": "solar-panel",
+    "figmaNodeId": "1316:686"
+  },
+  {
+    "name": "standard-badge",
+    "figmaNodeId": "537:577"
+  },
+  {
+    "name": "swap",
+    "figmaNodeId": "534:665"
+  },
+  {
+    "name": "table",
+    "figmaNodeId": "535:1012"
+  },
+  {
+    "name": "television",
+    "figmaNodeId": "534:669"
+  },
+  {
+    "name": "terminated-contract",
+    "figmaNodeId": "1199:470"
+  },
+  {
+    "name": "transaction",
+    "figmaNodeId": "535:743"
+  },
+  {
+    "name": "uncheck-box",
+    "figmaNodeId": "491:655"
+  },
+  {
+    "name": "upload",
+    "figmaNodeId": "535:780"
+  },
+  {
+    "name": "view-off",
+    "figmaNodeId": "535:839"
+  },
+  {
+    "name": "view-on",
+    "figmaNodeId": "535:838"
+  },
+  {
+    "name": "warning",
+    "figmaNodeId": "535:868"
+  },
+  {
+    "name": "warning-circle",
+    "figmaNodeId": "535:896"
+  },
+  {
+    "name": "warning-circle-filled",
+    "figmaNodeId": "535:897"
+  },
+  {
+    "name": "warning-filled",
+    "figmaNodeId": "535:869"
+  },
+  {
+    "name": "washing-machine",
+    "figmaNodeId": "535:902"
+  }
+]

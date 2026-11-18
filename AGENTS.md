@@ -14,6 +14,8 @@ Practical reference for AI coding agents. For full architecture details see `ARC
 | Token build only (from existing tokens.json) | `pnpm --filter @ckwag/elements-tokens run build`            |
 | Build components                             | `pnpm --filter @ckwag/elements run build`                   |
 | Typecheck (icons, components, Storybook)     | `pnpm typecheck`                                            |
+| Generate icon components from `svg/`         | `pnpm icons:generate`                                       |
+| Check icons are in sync (CI)                 | `pnpm icons:check`                                          |
 | Add a changeset (public package changes)     | `pnpm changeset`                                            |
 | Full local release validation                | `pnpm release:validate`                                     |
 | Format code                                  | `pnpm format`                                               |
@@ -59,6 +61,11 @@ ckw-elements/                       # pnpm workspaces root ("type": "module")
 ```
 
 **Git remote:** `origin` → `https://github.com/CKWAG/ckw-elements.git`
+
+Icons: `packages/icons/svg/*.svg` (+ `manifest.json`) are the source of truth, `src/index.tsx` is generated from
+them (`pnpm icons:generate`) and committed; CI runs `pnpm icons:check`. Never edit `src/index.tsx` or the SVGs by
+hand: icons enter through the Claude skill `.claude/skills/add-icons-to-figma` (Figma → `import-svgs.mjs`).
+Renamed or merged icons stay available via `packages/icons/aliases.json` until the next major version.
 
 Public components: `Button` (`variant`, not `type`), `InputField`, `PasswordInput`,
 `InlineMessage`, `SegmentedControl`, `LoadingSpinner`. Icons live in `@ckwag/elements-icons`.

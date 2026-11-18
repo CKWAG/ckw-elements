@@ -65,9 +65,12 @@ ckw-elements/
 │   │
 │   └── icons/                    @ckwag/elements-icons .............. ACTIVE
 │       ├── package.json
-│       ├── generate-icons.mjs      Generates React SVG icon components
+│       ├── svg/                    SOURCE OF TRUTH — one SVG per icon + manifest.json (Figma node ids)
+│       ├── aliases.json            Deprecated icon names that still resolve to a current icon
+│       ├── import-svgs.mjs         Writes svg/ from the Figma export (used by the Claude skill)
+│       ├── generate-icons.mjs      Validates svg/ and generates the React icon components
 │       ├── dist/                   GENERATED — npm package output
-│       └── src/                    React SVG icon exports
+│       └── src/                    GENERATED — React SVG icon exports (committed)
 │
 ├── apps/
 │   └── storybook/                @ckwag/elements-storybook .......... ACTIVE
@@ -740,6 +743,31 @@ See `RELEASE.md` for the full process. In short:
   merging it builds, validates, and publishes `@ckwag/elements-tokens`,
   `@ckwag/elements-icons` and `@ckwag/elements` with npm provenance.
 - **Secret:** `NPM_TOKEN` with publish rights for the `@ckwag` scope.
+
+### D3. "I added or changed icons in Figma"
+
+Icons flow Figma → `svg/` → `src/` → Storybook and npm. The SVG files are the source of truth and are
+committed, so nothing in the build needs Figma or a token.
+
+```
+Figma Icons index (rows with status "Ready")
+  │  .claude/skills/add-icons-to-figma  ("Sync to code")
+  ▼
+packages/icons/svg/<name>.svg + svg/manifest.json     one flat SVG per icon, fill="currentColor"
+  │  pnpm icons:generate   (generate-icons.mjs, validates every SVG)
+  ▼
+packages/icons/src/index.tsx                           generated React components, committed
+  │  CI: pnpm icons:check  fails when src/ and svg/ disagree
+  ▼
+Storybook "Foundations/Icons" (reads iconMetadata) · npm @ckwag/elements-icons (Changesets)
+```
+
+- **Naming and breaking changes:** a renamed or merged icon keeps working through `aliases.json`
+  (`{ "old-name": "new-name" }`). The alias is exported as a deprecated `IconOldName` and is still accepted by
+  `<Icon name="old-name" />`, but is not listed in `iconNames`. Aliases are removed in the next major version.
+- **Validation:** `generate-icons.mjs` rejects SVGs that are not flat (24px canvas, only `<path>`, every path
+  `fill="currentColor"`, no strokes), icons missing from the manifest, and aliases pointing nowhere.
+- **Release:** add a changeset for `@ckwag/elements-icons` (minor for new icons or aliases).
 
 ### D. "I want to run Storybook locally"
 

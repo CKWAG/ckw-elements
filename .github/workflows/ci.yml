@@ -26,6 +26,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: Check icon sources are in sync
+        run: pnpm icons:check
+
       - name: Check formatting
         run: pnpm format:check
 
