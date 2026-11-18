@@ -13,6 +13,9 @@ Practical reference for AI coding agents. For full architecture details see `ARC
 | Token transform only                         | `pnpm --filter @ckwag/elements-tokens run tokens:transform` |
 | Token build only (from existing tokens.json) | `pnpm --filter @ckwag/elements-tokens run build`            |
 | Build components                             | `pnpm --filter @ckwag/elements run build`                   |
+| Typecheck (icons, components, Storybook)     | `pnpm typecheck`                                            |
+| Add a changeset (public package changes)     | `pnpm changeset`                                            |
+| Full local release validation                | `pnpm release:validate`                                     |
 | Format code                                  | `pnpm format`                                               |
 | Check formatting (CI)                        | `pnpm format:check`                                         |
 | Start Storybook dev server                   | `pnpm --filter @ckwag/elements-storybook run dev`           |
@@ -21,11 +24,16 @@ Practical reference for AI coding agents. For full architecture details see `ARC
 
 **Prettier** is configured (`.prettierrc.json`). Formatting is enforced via:
 
-- **Pre-commit hook** — Husky + lint-staged auto-formats staged files on commit.
-- **CI check** — GitHub Actions runs `pnpm format:check` on push/PR to `main`.
+- **Pre-commit hook** — Husky runs lint-staged (Prettier) and `pnpm typecheck` on commit.
+- **CI** — GitHub Actions (`ci.yml`) runs format check, typecheck, token/component/Storybook
+  builds, `release:check` and `release:pack` on push/PR to `main`.
 
-No ESLint or test runner is configured. TypeScript configs exist for package and
-Storybook checks; keep the explicit React import until the JSX runtime changes.
+No ESLint and no test runner (the Playwright visual tests were removed). Package and
+Storybook TypeScript configs extend `tsconfig.base.json`; keep the explicit React import
+until the JSX runtime changes.
+
+Releases: Changesets. Stable (`latest`) on GitHub Release, dev (`@dev`) on every push to
+`main` that touches `packages/`. See `RELEASE.md`.
 
 Engine requirements: **Node >= 20**, **pnpm >= 10**.
 
@@ -35,17 +43,25 @@ Engine requirements: **Node >= 20**, **pnpm >= 10**.
 
 ```
 ckw-elements/                       # pnpm workspaces root ("type": "module")
-├── packages/tokens/                # @ckwag/elements-tokens (ACTIVE — 282 tokens)
+├── packages/tokens/                # @ckwag/elements-tokens (ACTIVE — 368 tokens)
 ├── packages/components/            # @ckwag/elements (ACTIVE — React package)
 ├── packages/icons/                 # @ckwag/elements-icons (ACTIVE — React SVG icon set)
 ├── apps/storybook/                 # @ckwag/elements-storybook (ACTIVE)
 ├── token-drop/                     # Drop folder for Tokens Studio JSON exports
+├── .changeset/                     # Changesets config + pending release notes
+├── scripts/validate-release.mjs    # Release metadata validation
 ├── pnpm-workspace.yaml             # packages: ['packages/*', 'apps/*']
-├── ARCHITECTURE.md                 # Full architecture docs (870 lines)
-└── PIPELINE.md                     # German non-technical pipeline docs (~170 lines)
+├── ARCHITECTURE.md                 # Full architecture docs
+├── PIPELINE.md                     # German non-technical pipeline docs
+├── RELEASE.md                      # Release process (Changesets, npm channels)
+├── DESIGN.md                       # Machine-readable design spec
+└── llms.txt                        # LLM entry point
 ```
 
 **Git remote:** `origin` → `https://github.com/CKWAG/ckw-elements.git`
+
+Public components: `Button` (`variant`, not `type`), `InputField`, `PasswordInput`,
+`InlineMessage`, `SegmentedControl`, `LoadingSpinner`. Icons live in `@ckwag/elements-icons`.
 
 ---
 
@@ -58,8 +74,8 @@ tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v4
 - `dist/` outputs are generated, NEVER manually edit them.
 - `tokens-raw.json` (Tokens Studio export) and `tokens.json` (DTCG) are both committed.
 - Style Dictionary collision warnings are **intentional** (desktop/mobile typography) — do not fix them.
-- Token count: 282 total (79 primitive colors, 76 semantic colors, 15 spacing, 7 border-radius,
-  4 border-weight, 1 font-family, 3 shadows, 1 gradient, 48+48 typography desktop/mobile).
+- Token count: 368 total (79 primitive colors, 76 semantic colors, 15 spacing, 7 border-radius,
+  4 border-weight, 1 font-family, 5 shadows, 1 gradient, 90+90 typography desktop/mobile).
 
 ---
 
@@ -74,12 +90,13 @@ tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v4
    background: var(--interactive-primary);
    ```
 
-2. **`import React from 'react'` is REQUIRED** in all TSX files. No `tsconfig.json` means
-   the automatic JSX transform is not active. Removing this import causes runtime errors.
+2. **`import React from 'react'` is REQUIRED** in all TSX files. The classic JSX transform
+   is in use (`jsx: react` in `tsconfig.base.json`). Removing this import causes runtime errors.
 
 3. **Do NOT introduce Turborepo, Nx, or similar** — pnpm workspaces only.
 
-4. **Do NOT add `tsconfig.json`** unless explicitly asked — it is a known future task.
+4. **Public package changes need a changeset** (`pnpm changeset`). Never publish or edit
+   `dist/` by hand — the release workflows build and publish.
 
 5. **Brand color is GREEN** (`#86bc46`), not blue. Font is **Gotham** (Book=325, Medium=500).
 
@@ -100,7 +117,7 @@ tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v4
 
 ### TypeScript / React
 
-- `strict: true` intent (no tsconfig yet, but write as if strict)
+- Write strict TypeScript (`pnpm typecheck` runs in the pre-commit hook and CI)
 - Props: always `interface`, never `type`
 - Variant unions: `export type ButtonVariant = 'primary' | 'secondary'` — no `enum`
 - Type-only imports: `import type { Foo } from './bar'`
