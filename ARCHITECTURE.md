@@ -799,6 +799,7 @@ pnpm --filter @ckwag/elements-storybook run build
 | `pnpm -r run build`                                 | Build all workspace packages       |
 | `pnpm icons:generate`                               | Generate icon components from svg/ |
 | `pnpm icons:check`                                  | Fail if icons src is out of date   |
+| `pnpm docs:sync` / `pnpm docs:check`                | Sync / verify published doc copies |
 | `pnpm typecheck`                                    | Typecheck icons, components, SB    |
 | `pnpm format:check`                                 | Prettier check (CI)                |
 | `pnpm changeset`                                    | Add release intent                 |
@@ -937,20 +938,20 @@ Quick lookup for every file in the monorepo and its purpose.
 
 ### Root
 
-| File                  | Purpose                           |
-| --------------------- | --------------------------------- |
-| `package.json`        | Workspace root, shared scripts    |
-| `pnpm-workspace.yaml` | Defines workspace members         |
-| `.gitignore`          | Excludes node_modules, dist, etc. |
-| `ARCHITECTURE.md`     | This document                     |
-| `AGENTS.md`           | Agent rules and conventions       |
-| `DESIGN.md`           | Machine-readable design spec      |
-| `RELEASE.md`          | Release process                   |
-| `llms.txt`            | LLM entry point                   |
-| `tsconfig.base.json`  | Shared TS config for packages     |
-| `.changeset/`         | Changesets config + pending notes |
-| `scripts/`            | `validate-release.mjs`            |
-| `.github/workflows/`  | CI, Storybook deploy, npm release |
+| File                  | Purpose                                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- |
+| `package.json`        | Workspace root, shared scripts                                                                                |
+| `pnpm-workspace.yaml` | Defines workspace members                                                                                     |
+| `.gitignore`          | Excludes node_modules, dist, etc.                                                                             |
+| `ARCHITECTURE.md`     | This document                                                                                                 |
+| `AGENTS.md`           | Agent rules and conventions                                                                                   |
+| `DESIGN.md`           | Machine-readable design spec                                                                                  |
+| `RELEASE.md`          | Release process                                                                                               |
+| `llms.txt`            | LLM entry point                                                                                               |
+| `tsconfig.base.json`  | Shared TS config for packages                                                                                 |
+| `.changeset/`         | Changesets config + pending notes                                                                             |
+| `scripts/`            | `validate-release.mjs`, `sync-public-docs.mjs` (keeps `DESIGN.md` and its Storybook `public/` copy identical) |
+| `.github/workflows/`  | CI, Storybook deploy, npm release                                                                             |
 
 ### `packages/tokens/`
 

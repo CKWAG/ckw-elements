@@ -15,10 +15,12 @@
     "release:build": "pnpm --filter @ckwag/elements-tokens run build && pnpm --filter @ckwag/elements-icons run build && pnpm --filter @ckwag/elements run build",
     "release:check": "node scripts/validate-release.mjs",
     "release:pack": "npm pack ./packages/tokens --dry-run --cache ./.npm-pack-cache && npm pack ./packages/icons --dry-run --cache ./.npm-pack-cache && npm pack ./packages/components --dry-run --cache ./.npm-pack-cache",
-    "release:validate": "pnpm icons:check && pnpm format:check && pnpm typecheck && pnpm release:build && pnpm release:check && pnpm release:pack",
+    "release:validate": "pnpm icons:check && pnpm docs:check && pnpm format:check && pnpm typecheck && pnpm release:build && pnpm release:check && pnpm release:pack",
     "tokens:sync": "pnpm --filter @ckwag/elements-tokens run tokens:sync",
     "icons:generate": "pnpm --filter @ckwag/elements-icons run generate",
-    "icons:check": "pnpm --filter @ckwag/elements-icons run check"
+    "icons:check": "pnpm --filter @ckwag/elements-icons run check",
+    "docs:sync": "node scripts/sync-public-docs.mjs",
+    "docs:check": "node scripts/sync-public-docs.mjs --check"
   },
   "engines": {
     "node": ">=20",

@@ -16,6 +16,7 @@ Practical reference for AI coding agents. For full architecture details see `ARC
 | Typecheck (icons, components, Storybook)     | `pnpm typecheck`                                            |
 | Generate icon components from `svg/`         | `pnpm icons:generate`                                       |
 | Check icons are in sync (CI)                 | `pnpm icons:check`                                          |
+| Copy root docs to Storybook `public/`        | `pnpm docs:sync` (check: `pnpm docs:check`)                 |
 | Add a changeset (public package changes)     | `pnpm changeset`                                            |
 | Full local release validation                | `pnpm release:validate`                                     |
 | Format code                                  | `pnpm format`                                               |
@@ -67,6 +68,9 @@ them (`pnpm icons:generate`) and committed; CI runs `pnpm icons:check`. Never ed
 hand: icons enter through the Claude skill `.claude/skills/add-icons-to-figma` (Figma → `import-svgs.mjs`).
 Renamed or merged icons stay available via `packages/icons/aliases.json` until the next major version.
 Full icon guide (standard, pipeline, tools, policy): `packages/icons/CONTRIBUTING.md`.
+
+`apps/storybook/public/DESIGN.md` is a published copy of the root `DESIGN.md`: edit only the root file, then run
+`pnpm docs:sync`. CI runs `pnpm docs:check`. (`llms.txt` intentionally differs between root and `public/`.)
 
 Public components: `Button` (`variant`, not `type`), `InputField`, `PasswordInput`,
 `InlineMessage`, `SegmentedControl`, `LoadingSpinner`. Icons live in `@ckwag/elements-icons`.
