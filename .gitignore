@@ -43,3 +43,6 @@ playwright-report/
 
 # Token drop folder (JSON exports from Tokens Studio)
 token-drop/*.json
+
+# Personal Claude Code settings
+.claude/settings.local.json

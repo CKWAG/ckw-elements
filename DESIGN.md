@@ -269,6 +269,22 @@ Border radius uses a compact scale:
 
 Border weights: `1px` (default), `2px` (emphasis), `3px` (active indicators).
 
+## Icons
+
+Icons come from `@ckwag/elements-icons` as React components that inherit `currentColor`.
+
+- **Canvas and style:** 24px canvas, glyph at most 20px with a 2px safe area, 1.67px stroke with round caps and joins,
+  one flat vector in one colour.
+- **Naming:** kebab-case, `<noun>[-modifier][-direction][-circle][-filled]`. `-filled` is always last, outline icons
+  have no suffix (`arrow-left-circle`, `arrow-left-circle-filled`). Component name: `Icon` plus PascalCase.
+- **Usage:** `import { IconSearch } from '@ckwag/elements-icons';` then `<IconSearch aria-hidden="true" />`, or
+  `<IconSearch title="Search" />` for a labelled icon. `size` defaults to 24. Prefer named imports over
+  `<Icon name="…" />`, which references every icon.
+- **Deprecated names:** renamed icons stay available as deprecated aliases until the next major version
+  (`IconPlus` is now `IconAdd`, `IconCheckBox` is now `IconCheckBoxFilled`). Use the new names in new code.
+- **Source of truth:** `packages/icons/svg`. Never edit generated icon code by hand. See
+  `packages/icons/CONTRIBUTING.md`.
+
 ## Components
 
 ### Button Primary

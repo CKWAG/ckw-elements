@@ -6,9 +6,13 @@ CKW Elements is CKW's React design system. Use it through package imports, not c
 
 - Agent instructions: AGENTS.md
 - Architecture: ARCHITECTURE.md
+- Release process: RELEASE.md
+- Design spec: DESIGN.md
 - Pipeline guide: PIPELINE.md
-- Token package: packages/tokens
-- Component package: packages/components
+- Token package (@ckwag/elements-tokens): packages/tokens
+- Component package (@ckwag/elements): packages/components
+- Icon package (@ckwag/elements-icons): packages/icons
+- Icon guide (standard, Figma to repo pipeline, deprecation policy): packages/icons/CONTRIBUTING.md
 - Storybook app: apps/storybook
 - Deployed-agent entrypoint: apps/storybook/public/llms.txt
 - CKW Figma design system: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System
@@ -16,12 +20,19 @@ CKW Elements is CKW's React design system. Use it through package imports, not c
 ## Package Usage
 
 ```css
-@import '@ckwag/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 ```
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/components';
+import {
+  Button,
+  InlineMessage,
+  InputField,
+  LoadingSpinner,
+  PasswordInput,
+  SegmentedControl,
+} from '@ckwag/elements';
 ```
 
 ## Core Rules
@@ -32,3 +43,4 @@ import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } fr
 - Font is Gotham through `var(--font-family-brand), sans-serif`.
 - Keep `import React from 'react';` in TSX files in this repository.
 - Do not introduce Turborepo, Nx, Tailwind, ESLint, or test runners unless explicitly requested.
+- Public package changes need a changeset (`pnpm changeset`); see RELEASE.md.

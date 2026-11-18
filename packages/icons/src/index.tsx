@@ -19,6 +19,7 @@ export const iconNames = [
   'arrow-up-right',
   'bank',
   'bar-graph',
+  'bar-graph-filled',
   'bar-graph-rising',
   'battery',
   'bin',
@@ -29,12 +30,24 @@ export const iconNames = [
   'calendar-blank',
   'calendar-restricted',
   'check',
-  'check-box',
+  'check-box-filled',
   'check-circle-filled',
   'chevron-down',
+  'chevron-down-circle',
+  'chevron-down-circle-filled',
+  'chevron-large-down',
+  'chevron-large-left',
+  'chevron-large-right',
+  'chevron-large-up',
   'chevron-left',
+  'chevron-left-circle',
+  'chevron-left-circle-filled',
   'chevron-right',
+  'chevron-right-circle',
+  'chevron-right-circle-filled',
   'chevron-up',
+  'chevron-up-circle',
+  'chevron-up-circle-filled',
   'chevron-up-down',
   'circle',
   'clock',
@@ -43,7 +56,10 @@ export const iconNames = [
   'close-circle-filled',
   'cloudy',
   'coins',
+  'coins-filled',
+  'copy',
   'download',
+  'drop',
   'envelopes',
   'external-link',
   'faq',
@@ -54,6 +70,7 @@ export const iconNames = [
   'heart',
   'heater',
   'high-voltage-pole',
+  'history',
   'hourglass',
   'house',
   'house-filled',
@@ -72,21 +89,26 @@ export const iconNames = [
   'log-out',
   'log-out-door',
   'megaphone',
+  'menu',
   'message',
   'meter',
   'minus-circle',
+  'more-horizontal',
+  'more-vertical',
   'no-fire',
   'oven',
   'paper',
   'paper-filled',
   'paperclip',
+  'peak-power',
   'pencil',
   'people',
+  'person',
+  'person-filled',
   'phone',
   'placeholder',
   'plug',
   'plug-filled',
-  'plus',
   'power-button',
   'price-tag',
   'qr-code',
@@ -161,6 +183,7 @@ export const iconMetadata = [
   { name: 'arrow-up-right', componentName: 'IconArrowUpRight', figmaNodeId: '174:744' },
   { name: 'bank', componentName: 'IconBank', figmaNodeId: '174:797' },
   { name: 'bar-graph', componentName: 'IconBarGraph', figmaNodeId: '324:5946' },
+  { name: 'bar-graph-filled', componentName: 'IconBarGraphFilled', figmaNodeId: '2076:432' },
   { name: 'bar-graph-rising', componentName: 'IconBarGraphRising', figmaNodeId: '174:813' },
   { name: 'battery', componentName: 'IconBattery', figmaNodeId: '1317:720' },
   { name: 'bin', componentName: 'IconBin', figmaNodeId: '174:829' },
@@ -171,12 +194,44 @@ export const iconMetadata = [
   { name: 'calendar-blank', componentName: 'IconCalendarBlank', figmaNodeId: '174:877' },
   { name: 'calendar-restricted', componentName: 'IconCalendarRestricted', figmaNodeId: '174:876' },
   { name: 'check', componentName: 'IconCheck', figmaNodeId: '174:917' },
-  { name: 'check-box', componentName: 'IconCheckBox', figmaNodeId: '491:653' },
+  { name: 'check-box-filled', componentName: 'IconCheckBoxFilled', figmaNodeId: '491:653' },
   { name: 'check-circle-filled', componentName: 'IconCheckCircleFilled', figmaNodeId: '176:945' },
   { name: 'chevron-down', componentName: 'IconChevronDown', figmaNodeId: '177:1013' },
+  { name: 'chevron-down-circle', componentName: 'IconChevronDownCircle', figmaNodeId: '2177:480' },
+  {
+    name: 'chevron-down-circle-filled',
+    componentName: 'IconChevronDownCircleFilled',
+    figmaNodeId: '2177:438',
+  },
+  { name: 'chevron-large-down', componentName: 'IconChevronLargeDown', figmaNodeId: '2177:398' },
+  { name: 'chevron-large-left', componentName: 'IconChevronLargeLeft', figmaNodeId: '2177:418' },
+  { name: 'chevron-large-right', componentName: 'IconChevronLargeRight', figmaNodeId: '2177:428' },
+  { name: 'chevron-large-up', componentName: 'IconChevronLargeUp', figmaNodeId: '2177:408' },
   { name: 'chevron-left', componentName: 'IconChevronLeft', figmaNodeId: '177:976' },
+  { name: 'chevron-left-circle', componentName: 'IconChevronLeftCircle', figmaNodeId: '2177:492' },
+  {
+    name: 'chevron-left-circle-filled',
+    componentName: 'IconChevronLeftCircleFilled',
+    figmaNodeId: '2177:448',
+  },
   { name: 'chevron-right', componentName: 'IconChevronRight', figmaNodeId: '177:975' },
+  {
+    name: 'chevron-right-circle',
+    componentName: 'IconChevronRightCircle',
+    figmaNodeId: '2177:504',
+  },
+  {
+    name: 'chevron-right-circle-filled',
+    componentName: 'IconChevronRightCircleFilled',
+    figmaNodeId: '2177:458',
+  },
   { name: 'chevron-up', componentName: 'IconChevronUp', figmaNodeId: '177:977' },
+  { name: 'chevron-up-circle', componentName: 'IconChevronUpCircle', figmaNodeId: '2177:516' },
+  {
+    name: 'chevron-up-circle-filled',
+    componentName: 'IconChevronUpCircleFilled',
+    figmaNodeId: '2177:468',
+  },
   { name: 'chevron-up-down', componentName: 'IconChevronUpDown', figmaNodeId: '805:243' },
   { name: 'circle', componentName: 'IconCircle', figmaNodeId: '177:1538' },
   { name: 'clock', componentName: 'IconClock', figmaNodeId: '491:786' },
@@ -185,7 +240,10 @@ export const iconMetadata = [
   { name: 'close-circle-filled', componentName: 'IconCloseCircleFilled', figmaNodeId: '491:838' },
   { name: 'cloudy', componentName: 'IconCloudy', figmaNodeId: '491:842' },
   { name: 'coins', componentName: 'IconCoins', figmaNodeId: '326:6453' },
+  { name: 'coins-filled', componentName: 'IconCoinsFilled', figmaNodeId: '2077:447' },
+  { name: 'copy', componentName: 'IconCopy', figmaNodeId: '2177:526' },
   { name: 'download', componentName: 'IconDownload', figmaNodeId: '537:545' },
+  { name: 'drop', componentName: 'IconDrop', figmaNodeId: '2177:550' },
   { name: 'envelopes', componentName: 'IconEnvelopes', figmaNodeId: '491:856' },
   { name: 'external-link', componentName: 'IconExternalLink', figmaNodeId: '492:461' },
   { name: 'faq', componentName: 'IconFaq', figmaNodeId: '537:573' },
@@ -196,6 +254,7 @@ export const iconMetadata = [
   { name: 'heart', componentName: 'IconHeart', figmaNodeId: '535:984' },
   { name: 'heater', componentName: 'IconHeater', figmaNodeId: '492:182' },
   { name: 'high-voltage-pole', componentName: 'IconHighVoltagePole', figmaNodeId: '495:146' },
+  { name: 'history', componentName: 'IconHistory', figmaNodeId: '1673:1317' },
   { name: 'hourglass', componentName: 'IconHourglass', figmaNodeId: '492:186' },
   { name: 'house', componentName: 'IconHouse', figmaNodeId: '373:797' },
   { name: 'house-filled', componentName: 'IconHouseFilled', figmaNodeId: '625:5762' },
@@ -214,21 +273,26 @@ export const iconMetadata = [
   { name: 'log-out', componentName: 'IconLogOut', figmaNodeId: '492:637' },
   { name: 'log-out-door', componentName: 'IconLogOutDoor', figmaNodeId: '492:651' },
   { name: 'megaphone', componentName: 'IconMegaphone', figmaNodeId: '492:732' },
+  { name: 'menu', componentName: 'IconMenu', figmaNodeId: '2177:572' },
   { name: 'message', componentName: 'IconMessage', figmaNodeId: '492:750' },
   { name: 'meter', componentName: 'IconMeter', figmaNodeId: '537:559' },
   { name: 'minus-circle', componentName: 'IconMinusCircle', figmaNodeId: '492:754' },
+  { name: 'more-horizontal', componentName: 'IconMoreHorizontal', figmaNodeId: '2177:584' },
+  { name: 'more-vertical', componentName: 'IconMoreVertical', figmaNodeId: '2177:596' },
   { name: 'no-fire', componentName: 'IconNoFire', figmaNodeId: '492:779' },
   { name: 'oven', componentName: 'IconOven', figmaNodeId: '492:795' },
   { name: 'paper', componentName: 'IconPaper', figmaNodeId: '495:132' },
   { name: 'paper-filled', componentName: 'IconPaperFilled', figmaNodeId: '625:5801' },
   { name: 'paperclip', componentName: 'IconPaperclip', figmaNodeId: '493:127' },
+  { name: 'peak-power', componentName: 'IconPeakPower', figmaNodeId: '326:6465' },
   { name: 'pencil', componentName: 'IconPencil', figmaNodeId: '493:141' },
   { name: 'people', componentName: 'IconPeople', figmaNodeId: '535:794' },
+  { name: 'person', componentName: 'IconPerson', figmaNodeId: '2177:562' },
+  { name: 'person-filled', componentName: 'IconPersonFilled', figmaNodeId: '2177:538' },
   { name: 'phone', componentName: 'IconPhone', figmaNodeId: '496:179' },
   { name: 'placeholder', componentName: 'IconPlaceholder', figmaNodeId: '324:5980' },
   { name: 'plug', componentName: 'IconPlug', figmaNodeId: '533:506' },
   { name: 'plug-filled', componentName: 'IconPlugFilled', figmaNodeId: '1033:792' },
-  { name: 'plus', componentName: 'IconPlus', figmaNodeId: '164:3240' },
   { name: 'power-button', componentName: 'IconPowerButton', figmaNodeId: '493:155' },
   { name: 'price-tag', componentName: 'IconPriceTag', figmaNodeId: '535:970' },
   { name: 'qr-code', componentName: 'IconQrCode', figmaNodeId: '533:523' },
@@ -264,6 +328,17 @@ export const iconMetadata = [
   { name: 'washing-machine', componentName: 'IconWashingMachine', figmaNodeId: '535:902' },
 ] as const satisfies readonly IconMetadata[];
 
+/**
+ * Icon names that were renamed or merged. They still work but are not part of `iconNames`.
+ * Maps the deprecated name to the current icon name.
+ */
+export const deprecatedIconAliases = {
+  'check-box': 'check-box-filled',
+  plus: 'add',
+} as const satisfies Record<string, IconName>;
+
+export type DeprecatedIconName = keyof typeof deprecatedIconAliases;
+
 export interface IconProps extends Omit<React.SVGProps<SVGSVGElement>, 'children'> {
   /** Accessible label. Omit for decorative icons. */
   title?: string;
@@ -274,8 +349,8 @@ export interface IconProps extends Omit<React.SVGProps<SVGSVGElement>, 'children
 export type IconComponent = (props: IconProps) => React.ReactElement;
 
 export interface IconByNameProps extends IconProps {
-  /** Icon name from the CKW Elements icon set. */
-  name: IconName;
+  /** Icon name from the CKW Elements icon set. Deprecated names keep working until the next major version. */
+  name: IconName | DeprecatedIconName;
 }
 
 function getAccessibilityProps(title: string | undefined): React.SVGProps<SVGSVGElement> {
@@ -698,6 +773,28 @@ export function IconBarGraph({ title, size = 24, ...props }: IconProps) {
   );
 }
 
+/** Renders the bar graph filled icon from the CKW Elements Figma icon set. */
+export function IconBarGraphFilled({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M16.8333 3C16.3731 3 16 3.37309 16 3.83333V20.1666C16 20.6269 16.3731 20.9999 16.8333 20.9999H20.1667C20.6269 20.9999 21 20.6269 21 20.1666V3.83333C21 3.37309 20.6269 3 20.1667 3H16.8333ZM10.3333 10.9999C9.87309 10.9999 9.5 11.373 9.5 11.8333V20.1666C9.5 20.6269 9.87309 20.9999 10.3333 20.9999H13.6667C14.1269 20.9999 14.5 20.6269 14.5 20.1666V11.8333C14.5 11.373 14.1269 10.9999 13.6667 10.9999H10.3333ZM3.83333 7C3.3731 7 3 7.37308 3 7.83333L3 20.1666C3 20.6269 3.3731 20.9999 3.83333 20.9999H7.16667C7.6269 20.9999 8 20.6269 8 20.1666V7.83333C8 7.37308 7.6269 7 7.16667 7H3.83333Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 /** Renders the bar graph rising icon from the CKW Elements Figma icon set. */
 export function IconBarGraphRising({ title, size = 24, ...props }: IconProps) {
   return (
@@ -926,8 +1023,8 @@ export function IconCheck({ title, size = 24, ...props }: IconProps) {
   );
 }
 
-/** Renders the check box icon from the CKW Elements Figma icon set. */
-export function IconCheckBox({ title, size = 24, ...props }: IconProps) {
+/** Renders the check box filled icon from the CKW Elements Figma icon set. */
+export function IconCheckBoxFilled({ title, size = 24, ...props }: IconProps) {
   return (
     <svg
       width={size}
@@ -998,6 +1095,152 @@ export function IconChevronDown({ title, size = 24, ...props }: IconProps) {
   );
 }
 
+/** Renders the chevron down circle icon from the CKW Elements Figma icon set. */
+export function IconChevronDownCircle({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M2 12C2 6.49 6.49 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22C6.49 22 2 17.51 2 12ZM20.33 12C20.33 7.41 16.59 3.67 12 3.67C7.41 3.67 3.67 7.41 3.67 12C3.67 16.59 7.41 20.33 12 20.33C16.59 20.33 20.33 16.59 20.33 12Z"
+        fill="currentColor"
+      />
+      <path
+        d="M11.4 15.53L5.97 10.1L7.15 8.92002L11.98 13.75L16.84 8.90002L18.02 10.08L12.57 15.53C12.24 15.85 11.73 15.85 11.39 15.53H11.4Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron down circle filled icon from the CKW Elements Figma icon set. */
+export function IconChevronDownCircleFilled({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M22 12C22 6.47 17.53 2 12 2C6.47 2 2 6.47 2 12C2 17.53 6.47 22 12 22C17.53 22 22 17.53 22 12ZM11.48 15.18L6.1 9.8L7.27 8.63L12.05 13.41L16.86 8.61L18.03 9.78L12.64 15.17C12.32 15.49 11.81 15.49 11.48 15.17V15.18Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron large down icon from the CKW Elements Figma icon set. */
+export function IconChevronLargeDown({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12.59 17.2799L22 7.86994L20.82 6.68994L12 15.5099L3.18 6.68994L2 7.85994L11.41 17.2799C11.74 17.5999 12.26 17.5999 12.59 17.2799Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron large left icon from the CKW Elements Figma icon set. */
+export function IconChevronLargeLeft({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M6.92994 12.59L16.3399 22L17.5199 20.82L8.69994 12L17.5199 3.18L16.3499 2H16.3399L6.92994 11.41C6.60994 11.74 6.60994 12.26 6.92994 12.59Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron large right icon from the CKW Elements Figma icon set. */
+export function IconChevronLargeRight({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M17.2799 11.41L7.86994 2L6.68994 3.18L15.5099 12L6.68994 20.82L7.85994 22H7.86994L17.2799 12.59C17.5999 12.26 17.5999 11.74 17.2799 11.41Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron large up icon from the CKW Elements Figma icon set. */
+export function IconChevronLargeUp({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M11.41 6.92018L2 16.3402L3.18 17.5202L12 8.70018L20.82 17.5202L22 16.3502L12.59 6.92018C12.26 6.60018 11.74 6.60018 11.41 6.92018Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 /** Renders the chevron left icon from the CKW Elements Figma icon set. */
 export function IconChevronLeft({ title, size = 24, ...props }: IconProps) {
   return (
@@ -1016,6 +1259,56 @@ export function IconChevronLeft({ title, size = 24, ...props }: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M14.4495 5.57739L8.61615 11.4108C8.29071 11.7362 8.29071 12.2638 8.61615 12.5893L14.4495 18.4226L15.628 17.2441L10.3839 12L15.628 6.7559L14.4495 5.57739Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron left circle icon from the CKW Elements Figma icon set. */
+export function IconChevronLeftCircle({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22C6.49 22 2 17.51 2 12C2 6.49 6.49 2 12 2ZM12 20.33C16.59 20.33 20.33 16.59 20.33 12C20.33 7.41 16.59 3.67 12 3.67C7.41 3.67 3.67 7.41 3.67 12C3.67 16.59 7.41 20.33 12 20.33Z"
+        fill="currentColor"
+      />
+      <path
+        d="M8.47 11.4L13.9 5.96997L15.08 7.14997L10.25 11.98L15.1 16.84L13.92 18.02L8.47 12.57C8.15 12.24 8.15 11.73 8.47 11.39V11.4Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron left circle filled icon from the CKW Elements Figma icon set. */
+export function IconChevronLeftCircleFilled({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 22C17.53 22 22 17.53 22 12C22 6.47 17.53 2 12 2C6.47 2 2 6.47 2 12C2 17.53 6.47 22 12 22ZM8.82 11.48L14.2 6.1L15.37 7.27L10.59 12.05L15.39 16.86L14.22 18.03L8.83 12.64C8.51 12.32 8.51 11.81 8.83 11.48H8.82Z"
         fill="currentColor"
       />
     </svg>
@@ -1046,6 +1339,56 @@ export function IconChevronRight({ title, size = 24, ...props }: IconProps) {
   );
 }
 
+/** Renders the chevron right circle icon from the CKW Elements Figma icon set. */
+export function IconChevronRightCircle({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M12 22C6.49 22 2 17.51 2 12C2 6.49 6.49 2 12 2C17.51 2 22 6.49 22 12C22 17.51 17.51 22 12 22ZM12 3.67C7.41 3.67 3.67 7.4 3.67 12C3.67 16.6 7.41 20.33 12 20.33C16.59 20.33 20.33 16.59 20.33 12C20.33 7.41 16.59 3.67 12 3.67Z"
+        fill="currentColor"
+      />
+      <path
+        d="M15.53 12.6L10.1 18.03L8.91999 16.85L13.75 12.02L8.89999 7.15998L10.08 5.97998L15.53 11.43C15.85 11.76 15.85 12.27 15.53 12.61V12.6Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron right circle filled icon from the CKW Elements Figma icon set. */
+export function IconChevronRightCircleFilled({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.47 2 2 6.47 2 12C2 17.53 6.47 22 12 22C17.53 22 22 17.53 22 12C22 6.47 17.53 2 12 2ZM15.18 12.52L9.8 17.9L8.63 16.73L13.41 11.95L8.61 7.14L9.78 5.97L15.17 11.36C15.49 11.68 15.49 12.19 15.17 12.52H15.18Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 /** Renders the chevron up icon from the CKW Elements Figma icon set. */
 export function IconChevronUp({ title, size = 24, ...props }: IconProps) {
   return (
@@ -1064,6 +1407,56 @@ export function IconChevronUp({ title, size = 24, ...props }: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M12.5893 8.61615C12.2638 8.29071 11.7362 8.29071 11.4108 8.61615L5.57739 14.4495L6.7559 15.628L12 10.3839L17.2441 15.628L18.4226 14.4495L12.5893 8.61615Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron up circle icon from the CKW Elements Figma icon set. */
+export function IconChevronUpCircle({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M22 12C22 17.51 17.51 22 12 22C6.49 22 2 17.51 2 12C2 6.49 6.49 2 12 2C17.51 2 22 6.49 22 12ZM3.67 12C3.67 16.59 7.41 20.33 12 20.33C16.59 20.33 20.33 16.59 20.33 12C20.33 7.41 16.59 3.67 12 3.67C7.41 3.67 3.67 7.41 3.67 12Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12.6 8.46998L18.03 13.9L16.85 15.08L12.02 10.25L7.16 15.1L5.98 13.92L11.43 8.46998C11.76 8.14998 12.27 8.14998 12.61 8.46998H12.6Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the chevron up circle filled icon from the CKW Elements Figma icon set. */
+export function IconChevronUpCircleFilled({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M2 12C2 17.53 6.47 22 12 22C17.53 22 22 17.53 22 12C22 6.47 17.53 2 12 2C6.47 2 2 6.47 2 12ZM12.52 8.82L17.9 14.2L16.73 15.37L11.95 10.59L7.14 15.39L5.97 14.22L11.36 8.83C11.68 8.51 12.19 8.51 12.52 8.83V8.82Z"
         fill="currentColor"
       />
     </svg>
@@ -1179,7 +1572,7 @@ export function IconClose({ title, size = 24, ...props }: IconProps) {
     >
       {title && <title>{title}</title>}
       <path
-        d="M20.9225 4.25578L13.1785 11.9999L20.9225 19.7441L19.7442 20.9224L12 13.1783L4.2559 20.9224L3.07751 19.7441L10.8216 11.9999L3.07751 4.25578L4.2559 3.07739L12 10.8215L19.7442 3.07739L20.9225 4.25578Z"
+        d="M20.9225 4.25602L13.1785 12.0002L20.9225 19.7443L19.7442 20.9227L12 13.1786L4.2559 20.9227L3.07751 19.7443L10.8216 12.0002L3.07751 4.25602L4.2559 3.07764L12 10.8217L19.7442 3.07764L20.9225 4.25602Z"
         fill="currentColor"
       />
     </svg>
@@ -1254,6 +1647,52 @@ export function IconCoins({ title, size = 24, ...props }: IconProps) {
   );
 }
 
+/** Renders the coins filled icon from the CKW Elements Figma icon set. */
+export function IconCoinsFilled({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M11.1667 7.07027V8.66667H12.8333V4.91667C12.8333 3.81364 11.8878 3.08733 11.0024 2.68489C10.0418 2.24825 8.77327 2 7.41667 2C6.06006 2 4.79152 2.24825 3.83092 2.68489C2.94555 3.08733 2 3.81364 2 4.91667V14.9167C2 16.0197 2.94555 16.746 3.83092 17.1484C4.79152 17.5851 6.06006 17.8333 7.41667 17.8333C8.14822 17.8333 8.85415 17.7612 9.5 17.6262V15.9144C8.90549 16.0711 8.19429 16.1667 7.41667 16.1667C6.24197 16.1667 5.21883 15.9486 4.5206 15.6312C3.74713 15.2796 3.66667 14.9643 3.66667 14.9167V13.7369C3.72149 13.7642 3.77632 13.7902 3.83092 13.8151C4.79152 14.2517 6.06006 14.5 7.41667 14.5C8.14822 14.5 8.85415 14.4278 9.5 14.2928V12.5811C8.90549 12.7378 8.19429 12.8333 7.41667 12.8333C6.24197 12.8333 5.21883 12.6153 4.5206 12.2978C3.74713 11.9462 3.66667 11.6309 3.66667 11.5833V10.4036C3.72149 10.4309 3.77632 10.4569 3.83092 10.4817C4.79152 10.9184 6.06006 11.1667 7.41667 11.1667C8.14822 11.1667 8.85415 11.0945 9.5 10.9595V9.24773C8.90549 9.40442 8.19429 9.5 7.41667 9.5C6.24197 9.5 5.21883 9.28188 4.5206 8.9645C3.74713 8.61293 3.66667 8.29757 3.66667 8.25V7.07027C3.72149 7.09757 3.77632 7.12363 3.83092 7.14844C4.79152 7.58508 6.06006 7.83333 7.41667 7.83333C8.77327 7.83333 10.0418 7.58508 11.0024 7.14844C11.057 7.12363 11.1118 7.09757 11.1667 7.07027ZM12.8333 17.9036V19.0833C12.8333 19.1309 12.9138 19.4463 13.6873 19.7978C14.3855 20.1152 15.4087 20.3333 16.5833 20.3333C17.758 20.3333 18.7812 20.1152 19.4794 19.7978C20.2528 19.4463 20.3333 19.1309 20.3333 19.0833V17.9036C20.2785 17.9309 20.2237 17.9569 20.1691 17.9818C19.2085 18.4184 17.9399 18.6667 16.5833 18.6667C15.2268 18.6667 13.9582 18.4184 12.9976 17.9818C12.943 17.9569 12.8882 17.9309 12.8333 17.9036ZM12.8333 15.75C12.8333 15.7976 12.9138 16.1129 13.6873 16.4645C14.3855 16.7819 15.4087 17 16.5833 17C17.758 17 18.7812 16.7819 19.4794 16.4645C20.2528 16.1129 20.3333 15.7976 20.3333 15.75V14.5703C20.2785 14.5976 20.2237 14.6236 20.1691 14.6484C19.2085 15.0851 17.9399 15.3333 16.5833 15.3333C15.2268 15.3333 13.9582 15.0851 12.9976 14.6484C12.943 14.6236 12.8882 14.5976 12.8333 14.5703V15.75ZM22 12.4167C22 11.3137 21.0544 10.5873 20.1691 10.1849C19.2085 9.74825 17.9399 9.5 16.5833 9.5C15.2268 9.5 13.9582 9.74825 12.9976 10.1849C12.1123 10.5873 11.1667 11.3137 11.1667 12.4167V19.0833C11.1667 20.1863 12.1123 20.9127 12.9976 21.3151C13.9582 21.7518 15.2268 22 16.5833 22C17.9399 22 19.2085 21.7518 20.1691 21.3151C21.0544 20.9127 22 20.1863 22 19.0833V12.4167Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the copy icon from the CKW Elements Figma icon set. */
+export function IconCopy({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M18.8601 6.43992H16.0301V4.49992C16.0301 3.62992 15.3201 2.91992 14.4501 2.91992H5.14006C4.27006 2.91992 3.56006 3.62992 3.56006 4.49992V15.9799C3.56006 16.8499 4.27006 17.5599 5.14006 17.5599H7.97006V19.4999C7.97006 20.3699 8.68006 21.0799 9.55006 21.0799H18.8701C19.7401 21.0799 20.4501 20.3699 20.4501 19.4999V8.01992C20.4501 7.14992 19.7401 6.43992 18.8701 6.43992H18.8601ZM7.97006 8.01992V15.8999H5.22006V4.57992H14.3801V6.43992H9.55006C8.68006 6.43992 7.97006 7.14992 7.97006 8.01992ZM18.7901 19.4199H9.63006V8.09992H18.7901V19.4199Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 /** Renders the download icon from the CKW Elements Figma icon set. */
 export function IconDownload({ title, size = 24, ...props }: IconProps) {
   return (
@@ -1272,6 +1711,32 @@ export function IconDownload({ title, size = 24, ...props }: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M12.8333 2V12.4882L15.5774 9.74407L16.7559 10.9226L12.5892 15.0892C12.2638 15.4147 11.7361 15.4147 11.4107 15.0892L7.24403 10.9226L8.42255 9.74407L11.1666 12.4882V2H12.8333ZM3.66663 17.8333V21.1667C3.66663 21.6269 4.03973 22 4.49996 22H19.5C19.9602 22 20.3333 21.6269 20.3333 21.1667V17.8333H18.6666V20.3333H5.33329V17.8333H3.66663Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the drop icon from the CKW Elements Figma icon set. */
+export function IconDrop({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M12.76 18.1403C12.95 18.2703 13.2 18.3303 13.39 18.2703C14.9 17.8903 16.04 16.5103 16.1 14.8003C16.1 14.5303 16.05 14.3103 16 14.0503C16 14.0103 15.98 13.9603 15.97 13.9203C15.97 13.9203 14.58 16.3803 13.01 16.8803C12.69 17.0103 12.51 17.2603 12.51 17.5703C12.51 17.7603 12.57 18.0103 12.76 18.1403Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12.44 22.0002H11.58C10.04 21.9202 8.62999 21.4802 7.45999 20.7302C5.62999 19.5602 4.40999 17.6402 4.10999 15.4602C3.95999 14.3202 4.03999 13.2902 4.34999 12.3102C4.64999 11.4002 5.04999 10.5102 5.59999 9.61023C6.14999 8.68023 6.78999 7.75023 7.60999 6.71023C8.72999 5.29023 9.97999 3.93023 11.42 2.54023L11.99 1.99023L12.56 2.54023C14 3.93023 15.24 5.28023 16.36 6.69023C17.18 7.73023 17.83 8.65023 18.39 9.61023C18.93 10.5102 19.34 11.3902 19.63 12.3002C19.95 13.2902 20.03 14.3102 19.87 15.4502C19.57 17.6302 18.35 19.5502 16.52 20.7202C15.35 21.4702 13.94 21.9002 12.45 21.9802H12.43L12.44 22.0002ZM12 4.29023C10.85 5.44023 9.82999 6.57023 8.90999 7.74023C8.13999 8.72023 7.53999 9.58023 7.01999 10.4502C6.53999 11.2502 6.17999 12.0202 5.91999 12.8202C5.67999 13.5702 5.61999 14.3402 5.73999 15.2402C5.96999 16.9702 6.89999 18.4202 8.33999 19.3402C9.26999 19.9402 10.41 20.2802 11.62 20.3502H12.39C13.59 20.2802 14.72 19.9302 15.65 19.3402C17.09 18.4202 18.02 16.9602 18.25 15.2302C18.37 14.3302 18.31 13.5602 18.07 12.8102C17.82 12.0202 17.46 11.2502 16.98 10.4502C16.45 9.55023 15.85 8.68023 15.07 7.71023C14.15 6.55023 13.14 5.42023 11.99 4.28023L12 4.29023Z"
         fill="currentColor"
       />
     </svg>
@@ -1496,6 +1961,34 @@ export function IconHighVoltagePole({ title, size = 24, ...props }: IconProps) {
       {title && <title>{title}</title>}
       <path
         d="M16.167 2C16.4199 2.00009 16.6458 2.11342 16.7985 2.29134L21.7994 8.12467C22.011 8.37172 22.0597 8.71938 21.9239 9.01498C21.7879 9.31045 21.4923 9.49989 21.167 9.5H17.9785L21.7994 13.958C22.011 14.2051 22.0597 14.5527 21.9239 14.8483C21.7879 15.1438 21.4923 15.3333 21.167 15.3333H17.3974L20.0643 22H17.2029L12.0004 18.3981L6.79768 22H3.93554L6.60238 15.3333H2.83366C2.50832 15.3333 2.21287 15.1438 2.07682 14.8483C1.94083 14.5527 1.98954 14.2051 2.20133 13.958L6.02213 9.5H2.83366C2.50832 9.5 2.21287 9.31047 2.07682 9.01498C1.94083 8.71931 1.98954 8.37177 2.20133 8.12467L7.18343 2.31169C7.33617 2.12163 7.57086 2 7.83366 2H16.167ZM6.44368 20.2178L10.5363 17.3849L8.21858 15.7801L6.44368 20.2178ZM13.4644 17.3849L17.5562 20.2178L15.7813 15.7801L13.4644 17.3849ZM10.5013 15.3333L12.0004 16.3709L13.4994 15.3333H10.5013ZM4.64518 13.6667H7.00033V10.9184L4.64518 13.6667ZM9.66797 13.6667H14.331L11.9995 10.1689L9.66797 13.6667ZM17.0004 13.6667H19.3554L17.0004 10.9184V13.6667ZM13.0005 8.66585L15.3337 12.1652V5.16732L13.0005 8.66585ZM8.66699 12.1628L10.9977 8.66585L8.66699 5.16976V12.1628ZM4.64518 7.83333H7.00033V5.08512L4.64518 7.83333ZM17.0004 7.83333H19.3554L17.0004 5.08512V7.83333ZM11.9995 7.16358L14.331 3.66667H9.66797L11.9995 7.16358Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the history icon from the CKW Elements Figma icon set. */
+export function IconHistory({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M5.03909 7.41667C6.53035 5.15643 9.09191 3.66667 12.0001 3.66667C16.6025 3.66667 20.3334 7.39762 20.3334 12C20.3334 16.6023 16.6025 20.3333 12.0001 20.3333C8.46811 20.3333 5.44736 18.1357 4.23458 15.0302L2.68209 15.6365C4.13621 19.3599 7.75882 22 12.0001 22C17.5229 22 22.0001 17.5228 22.0001 12C22.0001 6.47715 17.5229 2 12.0001 2C8.52062 2 5.45752 3.77701 3.66667 6.47078V3.25H2V8.25C2 8.71023 2.3731 9.08333 2.83333 9.08333H7.83333V7.41667H5.03909Z"
+        fill="currentColor"
+      />
+      <path
+        d="M15.9223 14.7441L12.8332 11.6549V6.16663H11.1665V12C11.1665 12.221 11.2543 12.4329 11.4107 12.5891L14.744 15.9225L15.9223 14.7441Z"
         fill="currentColor"
       />
     </svg>
@@ -1811,7 +2304,7 @@ export function IconList({ title, size = 24, ...props }: IconProps) {
     >
       {title && <title>{title}</title>}
       <path
-        d="M5.33332 16.1668C5.99636 16.1668 6.63205 16.4304 7.1009 16.8992C7.56974 17.3681 7.83332 18.0038 7.83332 18.6668C7.83332 19.1612 7.68647 19.6448 7.41177 20.056C7.13714 20.4669 6.74693 20.7872 6.29035 20.9764C5.83361 21.1656 5.33073 21.2152 4.84585 21.1188C4.3609 21.0223 3.91537 20.7841 3.56575 20.4344C3.21611 20.0847 2.9778 19.6392 2.88134 19.1543C2.78494 18.6694 2.83456 18.1665 3.02375 17.7098C3.21295 17.2532 3.53326 16.863 3.94416 16.5884C4.35528 16.3137 4.83887 16.1668 5.33332 16.1668ZM5.17056 17.8497C5.009 17.882 4.86061 17.9612 4.74413 18.0777C4.62764 18.1942 4.54845 18.3425 4.51626 18.5041C4.48411 18.6657 4.50039 18.8336 4.56346 18.9858C4.62651 19.138 4.73336 19.2678 4.87027 19.3594C5.0073 19.4509 5.1685 19.5002 5.33332 19.5002C5.55434 19.5002 5.76624 19.4123 5.92251 19.256C6.0788 19.0997 6.16665 18.8878 6.16665 18.6668C6.16665 18.502 6.11744 18.3408 6.02586 18.2037C5.93433 18.0668 5.80448 17.96 5.65233 17.897C5.50006 17.8339 5.33221 17.8176 5.17056 17.8497ZM21.1667 17.8327V19.4993H9.49999V17.8327H21.1667ZM5.33332 9.50016C5.99636 9.50016 6.63205 9.76375 7.1009 10.2326C7.56974 10.7014 7.83332 11.3372 7.83332 12.0002C7.83332 12.4946 7.68647 12.9782 7.41177 13.3893C7.13714 13.8002 6.74693 14.1205 6.29035 14.3097C5.83361 14.4989 5.33073 14.5486 4.84585 14.4522C4.3609 14.3557 3.91537 14.1174 3.56575 13.7677C3.21611 13.4181 2.9778 12.9726 2.88134 12.4877C2.78494 12.0027 2.83456 11.4998 3.02375 11.0432C3.21295 10.5866 3.53326 10.1963 3.94416 9.92171C4.35528 9.64701 4.83887 9.50016 5.33332 9.50016ZM5.17056 11.1831C5.009 11.2153 4.86061 11.2945 4.74413 11.411C4.62764 11.5275 4.54845 11.6758 4.51626 11.8374C4.48411 11.9991 4.50039 12.1669 4.56346 12.3192C4.62651 12.4713 4.73336 12.6012 4.87027 12.6927C5.0073 12.7842 5.1685 12.8335 5.33332 12.8335C5.55434 12.8335 5.76624 12.7457 5.92251 12.5893C6.0788 12.4331 6.16665 12.2212 6.16665 12.0002C6.16665 11.8353 6.11744 11.6742 6.02586 11.5371C5.93433 11.4002 5.80448 11.2933 5.65233 11.2303C5.50006 11.1672 5.33221 11.1509 5.17056 11.1831ZM21.1667 12.8327H9.49999V11.166H21.1667V12.8327ZM5.33332 2.8335C5.99636 2.8335 6.63205 3.09708 7.1009 3.56592C7.56974 4.03476 7.83332 4.67045 7.83332 5.3335C7.83332 5.82795 7.68647 6.31153 7.41177 6.72265C7.13714 7.13355 6.74693 7.45387 6.29035 7.64306C5.83361 7.83225 5.33073 7.88188 4.84585 7.78548C4.3609 7.68902 3.91537 7.4507 3.56575 7.10107C3.21611 6.75145 2.9778 6.30591 2.88134 5.82096C2.78494 5.33609 2.83456 4.8332 3.02375 4.37646C3.21295 3.91989 3.53326 3.52968 3.94416 3.25505C4.35528 2.98035 4.83887 2.8335 5.33332 2.8335ZM5.17056 4.51644C5.009 4.54862 4.86061 4.62781 4.74413 4.7443C4.62764 4.8608 4.54845 5.00917 4.51626 5.17074C4.48411 5.33239 4.50039 5.50024 4.56346 5.6525C4.62651 5.80465 4.73336 5.9345 4.87027 6.02604C5.0073 6.11761 5.1685 6.16683 5.33332 6.16683C5.55434 6.16683 5.76624 6.07897 5.92251 5.92269C6.0788 5.7664 6.16665 5.55451 6.16665 5.3335C6.16665 5.16868 6.11744 5.00749 6.02586 4.87045C5.93433 4.73354 5.80448 4.62669 5.65233 4.56364C5.50006 4.50056 5.33221 4.48429 5.17056 4.51644ZM21.1667 6.16601H9.49999V4.49935H21.1667V6.16601Z"
+        d="M5.33332 16.1663C5.99636 16.1663 6.63205 16.4299 7.1009 16.8988C7.56974 17.3676 7.83332 18.0033 7.83332 18.6663C7.83332 19.1608 7.68647 19.6443 7.41177 20.0555C7.13714 20.4664 6.74693 20.7868 6.29035 20.9759C5.83361 21.1651 5.33073 21.2148 4.84585 21.1183C4.3609 21.0218 3.91537 20.7836 3.56575 20.4339C3.21611 20.0843 2.9778 19.6388 2.88134 19.1538C2.78494 18.6689 2.83456 18.166 3.02375 17.7093C3.21295 17.2528 3.53326 16.8625 3.94416 16.5879C4.35528 16.3132 4.83887 16.1663 5.33332 16.1663ZM5.17056 17.8493C5.009 17.8815 4.86061 17.9607 4.74413 18.0772C4.62764 18.1937 4.54845 18.342 4.51626 18.5036C4.48411 18.6653 4.50039 18.8331 4.56346 18.9853C4.62651 19.1375 4.73336 19.2673 4.87027 19.3589C5.0073 19.4504 5.1685 19.4997 5.33332 19.4997C5.55434 19.4997 5.76624 19.4118 5.92251 19.2555C6.0788 19.0993 6.16665 18.8873 6.16665 18.6663C6.16665 18.5015 6.11744 18.3403 6.02586 18.2033C5.93433 18.0663 5.80448 17.9595 5.65233 17.8965C5.50006 17.8334 5.33221 17.8171 5.17056 17.8493ZM21.1667 17.8322V19.4988H9.49999V17.8322H21.1667ZM5.33332 9.49967C5.99636 9.49967 6.63205 9.76326 7.1009 10.2321C7.56974 10.7009 7.83332 11.3367 7.83332 11.9997C7.83332 12.4941 7.68647 12.9777 7.41177 13.3888C7.13714 13.7998 6.74693 14.12 6.29035 14.3093C5.83361 14.4984 5.33073 14.5481 4.84585 14.4517C4.3609 14.3552 3.91537 14.1169 3.56575 13.7673C3.21611 13.4176 2.9778 12.9721 2.88134 12.4872C2.78494 12.0023 2.83456 11.4993 3.02375 11.0427C3.21295 10.5861 3.53326 10.1958 3.94416 9.92122C4.35528 9.64652 4.83887 9.49967 5.33332 9.49967ZM5.17056 11.1826C5.009 11.2148 4.86061 11.294 4.74413 11.4105C4.62764 11.527 4.54845 11.6753 4.51626 11.8369C4.48411 11.9986 4.50039 12.1664 4.56346 12.3187C4.62651 12.4708 4.73336 12.6007 4.87027 12.6923C5.0073 12.7838 5.1685 12.833 5.33332 12.833C5.55434 12.833 5.76624 12.7452 5.92251 12.5888C6.0788 12.4326 6.16665 12.2207 6.16665 11.9997C6.16665 11.8348 6.11744 11.6737 6.02586 11.5366C5.93433 11.3997 5.80448 11.2928 5.65233 11.2298C5.50006 11.1668 5.33221 11.1504 5.17056 11.1826ZM21.1667 12.8322H9.49999V11.1655H21.1667V12.8322ZM5.33332 2.83301C5.99636 2.83301 6.63205 3.09659 7.1009 3.56543C7.56974 4.03427 7.83332 4.66997 7.83332 5.33301C7.83332 5.82746 7.68647 6.31104 7.41177 6.72217C7.13714 7.13307 6.74693 7.45338 6.29035 7.64257C5.83361 7.83177 5.33073 7.88139 4.84585 7.78499C4.3609 7.68853 3.91537 7.45022 3.56575 7.10058C3.21611 6.75096 2.9778 6.30542 2.88134 5.82047C2.78494 5.3356 2.83456 4.83272 3.02375 4.37597C3.21295 3.9194 3.53326 3.52919 3.94416 3.25456C4.35528 2.97986 4.83887 2.83301 5.33332 2.83301ZM5.17056 4.51595C5.009 4.54813 4.86061 4.62732 4.74413 4.74382C4.62764 4.86031 4.54845 5.00868 4.51626 5.17025C4.48411 5.3319 4.50039 5.49975 4.56346 5.65202C4.62651 5.80417 4.73336 5.93402 4.87027 6.02555C5.0073 6.11712 5.1685 6.16634 5.33332 6.16634C5.55434 6.16634 5.76624 6.07848 5.92251 5.9222C6.0788 5.76592 6.16665 5.55402 6.16665 5.33301C6.16665 5.16819 6.11744 5.007 6.02586 4.86996C5.93433 4.73305 5.80448 4.6262 5.65233 4.56315C5.50006 4.50007 5.33221 4.4838 5.17056 4.51595ZM21.1667 6.16552H9.49999V4.49886H21.1667V6.16552Z"
         fill="currentColor"
       />
     </svg>
@@ -1901,7 +2394,31 @@ export function IconMegaphone({ title, size = 24, ...props }: IconProps) {
     >
       {title && <title>{title}</title>}
       <path
-        d="M18.346 2.89766C18.6033 2.7905 18.8971 2.81879 19.129 2.97335C19.3608 3.1279 19.5 3.38808 19.5 3.6667V7.44763C20.0241 7.91506 20.4433 8.48807 20.7305 9.12895C21.0177 9.7699 21.1667 10.4644 21.1667 11.1667C21.1667 11.869 21.0177 12.5635 20.7305 13.2045C20.4433 13.8454 20.0241 14.4184 19.5 14.8858V18.6667C19.5 18.9454 19.3608 19.2055 19.129 19.36C18.8971 19.5146 18.6033 19.5429 18.346 19.4358L9.50004 15.7492V21.1667H7.83337V15.3334H7.00004C5.89497 15.3334 4.83548 14.894 4.05407 14.1127C3.32153 13.3801 2.88937 12.4032 2.83826 11.3734L2.83337 11.1667C2.83337 10.0616 3.27267 9.00214 4.05407 8.22074C4.83548 7.43934 5.89497 7.00004 7.00004 7.00004H8.50069L18.346 2.89766ZM9.50004 8.38839V13.9442L17.8334 17.4167V4.91589L9.50004 8.38839ZM7.00004 8.6667C6.337 8.6667 5.70131 8.93029 5.23247 9.39913C4.76362 9.86796 4.50004 10.5037 4.50004 11.1667L4.51225 11.4141C4.56913 11.9863 4.8223 12.5241 5.23247 12.9343C5.70131 13.4031 6.337 13.6667 7.00004 13.6667H7.83337V8.6667H7.00004Z"
+        d="M18.346 2.89717C18.6033 2.79001 18.8971 2.8183 19.129 2.97286C19.3608 3.12741 19.5 3.38759 19.5 3.66622V7.44714C20.0241 7.91458 20.4433 8.48758 20.7305 9.12846C21.0177 9.76941 21.1667 10.4639 21.1667 11.1662C21.1667 11.8686 21.0177 12.563 20.7305 13.204C20.4433 13.8449 20.0241 14.4179 19.5 14.8853V18.6662C19.5 18.9449 19.3608 19.2051 19.129 19.3596C18.8971 19.5141 18.6033 19.5424 18.346 19.4353L9.50004 15.7487V21.1662H7.83337V15.3329H7.00004C5.89497 15.3329 4.83548 14.8935 4.05407 14.1122C3.32153 13.3796 2.88937 12.4027 2.83826 11.3729L2.83337 11.1662C2.83337 10.0612 3.27267 9.00165 4.05407 8.22025C4.83548 7.43885 5.89497 6.99955 7.00004 6.99955H8.50069L18.346 2.89717ZM9.50004 8.3879V13.9437L17.8334 17.4162V4.9154L9.50004 8.3879ZM7.00004 8.66622C6.337 8.66622 5.70131 8.9298 5.23247 9.39864C4.76362 9.86748 4.50004 10.5032 4.50004 11.1662L4.51225 11.4136C4.56913 11.9858 4.8223 12.5236 5.23247 12.9338C5.70131 13.4026 6.337 13.6662 7.00004 13.6662H7.83337V8.66622H7.00004Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the menu icon from the CKW Elements Figma icon set. */
+export function IconMenu({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M2 7.83016H22V6.16016H2V7.83016ZM2 12.8302H22V11.1602H2V12.8302ZM22 17.8302H2V16.1602H22V17.8302Z"
         fill="currentColor"
       />
     </svg>
@@ -1923,7 +2440,7 @@ export function IconMessage({ title, size = 24, ...props }: IconProps) {
     >
       {title && <title>{title}</title>}
       <path
-        d="M12.8333 3.6665C17.8112 3.66651 22 7.31667 22 11.9998C22 16.683 17.8112 20.3332 12.8333 20.3332H2.83331C2.4963 20.3332 2.19246 20.1302 2.06345 19.8188C1.93447 19.5074 2.00579 19.149 2.24412 18.9107L4.92803 16.2259C4.11351 14.973 3.67212 13.508 3.66664 12.0031V11.9998C3.66664 7.31666 7.85535 3.6665 12.8333 3.6665ZM12.8333 5.33317C8.60627 5.33317 5.33331 8.398 5.33331 11.9998C5.33896 13.3796 5.80991 14.7169 6.66958 15.7963C6.93362 16.1278 6.90644 16.6048 6.60691 16.9046L4.84503 18.6665H12.8333C17.0603 18.6665 20.3333 15.6017 20.3333 11.9998C20.3333 8.39801 17.0603 5.33318 12.8333 5.33317ZM17 14.4998H8.66664V12.8332H17V14.4998ZM14.5 10.3332H8.66664V8.6665H14.5V10.3332Z"
+        d="M12.8333 3.66699C17.8112 3.667 22 7.31716 22 12.0003C22 16.6835 17.8112 20.3337 12.8333 20.3337H2.83331C2.4963 20.3337 2.19246 20.1307 2.06345 19.8193C1.93447 19.5079 2.00579 19.1495 2.24412 18.9112L4.92803 16.2264C4.11351 14.9735 3.67212 13.5085 3.66664 12.0036V12.0003C3.66664 7.31715 7.85535 3.66699 12.8333 3.66699ZM12.8333 5.33366C8.60627 5.33366 5.33331 8.39849 5.33331 12.0003C5.33896 13.3801 5.80991 14.7174 6.66958 15.7967C6.93362 16.1282 6.90644 16.6053 6.60691 16.9051L4.84503 18.667H12.8333C17.0603 18.667 20.3333 15.6022 20.3333 12.0003C20.3333 8.3985 17.0603 5.33367 12.8333 5.33366ZM17 14.5003H8.66664V12.8337H17V14.5003ZM14.5 10.3337H8.66664V8.66699H14.5V10.3337Z"
         fill="currentColor"
       />
     </svg>
@@ -1945,7 +2462,7 @@ export function IconMeter({ title, size = 24, ...props }: IconProps) {
     >
       {title && <title>{title}</title>}
       <path
-        d="M17 3.6665C17.442 3.6665 17.8659 3.84222 18.1785 4.15479C18.491 4.46735 18.6667 4.89115 18.6667 5.33317V18.6665C18.6667 19.1085 18.491 19.5323 18.1785 19.8449C17.8659 20.1574 17.442 20.3332 17 20.3332H7.00004C6.55802 20.3332 6.13422 20.1574 5.82166 19.8449C5.50909 19.5323 5.33337 19.1085 5.33337 18.6665V5.33317C5.33337 4.89115 5.50909 4.46735 5.82166 4.15479C6.13422 3.84222 6.55802 3.6665 7.00004 3.6665H17ZM7.00004 18.6665H17V5.33317H7.00004V18.6665ZM9.37634 13.0236C9.83308 12.8344 10.336 12.7848 10.8209 12.8812C11.3058 12.9777 11.7513 13.2159 12.101 13.5656C12.4506 13.9153 12.6889 14.3608 12.7854 14.8457C12.8818 15.3306 12.8321 15.8335 12.643 16.2902C12.4537 16.7468 12.1335 17.137 11.7225 17.4116C11.3114 17.6863 10.8278 17.8332 10.3334 17.8332C9.67033 17.8332 9.03464 17.5696 8.5658 17.1008C8.09696 16.6319 7.83337 15.9962 7.83337 15.3332C7.83337 14.8388 7.98022 14.3552 8.25492 13.944C8.52956 13.5331 8.91977 13.2128 9.37634 13.0236ZM14.5 16.1665C14.9603 16.1665 15.3334 16.5396 15.3334 16.9998C15.3334 17.4601 14.9603 17.8332 14.5 17.8332C14.0398 17.8332 13.6667 17.4601 13.6667 16.9998C13.6667 16.5396 14.0398 16.1665 14.5 16.1665ZM10.3334 14.4998C10.1124 14.4998 9.90046 14.5877 9.74418 14.744C9.5879 14.9003 9.50004 15.1122 9.50004 15.3332C9.50004 15.498 9.54926 15.6592 9.64083 15.7963C9.73237 15.9332 9.86222 16.04 10.0144 16.103C10.1666 16.1661 10.3345 16.1824 10.4961 16.1503C10.6577 16.118 10.806 16.0388 10.9225 15.9223C11.039 15.8058 11.1182 15.6575 11.1505 15.4959C11.1826 15.3343 11.1663 15.1664 11.1032 15.0142C11.0402 14.862 10.9334 14.7322 10.7965 14.6406C10.6594 14.5491 10.4982 14.4998 10.3334 14.4998ZM14.5 13.6665C14.9603 13.6665 15.3334 14.0396 15.3334 14.4998C15.3334 14.9601 14.9603 15.3332 14.5 15.3332C14.0398 15.3332 13.6667 14.9601 13.6667 14.4998C13.6667 14.0396 14.0398 13.6665 14.5 13.6665ZM15.3334 6.1665C15.5544 6.1665 15.7663 6.25436 15.9225 6.41065C16.0789 6.56692 16.1667 6.77882 16.1667 6.99984V11.1665C16.1667 11.3875 16.0789 11.5994 15.9225 11.7557C15.7663 11.912 15.5544 11.9998 15.3334 11.9998H8.66671C8.44569 11.9998 8.23379 11.912 8.07752 11.7557C7.92123 11.5994 7.83337 11.3875 7.83337 11.1665V6.99984C7.83337 6.77882 7.92123 6.56692 8.07752 6.41065C8.23379 6.25436 8.44569 6.1665 8.66671 6.1665H15.3334ZM9.50004 10.3332H10.8436L10.3733 8.93018L11.9569 8.40202L12.6006 10.3332H14.5V7.83317H9.50004V10.3332Z"
+        d="M17 3.66699C17.442 3.66699 17.8659 3.84271 18.1785 4.15528C18.491 4.46783 18.6667 4.89163 18.6667 5.33366V18.667C18.6667 19.109 18.491 19.5328 18.1785 19.8454C17.8659 20.1579 17.442 20.3337 17 20.3337H7.00004C6.55802 20.3337 6.13422 20.1579 5.82166 19.8454C5.50909 19.5328 5.33337 19.109 5.33337 18.667V5.33366C5.33337 4.89163 5.50909 4.46783 5.82166 4.15528C6.13422 3.84271 6.55802 3.66699 7.00004 3.66699H17ZM7.00004 18.667H17V5.33366H7.00004V18.667ZM9.37634 13.0241C9.83308 12.8349 10.336 12.7852 10.8209 12.8817C11.3058 12.9782 11.7513 13.2164 12.101 13.5661C12.4506 13.9157 12.6889 14.3612 12.7854 14.8462C12.8818 15.3311 12.8321 15.834 12.643 16.2907C12.4537 16.7472 12.1335 17.1375 11.7225 17.4121C11.3114 17.6868 10.8278 17.8337 10.3334 17.8337C9.67033 17.8337 9.03464 17.5701 8.5658 17.1012C8.09696 16.6324 7.83337 15.9967 7.83337 15.3337C7.83337 14.8392 7.98022 14.3557 8.25492 13.9445C8.52956 13.5336 8.91977 13.2133 9.37634 13.0241ZM14.5 16.167C14.9603 16.167 15.3334 16.5401 15.3334 17.0003C15.3334 17.4606 14.9603 17.8337 14.5 17.8337C14.0398 17.8337 13.6667 17.4606 13.6667 17.0003C13.6667 16.5401 14.0398 16.167 14.5 16.167ZM10.3334 14.5003C10.1124 14.5003 9.90046 14.5882 9.74418 14.7445C9.5879 14.9007 9.50004 15.1127 9.50004 15.3337C9.50004 15.4985 9.54926 15.6597 9.64083 15.7967C9.73237 15.9337 9.86222 16.0405 10.0144 16.1035C10.1666 16.1666 10.3345 16.1829 10.4961 16.1507C10.6577 16.1185 10.806 16.0393 10.9225 15.9228C11.039 15.8063 11.1182 15.658 11.1505 15.4964C11.1826 15.3347 11.1663 15.1669 11.1032 15.0147C11.0402 14.8625 10.9334 14.7327 10.7965 14.6411C10.6594 14.5496 10.4982 14.5003 10.3334 14.5003ZM14.5 13.667C14.9603 13.667 15.3334 14.0401 15.3334 14.5003C15.3334 14.9606 14.9603 15.3337 14.5 15.3337C14.0398 15.3337 13.6667 14.9606 13.6667 14.5003C13.6667 14.0401 14.0398 13.667 14.5 13.667ZM15.3334 6.16699C15.5544 6.16699 15.7663 6.25485 15.9225 6.41113C16.0789 6.56741 16.1667 6.77931 16.1667 7.00033V11.167C16.1667 11.388 16.0789 11.5999 15.9225 11.7562C15.7663 11.9125 15.5544 12.0003 15.3334 12.0003H8.66671C8.44569 12.0003 8.23379 11.9125 8.07752 11.7562C7.92123 11.5999 7.83337 11.388 7.83337 11.167V7.00033C7.83337 6.77931 7.92123 6.56741 8.07752 6.41113C8.23379 6.25485 8.44569 6.16699 8.66671 6.16699H15.3334ZM9.50004 10.3337H10.8436L10.3733 8.93067L11.9569 8.40251L12.6006 10.3337H14.5V7.83366H9.50004V10.3337Z"
         fill="currentColor"
       />
     </svg>
@@ -1970,6 +2487,66 @@ export function IconMinusCircle({ title, size = 24, ...props }: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M3.66667 12C3.66667 7.39762 7.39762 3.66667 12 3.66667C16.6023 3.66667 20.3333 7.39762 20.3333 12C20.3333 16.6023 16.6023 20.3333 12 20.3333C7.39762 20.3333 3.66667 16.6023 3.66667 12ZM12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM7 12.8333H17V11.1667H7V12.8333Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the more horizontal icon from the CKW Elements Figma icon set. */
+export function IconMoreHorizontal({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M18.4999 13.6896C19.4222 13.6896 20.1699 12.9419 20.1699 12.0196C20.1699 11.0973 19.4222 10.3496 18.4999 10.3496C17.5776 10.3496 16.8299 11.0973 16.8299 12.0196C16.8299 12.9419 17.5776 13.6896 18.4999 13.6896Z"
+        fill="currentColor"
+      />
+      <path
+        d="M5.61995 13.6896C6.54227 13.6896 7.28995 12.9419 7.28995 12.0196C7.28995 11.0973 6.54227 10.3496 5.61995 10.3496C4.69764 10.3496 3.94995 11.0973 3.94995 12.0196C3.94995 12.9419 4.69764 13.6896 5.61995 13.6896Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12.06 13.6896C12.9823 13.6896 13.73 12.9419 13.73 12.0196C13.73 11.0973 12.9823 10.3496 12.06 10.3496C11.1376 10.3496 10.39 11.0973 10.39 12.0196C10.39 12.9419 11.1376 13.6896 12.06 13.6896Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the more vertical icon from the CKW Elements Figma icon set. */
+export function IconMoreVertical({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M12 7.22965C12.9223 7.22965 13.67 6.48196 13.67 5.55965C13.67 4.63733 12.9223 3.88965 12 3.88965C11.0776 3.88965 10.33 4.63733 10.33 5.55965C10.33 6.48196 11.0776 7.22965 12 7.22965Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 20.1097C12.9223 20.1097 13.67 19.362 13.67 18.4397C13.67 17.5173 12.9223 16.7697 12 16.7697C11.0776 16.7697 10.33 17.5173 10.33 18.4397C10.33 19.362 11.0776 20.1097 12 20.1097Z"
+        fill="currentColor"
+      />
+      <path
+        d="M12 13.6696C12.9223 13.6696 13.67 12.9219 13.67 11.9996C13.67 11.0773 12.9223 10.3296 12 10.3296C11.0776 10.3296 10.33 11.0773 10.33 11.9996C10.33 12.9219 11.0776 13.6696 12 13.6696Z"
         fill="currentColor"
       />
     </svg>
@@ -2090,6 +2667,30 @@ export function IconPaperclip({ title, size = 24, ...props }: IconProps) {
   );
 }
 
+/** Renders the peak power icon from the CKW Elements Figma icon set. */
+export function IconPeakPower({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M10.8515 3.93359L14.6178 15.1984L17.9314 10.5345L22 19.1244L20.4523 19.8574L17.6348 13.9087L14.0622 18.9372L10.9422 9.60561L7.89126 19.8046L5.45476 17.6612L3.26694 20.067L2 18.9148L5.32113 15.2629L7.01633 16.7541L10.8515 3.93359Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 /** Renders the pencil icon from the CKW Elements Figma icon set. */
 export function IconPencil({ title, size = 24, ...props }: IconProps) {
   return (
@@ -2130,6 +2731,58 @@ export function IconPeople({ title, size = 24, ...props }: IconProps) {
       {title && <title>{title}</title>}
       <path
         d="M7.83333 14.5005C9.37989 14.5023 10.8625 15.1175 11.9561 16.2111C13.0496 17.3047 13.6649 18.7873 13.6667 20.3338V22.0005H2V20.3338C2.00176 18.7873 2.61711 17.3047 3.71061 16.2111C4.80419 15.1175 6.28678 14.5023 7.83333 14.5005ZM16.1667 14.5005C17.7133 14.5023 19.1958 15.1175 20.2894 16.2111C21.3829 17.3047 21.9982 18.7873 22 20.3338V22.0005H15.3333V20.3338H20.3333C20.3324 19.6677 20.172 19.0112 19.8654 18.4198C19.5587 17.8284 19.1147 17.3184 18.5707 16.9338C18.0266 16.5491 17.3978 16.3007 16.7379 16.2087C16.0781 16.1168 15.4059 16.1844 14.7775 16.4056L14.2225 14.8333C14.8469 14.6126 15.5044 14.5003 16.1667 14.5005ZM7.83333 16.1672C6.7284 16.1672 5.66874 16.6058 4.88737 17.3871C4.10597 18.1685 3.66667 19.2288 3.66667 20.3338H12C12 19.2288 11.5607 18.1685 10.7793 17.3871C9.99792 16.6058 8.93827 16.1672 7.83333 16.1672ZM6.55811 7.25362C7.16703 7.0015 7.83717 6.93545 8.48356 7.064C9.13003 7.19259 9.72397 7.51025 10.1901 7.97627C10.6562 8.44244 10.9738 9.03702 11.1024 9.68362C11.2309 10.3301 11.165 11.0001 10.9128 11.6091C10.6605 12.218 10.2335 12.7386 9.68555 13.1049C9.13738 13.4711 8.49261 13.6672 7.83333 13.6672C6.94934 13.6672 6.10168 13.3157 5.47657 12.6906C4.8515 12.0656 4.50007 11.2178 4.5 10.3338C4.5 9.67461 4.69528 9.02979 5.06153 8.48164C5.42779 7.93348 5.94902 7.50591 6.55811 7.25362ZM15.5164 7.064C16.1628 6.93545 16.833 7.0015 17.4419 7.25362C18.051 7.50591 18.5722 7.93348 18.9385 8.48164C19.3047 9.02979 19.5 9.67461 19.5 10.3338C19.4999 11.2178 19.1485 12.0656 18.5234 12.6906C17.8983 13.3157 17.0507 13.6672 16.1667 13.6672C15.5074 13.6672 14.8626 13.4711 14.3144 13.1049C13.7665 12.7386 13.3395 12.218 13.0872 11.6091C12.835 11.0001 12.7691 10.3301 12.8976 9.68362C13.0262 9.03702 13.3438 8.44244 13.8099 7.97627C14.276 7.51025 14.87 7.19259 15.5164 7.064ZM16.4922 8.69893C16.1689 8.63462 15.8332 8.66799 15.5287 8.79414C15.2242 8.9203 14.9638 9.13376 14.7808 9.40775C14.5977 9.6818 14.5 10.0043 14.5 10.3338C14.5001 10.7758 14.6757 11.1998 14.9882 11.5123C15.3008 11.8247 15.7247 12.0005 16.1667 12.0005C16.4963 12.0005 16.8187 11.9028 17.0927 11.7198C17.3668 11.5366 17.5803 11.2756 17.7064 10.9711C17.8324 10.6666 17.8659 10.3315 17.8016 10.0083C17.7373 9.68512 17.5781 9.38853 17.3451 9.15547C17.1121 8.92247 16.8153 8.76328 16.4922 8.69893ZM7.83333 8.66719C7.39131 8.66719 6.96751 8.84291 6.65495 9.15547C6.34247 9.46802 6.16667 9.89188 6.16667 10.3338C6.16672 10.6633 6.26448 10.9852 6.44742 11.2592C6.63054 11.5332 6.89083 11.7474 7.19532 11.8736C7.49986 11.9997 7.83555 12.0323 8.15885 11.9679C8.48194 11.9036 8.77875 11.7452 9.01172 11.5123C9.24481 11.2792 9.40395 10.9819 9.46826 10.6586C9.53251 10.3354 9.49916 10.0003 9.37305 9.69583C9.24693 9.39135 9.03344 9.13107 8.75944 8.94795C8.48536 8.76482 8.16297 8.66719 7.83333 8.66719Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the person icon from the CKW Elements Figma icon set. */
+export function IconPerson({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M20.54 21.9998H3.45996V21.1598C3.45996 16.8798 7.27996 13.3998 12 13.3998C16.72 13.3998 20.54 16.8798 20.54 21.1598V21.9998ZM5.19996 20.3198H18.79C18.33 17.3598 15.46 15.0798 12 15.0798C8.53996 15.0798 5.66996 17.3598 5.20996 20.3198H5.19996Z"
+        fill="currentColor"
+      />
+      <path
+        d="M11.99 12.4098C9.11998 12.4098 6.78998 10.0698 6.78998 7.20977C6.78998 4.34977 9.12998 2.00977 11.99 2.00977C14.85 2.00977 17.19 4.34977 17.19 7.20977C17.19 10.0698 14.85 12.4098 11.99 12.4098ZM11.99 3.67977C10.05 3.67977 8.46998 5.25977 8.46998 7.19977C8.46998 9.13977 10.05 10.7198 11.99 10.7198C13.93 10.7198 15.51 9.13977 15.51 7.19977C15.51 5.25977 13.93 3.67977 11.99 3.67977Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the person filled icon from the CKW Elements Figma icon set. */
+export function IconPersonFilled({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M20.54 21.16V22H3.45996V21.16C3.45996 16.89 7.28996 13.4 12 13.4C16.71 13.4 20.54 16.89 20.54 21.16Z"
+        fill="currentColor"
+      />
+      <path
+        d="M17.1899 7.2C17.1899 10.07 14.8599 12.41 11.9899 12.41C9.11995 12.41 6.78995 10.07 6.78995 7.2C6.78995 4.33 9.11995 2 11.9899 2C14.8599 2 17.1899 4.34 17.1899 7.2Z"
         fill="currentColor"
       />
     </svg>
@@ -2224,28 +2877,6 @@ export function IconPlugFilled({ title, size = 24, ...props }: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M8.66671 7V2H10.3334V7H13.6667V2H15.3334V7H17.8334C18.2936 7 18.6667 7.3731 18.6667 7.83333V12C18.6667 15.4277 16.1433 18.2122 12.8334 18.6162V22H11.1667V18.6162C7.85677 18.2122 5.33337 15.4277 5.33337 12V7.83333C5.33337 7.3731 5.70647 7 6.16671 7H8.66671Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
-/** Renders the plus icon from the CKW Elements Figma icon set. */
-export function IconPlus({ title, size = 24, ...props }: IconProps) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      focusable="false"
-      {...getAccessibilityProps(title)}
-      {...props}
-    >
-      {title && <title>{title}</title>}
-      <path
-        d="M12.8334 11.1663H21.1667V12.833H12.8334V21.1663H11.1667V12.833H2.83337V11.1663H11.1667V2.83301H12.8334V11.1663Z"
         fill="currentColor"
       />
     </svg>
@@ -2932,6 +3563,12 @@ export function IconWashingMachine({ title, size = 24, ...props }: IconProps) {
   );
 }
 
+/** @deprecated Renamed to IconCheckBoxFilled. Will be removed in the next major version. */
+export const IconCheckBox: IconComponent = IconCheckBoxFilled;
+
+/** @deprecated Renamed to IconAdd. Will be removed in the next major version. */
+export const IconPlus: IconComponent = IconAdd;
+
 export const iconComponents = {
   'account-tie': IconAccountTie,
   add: IconAdd,
@@ -2951,6 +3588,7 @@ export const iconComponents = {
   'arrow-up-right': IconArrowUpRight,
   bank: IconBank,
   'bar-graph': IconBarGraph,
+  'bar-graph-filled': IconBarGraphFilled,
   'bar-graph-rising': IconBarGraphRising,
   battery: IconBattery,
   bin: IconBin,
@@ -2961,12 +3599,24 @@ export const iconComponents = {
   'calendar-blank': IconCalendarBlank,
   'calendar-restricted': IconCalendarRestricted,
   check: IconCheck,
-  'check-box': IconCheckBox,
+  'check-box-filled': IconCheckBoxFilled,
   'check-circle-filled': IconCheckCircleFilled,
   'chevron-down': IconChevronDown,
+  'chevron-down-circle': IconChevronDownCircle,
+  'chevron-down-circle-filled': IconChevronDownCircleFilled,
+  'chevron-large-down': IconChevronLargeDown,
+  'chevron-large-left': IconChevronLargeLeft,
+  'chevron-large-right': IconChevronLargeRight,
+  'chevron-large-up': IconChevronLargeUp,
   'chevron-left': IconChevronLeft,
+  'chevron-left-circle': IconChevronLeftCircle,
+  'chevron-left-circle-filled': IconChevronLeftCircleFilled,
   'chevron-right': IconChevronRight,
+  'chevron-right-circle': IconChevronRightCircle,
+  'chevron-right-circle-filled': IconChevronRightCircleFilled,
   'chevron-up': IconChevronUp,
+  'chevron-up-circle': IconChevronUpCircle,
+  'chevron-up-circle-filled': IconChevronUpCircleFilled,
   'chevron-up-down': IconChevronUpDown,
   circle: IconCircle,
   clock: IconClock,
@@ -2975,7 +3625,10 @@ export const iconComponents = {
   'close-circle-filled': IconCloseCircleFilled,
   cloudy: IconCloudy,
   coins: IconCoins,
+  'coins-filled': IconCoinsFilled,
+  copy: IconCopy,
   download: IconDownload,
+  drop: IconDrop,
   envelopes: IconEnvelopes,
   'external-link': IconExternalLink,
   faq: IconFaq,
@@ -2986,6 +3639,7 @@ export const iconComponents = {
   heart: IconHeart,
   heater: IconHeater,
   'high-voltage-pole': IconHighVoltagePole,
+  history: IconHistory,
   hourglass: IconHourglass,
   house: IconHouse,
   'house-filled': IconHouseFilled,
@@ -3004,21 +3658,26 @@ export const iconComponents = {
   'log-out': IconLogOut,
   'log-out-door': IconLogOutDoor,
   megaphone: IconMegaphone,
+  menu: IconMenu,
   message: IconMessage,
   meter: IconMeter,
   'minus-circle': IconMinusCircle,
+  'more-horizontal': IconMoreHorizontal,
+  'more-vertical': IconMoreVertical,
   'no-fire': IconNoFire,
   oven: IconOven,
   paper: IconPaper,
   'paper-filled': IconPaperFilled,
   paperclip: IconPaperclip,
+  'peak-power': IconPeakPower,
   pencil: IconPencil,
   people: IconPeople,
+  person: IconPerson,
+  'person-filled': IconPersonFilled,
   phone: IconPhone,
   placeholder: IconPlaceholder,
   plug: IconPlug,
   'plug-filled': IconPlugFilled,
-  plus: IconPlus,
   'power-button': IconPowerButton,
   'price-tag': IconPriceTag,
   'qr-code': IconQrCode,
@@ -3050,9 +3709,17 @@ export const iconComponents = {
   'washing-machine': IconWashingMachine,
 } satisfies Record<IconName, IconComponent>;
 
+const deprecatedIconComponents = {
+  'check-box': IconCheckBoxFilled,
+  plus: IconAdd,
+} satisfies Record<DeprecatedIconName, IconComponent>;
+
 /** Renders a CKW Elements icon by name. */
 export function Icon({ name, ...props }: IconByNameProps) {
-  const IconComponent = iconComponents[name];
+  const IconComponent: IconComponent =
+    name in deprecatedIconComponents
+      ? deprecatedIconComponents[name as DeprecatedIconName]
+      : iconComponents[name as IconName];
 
   return <IconComponent {...props} />;
 }

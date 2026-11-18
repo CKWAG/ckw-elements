@@ -1,94 +1,194 @@
 /**
- * Generates React icon components from a Figma icon node export.
+ * Generates the React icon components from the SVG sources in `svg/`.
  *
- * Inputs are intentionally local files so the Figma token is never committed:
- * - node JSON from `/v1/files/:file_key/nodes`
- * - manifest JSON produced while exporting SVG images
- * - directory of downloaded SVG files
+ * Inputs (all committed, no network and no Figma token needed):
+ * - `svg/*.svg`       one file per icon, written by `import-svgs.mjs` from the Figma export
+ * - `svg/manifest.json`  Figma node id per icon
+ * - `aliases.json`    deprecated icon names that still resolve to a current icon (`{ "old-name": "new-name" }`)
+ *
+ * Outputs: `src/index.tsx` and `src/react/index.ts` (both generated, never edit by hand).
+ *
+ * Usage:
+ *   node generate-icons.mjs           writes the generated source
+ *   node generate-icons.mjs --check   fails when the committed source differs from what would be generated
  */
 
-import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import * as prettier from 'prettier';
 
 const packageDir = dirname(fileURLToPath(import.meta.url));
-const [nodeJsonPath, manifestPath, svgDir] = process.argv.slice(2);
+const svgDir = join(packageDir, 'svg');
+const indexPath = join(packageDir, 'src', 'index.tsx');
+const reactIndexPath = join(packageDir, 'src', 'react', 'index.ts');
+const reactIndexSource = "export * from '../index.js';\n";
+const NAME_PATTERN = /^[a-z0-9]+(-[a-z0-9]+)*$/;
+const ALLOWED_PATH_ATTRIBUTES = new Set(['d', 'fill', 'fill-rule', 'clip-rule']);
+const checkOnly = process.argv.includes('--check');
+const errors = [];
 
-if (!nodeJsonPath || !manifestPath || !svgDir) {
+const icons = readIcons();
+const aliases = readAliases(icons);
+
+if (errors.length > 0) {
   process.stderr.write(
-    'Usage: node generate-icons.mjs <figma-node-json> <manifest-json> <svg-dir>\n',
+    `Icon sources are invalid:\n${errors.map((error) => `  - ${error}`).join('\n')}\n`,
   );
   process.exit(1);
 }
 
-const figmaRoot = JSON.parse(readFileSync(nodeJsonPath, 'utf8')).nodes['164:2100'].document;
-const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'));
-const parentById = new Map();
+const indexSource = await format(buildIndexSource(icons, aliases), indexPath);
 
-walkTree(figmaRoot);
+if (checkOnly) {
+  const current = existsSync(indexPath) ? readFileSync(indexPath, 'utf8') : '';
+  const currentReact = existsSync(reactIndexPath) ? readFileSync(reactIndexPath, 'utf8') : '';
 
-const icons = manifest
-  .map((entry) => {
-    const name = getRowText(entry.id) ?? entry.slug;
-    const svg = readFileSync(join(svgDir, `${entry.slug}.svg`), 'utf8');
-
-    return {
-      name,
-      componentName: `Icon${toPascal(name)}`,
-      figmaNodeId: entry.id,
-      paths: toPathJsx(svg),
-    };
-  })
-  .sort((left, right) => left.name.localeCompare(right.name));
-
-writeGeneratedSource(icons);
-process.stdout.write(`Generated ${icons.length} CKW icon components.\n`);
-
-/**
- * Walks the Figma tree and records parent nodes for row-label lookup.
- */
-function walkTree(node, parentNode = null) {
-  if (parentNode) {
-    parentById.set(node.id, parentNode);
+  if (current !== indexSource || currentReact !== reactIndexSource) {
+    process.stderr.write(
+      'packages/icons/src is out of date with packages/icons/svg. Run `pnpm icons:generate` and commit the result.\n',
+    );
+    process.exit(1);
   }
 
-  for (const child of node.children ?? []) {
-    walkTree(child, node);
-  }
+  process.stdout.write(
+    `Icon sources are in sync (${icons.length} icons, ${aliases.length} deprecated aliases).\n`,
+  );
+} else {
+  mkdirSync(dirname(reactIndexPath), { recursive: true });
+  writeFileSync(indexPath, indexSource);
+  writeFileSync(reactIndexPath, reactIndexSource);
+  process.stdout.write(
+    `Generated ${icons.length} CKW icon components and ${aliases.length} deprecated aliases.\n`,
+  );
 }
 
 /**
- * Returns the first text label in the icon index row for a component node.
+ * Reads and validates every SVG in svg/ together with its manifest entry.
  */
-function getRowText(id) {
-  let nodeId = id;
+function readIcons() {
+  const manifestPath = join(svgDir, 'manifest.json');
+  const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : [];
+  const nodeIds = new Map(manifest.map((entry) => [entry.name, entry.figmaNodeId]));
+  const files = existsSync(svgDir)
+    ? readdirSync(svgDir).filter((file) => file.endsWith('.svg'))
+    : [];
+  const result = [];
 
-  while (parentById.has(nodeId)) {
-    const parentNode = parentById.get(nodeId);
+  for (const file of files) {
+    const name = file.slice(0, -4);
 
-    if (parentNode.name === 'Row') {
-      const textNodes = [];
-      collectText(parentNode, textNodes);
-      return textNodes[0];
+    if (!NAME_PATTERN.test(name)) {
+      errors.push(`${file}: icon names must be kebab-case (a-z, 0-9, hyphens)`);
+      continue;
     }
 
-    nodeId = parentNode.id;
+    if (!nodeIds.has(name)) {
+      errors.push(`${file}: missing entry in svg/manifest.json`);
+    }
+
+    const paths = readPaths(file, readFileSync(join(svgDir, file), 'utf8'));
+
+    result.push({
+      name,
+      componentName: `Icon${toPascal(name)}`,
+      figmaNodeId: nodeIds.get(name) ?? '',
+      paths,
+    });
   }
 
-  return null;
+  for (const name of nodeIds.keys()) {
+    if (!files.includes(`${name}.svg`)) {
+      errors.push(`svg/manifest.json lists "${name}" but svg/${name}.svg does not exist`);
+    }
+  }
+
+  return result.sort((left, right) => left.name.localeCompare(right.name));
 }
 
 /**
- * Collects text content below a Figma node.
+ * Validates one SVG source and returns its path attributes.
+ * Icons must be flat: 24px canvas, only `<path>` elements, filled with currentColor.
  */
-function collectText(node, textNodes) {
-  if (node.type === 'TEXT') {
-    textNodes.push(node.characters || node.name);
+function readPaths(file, svg) {
+  const root = svg.match(/<svg\b([^>]*)>/)?.[1] ?? '';
+
+  for (const [attribute, expected] of [
+    ['width', '24'],
+    ['height', '24'],
+    ['viewBox', '0 0 24 24'],
+  ]) {
+    if (root.match(new RegExp(`\\b${attribute}="([^"]*)"`))?.[1] !== expected) {
+      errors.push(`${file}: <svg> ${attribute} must be "${expected}"`);
+    }
   }
 
-  for (const child of node.children ?? []) {
-    collectText(child, textNodes);
+  const remainder = svg.replace(/<\/?svg\b[^>]*>/g, '').replace(/<path\b[^>]*?\/?>/g, '');
+
+  if (remainder.trim().length > 0) {
+    errors.push(`${file}: only <path> elements are allowed inside <svg>`);
   }
+
+  const pathTags = [...svg.matchAll(/<path\b([^>]*?)\/?>/g)].map((match) => match[1]);
+
+  if (pathTags.length === 0) {
+    errors.push(`${file}: no <path> found`);
+  }
+
+  return pathTags.map((rawAttributes) => {
+    const attributes = parsePathAttributes(rawAttributes);
+
+    for (const [name, value] of attributes) {
+      if (!ALLOWED_PATH_ATTRIBUTES.has(name)) {
+        errors.push(`${file}: attribute "${name}" is not allowed on <path>`);
+      }
+
+      if (name === 'fill' && value !== 'currentColor') {
+        errors.push(`${file}: path fill must be "currentColor", found "${value}"`);
+      }
+    }
+
+    if (!attributes.some(([name]) => name === 'd')) {
+      errors.push(`${file}: <path> without d attribute`);
+    }
+
+    if (!attributes.some(([name, value]) => name === 'fill' && value === 'currentColor')) {
+      errors.push(`${file}: <path> must have fill="currentColor"`);
+    }
+
+    return attributes.map(([name, value]) => [toJsxAttribute(name), value]);
+  });
+}
+
+/**
+ * Reads and validates aliases.json against the icon list.
+ */
+function readAliases(iconList) {
+  const aliasPath = join(packageDir, 'aliases.json');
+  const raw = existsSync(aliasPath) ? JSON.parse(readFileSync(aliasPath, 'utf8')) : {};
+  const names = new Set(iconList.map((icon) => icon.name));
+  const result = [];
+
+  for (const [name, target] of Object.entries(raw)) {
+    if (!NAME_PATTERN.test(name)) {
+      errors.push(`aliases.json: "${name}" must be kebab-case`);
+    } else if (names.has(name)) {
+      errors.push(`aliases.json: "${name}" is a current icon and cannot also be an alias`);
+    }
+
+    if (!names.has(target)) {
+      errors.push(`aliases.json: "${name}" points to "${target}", which is not a current icon`);
+    }
+
+    result.push({
+      name,
+      target,
+      componentName: `Icon${toPascal(name)}`,
+      targetComponentName: `Icon${toPascal(target)}`,
+    });
+  }
+
+  return result.sort((left, right) => left.name.localeCompare(right.name));
 }
 
 /**
@@ -109,56 +209,33 @@ function humanize(name) {
 }
 
 /**
- * Converts exported Figma path tags to JSX path tags.
- */
-function toPathJsx(svg) {
-  const pathTags = [...svg.matchAll(/<path\b([^>]*)\/>/g)].map((match) => match[1]);
-
-  return pathTags
-    .map((rawAttributes) => {
-      const attributes = parsePathAttributes(rawAttributes);
-      const body = attributes
-        .map(([name, value]) => `        ${name}=${JSON.stringify(value)}`)
-        .join('\n');
-
-      return `      <path\n${body}\n      />`;
-    })
-    .join('\n');
-}
-
-/**
- * Parses and normalizes SVG path attributes for React.
+ * Parses SVG path attributes into name/value pairs.
  */
 function parsePathAttributes(rawAttributes) {
-  const attributes = [];
-
-  for (const match of rawAttributes.matchAll(/([:\w-]+)="([^"]*)"/g)) {
-    let [, name, value] = match;
-
-    if (name === 'fill-rule') {
-      name = 'fillRule';
-    }
-
-    if (name === 'clip-rule') {
-      name = 'clipRule';
-    }
-
-    if (name === 'fill' && value === '#232623') {
-      value = 'currentColor';
-    }
-
-    attributes.push([name, value]);
-  }
-
-  return attributes;
+  return [...rawAttributes.matchAll(/([:\w-]+)="([^"]*)"/g)].map((match) => [match[1], match[2]]);
 }
 
 /**
- * Writes the generated icon source and React subpath re-export.
+ * Converts an SVG attribute name to its React prop name.
  */
-function writeGeneratedSource(generatedIcons) {
-  const iconNames = generatedIcons.map((icon) => `  ${JSON.stringify(icon.name)},`).join('\n');
-  const metadata = generatedIcons
+function toJsxAttribute(name) {
+  if (name === 'fill-rule') {
+    return 'fillRule';
+  }
+
+  if (name === 'clip-rule') {
+    return 'clipRule';
+  }
+
+  return name;
+}
+
+/**
+ * Builds the unformatted source of src/index.tsx.
+ */
+function buildIndexSource(iconList, aliasList) {
+  const iconNames = iconList.map((icon) => `  ${JSON.stringify(icon.name)},`).join('\n');
+  const metadata = iconList
     .map(
       (icon) =>
         `  { name: ${JSON.stringify(icon.name)}, componentName: ${JSON.stringify(
@@ -166,11 +243,24 @@ function writeGeneratedSource(generatedIcons) {
         )}, figmaNodeId: ${JSON.stringify(icon.figmaNodeId)} },`,
     )
     .join('\n');
-  const functions = generatedIcons.map(toIconFunction).join('\n\n');
-  const componentMap = generatedIcons
+  const functions = iconList.map(toIconFunction).join('\n\n');
+  const componentMap = iconList
     .map((icon) => `  ${JSON.stringify(icon.name)}: ${icon.componentName},`)
     .join('\n');
-  const source = `import React from 'react';
+  const aliasMap = aliasList
+    .map((alias) => `  ${JSON.stringify(alias.name)}: ${JSON.stringify(alias.target)},`)
+    .join('\n');
+  const aliasComponents = aliasList
+    .map(
+      (alias) =>
+        `/** @deprecated Renamed to ${alias.targetComponentName}. Will be removed in the next major version. */\nexport const ${alias.componentName}: IconComponent = ${alias.targetComponentName};`,
+    )
+    .join('\n\n');
+  const aliasComponentMap = aliasList
+    .map((alias) => `  ${JSON.stringify(alias.name)}: ${alias.targetComponentName},`)
+    .join('\n');
+
+  return `import React from 'react';
 
 export const iconNames = [
 ${iconNames}
@@ -188,6 +278,16 @@ export const iconMetadata = [
 ${metadata}
 ] as const satisfies readonly IconMetadata[];
 
+/**
+ * Icon names that were renamed or merged. They still work but are not part of \`iconNames\`.
+ * Maps the deprecated name to the current icon name.
+ */
+export const deprecatedIconAliases = {
+${aliasMap}
+} as const satisfies Record<string, IconName>;
+
+export type DeprecatedIconName = keyof typeof deprecatedIconAliases;
+
 export interface IconProps extends Omit<React.SVGProps<SVGSVGElement>, 'children'> {
   /** Accessible label. Omit for decorative icons. */
   title?: string;
@@ -198,8 +298,8 @@ export interface IconProps extends Omit<React.SVGProps<SVGSVGElement>, 'children
 export type IconComponent = (props: IconProps) => React.ReactElement;
 
 export interface IconByNameProps extends IconProps {
-  /** Icon name from the CKW Elements icon set. */
-  name: IconName;
+  /** Icon name from the CKW Elements icon set. Deprecated names keep working until the next major version. */
+  name: IconName | DeprecatedIconName;
 }
 
 function getAccessibilityProps(title: string | undefined): React.SVGProps<SVGSVGElement> {
@@ -208,27 +308,42 @@ function getAccessibilityProps(title: string | undefined): React.SVGProps<SVGSVG
 
 ${functions}
 
+${aliasComponents}
+
 export const iconComponents = {
 ${componentMap}
 } satisfies Record<IconName, IconComponent>;
 
+const deprecatedIconComponents = {
+${aliasComponentMap}
+} satisfies Record<DeprecatedIconName, IconComponent>;
+
 /** Renders a CKW Elements icon by name. */
 export function Icon({ name, ...props }: IconByNameProps) {
-  const IconComponent = iconComponents[name];
+  const IconComponent: IconComponent =
+    name in deprecatedIconComponents
+      ? deprecatedIconComponents[name as DeprecatedIconName]
+      : iconComponents[name as IconName];
 
   return <IconComponent {...props} />;
 }
 `;
-
-  mkdirSync(join(packageDir, 'src', 'react'), { recursive: true });
-  writeFileSync(join(packageDir, 'src', 'index.tsx'), source);
-  writeFileSync(join(packageDir, 'src', 'react', 'index.ts'), "export * from '../index.js';\n");
 }
 
 /**
  * Generates one exported React function for an icon.
  */
 function toIconFunction(icon) {
+  const paths = icon.paths
+    .map((attributes) => {
+      const body = attributes
+        .map(([name, value]) => `        ${name}=${JSON.stringify(value)}`)
+        .join('\n');
+
+      return `      <path\n${body}\n      />`;
+    })
+    .join('\n');
+
   return `/** Renders the ${humanize(icon.name)} icon from the CKW Elements Figma icon set. */
 export function ${icon.componentName}({ title, size = 24, ...props }: IconProps) {
   return (
@@ -243,8 +358,17 @@ export function ${icon.componentName}({ title, size = 24, ...props }: IconProps)
       {...props}
     >
       {title && <title>{title}</title>}
-${icon.paths}
+${paths}
     </svg>
   );
 }`;
+}
+
+/**
+ * Formats generated source with the repository Prettier config so `pnpm format:check` stays green.
+ */
+async function format(source, filePath) {
+  const config = (await prettier.resolveConfig(filePath)) ?? {};
+
+  return prettier.format(source, { ...config, filepath: filePath });
 }
