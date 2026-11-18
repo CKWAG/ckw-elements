@@ -43,6 +43,19 @@ The Figma file is "CKW Elements" (key `wGx1Y74QZIsy40UATyN6bI`), page "Assets", 
 <https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/?node-id=164-2100>. The two Claude steps are one skill,
 `.claude/skills/add-icons-to-figma` (see its `SKILL.md` for the exact procedure).
 
+### Roles and setup
+
+"Icon maintainer" is a role, not a person: anyone who can run the skill. Keep at least two people able to do it, so the
+process does not depend on one person's machine or Claude setup.
+
+A maintainer needs Claude Code in a checkout of this repository (the skill loads from `.claude/skills`), the Figma MCP
+server connected with their own Figma account (edit access to the CKW Elements file), Node 20+, pnpm 10+, and write
+access to this repository. The skill ends with no commit or push unless the maintainer asks.
+
+Smoke test for a new maintainer (read-only): run the audit script and the `list` export from the skill and compare
+with `node packages/icons/import-svgs.mjs --hashes`. A clean audit and matching hashes prove that Figma access, the
+node ids and the repo are in order. The exact steps are in `SKILL.md` under "Roles and first-time setup".
+
 ## 3. The icon standard
 
 Every icon, new or old, must satisfy all of these. The right column says where it is enforced.

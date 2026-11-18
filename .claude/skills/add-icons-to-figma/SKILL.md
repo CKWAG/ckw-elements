@@ -1,6 +1,6 @@
 ---
 name: add-icons-to-figma
-description: Adds new icons from the "Icon Dropzone" in the CKW Elements Figma file to the icon system (components, colour variable, naming, alphabetical index). Use when Janosch says new icons are in the dropzone, e.g. "neue Icons sind in der Dropzone", "pack die Icons ins Design System", "add the new icons", "Icons einsortieren". Can also sync the finished icons to the code repo (SVG sources in packages/icons/svg), when asked: "sync to code", "ins Repo uebernehmen".
+description: Adds new icons from the "Icon Dropzone" in the CKW Elements Figma file to the icon system (components, colour variable, naming, alphabetical index). Use when someone says new icons are in the dropzone, e.g. "neue Icons sind in der Dropzone", "pack die Icons ins Design System", "add the new icons", "Icons einsortieren". Can also sync the finished icons to the code repo (SVG sources in packages/icons/svg), when asked: "sync to code", "ins Repo uebernehmen".
 ---
 
 # Add icons to the CKW Elements Figma file
@@ -22,6 +22,28 @@ every rule below is enforced by `scripts/place-icons.js` (errors block, warnings
 
 The IDs are hardcoded in the script. If an anchor is missing the script throws: the section was restructured,
 re-inspect it with a read-only `use_figma` and update the IDs in the script and in this table.
+
+## Roles and first-time setup
+
+**Icon maintainer** is a role, not a person: whoever runs this skill with Claude Code. Every question in this skill goes
+to them, reports use the language they write in, and the Change Log author is their name. Designers only drop icons
+into the dropzone. Keep at least two people able to act as maintainer.
+
+Prerequisites for a maintainer:
+
+- Claude Code in a checkout of this repository (the skill loads from `.claude/skills/add-icons-to-figma`).
+- The Figma MCP server connected with the maintainer's own Figma account, with edit access to the CKW Elements file
+  (tools used: `create_session`, `use_figma`, `get_screenshot`, `get_figma_skill`).
+- Node 20+ and pnpm 10+ (repo engines) and write access to the repository for the sync.
+
+Smoke test for a new maintainer, read-only, about two minutes:
+
+1. `create_session` for the file key, then run `scripts/audit-icons.js`. Expected: `clean: true` and a `total` equal to
+   the number of icons in the Figma index.
+2. Run `scripts/export-svgs.js` with `MODE = 'list'` and compare with `node packages/icons/import-svgs.mjs --hashes`:
+   with no pending changes every name and hash matches.
+3. If a script throws "Anchor node missing", the Figma Icons frame was restructured: update the node ids (see "Where
+   things are") in the scripts and in this file before doing anything else.
 
 ## The standard (measured on the existing 119 icons)
 
@@ -45,8 +67,8 @@ re-inspect it with a read-only `use_figma` and update the IDs in the script and 
 
 ## Workflow
 
-The designer only exports from Streamline, drops the layer into the dropzone and tells Janosch, who then runs this
-skill. The layer name is just a hint: the final name is decided here (step 3), the designer does not need to know the
+The designer only exports from Streamline, drops the layer into the dropzone and tells the icon maintainer, who then
+runs this skill. The layer name is just a hint: the final name is decided here (step 3), the designer does not need to know the
 naming pattern. Nova exports (20px, 2px padding) are placed correctly automatically; the 24px calibration guide is
 only needed for custom-drawn icons.
 
@@ -64,12 +86,12 @@ only needed for custom-drawn icons.
      names sit next to related icons (`chevron-down-circle` next to `arrow-down-circle`).
    - Compare each icon with the existing set by name AND by content: same glyph size, same shape. For every existing
      icon with the same or a very similar look, read its instance count (`await comp.getInstancesAsync()`).
-   - **Never decide duplicates or replacements alone.** Ask Janosch per group, with facts (sizes, instance counts):
+   - **Never decide duplicates or replacements alone.** Ask the icon maintainer per group, with facts (sizes, instance counts):
      skip, add under a new name (e.g. `chevron-large-down` for a bigger version), or replace the existing geometry
-     (only when instances are unaffected or Janosch accepts the change to them).
+     (only when instances are unaffected or the maintainer accepts the change to them).
    - Rename the dropzone layers to the final names. Park icons that must not be imported by prefixing `_skip `.
      Then run the check again, so the report and the red/green feedback list use the final names.
-4. **Review the report with Janosch (in German).**
+4. **Review the report with the icon maintainer (in the language they use).**
    - `errors`: the icon is rejected until fixed. Say exactly what is wrong and how to fix it (e.g. stroke width
      1.5px instead of 1.67px: re-export at 20px). Do not fix artwork silently.
    - `conflicts` (naming): propose one harmonised name that follows the existing family (`family` lists related
@@ -77,9 +99,9 @@ only needed for custom-drawn icons.
      singular/plural, near-duplicate spelling, missing `-filled`. A real duplicate is never placed.
    - `warnings`: mention them; they do not block (e.g. "mostly solid shapes, no stroke width to measure" for filled
      icons, or "glyph is 0.1px outside the safe area, it is moved inside when placed").
-   - `existingDuplicatesInFile`: tell Janosch once, do not fix unasked.
+   - `existingDuplicatesInFile`: tell the maintainer once, do not fix unasked.
 5. **Apply the agreed names** by renaming the layers in the dropzone (`node.name = ...`) and run the check again
-   until no errors and no unresolved conflicts remain. A name Janosch explicitly accepts despite a conflict goes
+   until no errors and no unresolved conflicts remain. A name the maintainer explicitly accepts despite a conflict goes
    into `ACKNOWLEDGED`.
 6. **Place.** Set `MODE = 'place'` and `DATE` (today, `DD.MM.YYYY`), paste the file again. Placed icons are removed
    from the dropzone. Rejected ones stay and are listed in red in the feedback list. If nothing was rejected, the
@@ -88,17 +110,17 @@ only needed for custom-drawn icons.
    the number added. Take one screenshot of an added row (`rowId`) and compare it with the row above or below.
 8. **Update the Change Log (mandatory, every run that changed something).** In the left column of the Icons frame
    (`164:2112`) add an entry for today, newest first, directly below the "Change Log" title: clone the latest entry
-   (`Frame 42`), set the date (`DD.MM.YYYY`), keep the author, and write 1 to 3 bullet points (English, short):
+   (`Frame 42`), set the date (`DD.MM.YYYY`), set the author to the name of the maintainer running the skill (ask once if you do not know it, never leave a previous person's name), and write 1 to 3 bullet points (English, short):
    what was added (names, grouped, e.g. "19 icons added: ..."), what was cleaned up, what rules changed. Set the body
    text to `textAutoResize = 'HEIGHT'` and `layoutSizingHorizontal = 'FILL'`, otherwise long lines widen the whole
    column. Screenshot it and compare with the previous entry. Skip only runs that changed nothing.
-9. **Report in German**: added icons (name, section), rejected icons with the reason, warnings, and that the Change Log
+9. **Report (in the maintainer's language)**: added icons (name, section), rejected icons with the reason, warnings, and that the Change Log
    is updated. Offer the code sync (next section) once the icons are Ready.
 
-## Sync to code (when Janosch asks: "sync to code", "ins Repo uebernehmen")
+## Sync to code (when the maintainer asks: "sync to code", "ins Repo uebernehmen")
 
 Moves the finished icons from Figma into the repo as SVG sources. Only icons whose index row has status **Ready**
-are exported. Everything runs from the repo root `/Users/janosch/Documents/CKW/ckw-elements`. The repo pipeline is
+are exported. Everything runs from the root of the `ckw-elements` checkout. The repo pipeline is
 described for humans in `packages/icons/CONTRIBUTING.md` (keep it in sync when you change this skill or the scripts)
 and in `ARCHITECTURE.md` ("D3. I added or changed icons in Figma").
 
@@ -113,14 +135,14 @@ and in `ARCHITECTURE.md` ("D3. I added or changed icons in Figma").
 4. **Renames and removals.** For every icon that was renamed or merged in Figma, add the old name to
    `packages/icons/aliases.json` (`"old-name": "new-name"`) BEFORE pruning, because the old name was published and
    consumers may use it. Then `node packages/icons/import-svgs.mjs --prune < list.tsv` removes SVGs that are no longer
-   in the Ready list. Ask Janosch before removing an icon without an alias.
+   in the Ready list. Ask the maintainer before removing an icon without an alias.
 5. **Generate and verify.**
    - `pnpm icons:generate`, then `pnpm icons:check`, `pnpm format:check`, `pnpm typecheck`.
    - Compare the hash lists again: `--hashes` of the repo must equal the Figma list for every name. A mismatch means a
      transcription error, redo that batch.
 6. **Changeset.** Add `.changeset/<short-name>.md` for `@ckwag/elements-icons`: `minor` for new icons or aliases,
    list the names, mention renames and the alias that keeps the old name working.
-7. **Report in German** and do NOT commit or push unless Janosch asks. Show `git status` and the list of new,
+7. **Report in the maintainer's language** and do NOT commit or push unless the maintainer asks. Show `git status` and the list of new,
    changed and aliased icons.
 
 ## Audit of the whole set (run on request, and after bigger changes)
@@ -128,14 +150,14 @@ and in `ARCHITECTURE.md` ("D3. I added or changed icons in Figma").
 `scripts/audit-icons.js` is read-only. Paste it as the `code` of one `use_figma` call. It checks all components and the
 index (names, structure, colour binding, constraints, size, safe area, stroke width, identical geometry, similar
 names, order, dividers, row texts, dates) and returns `clean: true` only when `problems`, `similarNames` and `index`
-are all empty. Fix every finding (ask Janosch before deleting or renaming anything that has instances), run it again,
+are all empty. Fix every finding (ask the maintainer before deleting or renaming anything that has instances), run it again,
 and only then set the status. Typical judgement calls it cannot make for you: two names for one shape (keep the one
 that fits the family, e.g. `add` next to `add-circle`), and solid icons named without `-filled`.
 
 ## Design rules for the Icons section (binding, also when you only change a detail)
 
-Everything this skill creates or changes in the Figma file must look like the existing documentation. Janosch
-rejected earlier versions for exactly these reasons, so check every point before you call it done.
+Everything this skill creates or changes in the Figma file must look like the existing documentation. Earlier
+versions were rejected for exactly these reasons, so check every point before you call it done.
 
 **Doc elements (dropzone block, steps, feedback list)**
 
@@ -150,7 +172,7 @@ rejected earlier versions for exactly these reasons, so check every point before
   UNDER the text so the badge stays on the first text line. Feedback rows use green/red tags from the `Status/...`
   variables.
 - Keep the designer instructions to three short steps: export from Streamline (20px, 2px padding), custom icons only
-  draw on the calibration guide, drop into the dropzone and tell Janosch. Naming, stroke and size are checked by this
+  draw on the calibration guide, drop into the dropzone and tell the design system team. Naming, stroke and size are checked by this
   skill and must NOT be explained to designers again.
 - The caption sits above the dropzone, the drop area stays empty. The feedback list sits below it and is never
   inside the dropzone.
