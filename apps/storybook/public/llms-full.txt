@@ -5,7 +5,13 @@ CKW Elements is a token-first React design system. Build UI by importing tokens 
 ## Install
 
 ```bash
-npm install @ckwag/tokens @ckwag/components
+npm install @ckwag/elements-tokens @ckwag/elements
+```
+
+Icons are a separate, optional package:
+
+```bash
+npm install @ckwag/elements-icons
 ```
 
 ## Required App Setup
@@ -13,25 +19,25 @@ npm install @ckwag/tokens @ckwag/components
 Import token CSS once in the app entry point:
 
 ```css
-@import '@ckwag/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 ```
 
 React applications can import components from either package root or the explicit React subpath:
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/components';
+import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/elements';
 ```
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/components/react';
+import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/elements/react';
 ```
 
 If a bundler does not process CSS side-effect imports from packages, import the aggregate component CSS explicitly:
 
 ```css
-@import '@ckwag/components/styles.css';
+@import '@ckwag/elements/styles.css';
 ```
 
 ## Token Assets
@@ -46,9 +52,9 @@ These files are published with the deployed documentation for agents and build t
 The npm token package also exports:
 
 ```ts
-import tokens, { interactivePrimary, spacingM } from '@ckwag/tokens';
-import '@ckwag/tokens/tokens.css';
-import rawTokens from '@ckwag/tokens/tokens.json';
+import tokens, { interactivePrimary, spacingM } from '@ckwag/elements-tokens';
+import '@ckwag/elements-tokens/tokens.css';
+import rawTokens from '@ckwag/elements-tokens/tokens.json';
 ```
 
 ## Styling Rules
@@ -65,16 +71,16 @@ import rawTokens from '@ckwag/tokens/tokens.json';
 ### Button
 
 ```tsx
-<Button type="Primary" size="Large">Save</Button>
+<Button variant="primary" size="Large">Save</Button>
 ```
 
-- `type`: `Primary`, `Secondary`, `Tertiary`
+- `variant`: `primary`, `secondary`, `tertiary`
 - `size`: `Large`, `Medium`, `Small`
-- `disabled`: boolean
 - `fullWidth`: boolean
+- `loading`: boolean
 - `leadingIcon`: React node
 - `trailingIcon`: React node
-- `htmlType`: `button`, `submit`, `reset`
+- Extends the native `<button>` props, so `type="button" | "submit" | "reset"`, `disabled` and `onClick` work as usual
 
 ### InputField
 
@@ -137,6 +143,23 @@ import rawTokens from '@ckwag/tokens/tokens.json';
 - `onChange`: `(value: string) => void`
 - `type`: `Default`, `Fill`
 - `contentMode`: `label`, `icon-label`, `icon-compact`
+
+## Icons
+
+Icons come from `@ckwag/elements-icons` as React components that inherit `currentColor`.
+
+```tsx
+import React from 'react';
+import { IconSearch } from '@ckwag/elements-icons';
+
+<IconSearch aria-hidden="true" />
+<IconSearch title="Search" size={20} />
+```
+
+- Names are kebab-case, components are `Icon` plus PascalCase: `arrow-left-circle-filled` is `IconArrowLeftCircleFilled`. `-filled` is always last, outline icons have no suffix.
+- Prefer named imports. `<Icon name="search" />` exists too, but references every icon, so bundlers cannot drop unused ones.
+- Renamed icons stay available as deprecated aliases until the next major version (`IconPlus` is now `IconAdd`, `IconCheckBox` is now `IconCheckBoxFilled`). Use the new names in new code.
+- Never edit the generated icon code. Sources and process: `packages/icons/CONTRIBUTING.md` in the repository.
 
 ## Agent Skills
 
