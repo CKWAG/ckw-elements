@@ -682,14 +682,6 @@
       "component": "IconPlugFilled"
     },
     {
-      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=164-3240",
-      "name": "IconPlus",
-      "id": "icon-plus",
-      "importPath": "@ckwag/elements-icons",
-      "source": "packages/icons/src/index.tsx",
-      "component": "IconPlus"
-    },
-    {
       "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=493-155",
       "name": "IconPowerButton",
       "id": "icon-power-button",
