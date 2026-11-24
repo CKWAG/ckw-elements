@@ -216,8 +216,8 @@ export function SegmentedControl({
               }
             }}
             className={segmentClasses}
-            role="tab"
-            aria-selected={isActive}
+            role="radio"
+            aria-checked={isActive}
             aria-label={segment.label}
             tabIndex={isActive ? 0 : -1}
             onClick={() => onChange?.(segment.value)}

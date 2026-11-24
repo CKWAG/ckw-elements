@@ -111,9 +111,11 @@ import * as SegmentedControlStories from './SegmentedControl.stories';
   <div className="docs-section">
     <div className="docs-section-title">Accessibility</div>
     <div className="docs-subsection-description">
-      Segments render as tabs with <code>aria-selected</code>. Keep labels short and unique, provide
-      accessible labels for icon-only states, and preserve the focus-visible outline for keyboard
-      users.
+      The control is a radio group (WAI-ARIA): the container has <code>role="radiogroup"</code>,
+      each segment <code>role="radio"</code> with <code>aria-checked</code>. Arrow keys move the
+      selection, Tab moves into and out of the group. Give the group an <code>aria-label</code>,
+      keep labels short and unique, and provide accessible labels for icon-only states. If the
+      segments switch content panels, use tabs instead.
     </div>
   </div>
 </div>
