@@ -70,6 +70,22 @@ import * as CardPlayground from './Card.playground.stories';
 
 <div className="sb-unstyled">
   <div className="docs-section">
+    <div className="docs-section-title">Icon</div>
+    <div className="docs-subsection-description">
+      Pass <code>icon</code> to CardHeader for a leading icon in a 40px tile (background-active,
+      icon interactive-text), for example on KPI cards. It is decorative and hidden with{' '}
+      <code>aria-hidden</code>; the title carries the meaning. Icon, title block and chevron are
+      vertically centred.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CardStories.Icon} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
     <div className="docs-section-title">Padding</div>
     <div className="docs-subsection-description">
       Medium (16px) is the default for compact cards such as KPIs and invoice cards. Use Large

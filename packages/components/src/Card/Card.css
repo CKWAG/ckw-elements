@@ -66,8 +66,22 @@
 
 .ckw-card__header {
   display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-s);
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.ckw-card__icon {
+  display: flex;
+  flex: 0 0 auto;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-s);
+  background-color: var(--background-active);
+  color: var(--interactive-text);
+}
+
+.ckw-card__icon > svg {
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
 }
 
 .ckw-card__header-text {
@@ -96,10 +110,10 @@
 
 .ckw-card__chevron {
   display: flex;
-  flex: 0 0 var(--spacing-xl);
-  width: var(--spacing-xl);
-  height: var(--spacing-xl);
-  color: var(--text-primary);
+  flex: 0 0 var(--spacing-l);
+  width: var(--spacing-l);
+  height: var(--spacing-l);
+  color: var(--text-secondary);
 }
 
 .ckw-card__chevron > svg {

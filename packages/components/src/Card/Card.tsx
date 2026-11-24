@@ -88,16 +88,27 @@ export const Card = React.forwardRef<HTMLDivElement | HTMLAnchorElement, CardPro
 export interface CardHeaderProps extends React.ComponentProps<'div'> {
   /** Usually CardTitle and an optional CardDescription. */
   children: React.ReactNode;
+  /**
+   * Optional leading icon, shown in a 40px tile. Decorative: the title carries the meaning.
+   * Matches Figma `Show Icon` + `Icon`.
+   */
+  icon?: React.ReactNode;
 }
 
 /**
- * Header row of a Card. In an interactive card it shows the chevron on the right.
+ * Header row of a Card with an optional leading icon tile. In an interactive card it shows
+ * the chevron on the right. All items are vertically centred.
  */
-export function CardHeader({ children, className, ...props }: CardHeaderProps) {
+export function CardHeader({ children, icon, className, ...props }: CardHeaderProps) {
   const { interactive, showChevron } = React.useContext(CardContext);
 
   return (
     <div className={['ckw-card__header', className ?? ''].filter(Boolean).join(' ')} {...props}>
+      {icon && (
+        <span className="ckw-card__icon" aria-hidden="true">
+          {icon}
+        </span>
+      )}
       <div className="ckw-card__header-text">{children}</div>
       {interactive && showChevron && (
         <span className="ckw-card__chevron" aria-hidden="true">

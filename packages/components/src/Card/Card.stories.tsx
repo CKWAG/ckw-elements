@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { IconBarGraph, IconCoins } from '@ckwag/elements-icons';
 import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { Badge } from '../Badge/Badge';
 import { Button } from '../Button/Button';
@@ -86,13 +87,14 @@ interface KpiCardProps {
   value: string;
   unit: string;
   unitBefore?: boolean;
+  icon?: React.ReactNode;
 }
 
 /** KPI card from the overview page: the whole card links to the detail page. */
-function KpiCard({ title, value, unit, unitBefore = false }: KpiCardProps) {
+function KpiCard({ title, value, unit, unitBefore = false, icon }: KpiCardProps) {
   return (
     <Card href="#" style={cardWidth}>
-      <CardHeader>
+      <CardHeader icon={icon}>
         <CardTitle>{title}</CardTitle>
         <CardDescription>Okt. 2026</CardDescription>
       </CardHeader>
@@ -125,6 +127,19 @@ export const Interactive: Story = {
     <div style={canvasStyle}>
       <KpiCard title="Verbrauch" value="123.45" unit="kWh" />
       <KpiCard title="Kosten" value="19.25" unit="CHF" unitBefore />
+    </div>
+  ),
+};
+
+/**
+ * Optional leading icon in a 40px tile (background-active, icon interactive-text), for
+ * example on the KPI cards of the overview. Icon, title block and chevron are centred.
+ */
+export const Icon: Story = {
+  render: () => (
+    <div style={canvasStyle}>
+      <KpiCard title="Verbrauch" value="123.45" unit="kWh" icon={<IconBarGraph />} />
+      <KpiCard title="Kosten" value="19.25" unit="CHF" unitBefore icon={<IconCoins />} />
     </div>
   ),
 };

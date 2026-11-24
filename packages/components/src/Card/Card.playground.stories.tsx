@@ -1,5 +1,6 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { IconBarGraph } from '@ckwag/elements-icons';
 import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { KeyValueItem, KeyValueList } from '../KeyValueList/KeyValueList';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './Card';
@@ -10,6 +11,7 @@ interface CardPlaygroundArgs {
   interactive: boolean;
   showChevron: boolean;
   showHeader: boolean;
+  showIcon: boolean;
   title: string;
   showDescription: boolean;
   description: string;
@@ -47,6 +49,12 @@ const meta: Meta<CardPlaygroundArgs> = {
       if: { arg: 'interactive' },
     },
     showHeader: { control: 'boolean', description: 'Renders CardHeader.' },
+    showIcon: {
+      control: 'boolean',
+      description: 'Leading icon tile in the header (`CardHeader icon`).',
+      table: { defaultValue: { summary: 'false' } },
+      if: { arg: 'showHeader' },
+    },
     title: { control: 'text', description: 'CardTitle text.', if: { arg: 'showHeader' } },
     showDescription: {
       control: 'boolean',
@@ -64,6 +72,7 @@ const meta: Meta<CardPlaygroundArgs> = {
     interactive: false,
     showChevron: true,
     showHeader: true,
+    showIcon: false,
     title: 'Rechnung',
     showDescription: true,
     description: '01.07.2026 – 31.10.2026',
@@ -81,6 +90,7 @@ export const Playground: Story = {
     interactive,
     showChevron,
     showHeader,
+    showIcon,
     title,
     showDescription,
     description,
@@ -99,7 +109,7 @@ export const Playground: Story = {
         style={{ maxWidth: '360px' }}
       >
         {showHeader && (
-          <CardHeader>
+          <CardHeader icon={showIcon ? <IconBarGraph /> : undefined}>
             <CardTitle>{title}</CardTitle>
             {showDescription && <CardDescription>{description}</CardDescription>}
           </CardHeader>

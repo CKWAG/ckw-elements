@@ -19,20 +19,24 @@ const description = instance.getBoolean('Show Description')
   : '';
 const showChevron = interactive ? instance.getBoolean('Show Chevron') : true;
 const content = instance.getSlot('Content');
+// The icon is swapped to a connected CKW icon, which renders its own snippet (e.g. <IconBarGraph />).
+const iconLayer =
+  showHeader && instance.getBoolean('Show Icon') ? instance.getInstanceSwap('Icon') : undefined;
+const icon = iconLayer && iconLayer.type === 'INSTANCE' ? iconLayer.executeTemplate().example : '';
 
-// Defaults (static, padding medium, chevron on) are left out to keep the snippet short.
+// Defaults (static, padding medium, chevron on, no icon) are left out to keep the snippet short.
 const hrefProp = interactive ? ' href="/"' : '';
 const paddingProp = padding && padding !== 'medium' ? ` padding="${padding}"` : '';
 const chevronProp = showChevron ? '' : ' showChevron={false}';
-const header = showHeader
-  ? `
-  <CardHeader>
+const headerOpen = showHeader ? `\n  <CardHeader${icon ? ' icon={' : ''}` : '';
+const headerRest = showHeader
+  ? `${icon ? '}' : ''}>
     <CardTitle>${title}</CardTitle>${description ? `\n    <CardDescription>${description}</CardDescription>` : ''}
   </CardHeader>`
   : '';
 
 export default {
-  example: figma.code`<Card${hrefProp}${paddingProp}${chevronProp}>${header}
+  example: figma.code`<Card${hrefProp}${paddingProp}${chevronProp}>${headerOpen}${icon}${headerRest}
   <CardContent>
     ${content}
   </CardContent>
