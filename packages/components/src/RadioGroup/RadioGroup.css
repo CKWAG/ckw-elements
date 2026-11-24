@@ -1,0 +1,184 @@
+/**
+ * Radio (Radio Group option) Styles
+ *
+ * Uses only semantic design tokens from @ckwag/elements-tokens.
+ * The native input is the circle (appearance: none); the dot is a span on top.
+ * Same states and colours as Checkbox:
+ * - Checked: interactive-primary fill with an 8px dot in text-on-interactive-primary.
+ * - Error only colours unchecked circles; a checked radio keeps its normal look.
+ */
+
+.ckw-radio {
+  display: flex;
+  gap: var(--spacing-xs);
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+.ckw-radio *,
+.ckw-radio *::before,
+.ckw-radio *::after {
+  box-sizing: border-box;
+}
+
+.ckw-radio__control {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: var(--spacing-l);
+  height: calc(var(--body-m-size) * var(--body-m-height));
+}
+
+/* ============================================
+   Circle (native input)
+   ============================================ */
+
+.ckw-radio__circle {
+  appearance: none;
+  margin: 0;
+  flex-shrink: 0;
+  width: var(--spacing-l);
+  height: var(--spacing-l);
+  border: var(--border-weight-s) solid var(--border-strong);
+  border-radius: var(--border-radius-full);
+  background-color: var(--background-input);
+  cursor: pointer;
+  transition:
+    background-color 150ms ease,
+    border-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ckw-radio__circle:focus-visible {
+  outline: var(--border-weight-m) solid var(--border-active);
+  outline-offset: 2px;
+}
+
+.ckw-radio__circle:checked {
+  background-color: var(--interactive-primary);
+  border-color: var(--interactive-primary);
+}
+
+/* Hover (circle or label) */
+.ckw-radio:not(.ckw-radio--disabled):has(.ckw-radio__circle:hover, .ckw-radio__label:hover)
+  .ckw-radio__circle:not(:checked),
+.ckw-radio-group--state-hover
+  .ckw-radio:not(.ckw-radio--disabled)
+  .ckw-radio__circle:not(:checked) {
+  border-color: var(--border-active);
+}
+
+.ckw-radio:not(.ckw-radio--disabled):has(.ckw-radio__circle:hover, .ckw-radio__label:hover)
+  .ckw-radio__circle:checked,
+.ckw-radio-group--state-hover .ckw-radio:not(.ckw-radio--disabled) .ckw-radio__circle:checked {
+  background-color: var(--interactive-primary-hover);
+  border-color: var(--interactive-primary-hover);
+}
+
+/* Docs-only forced focus (on the checked option) */
+.ckw-radio-group--state-focus .ckw-radio__circle:checked {
+  outline: var(--border-weight-m) solid var(--border-active);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   Dot
+   ============================================ */
+
+.ckw-radio__dot {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  width: var(--spacing-xs);
+  height: var(--spacing-xs);
+  border-radius: var(--border-radius-full);
+  background-color: var(--text-on-interactive-primary);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.ckw-radio__circle:checked ~ .ckw-radio__dot {
+  display: block;
+}
+
+/* ============================================
+   Text
+   ============================================ */
+
+.ckw-radio__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xs);
+  min-width: 0;
+}
+
+.ckw-radio__label {
+  font-family: var(--font-family-brand), sans-serif;
+  font-size: var(--body-m-size);
+  line-height: var(--body-m-height);
+  font-weight: var(--body-m-weight);
+  color: var(--text-primary);
+  cursor: pointer;
+}
+
+.ckw-radio__description {
+  display: block;
+}
+
+/* ============================================
+   Error
+   ============================================ */
+
+.ckw-radio--error .ckw-radio__circle:not(:checked) {
+  border-color: var(--status-error-border);
+  box-shadow: inset 0 0 0 1px var(--status-error-border);
+}
+
+/* ============================================
+   Disabled
+   ============================================ */
+
+.ckw-radio__circle:disabled {
+  background-color: var(--background-canvas);
+  border-color: var(--border-medium);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+.ckw-radio__circle:disabled:checked {
+  background-color: var(--text-tertiary);
+  border-color: var(--text-tertiary);
+}
+
+.ckw-radio--disabled .ckw-radio__label,
+.ckw-radio--disabled .ckw-radio__description {
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+/* ============================================
+   Forced colors (Windows High Contrast)
+   Fill and dot are backgrounds, which forced colors removes: draw the dot in a system colour.
+   ============================================ */
+
+@media (forced-colors: active) {
+  .ckw-radio__circle:checked {
+    border-color: Highlight;
+  }
+
+  .ckw-radio__dot {
+    forced-color-adjust: none;
+    background-color: Highlight;
+  }
+
+  .ckw-radio__circle:disabled {
+    border-color: GrayText;
+  }
+
+  .ckw-radio__circle:disabled ~ .ckw-radio__dot {
+    background-color: GrayText;
+  }
+}

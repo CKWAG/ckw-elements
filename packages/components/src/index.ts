@@ -19,6 +19,8 @@ export type {
   CardTitleElement,
   CardTitleProps,
 } from './Card/index.js';
+export { Checkbox, CheckboxGroup } from './Checkbox/index.js';
+export type { CheckboxChecked, CheckboxGroupProps, CheckboxProps } from './Checkbox/index.js';
 export { InputField } from './InputField/index.js';
 export type { InputFieldProps, InputFieldState } from './InputField/index.js';
 export { PasswordInput } from './PasswordInput/index.js';
@@ -37,6 +39,8 @@ export type {
   KeyValueListLayout,
   KeyValueListProps,
 } from './KeyValueList/index.js';
+export { RadioGroup } from './RadioGroup/index.js';
+export type { RadioGroupOption, RadioGroupProps } from './RadioGroup/index.js';
 export { Select } from './Select/index.js';
 export type { SelectOption, SelectProps } from './Select/index.js';
 export { SegmentedControl } from './SegmentedControl/index.js';

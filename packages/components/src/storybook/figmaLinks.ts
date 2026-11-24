@@ -26,6 +26,13 @@ export const figmaReferences = {
     scope: 'component-node',
     note: 'Exact Button component source in the CKW Elements Figma design system.',
   },
+  checkbox: {
+    componentName: 'Checkbox',
+    url: getFigmaNodeUrl('2391:3723'),
+    nodeId: '2391:3723',
+    scope: 'component-node',
+    note: 'Exact Checkbox and Checkbox Group source in the CKW Elements Figma design system.',
+  },
   inputField: {
     componentName: 'Input Field',
     url: getFigmaNodeUrl('100:443'),
@@ -67,6 +74,13 @@ export const figmaReferences = {
     nodeId: '2338:183',
     scope: 'component-node',
     note: 'Exact Password Input component source in the CKW Elements Figma design system.',
+  },
+  radioGroup: {
+    componentName: 'Radio Group',
+    url: getFigmaNodeUrl('2391:4344'),
+    nodeId: '2391:4344',
+    scope: 'component-node',
+    note: 'Exact Radio Group source in the CKW Elements Figma design system.',
   },
   select: {
     componentName: 'Select',
