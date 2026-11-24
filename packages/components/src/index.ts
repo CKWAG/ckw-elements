@@ -5,6 +5,8 @@ export { InputField } from './InputField/index.js';
 export type { InputFieldProps, InputFieldState } from './InputField/index.js';
 export { PasswordInput } from './PasswordInput/index.js';
 export type { PasswordInputProps } from './PasswordInput/index.js';
+export { Badge } from './Badge/index.js';
+export type { BadgeProps, BadgeSize, BadgeStatus } from './Badge/index.js';
 export { InlineMessage } from './InlineMessage/index.js';
 export type {
   InlineMessageBreakpoint,

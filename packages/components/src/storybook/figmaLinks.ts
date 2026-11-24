@@ -40,6 +40,13 @@ export const figmaReferences = {
     scope: 'component-node',
     note: 'Exact Inline Message component source in the CKW Elements Figma design system.',
   },
+  badge: {
+    componentName: 'Badge',
+    url: getFigmaNodeUrl('2330:461'),
+    nodeId: '2330:461',
+    scope: 'component-node',
+    note: 'Exact Badge component source in the CKW Elements Figma design system.',
+  },
   segmentedControl: {
     componentName: 'Segmented Control',
     url: getFigmaNodeUrl('928:624'),
