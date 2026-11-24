@@ -21,16 +21,18 @@ Reference section (already cleaned up, copy its structure): **Inline Message**, 
 4. **Apply in one `use_figma` call**: unwrap the unnecessary frames, rename, then do the component internals.
    Return a log of every `old → new`.
 5. **Doc colours**: audit every fill, stroke and text colour of the doc chrome (everything outside the component
-   set and outside instances) and rebind it to a documentation colour (see "Doc colours" below).
-6. **Stale instances**: for every doc example instance, compare its child sizes with its main component. If they
+   set and outside instances) and rebind it to a documentation colour; the `Examples` containers get
+   `Background/background-canvas` (see "Doc colours" below).
+6. **Doc layout**: run `scripts/normalize-doc-layout.js` (see "Doc layout" below) and check the screenshots.
+7. **Stale instances**: for every doc example instance, compare its child sizes with its main component. If they
    differ, Figma did not re-layout the instance. Replace it with a fresh `mainComponent.createInstance()` at the
    same index, copy its BOOLEAN/TEXT/INSTANCE_SWAP properties, keep `FIXED` width, then remove the old one. Do
    **not** use `swapComponent` back and forth or `resetOverrides()`: both lose nested colour overrides and widths.
-7. **Verify**: take the "after" screenshot and compare it with "before". It must look identical, apart from fixed
+8. **Verify**: take the "after" screenshot and compare it with "before". It must look identical, apart from fixed
    stale instances and the small shade changes from rebinding doc colours.
-8. **Change Log**: add a bullet to today's entry in the sidebar's Change Log (or a new entry, see below).
-9. **Report** to the user in their language: what was renamed or removed, anything you deliberately left alone,
-   and the issues you found but did not fix.
+9. **Change Log**: add a bullet to today's entry in the sidebar's Change Log (or a new entry, see below).
+10. **Report** to the user in their language: what was renamed or removed, anything you deliberately left alone,
+    and the issues you found but did not fix.
 
 ## Section structure and names
 
@@ -76,11 +78,13 @@ fonts of a text node before moving it. If you are unsure, keep the frame and giv
 
 ## Doc colours
 
-The documentation around a component (section background, sidebar, headings, labels, Change Log, example
-containers, dividers, the component set outline) uses **only** the documentation variables:
-`Documentation/specs-*` (`specs-white`, `specs-050` … `specs-950`, `specs-black`), `Status/specs-status-*` for the
-status badge and `Logo/specs-logo-*`. Never use product colours (`Background/*`, `Text/*`, `Status/status-*`,
-primitives) or raw hex values in the doc chrome.
+The documentation around a component (section background, sidebar, headings, labels, Change Log, dividers, the
+component set outline) uses **only** the documentation variables: `Documentation/specs-*` (`specs-white`,
+`specs-050` … `specs-950`, `specs-black`), `Status/specs-status-*` for the status badge and `Logo/specs-logo-*`.
+Never use product colours (`Text/*`, `Status/status-*`, primitives) or raw hex values in the doc chrome.
+
+**The one exception is the example containers (`Examples`).** They always use `Background/background-canvas`,
+the page background of the CKW portals, so the doc shows the real contrast the component has in the product.
 
 Product colours stay **inside** the components and on their instances, because that is the design being documented.
 
@@ -88,7 +92,7 @@ Product colours stay **inside** the components and on their instances, because t
 | ------------------------------------------ | ------------------------------------------------------- |
 | Section background                         | `Documentation/specs-white`                             |
 | Sidebar panel, divider of the Variants col | `Documentation/specs-100`                               |
-| Example containers (`Examples`)            | `Documentation/specs-050`                               |
+| Example containers (`Examples`)            | `Background/background-canvas` (portal background)      |
 | Change Log entry divider                   | `Documentation/specs-200`                               |
 | Component set outline (dashed)             | `Documentation/specs-400`                               |
 | All doc text                               | `Documentation/specs-900` (never pure black)            |
@@ -97,12 +101,28 @@ Product colours stay **inside** the components and on their instances, because t
 If a doc element has a product colour, rebind it to the closest documentation variable from this table and
 mention the shade change in the report. If no row fits, ask instead of guessing.
 
-**One exception, the example containers of components with their own grey surfaces** (for example a control
-track or unselected pills, as in Segmented Control and Tab Pills): their `Examples` use
-`Background/background-canvas`, the page background of the CKW portals. That way the doc shows the real
-contrast the component has in the product. Before rebinding an `Examples` container, check whether the
-component has a grey surface. If it does, keep or set `background-canvas`; if you are unsure, compare both and
-ask.
+## Doc layout
+
+Every value in the doc chrome is a token, and the Variants column is laid out the same way in every section.
+Run `scripts/normalize-doc-layout.js` (set `PAGE_ID` and `SECTION_ID`, pass the code below the header comment to
+`use_figma`). It applies these rules and reports what it could not fix:
+
+- **Tokens:** every non-zero padding, gap and radius is bound to a `Spacing/*` or `Radius/*` variable. Values
+  without a matching token (section radius 64, sidebar padding 56 and radius 40) are reported, never rounded.
+- **Example boxes (`Examples`):** padding `Spacing/3xl`, gap `Spacing/xl` between examples, radius `Radius/s`,
+  fill `Background/background-canvas`. Bind the paint with the resolved colour as its base colour, otherwise
+  screenshots and exports render the box white.
+- **Width:** example boxes hug their content and all boxes of a section get the same minimum width (the widest
+  box). Never give a box a fixed width and never set the groups or the Variants column to FILL inside a HUG parent,
+  because the column then collapses.
+- **No overflow:** nothing may stick out of an example box. An instance stretched to FILL that is narrower than
+  its content is set to HUG. Components with an open overlay (for example Select with its flyout) keep their
+  overlay inside the box: give the instance a fixed height down to the bottom of the overlay.
+- **Labels:** the `Labels` column uses the same top/bottom padding and gap variables as its `Examples` box, and
+  each label is as tall as its example row with the text vertically centred, so labels and rows stay aligned.
+
+After running it, screenshot every group and check for overflow, overlapping rows and labels that are not level
+with their row.
 
 ## Component internals
 
