@@ -25,7 +25,8 @@ convention, say so and ask.
 - Compare with shadcn/ui (and its Radix primitive / the WAI-ARIA pattern for interactive components): anatomy,
   variants, sizes, states, keyboard and ARIA behaviour.
 - Post a short comparison in chat: what MyCKW needs, what shadcn does, what we take over, what we do differently and
-  why. Propose the API (variants and props, same names in Figma and code).
+  why. Propose the API: prop names match the Figma property names (`Status` → `status`, `Show Icon` →
+  `showIcon`), prop values are lowercase in code and Title Case in Figma (`status="error"` ↔ `Status=Error`).
 - Where a real choice exists (look, variant set), build 2–3 options **directly in Figma** on the
   `🧪 Explorations` page of the CKW Elements file, labelled A/B/C, tokens only. Ask Janosch which one to take.
 

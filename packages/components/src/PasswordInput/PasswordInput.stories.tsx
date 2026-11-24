@@ -8,7 +8,7 @@ const meta = {
   component: PasswordInput,
   tags: ['!autodocs'],
   parameters: {
-    design: getFigmaDesignParameter(figmaReferences.inputField),
+    design: getFigmaDesignParameter(figmaReferences.passwordInput),
   },
 } satisfies Meta<typeof PasswordInput>;
 

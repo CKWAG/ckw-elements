@@ -9,7 +9,7 @@ const meta = {
   tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
-    design: getFigmaDesignParameter(figmaReferences.inputField),
+    design: getFigmaDesignParameter(figmaReferences.passwordInput),
     docs: {
       source: {
         transform: (code: string) => `import { PasswordInput } from '@ckwag/elements';\n\n${code}`,
