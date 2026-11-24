@@ -1,4 +1,4 @@
-import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
 import { DesignReference } from '../storybook/DesignReference';
 import { figmaReferences } from '../storybook/figmaLinks';
 import * as BadgeStories from './Badge.stories';
@@ -28,11 +28,11 @@ import * as BadgeStories from './Badge.stories';
 </div>
 
 <div style={{ marginTop: '24px' }}>
-  <Primary />
+  <Canvas of={BadgeStories.Basic} />
 </div>
 
 <div style={{ marginTop: '16px' }}>
-  <Controls />
+  <Controls of={BadgeStories.Basic} />
 </div>
 
 <div className="sb-unstyled">
