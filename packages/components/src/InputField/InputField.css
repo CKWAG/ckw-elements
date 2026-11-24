@@ -6,7 +6,8 @@
  *
  * Border strategy (no layout shift):
  * - The base border is always border-weight-s (1px) via CSS border.
- * - Hover adds a soft green outline around the input.
+ * - Hover turns the 1px border green (border-active); the outline ring is reserved for focus.
+ * - Focus keeps the white field and adds the green border plus a soft outline ring.
  * - Active/Focus uses an inset box-shadow for the thick active border
  *   to avoid changing border-width (which causes layout shift).
  * - Error uses the same inset box-shadow technique.
@@ -48,7 +49,7 @@
   font-size: var(--label-s-size);
   line-height: var(--label-s-height);
   font-weight: var(--label-s-weight);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -124,7 +125,7 @@
 /* Hover — soft green outline */
 .ckw-input-field:not(.ckw-input-field--error):not(.ckw-input-field--disabled)
   .ckw-input-field__inner:hover {
-  outline-color: var(--border-hover);
+  border-color: var(--border-active);
 }
 
 /* Focus — green outline + dark green inset shadow + green background */
@@ -133,7 +134,6 @@
   outline-color: var(--border-hover);
   border-color: var(--border-active);
   box-shadow: inset 0 0 0 1px var(--border-active);
-  background-color: var(--background-active);
 }
 
 /* ============================================
@@ -149,9 +149,9 @@
   padding: 0;
   margin: 0;
   font-family: var(--font-family-brand), sans-serif;
-  font-size: var(--body-m-emphasized-size);
-  line-height: var(--body-m-emphasized-height);
-  font-weight: var(--body-m-emphasized-weight);
+  font-size: var(--body-m-size);
+  line-height: var(--body-m-height);
+  font-weight: var(--body-m-weight);
   color: var(--text-primary);
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -160,6 +160,20 @@
 
 .ckw-input-field__input::placeholder {
   color: var(--text-tertiary);
+}
+
+/* ============================================
+   Prefix / Suffix
+   ============================================ */
+
+.ckw-input-field__affix {
+  flex-shrink: 0;
+  font-family: var(--font-family-brand), sans-serif;
+  font-size: var(--body-m-size);
+  line-height: var(--body-m-height);
+  font-weight: var(--body-m-weight);
+  color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 /* ============================================
@@ -173,12 +187,29 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  color: var(--text-primary);
+  color: var(--text-secondary);
 }
 
 .ckw-input-field__icon > svg {
   width: 100%;
   height: 100%;
+}
+
+/* ============================================
+   Description (help text)
+   ============================================ */
+
+.ckw-input-field__description {
+  margin: 0;
+  font-family: var(--font-family-brand), sans-serif;
+  font-size: var(--caption-size);
+  line-height: var(--caption-height);
+  font-weight: var(--caption-weight);
+  color: var(--text-secondary);
+}
+
+.ckw-input-field--disabled .ckw-input-field__description {
+  color: var(--text-tertiary);
 }
 
 /* ============================================
@@ -245,6 +276,7 @@
   color: var(--text-tertiary);
 }
 
+.ckw-input-field--disabled .ckw-input-field__affix,
 .ckw-input-field--disabled .ckw-input-field__icon {
   color: var(--text-tertiary);
 }
@@ -255,7 +287,7 @@
 
 .ckw-input-field--state-hover:not(.ckw-input-field--error):not(.ckw-input-field--disabled)
   .ckw-input-field__inner {
-  outline-color: var(--border-hover);
+  border-color: var(--border-active);
 }
 
 .ckw-input-field--state-active:not(.ckw-input-field--error):not(.ckw-input-field--disabled)
@@ -263,7 +295,6 @@
   outline-color: var(--border-hover);
   border-color: var(--border-active);
   box-shadow: inset 0 0 0 1px var(--border-active);
-  background-color: var(--background-active);
 }
 
 .ckw-input-field--state-focus-visible:not(.ckw-input-field--error):not(.ckw-input-field--disabled)
@@ -271,5 +302,4 @@
   outline-color: var(--border-hover);
   border-color: var(--border-active);
   box-shadow: inset 0 0 0 1px var(--border-active);
-  background-color: var(--background-active);
 }

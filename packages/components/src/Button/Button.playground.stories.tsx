@@ -35,10 +35,10 @@ const meta = {
     size: {
       name: 'Size',
       control: { type: 'inline-radio' },
-      options: ['Large', 'Medium', 'Small'],
+      options: ['large', 'medium', 'small'],
       description:
         'Button size. Large uses label-l typography (18/22), Medium and Small use label-m (16/20).',
-      table: { category: 'General', defaultValue: { summary: 'Large' } },
+      table: { category: 'General', defaultValue: { summary: 'large' } },
     },
     fullWidth: {
       name: 'Full width',
@@ -59,7 +59,7 @@ const meta = {
       table: { category: 'Icon', defaultValue: { summary: 'false' } },
     },
     disabled: {
-      name: 'Disabled',
+      name: 'disabled',
       control: { type: 'boolean' },
       description:
         'When set to true, makes the component appear inactive and disables its functionality.',
@@ -71,6 +71,13 @@ const meta = {
       description: 'Shows a spinner in the leading slot, sets aria-busy, and disables interaction.',
       table: { category: 'States', defaultValue: { summary: 'false' } },
     },
+    href: {
+      control: 'text',
+      description: 'Renders the button as a link (<a href>) for navigation.',
+      table: { category: 'Link' },
+    },
+    target: { control: false, table: { disable: true } },
+    rel: { control: false, table: { disable: true } },
     onClick: { control: false, table: { disable: true } },
     type: { control: false, table: { disable: true } },
     className: { control: false, table: { disable: true } },
@@ -78,7 +85,7 @@ const meta = {
   args: {
     children: 'Button',
     variant: 'primary',
-    size: 'Large',
+    size: 'large',
     disabled: false,
     fullWidth: false,
     leadingIcon: false,
@@ -91,14 +98,15 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ReactPlayground: Story = {
-  name: 'React Playground',
-  render: ({ leadingIcon, trailingIcon, ...args }) => {
+export const Playground: Story = {
+  name: 'Playground',
+  render: ({ leadingIcon, trailingIcon, href, ...args }) => {
     const showLeading = Boolean(leadingIcon);
     const showTrailing = Boolean(trailingIcon) && !showLeading;
     return (
       <Button
         {...args}
+        href={href || undefined}
         leadingIcon={showLeading ? <IconPlaceholder /> : undefined}
         trailingIcon={showTrailing ? <IconPlaceholder /> : undefined}
       />

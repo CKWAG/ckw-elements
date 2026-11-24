@@ -1,0 +1,104 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+import * as BadgeStories from './Badge.stories';
+import * as BadgePlayground from './Badge.playground.stories';
+
+<Meta title="Components/Badge" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Badge</div>
+  <div className="docs-description">
+    Badges show a short, non-interactive status or attribute label, for example the status of an
+    invoice (Offen, Bezahlt, Überfällig) or a "Neu" marker. Keep the label to one or two words and
+    never rely on colour alone: the meaning must always be in the text.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.badge} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to configure label, status, size and icon.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Canvas of={BadgePlayground.Playground} />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls of={BadgePlayground.Playground} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Status</div>
+    <div className="docs-subsection-description">
+      Neutral, Info, Success, Warning and Error use a light status background with dark status text.
+      Brand is the only filled variant and is reserved for highlights such as the current product.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={BadgeStories.Statuses} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Size</div>
+    <div className="docs-subsection-description">
+      Medium is the default. Use Small in dense places such as tables or compact cards.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={BadgeStories.Sizes} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Icon</div>
+    <div className="docs-subsection-description">
+      Icons are optional and off by default. Use them only on status badges, always with the same
+      icon per status, and consistently within one list. Info, Success, Warning and Error have a
+      default status icon; Neutral and Brand need a custom icon. With an icon, the icon side gets
+      less padding so the badge stays optically balanced.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={BadgeStories.Icon} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      Badges render a plain <code>span</code> and are not interactive. The icon is decorative and
+      hidden with <code>aria-hidden</code>, because the label carries the meaning. Do not use a
+      Badge as a button or link.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">All Variants</div>
+    <div className="docs-subsection-description">
+      Representative matrix for status and size, with and without icon.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={BadgeStories.AllVariants} />
+</div>

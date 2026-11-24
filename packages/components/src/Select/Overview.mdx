@@ -1,0 +1,97 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+import * as SelectStories from './Select.stories';
+import * as SelectPlayground from './Select.playground.stories';
+
+<Meta title="Components/Select" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Select</div>
+  <div className="docs-description">
+    Select lets users pick exactly one option from a list, for example a contract or an address. It
+    shares label, field, help text and error styles with Input Field, so both look the same in a
+    form. Use a Segmented Control instead when there are only two to five short options that should
+    all stay visible.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.select} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to configure label, placeholder, help text, error and state.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Canvas of={SelectPlayground.Playground} />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls of={SelectPlayground.Playground} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">States</div>
+    <div className="docs-subsection-description">
+      Empty shows the placeholder ("Bitte wählen"). Hover turns the border green; focus and the open
+      list keep the field white and add the green border plus a soft ring. Error and Disabled match
+      Input Field.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SelectStories.States} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Open list</div>
+    <div className="docs-subsection-description">
+      The list opens below the field. The highlighted option (hover or arrow keys) gets a grey
+      background, the selected option a check icon, so the selection does not depend on colour.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SelectStories.Open} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Specials</div>
+    <div className="docs-subsection-description">
+      Optional hint, info button and help text work exactly like in Input Field.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SelectStories.Specials} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      Built on the Radix Select primitive (WAI-ARIA listbox pattern). The field opens with Enter,
+      Space or the arrow keys; arrow keys move through the options, typing jumps to matching
+      options, Enter selects and Escape closes. The label is linked to the field, help and error
+      text via <code>aria-describedby</code>. With <code>name</code>, a hidden native select submits
+      the value with the form.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={SelectStories.Controlled} />
+</div>

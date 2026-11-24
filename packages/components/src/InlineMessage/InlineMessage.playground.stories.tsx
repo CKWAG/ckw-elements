@@ -29,9 +29,9 @@ const meta = {
     },
     status: {
       control: { type: 'inline-radio' },
-      options: ['Info', 'Success', 'Error'],
+      options: ['info', 'success', 'warning', 'error'],
       description: 'Semantic status variant.',
-      table: { defaultValue: { summary: 'Info' } },
+      table: { defaultValue: { summary: 'info' } },
     },
     showIcon: {
       control: 'boolean',
@@ -40,9 +40,9 @@ const meta = {
     },
     breakpoint: {
       control: { type: 'inline-radio' },
-      options: ['Auto', 'Desktop', 'Mobile'],
+      options: ['auto', 'desktop', 'mobile'],
       description: 'Auto follows viewport width; Desktop/Mobile force a documented variant.',
-      table: { defaultValue: { summary: 'Auto' } },
+      table: { defaultValue: { summary: 'auto' } },
     },
     icon: { control: false, table: { disable: true } },
     role: { control: false, table: { disable: true } },
@@ -50,10 +50,10 @@ const meta = {
   },
   args: {
     title: 'Statusmeldung',
-    children: 'Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.',
-    status: 'Info',
+    children: 'Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.',
+    status: 'info',
     showIcon: true,
-    breakpoint: 'Auto',
+    breakpoint: 'auto',
   },
 } satisfies Meta<typeof InlineMessage>;
 
@@ -61,10 +61,10 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ReactPlayground: Story = {
-  name: 'React Playground',
+export const Playground: Story = {
+  name: 'Playground',
   render: (args) => (
-    <div style={{ maxWidth: args.breakpoint === 'Mobile' ? '361px' : '720px' }}>
+    <div style={{ maxWidth: args.breakpoint === 'mobile' ? '361px' : '720px' }}>
       <InlineMessage {...args} />
     </div>
   ),

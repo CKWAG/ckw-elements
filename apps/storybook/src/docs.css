@@ -184,6 +184,22 @@
 }
 
 /* ============================================
+   Story Canvas — portal page background
+   Component examples sit on the CKW portal background (same rule as the
+   example boxes in Figma), so the docs show the real contrast.
+   ============================================ */
+
+.sb-show-main {
+  background-color: var(--background-canvas);
+}
+
+.sbdocs .sb-story {
+  padding: var(--spacing-3xl);
+  border-radius: var(--border-radius-s);
+  background-color: var(--background-canvas);
+}
+
+/* ============================================
    Token Badge — Code-style labels
    JetBrains Mono Medium, bg canvas, color primary,
    padding 4px 8px, radius 8px

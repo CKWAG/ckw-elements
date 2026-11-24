@@ -4,9 +4,9 @@
  * Uses only semantic design tokens from @ckwag/elements-tokens.
  * Container is a pill-shaped track with a sliding indicator behind segments.
  *
- * Types: Default (auto-width), Fill (equal-width stretch)
+ * Variants: default (auto-width), fill (equal-width stretch)
  * Content modes: label, icon-label, icon-compact
- * States: Default, Hover, Active (sliding indicator)
+ * States: Default, Hover, Active (white sliding indicator with shadow-xs), Focus
  *
  * Icon-compact uses CSS grid `0fr → 1fr` on each segment to animate the label
  * width. The indicator is positioned via offsetLeft/offsetWidth in a
@@ -24,7 +24,8 @@
   gap: var(--spacing-3xs);
   padding: var(--spacing-2xs);
   background-color: var(--background-control);
-  border: var(--border-weight-s) solid var(--border-soft);
+  /* inset border keeps the track at 40px, like the Figma component */
+  box-shadow: inset 0 0 0 var(--border-weight-s) var(--border-soft);
   border-radius: var(--border-radius-full);
 }
 
@@ -43,8 +44,8 @@
   bottom: var(--spacing-2xs);
   left: 0;
   box-sizing: border-box;
-  background-color: var(--background-active);
-  border: var(--border-weight-s) solid var(--border-active);
+  background-color: var(--background-input);
+  box-shadow: var(--shadow-xs);
   border-radius: var(--border-radius-full);
   pointer-events: none;
   will-change: transform, width;
@@ -159,7 +160,7 @@
 }
 
 .ckw-segmented-control__segment--active .ckw-segmented-control__label {
-  color: var(--text-on-interactive-secondary);
+  color: var(--text-primary);
 }
 
 /*
@@ -212,7 +213,7 @@
 }
 
 .ckw-segmented-control__segment--active .ckw-segmented-control__icon {
-  color: var(--text-on-interactive-secondary);
+  color: var(--text-primary);
 }
 
 /* ============================================
@@ -220,11 +221,11 @@
    ============================================ */
 
 .ckw-segmented-control--state-hover
-  .ckw-segmented-control__segment:first-child:not(.ckw-segmented-control__segment--active) {
+  .ckw-segmented-control__segment:first-of-type:not(.ckw-segmented-control__segment--active) {
   background-color: var(--background-hover);
 }
 
-.ckw-segmented-control--state-focus-visible .ckw-segmented-control__segment:first-child {
+.ckw-segmented-control--state-focus-visible .ckw-segmented-control__segment:first-of-type {
   outline: var(--border-weight-m) solid var(--border-active);
   outline-offset: 2px;
 }
@@ -232,4 +233,20 @@
 .ckw-segmented-control--state-disabled {
   opacity: 0.4;
   pointer-events: none;
+}
+
+/* ============================================
+   Windows High Contrast (forced colors)
+   The track shadow and the white indicator disappear there, so the track gets
+   a real border and the selected segment a Highlight border.
+   ============================================ */
+
+@media (forced-colors: active) {
+  .ckw-segmented-control {
+    border: var(--border-weight-s) solid CanvasText;
+  }
+
+  .ckw-segmented-control__indicator {
+    border: var(--border-weight-m) solid Highlight;
+  }
 }

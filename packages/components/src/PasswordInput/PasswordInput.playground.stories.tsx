@@ -9,7 +9,7 @@ const meta = {
   tags: ['!autodocs'],
   parameters: {
     layout: 'padded',
-    design: getFigmaDesignParameter(figmaReferences.inputField),
+    design: getFigmaDesignParameter(figmaReferences.passwordInput),
     docs: {
       source: {
         transform: (code: string) => `import { PasswordInput } from '@ckwag/elements';\n\n${code}`,
@@ -40,6 +40,10 @@ const meta = {
       control: 'boolean',
       description: 'Show "(optional)" next to the label.',
       table: { defaultValue: { summary: 'false' } },
+    },
+    description: {
+      control: 'text',
+      description: 'Help text below the input, linked via aria-describedby.',
     },
     errorText: {
       control: 'text',
@@ -73,6 +77,7 @@ const meta = {
     value: '',
     disabled: false,
     optional: false,
+    description: '',
     errorText: '',
     showInfo: false,
     defaultVisible: false,
@@ -84,8 +89,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ReactPlayground: Story = {
-  name: 'React Playground',
+export const Playground: Story = {
+  name: 'Playground',
   render: (args) => (
     <div style={{ maxWidth: '320px' }}>
       <PasswordInput {...args} />

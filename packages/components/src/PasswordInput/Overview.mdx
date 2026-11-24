@@ -1,7 +1,8 @@
-import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
 import { DesignReference } from '../storybook/DesignReference';
 import { figmaReferences } from '../storybook/figmaLinks';
 import * as PasswordInputStories from './PasswordInput.stories';
+import * as PasswordInputPlayground from './PasswordInput.playground.stories';
 
 <Meta title="Components/Password Input" />
 
@@ -15,7 +16,7 @@ import * as PasswordInputStories from './PasswordInput.stories';
 </div>
 
 <div className="sb-unstyled">
-  <DesignReference reference={figmaReferences.inputField} />
+  <DesignReference reference={figmaReferences.passwordInput} />
 </div>
 
 <div className="sb-unstyled">
@@ -28,11 +29,11 @@ import * as PasswordInputStories from './PasswordInput.stories';
 </div>
 
 <div style={{ marginTop: '24px' }}>
-  <Primary />
+  <Canvas of={PasswordInputPlayground.Playground} />
 </div>
 
 <div style={{ marginTop: '16px' }}>
-  <Controls />
+  <Controls of={PasswordInputPlayground.Playground} />
 </div>
 
 <div className="sb-unstyled">

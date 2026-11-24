@@ -42,9 +42,21 @@ const meta = {
       description: 'Show "(optional)" next to the label.',
       table: { defaultValue: { summary: 'false' } },
     },
+    description: {
+      control: 'text',
+      description: 'Help text below the input, linked via aria-describedby.',
+    },
     errorText: {
       control: 'text',
       description: 'Error text below the input. Shows error state when non-empty.',
+    },
+    prefix: {
+      control: 'text',
+      description: 'Short text before the value, e.g. a currency such as "CHF".',
+    },
+    suffix: {
+      control: 'text',
+      description: 'Short text after the value, e.g. a unit such as "kWp".',
     },
     icon: {
       control: 'boolean',
@@ -69,7 +81,10 @@ const meta = {
     value: '',
     disabled: false,
     optional: false,
+    description: '',
     errorText: '',
+    prefix: '',
+    suffix: '',
     icon: false,
     showInfo: false,
   },
@@ -79,8 +94,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ReactPlayground: Story = {
-  name: 'React Playground',
+export const Playground: Story = {
+  name: 'Playground',
   render: ({ icon, ...args }) => (
     <div style={{ maxWidth: '320px' }}>
       <InputField {...args} icon={icon ? <IconPlaceholder size={20} /> : undefined} />

@@ -8,7 +8,7 @@ const meta = {
   component: PasswordInput,
   tags: ['!autodocs'],
   parameters: {
-    design: getFigmaDesignParameter(figmaReferences.inputField),
+    design: getFigmaDesignParameter(figmaReferences.passwordInput),
   },
 } satisfies Meta<typeof PasswordInput>;
 
@@ -39,6 +39,7 @@ const rowStyle: React.CSSProperties = {
 };
 
 const labelStyle: React.CSSProperties = {
+  textTransform: 'capitalize',
   fontFamily: 'var(--font-family-brand), sans-serif',
   fontSize: '14px',
   fontWeight: 500,
@@ -56,12 +57,12 @@ export const Empty: Story = {
     <div style={sectionStyle}>
       {(
         [
-          ['Default', {}],
-          ['Hover', { className: 'ckw-input-field--state-hover' }],
-          ['Active', { className: 'ckw-input-field--state-active' }],
+          ['default', {}],
+          ['hover', { className: 'ckw-input-field--state-hover' }],
+          ['active', { className: 'ckw-input-field--state-active' }],
           ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
-          ['Error', { errorText: 'Passwort ist erforderlich' }],
-          ['Disabled', { disabled: true }],
+          ['error', { errorText: 'Passwort ist erforderlich' }],
+          ['disabled', { disabled: true }],
         ] as const
       ).map(([stateLabel, props]) => (
         <div key={stateLabel} style={rowStyle}>
@@ -82,8 +83,8 @@ export const Filled: Story = {
         [
           ['Hidden', { defaultValue: 'correct-horse-battery-staple' }],
           ['Visible', { defaultValue: 'correct-horse-battery-staple', defaultVisible: true }],
-          ['Error', { defaultValue: 'kurz', errorText: 'Mindestens 12 Zeichen verwenden' }],
-          ['Disabled', { defaultValue: 'locked-password', disabled: true }],
+          ['error', { defaultValue: 'kurz', errorText: 'Mindestens 12 Zeichen verwenden' }],
+          ['disabled', { defaultValue: 'locked-password', disabled: true }],
         ] as const
       ).map(([stateLabel, props]) => (
         <div key={stateLabel} style={rowStyle}>
@@ -124,12 +125,12 @@ export const Controlled: Story = {
 export const AllVariants: Story = {
   render: () => {
     const states: Array<[string, Record<string, unknown>]> = [
-      ['Default', {}],
-      ['Hover', { className: 'ckw-input-field--state-hover' }],
-      ['Active', { className: 'ckw-input-field--state-active' }],
+      ['default', {}],
+      ['hover', { className: 'ckw-input-field--state-hover' }],
+      ['active', { className: 'ckw-input-field--state-active' }],
       ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
-      ['Error', { errorText: 'Passwort ist erforderlich' }],
-      ['Disabled', { disabled: true }],
+      ['error', { errorText: 'Passwort ist erforderlich' }],
+      ['disabled', { disabled: true }],
     ];
 
     const cellStyle: React.CSSProperties = {

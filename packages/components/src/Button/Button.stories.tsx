@@ -30,10 +30,10 @@ const meta = {
     size: {
       name: 'Size',
       control: { type: 'inline-radio' },
-      options: ['Large', 'Medium', 'Small'],
+      options: ['large', 'medium', 'small'],
       description:
         'Button size. Large uses label-l typography (18/22), Medium and Small use label-m (16/20).',
-      table: { category: 'General', defaultValue: { summary: 'Large' } },
+      table: { category: 'General', defaultValue: { summary: 'large' } },
     },
     fullWidth: {
       name: 'Full width',
@@ -54,7 +54,7 @@ const meta = {
       table: { category: 'Icon', defaultValue: { summary: 'false' } },
     },
     disabled: {
-      name: 'Disabled',
+      name: 'disabled',
       control: { type: 'boolean' },
       description:
         'When set to true, makes the component appear inactive and disables its functionality.',
@@ -70,7 +70,7 @@ const meta = {
   args: {
     children: 'Button',
     variant: 'primary',
-    size: 'Large',
+    size: 'large',
     disabled: false,
     fullWidth: false,
     leadingIcon: false,
@@ -108,6 +108,7 @@ const rowStyle: React.CSSProperties = {
 };
 
 const labelStyle: React.CSSProperties = {
+  textTransform: 'capitalize',
   fontFamily: 'var(--font-family-brand), sans-serif',
   fontSize: '14px',
   fontWeight: 500,
@@ -147,7 +148,7 @@ export const Variants: Story = {
 export const Sizes: Story = {
   render: () => (
     <div style={sectionStyle}>
-      {(['Large', 'Medium', 'Small'] as const).map((size) => (
+      {(['large', 'medium', 'small'] as const).map((size) => (
         <div key={size} style={rowStyle}>
           <span style={labelStyle}>{size}</span>
           <Button size={size}>Label</Button>
@@ -252,14 +253,36 @@ export const Loading: Story = {
 export const Icons: Story = {
   render: () => (
     <div style={sectionStyle}>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Leading</span>
-        <Button leadingIcon={<IconPlaceholder />}>Label</Button>
-      </div>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Trailing</span>
-        <Button trailingIcon={<IconPlaceholder />}>Label</Button>
-      </div>
+      {(['large', 'medium', 'small'] as const).map((size) => (
+        <div key={size} style={rowStyle}>
+          <span style={labelStyle}>{size}</span>
+          <Button size={size} leadingIcon={<IconPlaceholder />}>
+            Rechnung herunterladen
+          </Button>
+          <Button size={size} variant="secondary" trailingIcon={<IconPlaceholder />}>
+            Weiter zum nächsten Schritt
+          </Button>
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+/** With `href` the button renders as a real link (`<a>`) for actions that navigate. */
+export const AsLink: Story = {
+  name: 'As Link',
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+      <Button href="#rechnungen">Zu den Rechnungen</Button>
+      <Button href="#verbrauch" variant="secondary">
+        Stromverbrauch analysieren
+      </Button>
+      <Button href="#hilfe" variant="tertiary" target="_blank">
+        Hilfe (neuer Tab)
+      </Button>
+      <Button href="#gesperrt" disabled>
+        Deaktivierter Link
+      </Button>
     </div>
   ),
 };
@@ -315,7 +338,7 @@ export const AllVariants: Story = {
               <div style={headerStyle}>Default</div>
               <div style={headerStyle}>Disabled</div>
 
-              {(['Large', 'Medium', 'Small'] as const).map((size) => (
+              {(['large', 'medium', 'small'] as const).map((size) => (
                 <React.Fragment key={size}>
                   <span style={labelStyle}>{size}</span>
                   <div style={cellStyle}>

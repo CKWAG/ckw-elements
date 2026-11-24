@@ -11,39 +11,63 @@ import { figmaReferences } from '../../../../packages/components/src/storybook/f
   </div>
 
 <div className="docs-section">
-  <div className="docs-section-title">Component Story Shape</div>
+  <div className="docs-section-title">Component Page Structure</div>
+  <div className="docs-subsection-description">
+    Every component has the same sidebar entries in the same order: <b>Docs</b>, <b>Playground</b>,
+    then the example stories. The Playground is one interactive story with controls for the full
+    package API; the Docs page embeds exactly this story at the top, so there is only one playground
+    per component.
+  </div>
   <table className="docs-table">
     <thead>
       <tr>
-        <th style={{ width: '220px' }}>Story</th>
+        <th style={{ width: '220px' }}>Entry / file</th>
         <th>Purpose</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <td className="cell-name">Docs (Overview.mdx)</td>
+        <td>
+          Title and description, Figma design source, Playground (Canvas + Controls of the
+          Playground story), example sections, Accessibility, All Variants.
+        </td>
+      </tr>
+      <tr>
+        <td className="cell-name">Playground (*.playground.stories.tsx)</td>
+        <td>Interactive controls for the package API that product teams import.</td>
+      </tr>
+      <tr>
         <td className="cell-name">Basic</td>
         <td>Default component setup with minimal props.</td>
       </tr>
       <tr>
-        <td className="cell-name">Types / Variants</td>
-        <td>Visual hierarchy, content modes, and layout variants.</td>
+        <td className="cell-name">Variants / Sizes</td>
+        <td>Visual hierarchy, content modes, sizes and layout variants.</td>
       </tr>
       <tr>
         <td className="cell-name">States</td>
         <td>Default, hover, active, focus-visible, disabled, and error states where relevant.</td>
       </tr>
       <tr>
-        <td className="cell-name">Controlled Usage</td>
+        <td className="cell-name">Controlled</td>
         <td>
           State ownership examples for inputs, selection controls, and future form components.
         </td>
       </tr>
       <tr>
-        <td className="cell-name">React Playground</td>
-        <td>Interactive controls for the package API that product teams import.</td>
+        <td className="cell-name">All Variants</td>
+        <td>Matrix of the documented variants for visual review.</td>
       </tr>
     </tbody>
   </table>
+  <div className="docs-subsection-description">
+    Use <code>&lt;Canvas of=&#123;…&#125; /&gt;</code> and{' '}
+    <code>&lt;Controls of=&#123;…&#125; /&gt;</code> with an explicit story;{' '}
+    <code>&lt;Primary /&gt;</code> without a story renders nothing on these pages. Stories that open
+    overlays (Select, dialogs) run in an iframe in the docs (
+    <code>parameters.docs.story.inline = false</code>) so they do not lock the page.
+  </div>
 </div>
 
   <div className="docs-section">

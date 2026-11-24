@@ -26,9 +26,9 @@ const meta = {
     },
     status: {
       control: { type: 'inline-radio' },
-      options: ['Info', 'Success', 'Error'],
+      options: ['info', 'success', 'warning', 'error'],
       description: 'Semantic status variant.',
-      table: { category: 'General', defaultValue: { summary: 'Info' } },
+      table: { category: 'General', defaultValue: { summary: 'info' } },
     },
     showIcon: {
       control: 'boolean',
@@ -37,9 +37,9 @@ const meta = {
     },
     breakpoint: {
       control: { type: 'inline-radio' },
-      options: ['Auto', 'Desktop', 'Mobile'],
+      options: ['auto', 'desktop', 'mobile'],
       description: 'Auto follows viewport width; Desktop/Mobile force a documented variant.',
-      table: { category: 'General', defaultValue: { summary: 'Auto' } },
+      table: { category: 'General', defaultValue: { summary: 'auto' } },
     },
     icon: {
       control: false,
@@ -56,10 +56,10 @@ const meta = {
   },
   args: {
     title: 'Statusmeldung',
-    children: 'Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.',
-    status: 'Info',
+    children: 'Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.',
+    status: 'info',
     showIcon: true,
-    breakpoint: 'Auto',
+    breakpoint: 'auto',
   },
 } satisfies Meta<typeof InlineMessage>;
 
@@ -83,6 +83,7 @@ const rowStyle: React.CSSProperties = {
 };
 
 const labelStyle: React.CSSProperties = {
+  textTransform: 'capitalize',
   fontFamily: 'var(--font-family-brand), sans-serif',
   fontSize: '14px',
   fontWeight: 500,
@@ -101,16 +102,16 @@ const mobileFrameStyle: React.CSSProperties = {
   maxWidth: '100%',
 };
 
-/** Status variants use semantic status border tokens for the rail and icon color. */
+/** Status variants use semantic status border tokens for the status bar and icon color. */
 export const Statuses: Story = {
   render: () => (
     <div style={sectionStyle}>
-      {(['Info', 'Success', 'Error'] as const).map((status) => (
+      {(['info', 'success', 'warning', 'error'] as const).map((status) => (
         <div key={status} style={rowStyle}>
           <span style={labelStyle}>{status}</span>
           <div style={desktopFrameStyle}>
             <InlineMessage status={status} title="Statusmeldung">
-              Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+              Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
             </InlineMessage>
           </div>
         </div>
@@ -127,7 +128,7 @@ export const Title: Story = {
         <span style={labelStyle}>With title</span>
         <div style={desktopFrameStyle}>
           <InlineMessage title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -135,7 +136,7 @@ export const Title: Story = {
         <span style={labelStyle}>Without</span>
         <div style={desktopFrameStyle}>
           <InlineMessage>
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -151,7 +152,7 @@ export const Icon: Story = {
         <span style={labelStyle}>Default</span>
         <div style={desktopFrameStyle}>
           <InlineMessage title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -159,7 +160,7 @@ export const Icon: Story = {
         <span style={labelStyle}>Custom</span>
         <div style={desktopFrameStyle}>
           <InlineMessage title="Statusmeldung" icon={<IconPlaceholder size={28} />}>
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -167,7 +168,7 @@ export const Icon: Story = {
         <span style={labelStyle}>Without</span>
         <div style={desktopFrameStyle}>
           <InlineMessage title="Statusmeldung" showIcon={false}>
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -182,16 +183,16 @@ export const Breakpoints: Story = {
       <div style={rowStyle}>
         <span style={labelStyle}>Desktop</span>
         <div style={desktopFrameStyle}>
-          <InlineMessage breakpoint="Desktop" title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+          <InlineMessage breakpoint="desktop" title="Statusmeldung">
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
       <div style={rowStyle}>
         <span style={labelStyle}>Mobile</span>
         <div style={mobileFrameStyle}>
-          <InlineMessage breakpoint="Mobile" title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+          <InlineMessage breakpoint="mobile" title="Statusmeldung">
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -204,23 +205,23 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
       <div style={sectionStyle}>
-        {(['Info', 'Success', 'Error'] as const).map((status) => (
+        {(['info', 'success', 'warning', 'error'] as const).map((status) => (
           <InlineMessage key={status} status={status} title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         ))}
       </div>
       <div style={sectionStyle}>
         <InlineMessage title="Statusmeldung" showIcon={false}>
-          Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+          Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
         </InlineMessage>
         <InlineMessage>
-          Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+          Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
         </InlineMessage>
       </div>
       <div style={mobileFrameStyle}>
-        <InlineMessage breakpoint="Mobile" status="Error" title="Statusmeldung">
-          Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+        <InlineMessage breakpoint="mobile" status="error" title="Statusmeldung">
+          Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
         </InlineMessage>
       </div>
     </div>

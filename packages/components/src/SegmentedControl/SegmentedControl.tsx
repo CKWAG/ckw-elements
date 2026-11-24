@@ -3,7 +3,7 @@
 import React from 'react';
 import './SegmentedControl.css';
 
-export type SegmentedControlType = 'Default' | 'Fill';
+export type SegmentedControlVariant = 'default' | 'fill';
 export type SegmentedControlContentMode = 'label' | 'icon-label' | 'icon-compact';
 
 const useIsomorphicLayoutEffect =
@@ -25,8 +25,8 @@ export interface SegmentedControlProps {
   activeValue: string;
   /** Called when the user selects a different segment. */
   onChange?: (value: string) => void;
-  /** Layout type. Default = auto-width segments; Fill = equal-width stretch. */
-  type?: SegmentedControlType;
+  /** Layout variant. default = auto-width segments; fill = equal-width stretch. */
+  variant?: SegmentedControlVariant;
   /**
    * Content display mode:
    * - `label` — label only (default)
@@ -61,7 +61,7 @@ export function SegmentedControl({
   segments,
   activeValue,
   onChange,
-  type = 'Default',
+  variant = 'default',
   contentMode = 'label',
   'aria-label': ariaLabel,
   'aria-labelledby': ariaLabelledby,
@@ -104,7 +104,7 @@ export function SegmentedControl({
       requestAnimationFrame(() => setHasAnimated(true));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeValue, segmentsKey, type, contentMode, hasAnimated]);
+  }, [activeValue, segmentsKey, variant, contentMode, hasAnimated]);
 
   // For compact mode: the grid transition changes segment widths over 250ms.
   // We need to keep re-measuring the indicator during the transition so it
@@ -154,7 +154,7 @@ export function SegmentedControl({
   const classes = [
     'ckw-segmented-control',
     isCompact ? 'ckw-segmented-control--compact' : '',
-    type === 'Fill' ? 'ckw-segmented-control--fill' : '',
+    variant === 'fill' ? 'ckw-segmented-control--fill' : '',
     className ?? '',
   ]
     .filter(Boolean)
@@ -216,8 +216,8 @@ export function SegmentedControl({
               }
             }}
             className={segmentClasses}
-            role="tab"
-            aria-selected={isActive}
+            role="radio"
+            aria-checked={isActive}
             aria-label={segment.label}
             tabIndex={isActive ? 0 : -1}
             onClick={() => onChange?.(segment.value)}
