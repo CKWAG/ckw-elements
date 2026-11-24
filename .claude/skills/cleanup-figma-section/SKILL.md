@@ -97,6 +97,13 @@ Product colours stay **inside** the components and on their instances, because t
 If a doc element has a product colour, rebind it to the closest documentation variable from this table and
 mention the shade change in the report. If no row fits, ask instead of guessing.
 
+**One exception, the example containers of components with their own grey surfaces** (for example a control
+track or unselected pills, as in Segmented Control and Tab Pills): their `Examples` use
+`Background/background-canvas`, the page background of the CKW portals. That way the doc shows the real
+contrast the component has in the product. Before rebinding an `Examples` container, check whether the
+component has a grey surface. If it does, keep or set `background-canvas`; if you are unsure, compare both and
+ask.
+
 ## Component internals
 
 Layer names inside the component set mirror the code's BEM elements (`packages/components/src/<Component>/`),
