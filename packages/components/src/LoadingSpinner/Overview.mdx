@@ -1,0 +1,57 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import * as LoadingSpinnerStories from './LoadingSpinner.stories';
+import * as LoadingSpinnerPlayground from './LoadingSpinner.playground.stories';
+
+<Meta title="Components/Loading Spinner" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Loading Spinner</div>
+  <div className="docs-description">
+    The Loading Spinner shows that something is in progress. Button uses it in its loading state;
+    use it on its own for areas that load content. It is decorative (<code>aria-hidden</code>):
+    announce the loading state to screen readers on the surrounding element, for example with{' '}
+    <code>aria-busy</code> or a visually hidden status text.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">Use the control below to change the size.</div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Canvas of={LoadingSpinnerPlayground.Playground} />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls of={LoadingSpinnerPlayground.Playground} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Sizes</div>
+    <div className="docs-subsection-description">
+      Match the spinner to the icon size of its context: 20 or 24 px in buttons and fields, larger
+      for page or section loading.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={LoadingSpinnerStories.Sizes} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">On Dark</div>
+    <div className="docs-subsection-description">
+      The green dots stay visible on dark green surfaces such as the primary button.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={LoadingSpinnerStories.OnDark} />
+</div>

@@ -2,6 +2,7 @@ import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
 import { DesignReference } from '../storybook/DesignReference';
 import { figmaReferences } from '../storybook/figmaLinks';
 import * as SelectStories from './Select.stories';
+import * as SelectPlayground from './Select.playground.stories';
 
 <Meta title="Components/Select" />
 
@@ -29,11 +30,11 @@ import * as SelectStories from './Select.stories';
 </div>
 
 <div style={{ marginTop: '24px' }}>
-  <Canvas of={SelectStories.Basic} />
+  <Canvas of={SelectPlayground.Playground} />
 </div>
 
 <div style={{ marginTop: '16px' }}>
-  <Controls of={SelectStories.Basic} />
+  <Controls of={SelectPlayground.Playground} />
 </div>
 
 <div className="sb-unstyled">

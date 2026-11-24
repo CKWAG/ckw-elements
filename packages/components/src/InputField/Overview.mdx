@@ -2,6 +2,7 @@ import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
 import { DesignReference } from '../storybook/DesignReference';
 import { figmaReferences } from '../storybook/figmaLinks';
 import * as InputFieldStories from './InputField.stories';
+import * as InputFieldPlayground from './InputField.playground.stories';
 
 <Meta title="Components/Input Field" />
 
@@ -30,11 +31,11 @@ import * as InputFieldStories from './InputField.stories';
 </div>
 
 <div style={{ marginTop: '24px' }}>
-  <Canvas of={InputFieldStories.Basic} />
+  <Canvas of={InputFieldPlayground.Playground} />
 </div>
 
 <div style={{ marginTop: '16px' }}>
-  <Controls of={InputFieldStories.Basic} />
+  <Controls of={InputFieldPlayground.Playground} />
 </div>
 
 <div className="sb-unstyled">

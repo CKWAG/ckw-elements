@@ -1,7 +1,8 @@
-import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
 import { DesignReference } from '../storybook/DesignReference';
 import { figmaReferences } from '../storybook/figmaLinks';
 import * as SegmentedControlStories from './SegmentedControl.stories';
+import * as SegmentedControlPlayground from './SegmentedControl.playground.stories';
 
 <Meta title="Components/Segmented Control" />
 
@@ -30,11 +31,11 @@ import * as SegmentedControlStories from './SegmentedControl.stories';
 </div>
 
 <div style={{ marginTop: '24px' }}>
-  <Primary />
+  <Canvas of={SegmentedControlPlayground.Playground} />
 </div>
 
 <div style={{ marginTop: '16px' }}>
-  <Controls />
+  <Controls of={SegmentedControlPlayground.Playground} />
 </div>
 
 <div className="sb-unstyled">

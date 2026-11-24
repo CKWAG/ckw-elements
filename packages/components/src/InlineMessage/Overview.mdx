@@ -2,6 +2,7 @@ import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
 import { DesignReference } from '../storybook/DesignReference';
 import { figmaReferences } from '../storybook/figmaLinks';
 import * as InlineMessageStories from './InlineMessage.stories';
+import * as InlineMessagePlayground from './InlineMessage.playground.stories';
 
 <Meta title="Components/Inline Message" />
 
@@ -28,11 +29,11 @@ import * as InlineMessageStories from './InlineMessage.stories';
 </div>
 
 <div style={{ marginTop: '24px' }}>
-  <Canvas of={InlineMessageStories.Basic} />
+  <Canvas of={InlineMessagePlayground.Playground} />
 </div>
 
 <div style={{ marginTop: '16px' }}>
-  <Controls of={InlineMessageStories.Basic} />
+  <Controls of={InlineMessagePlayground.Playground} />
 </div>
 
 <div className="sb-unstyled">

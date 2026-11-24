@@ -94,8 +94,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ReactPlayground: Story = {
-  name: 'React Playground',
+export const Playground: Story = {
+  name: 'Playground',
   render: ({ icon, ...args }) => (
     <div style={{ maxWidth: '320px' }}>
       <InputField {...args} icon={icon ? <IconPlaceholder size={20} /> : undefined} />
