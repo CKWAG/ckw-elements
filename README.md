@@ -96,7 +96,7 @@ import {
 export function Example() {
   return (
     <form>
-      <InlineMessage status="Info" title="Statusmeldung">
+      <InlineMessage status="info" title="Statusmeldung">
         Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
       </InlineMessage>
       <InputField label="Name" placeholder="Enter name" icon={<IconSearch size={20} />} />

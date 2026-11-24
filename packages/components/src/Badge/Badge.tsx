@@ -7,8 +7,8 @@ import {
 } from '@ckwag/elements-icons';
 import './Badge.css';
 
-export type BadgeStatus = 'Neutral' | 'Info' | 'Success' | 'Warning' | 'Error' | 'Brand';
-export type BadgeSize = 'Medium' | 'Small';
+export type BadgeStatus = 'neutral' | 'info' | 'success' | 'warning' | 'error' | 'brand';
+export type BadgeSize = 'medium' | 'small';
 
 export interface BadgeProps extends Omit<React.ComponentProps<'span'>, 'children'> {
   /** Short label, one or two words. The meaning must always be in the text. */
@@ -28,19 +28,19 @@ interface BadgeDefaultIconProps {
 }
 
 function BadgeDefaultIcon({ status }: BadgeDefaultIconProps) {
-  if (status === 'Success') {
+  if (status === 'success') {
     return <IconCheckCircleFilled />;
   }
 
-  if (status === 'Warning') {
+  if (status === 'warning') {
     return <IconWarningFilled />;
   }
 
-  if (status === 'Error') {
+  if (status === 'error') {
     return <IconWarningCircleFilled />;
   }
 
-  if (status === 'Info') {
+  if (status === 'info') {
     return <IconInformation />;
   }
 
@@ -56,8 +56,8 @@ function BadgeDefaultIcon({ status }: BadgeDefaultIconProps) {
  */
 export function Badge({
   children,
-  status = 'Neutral',
-  size = 'Medium',
+  status = 'neutral',
+  size = 'medium',
   showIcon = false,
   icon,
   className,

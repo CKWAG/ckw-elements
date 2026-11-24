@@ -6,8 +6,7 @@ import figma from 'figma';
 
 const instance = figma.selectedInstance;
 
-// Figma calls this property `Variant`, the code API calls it `type`.
-const type = instance.getEnum('Variant', { Default: 'Default', Fill: 'Fill' });
+const variant = instance.getEnum('Variant', { Default: 'default', Fill: 'fill' });
 
 const segments = instance
   .findLayers((node) => node.type === 'INSTANCE' && node.name.startsWith('Segment'))
@@ -22,7 +21,7 @@ const items = segments.map((segment, index) => {
 });
 
 export default {
-  example: figma.code`<SegmentedControl${type === 'Fill' ? ' type="Fill"' : ''}
+  example: figma.code`<SegmentedControl${variant === 'fill' ? ' variant="fill"' : ''}
   segments={[${items.join(', ')}]}
   activeValue="${activeValue}"
   onChange={setActiveValue}

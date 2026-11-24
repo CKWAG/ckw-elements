@@ -163,6 +163,20 @@
 }
 
 /* ============================================
+   Prefix / Suffix
+   ============================================ */
+
+.ckw-input-field__affix {
+  flex-shrink: 0;
+  font-family: var(--font-family-brand), sans-serif;
+  font-size: var(--body-m-size);
+  line-height: var(--body-m-height);
+  font-weight: var(--body-m-weight);
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+/* ============================================
    Trailing Icon
    ============================================ */
 
@@ -245,6 +259,7 @@
   color: var(--text-tertiary);
 }
 
+.ckw-input-field--disabled .ckw-input-field__affix,
 .ckw-input-field--disabled .ckw-input-field__icon {
   color: var(--text-tertiary);
 }

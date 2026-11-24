@@ -24,15 +24,15 @@ const meta = {
     },
     status: {
       control: { type: 'inline-radio' },
-      options: ['Neutral', 'Info', 'Success', 'Warning', 'Error', 'Brand'],
+      options: ['neutral', 'info', 'success', 'warning', 'error', 'brand'],
       description: 'Semantic status. Brand is the only filled variant.',
-      table: { defaultValue: { summary: 'Neutral' } },
+      table: { defaultValue: { summary: 'neutral' } },
     },
     size: {
       control: { type: 'inline-radio' },
-      options: ['Medium', 'Small'],
+      options: ['medium', 'small'],
       description: 'Badge size.',
-      table: { defaultValue: { summary: 'Medium' } },
+      table: { defaultValue: { summary: 'medium' } },
     },
     showIcon: {
       control: 'boolean',
@@ -44,8 +44,8 @@ const meta = {
   },
   args: {
     children: 'Bezahlt',
-    status: 'Success',
-    size: 'Medium',
+    status: 'success',
+    size: 'medium',
     showIcon: false,
   },
 } satisfies Meta<typeof Badge>;

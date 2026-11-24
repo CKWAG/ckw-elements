@@ -7,16 +7,16 @@ import figma from 'figma';
 const instance = figma.selectedInstance;
 
 const label = instance.getString('Label');
-// Figma uses Title Case variant values, the code API uses lowercase.
+// Figma uses Title Case values, the code API uses lowercase.
 const variant = instance.getEnum('Variant', {
   Primary: 'primary',
   Secondary: 'secondary',
   Tertiary: 'tertiary',
 });
 const size = instance.getEnum('Size', {
-  Large: 'Large',
-  Medium: 'Medium',
-  Small: 'Small',
+  Large: 'large',
+  Medium: 'medium',
+  Small: 'small',
 });
 const disabled = instance.getEnum('State', { Disabled: true });
 const loading = instance.getEnum('State', { Loading: true });
@@ -28,9 +28,9 @@ const iconCode =
     ? icon.executeTemplate().example
     : '<IconPlaceholder />';
 
-// Defaults (variant primary, size Large) are left out to keep the snippet short.
+// Defaults (variant primary, size large) are left out to keep the snippet short.
 const variantProp = variant && variant !== 'primary' ? ` variant="${variant}"` : '';
-const sizeProp = size && size !== 'Large' ? ` size="${size}"` : '';
+const sizeProp = size && size !== 'large' ? ` size="${size}"` : '';
 const disabledProp = disabled ? ' disabled' : '';
 const loadingProp = loading ? ' loading' : '';
 

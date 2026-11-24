@@ -35,10 +35,10 @@ const meta = {
     size: {
       name: 'Size',
       control: { type: 'inline-radio' },
-      options: ['Large', 'Medium', 'Small'],
+      options: ['large', 'medium', 'small'],
       description:
         'Button size. Large uses label-l typography (18/22), Medium and Small use label-m (16/20).',
-      table: { category: 'General', defaultValue: { summary: 'Large' } },
+      table: { category: 'General', defaultValue: { summary: 'large' } },
     },
     fullWidth: {
       name: 'Full width',
@@ -59,7 +59,7 @@ const meta = {
       table: { category: 'Icon', defaultValue: { summary: 'false' } },
     },
     disabled: {
-      name: 'Disabled',
+      name: 'disabled',
       control: { type: 'boolean' },
       description:
         'When set to true, makes the component appear inactive and disables its functionality.',
@@ -78,7 +78,7 @@ const meta = {
   args: {
     children: 'Button',
     variant: 'primary',
-    size: 'Large',
+    size: 'large',
     disabled: false,
     fullWidth: false,
     leadingIcon: false,

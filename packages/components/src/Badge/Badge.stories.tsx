@@ -22,15 +22,15 @@ const meta = {
     },
     status: {
       control: { type: 'inline-radio' },
-      options: ['Neutral', 'Info', 'Success', 'Warning', 'Error', 'Brand'],
+      options: ['neutral', 'info', 'success', 'warning', 'error', 'brand'],
       description: 'Semantic status. Brand is the only filled variant.',
-      table: { category: 'General', defaultValue: { summary: 'Neutral' } },
+      table: { category: 'General', defaultValue: { summary: 'neutral' } },
     },
     size: {
       control: { type: 'inline-radio' },
-      options: ['Medium', 'Small'],
+      options: ['medium', 'small'],
       description: 'Badge size.',
-      table: { category: 'General', defaultValue: { summary: 'Medium' } },
+      table: { category: 'General', defaultValue: { summary: 'medium' } },
     },
     showIcon: {
       control: 'boolean',
@@ -42,8 +42,8 @@ const meta = {
   },
   args: {
     children: 'Bezahlt',
-    status: 'Success',
-    size: 'Medium',
+    status: 'success',
+    size: 'medium',
     showIcon: false,
   },
 } satisfies Meta<typeof Badge>;
@@ -53,15 +53,15 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 const statuses: { status: BadgeStatus; label: string }[] = [
-  { status: 'Neutral', label: 'Offen' },
-  { status: 'Info', label: 'Neu' },
-  { status: 'Success', label: 'Bezahlt' },
-  { status: 'Warning', label: 'Teilzahlung' },
-  { status: 'Error', label: 'Überfällig' },
-  { status: 'Brand', label: 'Aktuelles Produkt' },
+  { status: 'neutral', label: 'Offen' },
+  { status: 'info', label: 'Neu' },
+  { status: 'success', label: 'Bezahlt' },
+  { status: 'warning', label: 'Teilzahlung' },
+  { status: 'error', label: 'Überfällig' },
+  { status: 'brand', label: 'Aktuelles Produkt' },
 ];
 
-const sizes: BadgeSize[] = ['Medium', 'Small'];
+const sizes: BadgeSize[] = ['medium', 'small'];
 
 const sectionStyle: React.CSSProperties = {
   display: 'flex',
@@ -77,6 +77,7 @@ const rowStyle: React.CSSProperties = {
 };
 
 const labelStyle: React.CSSProperties = {
+  textTransform: 'capitalize',
   fontFamily: 'var(--font-family-brand), sans-serif',
   fontSize: '14px',
   fontWeight: 500,
@@ -107,7 +108,7 @@ export const Sizes: Story = {
       {sizes.map((size) => (
         <div key={size} style={rowStyle}>
           <span style={labelStyle}>{size}</span>
-          <Badge status="Success" size={size}>
+          <Badge status="success" size={size}>
             Bezahlt
           </Badge>
         </div>
@@ -123,16 +124,16 @@ export const Icon: Story = {
       {sizes.map((size) => (
         <div key={size} style={rowStyle}>
           <span style={labelStyle}>{size}</span>
-          <Badge status="Success" size={size}>
+          <Badge status="success" size={size}>
             Bezahlt
           </Badge>
-          <Badge status="Success" size={size} showIcon>
+          <Badge status="success" size={size} showIcon>
             Bezahlt
           </Badge>
-          <Badge status="Error" size={size} showIcon>
+          <Badge status="error" size={size} showIcon>
             Überfällig
           </Badge>
-          <Badge status="Neutral" size={size} showIcon icon={<IconClock />}>
+          <Badge status="neutral" size={size} showIcon icon={<IconClock />}>
             Offen
           </Badge>
         </div>
@@ -157,7 +158,7 @@ export const AllVariants: Story = {
                 status={status}
                 size={size}
                 showIcon={showIcon}
-                icon={status === 'Neutral' || status === 'Brand' ? <IconClock /> : undefined}
+                icon={status === 'neutral' || status === 'brand' ? <IconClock /> : undefined}
               >
                 {label}
               </Badge>

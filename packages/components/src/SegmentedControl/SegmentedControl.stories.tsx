@@ -24,11 +24,11 @@ const meta = {
     },
   },
   argTypes: {
-    type: {
+    variant: {
       control: 'radio',
-      options: ['Default', 'Fill'],
-      description: 'Layout type. Default = auto-width; Fill = equal-width stretch.',
-      table: { defaultValue: { summary: 'Default' } },
+      options: ['default', 'fill'],
+      description: 'Layout variant. default = auto-width; fill = equal-width stretch.',
+      table: { defaultValue: { summary: 'default' } },
     },
     contentMode: {
       control: 'radio',
@@ -47,7 +47,7 @@ const meta = {
   },
   args: {
     segments: defaultSegments,
-    type: 'Default',
+    variant: 'default',
     contentMode: 'label',
     activeValue: 'a',
   },
@@ -86,7 +86,7 @@ const labelStyle: React.CSSProperties = {
   minWidth: '100px',
 };
 
-export const Types: Story = {
+export const Variants: Story = {
   render: () => {
     const segments3 = [
       { value: 'a', label: 'Label' },
@@ -102,7 +102,7 @@ export const Types: Story = {
         <div style={rowStyle}>
           <span style={labelStyle}>Fill</span>
           <div style={{ width: '396px' }}>
-            <SegmentedControl segments={segments3} activeValue="a" type="Fill" />
+            <SegmentedControl segments={segments3} activeValue="a" variant="fill" />
           </div>
         </div>
       </div>
@@ -151,7 +151,7 @@ export const Controlled: Story = {
         segments={segments}
         activeValue={activeValue}
         onChange={setActiveValue}
-        type="Default"
+        variant="default"
       />
     );
   },
@@ -280,7 +280,7 @@ export const AllVariants: Story = {
                 <SegmentedControl
                   segments={segments3}
                   activeValue="a"
-                  type="Fill"
+                  variant="fill"
                   contentMode="label"
                 />
               </div>
@@ -291,7 +291,7 @@ export const AllVariants: Story = {
                 <SegmentedControl
                   segments={segments3}
                   activeValue="a"
-                  type="Fill"
+                  variant="fill"
                   contentMode="icon-label"
                 />
               </div>
@@ -302,7 +302,7 @@ export const AllVariants: Story = {
                 <SegmentedControl
                   segments={segments3}
                   activeValue="a"
-                  type="Fill"
+                  variant="fill"
                   contentMode="icon-compact"
                 />
               </div>

@@ -18,5 +18,5 @@ export type {
   Segment,
   SegmentedControlContentMode,
   SegmentedControlProps,
-  SegmentedControlType,
+  SegmentedControlVariant,
 } from '../SegmentedControl/index.js';

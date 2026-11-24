@@ -4,9 +4,12 @@ import React from 'react';
 import { IconInformation, IconWarningCircle } from '@ckwag/elements-icons';
 import './InputField.css';
 
-export type InputFieldState = 'Default' | 'Hover' | 'Active' | 'Error' | 'Disabled';
+export type InputFieldState = 'default' | 'hover' | 'active' | 'error' | 'disabled';
 
-export interface InputFieldProps extends Omit<React.ComponentProps<'input'>, 'className' | 'type'> {
+export interface InputFieldProps extends Omit<
+  React.ComponentProps<'input'>,
+  'className' | 'type' | 'prefix'
+> {
   /** Label text above the input. */
   label?: string;
   /** Placeholder text shown when empty. */
@@ -15,6 +18,10 @@ export interface InputFieldProps extends Omit<React.ComponentProps<'input'>, 'cl
   optional?: boolean;
   /** Error text shown below the input. Pass a non-empty string to trigger the error state. */
   errorText?: string;
+  /** Short text before the value inside the field, e.g. a currency such as "CHF". */
+  prefix?: string;
+  /** Short text after the value inside the field, e.g. a unit such as "kWp". */
+  suffix?: string;
   /** Trailing icon inside the input. */
   icon?: React.ReactNode;
   /** Info icon next to the label. */
@@ -47,6 +54,8 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(fu
     disabled = false,
     optional = false,
     errorText,
+    prefix,
+    suffix,
     icon,
     showInfo = false,
     onInfoClick,
@@ -63,7 +72,10 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(fu
   const reactId = React.useId();
   const inputId = id ?? `ckw-input-${reactId}`;
   const errorId = hasError ? `ckw-input-error-${reactId}` : undefined;
-  const describedBy = [ariaDescribedBy, errorId].filter(Boolean).join(' ') || undefined;
+  const prefixId = prefix ? `ckw-input-prefix-${reactId}` : undefined;
+  const suffixId = suffix ? `ckw-input-suffix-${reactId}` : undefined;
+  const describedBy =
+    [ariaDescribedBy, prefixId, suffixId, errorId].filter(Boolean).join(' ') || undefined;
   const rootClasses = [
     'ckw-input-field',
     hasError && 'ckw-input-field--error',
@@ -96,6 +108,11 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(fu
       {/* Input wrapper — provides hover outline */}
       <div className="ckw-input-field__outer">
         <div className="ckw-input-field__inner">
+          {prefix && (
+            <span className="ckw-input-field__affix" id={prefixId}>
+              {prefix}
+            </span>
+          )}
           <input
             {...inputProps}
             ref={ref}
@@ -107,6 +124,11 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(fu
             aria-invalid={hasError ? true : ariaInvalid}
             aria-describedby={describedBy}
           />
+          {suffix && (
+            <span className="ckw-input-field__affix" id={suffixId}>
+              {suffix}
+            </span>
+          )}
           {icon && <span className="ckw-input-field__icon">{icon}</span>}
         </div>
       </div>

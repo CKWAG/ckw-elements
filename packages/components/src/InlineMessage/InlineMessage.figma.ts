@@ -7,19 +7,19 @@ import figma from 'figma';
 const instance = figma.selectedInstance;
 
 const status = instance.getEnum('Status', {
-  Info: 'Info',
-  Success: 'Success',
-  Warning: 'Warning',
-  Error: 'Error',
+  Info: 'info',
+  Success: 'success',
+  Warning: 'warning',
+  Error: 'error',
 });
 const showTitle = instance.getEnum('Show Title', { True: true });
 const title = showTitle ? instance.getString('Title') : '';
 const description = instance.getString('Description');
 const showIcon = instance.getBoolean('Show Icon');
 
-// Breakpoint is left out: the code default `Auto` follows the viewport, the Figma
+// Breakpoint is left out: the code default `auto` follows the viewport, the Figma
 // Desktop/Mobile variants document both layouts.
-const statusProp = status && status !== 'Info' ? ` status="${status}"` : '';
+const statusProp = status && status !== 'info' ? ` status="${status}"` : '';
 const titleProp = title ? ` title="${title}"` : '';
 const iconProp = showIcon ? '' : ' showIcon={false}';
 

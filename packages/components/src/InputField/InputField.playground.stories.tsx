@@ -46,6 +46,14 @@ const meta = {
       control: 'text',
       description: 'Error text below the input. Shows error state when non-empty.',
     },
+    prefix: {
+      control: 'text',
+      description: 'Short text before the value, e.g. a currency such as "CHF".',
+    },
+    suffix: {
+      control: 'text',
+      description: 'Short text after the value, e.g. a unit such as "kWp".',
+    },
     icon: {
       control: 'boolean',
       description: 'Show a trailing icon inside the input.',
@@ -70,6 +78,8 @@ const meta = {
     disabled: false,
     optional: false,
     errorText: '',
+    prefix: '',
+    suffix: '',
     icon: false,
     showInfo: false,
   },

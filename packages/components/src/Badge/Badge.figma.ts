@@ -8,22 +8,22 @@ const instance = figma.selectedInstance;
 
 const label = instance.getString('Label');
 const status = instance.getEnum('Status', {
-  Neutral: 'Neutral',
-  Info: 'Info',
-  Success: 'Success',
-  Warning: 'Warning',
-  Error: 'Error',
-  Brand: 'Brand',
+  Neutral: 'neutral',
+  Info: 'info',
+  Success: 'success',
+  Warning: 'warning',
+  Error: 'error',
+  Brand: 'brand',
 });
 const size = instance.getEnum('Size', {
-  Medium: 'Medium',
-  Small: 'Small',
+  Medium: 'medium',
+  Small: 'small',
 });
 const showIcon = instance.getBoolean('Show Icon');
 
-// Defaults (status Neutral, size Medium, no icon) are left out to keep the snippet short.
-const statusProp = status && status !== 'Neutral' ? ` status="${status}"` : '';
-const sizeProp = size && size !== 'Medium' ? ` size="${size}"` : '';
+// Defaults (status neutral, size medium, no icon) are left out to keep the snippet short.
+const statusProp = status && status !== 'neutral' ? ` status="${status}"` : '';
+const sizeProp = size && size !== 'medium' ? ` size="${size}"` : '';
 const iconProp = showIcon ? ' showIcon' : '';
 
 export default {

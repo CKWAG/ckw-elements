@@ -229,22 +229,22 @@ import { IconArrowRight, IconSearch } from '@ckwag/elements-icons';
 function MyPage() {
   return (
     <div>
-      <InlineMessage status="Info" title="Statusmeldung">
+      <InlineMessage status="info" title="Statusmeldung">
         Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
       </InlineMessage>
       <InputField label="Search" icon={<IconSearch size={20} />} />
       <Button
         variant="primary"
-        size="Large"
+        size="large"
         trailingIcon={<IconArrowRight />}
         onClick={() => alert('clicked')}
       >
         Submit
       </Button>
-      <Button variant="secondary" size="Medium">
+      <Button variant="secondary" size="medium">
         Cancel
       </Button>
-      <Button variant="tertiary" size="Small">
+      <Button variant="tertiary" size="small">
         Learn more
       </Button>
     </div>

@@ -3,7 +3,7 @@ import { LoadingSpinner } from '../LoadingSpinner/LoadingSpinner.js';
 import './Button.css';
 
 export type ButtonVariant = 'primary' | 'secondary' | 'tertiary';
-export type ButtonSize = 'Large' | 'Medium' | 'Small';
+export type ButtonSize = 'large' | 'medium' | 'small';
 
 export interface ButtonProps extends React.ComponentProps<'button'> {
   /** The visible button label. */
@@ -33,7 +33,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(function 
   {
     children,
     variant = 'primary',
-    size = 'Large',
+    size = 'large',
     disabled = false,
     fullWidth = false,
     leadingIcon,
