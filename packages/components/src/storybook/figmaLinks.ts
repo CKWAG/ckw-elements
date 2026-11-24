@@ -47,6 +47,20 @@ export const figmaReferences = {
     scope: 'component-node',
     note: 'Exact Badge component source in the CKW Elements Figma design system.',
   },
+  card: {
+    componentName: 'Card',
+    url: getFigmaNodeUrl('2390:142'),
+    nodeId: '2390:142',
+    scope: 'component-node',
+    note: 'Exact Card component source in the CKW Elements Figma design system.',
+  },
+  keyValueList: {
+    componentName: 'Key-Value List',
+    url: getFigmaNodeUrl('2391:142'),
+    nodeId: '2391:142',
+    scope: 'component-node',
+    note: 'Exact Key-Value List and Key-Value Item component source in the CKW Elements Figma design system.',
+  },
   passwordInput: {
     componentName: 'Password Input',
     url: getFigmaNodeUrl('2338:183'),

@@ -1,0 +1,126 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+import * as CardStories from './Card.stories';
+import * as CardPlayground from './Card.playground.stories';
+
+<Meta title="Components/Card" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Card</div>
+  <div className="docs-description">
+    Cards are white surfaces on the grey portal background that group related content, for example
+    KPIs, an invoice or a profile section. A static card only bundles content. An interactive card
+    is one link as a whole: it lifts on hover, shows a chevron and gets the focus ring. Cards are
+    composed from CardHeader, CardTitle, CardDescription, CardContent and CardFooter.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.card} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to configure padding, interactivity and the header.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Canvas of={CardPlayground.Playground} />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls of={CardPlayground.Playground} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Static</div>
+    <div className="docs-subsection-description">
+      Without <code>href</code> a card only groups content. It uses shadow-xs, has no hover state
+      and is not focusable, so it does not look clickable.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CardStories.Static} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Interactive</div>
+    <div className="docs-subsection-description">
+      With <code>href</code> the whole card renders as one link. It uses shadow-s, lifts to shadow-m
+      on hover and shows the focus ring (2px border-active, 2px offset) for keyboard users. The
+      chevron in the header signals the link; turn it off with <code>showChevron={'{false}'}</code>{' '}
+      only when the content already shows that the card is a link. Keep interactive cards short and
+      do not put buttons or links inside them.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CardStories.Interactive} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Icon</div>
+    <div className="docs-subsection-description">
+      Pass <code>icon</code> to CardHeader for a leading icon in a 40px tile (background-active,
+      icon interactive-text), for example on KPI cards. Use the filled variant of an icon (e.g.
+      bar-graph-filled), as in Figma. It is decorative and hidden with <code>aria-hidden</code>; the
+      title carries the meaning. Icon, title block and chevron are vertically centred.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CardStories.Icon} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Padding</div>
+    <div className="docs-subsection-description">
+      Medium (16px) is the default for compact cards such as KPIs and invoice cards. Use Large
+      (24px) for content-heavy cards such as invoice details.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CardStories.Padding} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Composition</div>
+    <div className="docs-subsection-description">
+      CardHeader holds the CardTitle and an optional CardDescription. CardContent takes any content
+      (the Content slot in Figma), CardFooter holds actions or meta information.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CardStories.Composition} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      CardTitle renders an <code>h3</code> by default. Set <code>as</code> to the level that fits
+      the page outline, for example <code>as="h2"</code> directly below the page heading. An
+      interactive card is a native link (<code>a</code>), so it works with the keyboard and its text
+      becomes the link name; the chevron is decorative and hidden with <code>aria-hidden</code>. In
+      Windows High Contrast the card gets a real border.
+    </div>
+  </div>
+</div>
