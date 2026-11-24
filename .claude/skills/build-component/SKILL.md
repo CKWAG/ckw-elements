@@ -48,7 +48,8 @@ convention, say so and ask.
 - Code Connect: add `<Name>.figma.ts` (template file) next to the component. Header `// url=` points at the
   component set node, `// source=` and `// component=` at the code. Map every Figma property to the matching prop,
   leave defaults out of the snippet, and copy the pattern of `Badge.figma.ts`. Check with `pnpm figma:parse`;
-  publishing (`pnpm figma:publish`) needs Janosch's `FIGMA_ACCESS_TOKEN`, so ask before publishing.
+  publishing (`pnpm figma:publish`) reads Janosch's token from the macOS Keychain (stored once with
+  `pnpm figma:token`); it runs in his terminal, not in Claude's shell, so ask him to run it.
 - Accessibility as in the benchmark: native element where possible, full keyboard support, visible focus ring.
   For complex overlays (Select, Dialog, Popover, Tooltip) ask once whether to use a Radix primitive before writing
   focus management by hand.
