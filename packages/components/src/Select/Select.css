@@ -1,0 +1,143 @@
+/**
+ * Select Styles
+ *
+ * Uses only semantic design tokens from @ckwag/elements-tokens.
+ * Label, field box, hover, error, disabled, description and error row come from
+ * InputField.css (shared classes), so Select and Input Field always look the same.
+ * This file adds the trigger reset, open/focus state, the flyout and its items.
+ */
+
+/* ============================================
+   Trigger
+   ============================================ */
+
+.ckw-select__trigger {
+  margin: 0;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+/* Focus (keyboard) and open: same as a focused Input Field */
+.ckw-select:not(.ckw-input-field--error):not(.ckw-input-field--disabled)
+  .ckw-select__trigger:is(:focus-visible, [data-state='open']) {
+  outline-color: var(--border-hover);
+  border-color: var(--border-active);
+  box-shadow: inset 0 0 0 1px var(--border-active);
+}
+
+.ckw-input-field--disabled .ckw-select__trigger {
+  cursor: not-allowed;
+}
+
+.ckw-select__value {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  font-family: var(--font-family-brand), sans-serif;
+  font-size: var(--body-m-size);
+  line-height: var(--body-m-height);
+  font-weight: var(--body-m-weight);
+  color: var(--text-primary);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ckw-select__trigger[data-placeholder] .ckw-select__value,
+.ckw-input-field--disabled .ckw-select__value {
+  color: var(--text-tertiary);
+}
+
+.ckw-select__chevron {
+  display: flex;
+  flex-shrink: 0;
+  width: var(--spacing-l);
+  height: var(--spacing-l);
+  color: var(--text-secondary);
+  transition: transform 150ms ease;
+}
+
+.ckw-select__chevron > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ckw-select__trigger[data-state='open'] .ckw-select__chevron {
+  transform: rotate(180deg);
+}
+
+.ckw-input-field--disabled .ckw-select__chevron {
+  color: var(--text-tertiary);
+}
+
+/* ============================================
+   Flyout
+   ============================================ */
+
+.ckw-select__content {
+  z-index: 50;
+  box-sizing: border-box;
+  width: calc(var(--radix-select-trigger-width) + var(--spacing-s));
+  max-height: min(var(--radix-select-content-available-height), 320px);
+  margin-left: calc(var(--spacing-s) / -2);
+  overflow: hidden;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-m);
+  background-color: var(--background-card);
+  box-shadow: var(--shadow-m);
+  font-family: var(--font-family-brand), sans-serif;
+}
+
+.ckw-select__viewport {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3xs);
+}
+
+/* ============================================
+   Item
+   ============================================ */
+
+.ckw-select__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  min-height: var(--spacing-3xl);
+  padding: 0 var(--spacing-m);
+  border-radius: var(--border-radius-s);
+  font-size: var(--body-m-size);
+  line-height: var(--body-m-height);
+  font-weight: var(--body-m-weight);
+  color: var(--text-primary);
+  cursor: pointer;
+  outline: none;
+  user-select: none;
+}
+
+.ckw-select__item > span:first-child {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* Hover and keyboard highlight */
+.ckw-select__item[data-highlighted] {
+  background-color: var(--background-hover);
+}
+
+.ckw-select__item[data-disabled] {
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+.ckw-select__check {
+  display: flex;
+  flex-shrink: 0;
+  width: var(--spacing-l);
+  height: var(--spacing-l);
+  color: var(--text-primary);
+}
+
+.ckw-select__check > svg {
+  width: 100%;
+  height: 100%;
+}

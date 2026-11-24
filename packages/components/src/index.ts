@@ -13,6 +13,8 @@ export type {
   InlineMessageProps,
   InlineMessageStatus,
 } from './InlineMessage/index.js';
+export { Select } from './Select/index.js';
+export type { SelectOption, SelectProps } from './Select/index.js';
 export { SegmentedControl } from './SegmentedControl/index.js';
 export type {
   Segment,
