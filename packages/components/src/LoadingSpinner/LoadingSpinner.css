@@ -1,0 +1,23 @@
+/**
+ * LoadingSpinner Styles
+ *
+ * The brand variant animates with SMIL inside the SVG. The inline variant rotates
+ * with CSS: one full turn in 800 ms, linear, endless. It takes its colour from
+ * the surrounding text (currentColor).
+ */
+
+.ckw-loading-spinner--inline {
+  animation: ckw-loading-spinner-rotate 800ms linear infinite;
+}
+
+@keyframes ckw-loading-spinner-rotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ckw-loading-spinner--inline {
+    animation-duration: 2400ms;
+  }
+}

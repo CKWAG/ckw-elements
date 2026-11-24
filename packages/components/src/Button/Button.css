@@ -216,17 +216,15 @@
 }
 
 /* ============================================
-   Loading spinner
+   Loading
+   The inline spinner (LoadingSpinner variant="inline") sits in the 24px icon
+   slot and rotates itself. The button keeps its full-strength look;
+   pointer-events: none removes hover/active feedback, onClick is ignored
+   in Button.tsx.
    ============================================ */
 
 .ckw-button--loading {
-  cursor: progress;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .ckw-button__spinner svg {
-    animation-play-state: paused;
-  }
+  pointer-events: none;
 }
 
 /* ============================================

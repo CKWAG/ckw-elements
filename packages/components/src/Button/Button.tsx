@@ -18,7 +18,10 @@ export interface ButtonProps extends Omit<React.ComponentProps<'button'>, 'ref'>
   leadingIcon?: React.ReactNode;
   /** Icon rendered after the label. */
   trailingIcon?: React.ReactNode;
-  /** Shows a spinner in the leading slot, sets aria-busy, and disables interaction. */
+  /**
+   * Shows the inline spinner in the leading slot and sets aria-busy. The button stays focusable
+   * (aria-disabled instead of disabled) but ignores clicks, so users cannot submit twice.
+   */
   loading?: boolean;
   /**
    * Renders the button as a link (`<a href>`) with the same look, for actions that navigate.
@@ -55,6 +58,8 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
       target,
       rel,
       'aria-busy': ariaBusy,
+      'aria-disabled': ariaDisabled,
+      onClick,
       ...props
     },
     ref,
@@ -79,7 +84,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
       <>
         {loading ? (
           <span className="ckw-button__icon ckw-button__spinner" aria-hidden="true">
-            <LoadingSpinner size={size === 'large' ? 24 : 20} />
+            <LoadingSpinner variant="inline" size={24} />
           </span>
         ) : (
           leadingIcon && <span className="ckw-button__icon">{leadingIcon}</span>
@@ -90,8 +95,11 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
     );
 
     if (href !== undefined) {
-      const { onClick, tabIndex, ...anchorProps } =
+      const { tabIndex, ...anchorProps } =
         props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>;
+      const anchorOnClick = onClick as unknown as
+        | React.MouseEventHandler<HTMLAnchorElement>
+        | undefined;
       return (
         <a
           {...anchorProps}
@@ -104,7 +112,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
           tabIndex={isDisabled ? -1 : tabIndex}
           target={target}
           rel={target === '_blank' ? (rel ?? 'noopener noreferrer') : rel}
-          aria-disabled={isDisabled || anchorProps['aria-disabled']}
+          aria-disabled={isDisabled || ariaDisabled || anchorProps['aria-disabled']}
           aria-busy={loading ? true : ariaBusy}
           onClick={(event) => {
             // A link without href still dispatches clicks, a disabled button does not.
@@ -113,7 +121,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
               event.stopPropagation();
               return;
             }
-            onClick?.(event);
+            anchorOnClick?.(event);
           }}
         >
           {content}
@@ -127,8 +135,10 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
         ref={ref as React.Ref<HTMLButtonElement>}
         className={classes}
         type={type}
-        disabled={isDisabled}
+        disabled={disabled}
+        aria-disabled={loading ? true : ariaDisabled}
         aria-busy={loading ? true : ariaBusy}
+        onClick={loading ? undefined : onClick}
       >
         {content}
       </button>

@@ -63,7 +63,8 @@ const meta = {
     loading: {
       name: 'Loading',
       control: { type: 'boolean' },
-      description: 'Shows a spinner in the leading slot, sets aria-busy, and disables interaction.',
+      description:
+        'Shows the inline spinner in the leading slot, sets aria-busy and ignores clicks. The button stays focusable.',
       table: { category: 'States', defaultValue: { summary: 'false' } },
     },
   },
@@ -217,7 +218,7 @@ export const States: Story = {
   ),
 };
 
-/** When `loading` is set, a spinner replaces the leading icon, the label stays visible, `aria-busy` is set, and the button is disabled to prevent duplicate submits. The spinner color inherits from the button text color. */
+/** When `loading` is set, a spinner replaces the leading icon, the label stays visible, `aria-busy` is set, and clicks are ignored to prevent duplicate submits and the button stays focusable (`aria-disabled`). The spinner is the inline variant of `LoadingSpinner`: it takes the label color and rotates with CSS (`prefers-reduced-motion` slows it down). */
 export const Loading: Story = {
   render: () => (
     <div style={sectionStyle}>
