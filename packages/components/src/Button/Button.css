@@ -7,7 +7,8 @@
  *
  * Variants: Primary, Secondary, Tertiary
  * Sizes: Large (default), Medium, Small
- * States: Default, Hover, Active, Disabled
+ * States: Default, Hover, Active, Focus, Disabled, Loading
+ * Renders as <button>, or as <a> when `href` is set (disabled links use aria-disabled).
  */
 
 /* ============================================
@@ -15,6 +16,7 @@
    ============================================ */
 
 .ckw-button {
+  box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -45,8 +47,8 @@
 
 /* Large (default) — uses label-l tokens */
 .ckw-button--large {
-  height: 48px;
-  min-width: 160px;
+  height: var(--spacing-4xl);
+  min-width: 160px; /* no spacing token for 160 */
   padding-left: var(--spacing-l);
   padding-right: var(--spacing-l);
   font-size: var(--label-l-size);
@@ -56,8 +58,8 @@
 
 /* Medium — uses label-m tokens */
 .ckw-button--medium {
-  height: 48px;
-  min-width: 144px;
+  height: var(--spacing-4xl);
+  min-width: 144px; /* no spacing token for 144 */
   padding-left: var(--spacing-l);
   padding-right: var(--spacing-l);
   font-size: var(--label-m-size);
@@ -67,8 +69,8 @@
 
 /* Small — uses label-m tokens */
 .ckw-button--small {
-  height: 40px;
-  min-width: 120px;
+  height: var(--spacing-3xl);
+  min-width: var(--spacing-8xl);
   padding-left: var(--spacing-m);
   padding-right: var(--spacing-m);
   font-size: var(--label-m-size);
@@ -105,25 +107,25 @@
   z-index: -1;
 }
 
-.ckw-button--primary:hover:not(:disabled)::before {
+.ckw-button--primary:hover:not(:disabled, [aria-disabled='true'])::before {
   opacity: 0;
 }
 
-.ckw-button--primary:active:not(:disabled) {
+.ckw-button--primary:active:not(:disabled, [aria-disabled='true']) {
   background-color: var(--interactive-primary-active);
 }
 
-.ckw-button--primary:active:not(:disabled)::before {
+.ckw-button--primary:active:not(:disabled, [aria-disabled='true'])::before {
   opacity: 0;
 }
 
-.ckw-button--primary:disabled {
+.ckw-button--primary:is(:disabled, [aria-disabled='true']) {
   opacity: 0.4;
   box-shadow: none;
   cursor: not-allowed;
 }
 
-.ckw-button--primary:disabled::before {
+.ckw-button--primary:is(:disabled, [aria-disabled='true'])::before {
   opacity: 1;
 }
 
@@ -138,17 +140,17 @@
   box-shadow: none;
 }
 
-.ckw-button--secondary:hover:not(:disabled) {
+.ckw-button--secondary:hover:not(:disabled, [aria-disabled='true']) {
   background-color: var(--interactive-secondary-hover);
 }
 
-.ckw-button--secondary:active:not(:disabled) {
+.ckw-button--secondary:active:not(:disabled, [aria-disabled='true']) {
   background-color: var(--interactive-secondary-active);
   border-width: var(--border-weight-m);
   border-color: var(--border-active);
 }
 
-.ckw-button--secondary:disabled {
+.ckw-button--secondary:is(:disabled, [aria-disabled='true']) {
   opacity: 0.4;
   cursor: not-allowed;
 }
@@ -164,15 +166,15 @@
   box-shadow: none;
 }
 
-.ckw-button--tertiary:hover:not(:disabled) {
+.ckw-button--tertiary:hover:not(:disabled, [aria-disabled='true']) {
   background-color: var(--interactive-secondary-hover);
 }
 
-.ckw-button--tertiary:active:not(:disabled) {
+.ckw-button--tertiary:active:not(:disabled, [aria-disabled='true']) {
   background-color: var(--interactive-secondary-active);
 }
 
-.ckw-button--tertiary:disabled {
+.ckw-button--tertiary:is(:disabled, [aria-disabled='true']) {
   opacity: 0.4;
   cursor: not-allowed;
 }
@@ -185,8 +187,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
   flex-shrink: 0;
 }
 
@@ -198,11 +200,6 @@
 /* ============================================
    Loading spinner
    ============================================ */
-
-.ckw-button__spinner {
-  width: 20px;
-  height: 20px;
-}
 
 .ckw-button--loading {
   cursor: progress;

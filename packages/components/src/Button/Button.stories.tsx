@@ -266,6 +266,25 @@ export const Icons: Story = {
 };
 
 /** By default the button hugs its content with a minimum width. Set `fullWidth` to stretch to the parent container. */
+/** With `href` the button renders as a real link (`<a>`) for actions that navigate. */
+export const AsLink: Story = {
+  name: 'As Link',
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+      <Button href="#rechnungen">Zu den Rechnungen</Button>
+      <Button href="#verbrauch" variant="secondary">
+        Stromverbrauch analysieren
+      </Button>
+      <Button href="#hilfe" variant="tertiary" target="_blank">
+        Hilfe (neuer Tab)
+      </Button>
+      <Button href="#gesperrt" disabled>
+        Deaktivierter Link
+      </Button>
+    </div>
+  ),
+};
+
 export const Container: Story = {
   render: () => (
     <div style={sectionStyle}>

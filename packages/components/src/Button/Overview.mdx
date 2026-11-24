@@ -91,6 +91,24 @@ import * as ButtonStories from './Button.stories';
 
 <div className="sb-unstyled">
   <div className="docs-section">
+    <div className="docs-section-title">As Link</div>
+    <div className="docs-subsection-description">
+      Use <code>href</code> when the action navigates to another page or file. The button then
+      renders a real <code>&lt;a&gt;</code>, so opening in a new tab, copying the link and the
+      screen reader role "link" work as expected. Use a normal button for actions on the current
+      page (submit, open a dialog). Disabled links get <code>aria-disabled</code> and no
+      <code>href</code>. With <code>target="_blank"</code>, <code>rel="noopener noreferrer"</code>{' '}
+      is set automatically.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={ButtonStories.AsLink} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
     <div className="docs-section-title">Container</div>
     <div className="docs-subsection-description">
       By default the button hugs its content with a minimum width. Set <code>fullWidth</code> to
