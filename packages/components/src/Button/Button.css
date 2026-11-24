@@ -9,6 +9,10 @@
  * Sizes: Large (default), Medium, Small
  * States: Default, Hover, Active, Focus, Disabled, Loading
  * Renders as <button>, or as <a> when `href` is set (disabled links use aria-disabled).
+ *
+ * Icons scale with the label (24px for Large, 20px for Medium and Small) and the
+ * side with an icon gets less padding (--has-leading-icon / --has-trailing-icon),
+ * so the button looks optically balanced, same as the Figma component.
  */
 
 /* ============================================
@@ -30,8 +34,6 @@
   transition:
     background-color 150ms ease,
     background-image 150ms ease,
-    border-color 150ms ease,
-    border-width 150ms ease,
     box-shadow 150ms ease,
     opacity 150ms ease;
 }
@@ -49,8 +51,9 @@
 .ckw-button--large {
   height: var(--spacing-4xl);
   min-width: 160px; /* no spacing token for 160 */
-  padding-left: var(--spacing-l);
-  padding-right: var(--spacing-l);
+  --ckw-button-padding: var(--spacing-l);
+  --ckw-button-padding-icon: var(--spacing-m);
+  --ckw-button-icon-size: var(--spacing-xl);
   font-size: var(--label-l-size);
   line-height: var(--label-l-height);
   font-weight: var(--label-l-weight);
@@ -60,8 +63,9 @@
 .ckw-button--medium {
   height: var(--spacing-4xl);
   min-width: 144px; /* no spacing token for 144 */
-  padding-left: var(--spacing-l);
-  padding-right: var(--spacing-l);
+  --ckw-button-padding: var(--spacing-l);
+  --ckw-button-padding-icon: var(--spacing-m);
+  --ckw-button-icon-size: var(--spacing-l);
   font-size: var(--label-m-size);
   line-height: var(--label-m-height);
   font-weight: var(--label-m-weight);
@@ -71,11 +75,26 @@
 .ckw-button--small {
   height: var(--spacing-3xl);
   min-width: var(--spacing-8xl);
-  padding-left: var(--spacing-m);
-  padding-right: var(--spacing-m);
+  --ckw-button-padding: var(--spacing-m);
+  --ckw-button-padding-icon: var(--spacing-s);
+  --ckw-button-icon-size: var(--spacing-l);
   font-size: var(--label-m-size);
   line-height: var(--label-m-height);
   font-weight: var(--label-m-weight);
+}
+
+/* Padding: the side with an icon gets less padding */
+.ckw-button {
+  padding-left: var(--ckw-button-padding);
+  padding-right: var(--ckw-button-padding);
+}
+
+.ckw-button--has-leading-icon {
+  padding-left: var(--ckw-button-padding-icon);
+}
+
+.ckw-button--has-trailing-icon {
+  padding-right: var(--ckw-button-padding-icon);
 }
 
 /* Full width */
@@ -136,8 +155,8 @@
 .ckw-button--secondary {
   background-color: var(--interactive-secondary);
   color: var(--text-on-interactive-secondary);
-  border: var(--border-weight-s) solid var(--interactive-primary);
-  box-shadow: none;
+  /* inset shadow instead of border: no extra layout space, no shift on active (as in Figma) */
+  box-shadow: inset 0 0 0 var(--border-weight-s) var(--interactive-primary);
 }
 
 .ckw-button--secondary:hover:not(:disabled, [aria-disabled='true']) {
@@ -146,8 +165,7 @@
 
 .ckw-button--secondary:active:not(:disabled, [aria-disabled='true']) {
   background-color: var(--interactive-secondary-active);
-  border-width: var(--border-weight-m);
-  border-color: var(--border-active);
+  box-shadow: inset 0 0 0 var(--border-weight-m) var(--border-active);
 }
 
 .ckw-button--secondary:is(:disabled, [aria-disabled='true']) {
@@ -187,8 +205,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: var(--spacing-xl);
-  height: var(--spacing-xl);
+  width: var(--ckw-button-icon-size);
+  height: var(--ckw-button-icon-size);
   flex-shrink: 0;
 }
 
@@ -237,8 +255,7 @@
 
 .ckw-button--state-active.ckw-button--secondary {
   background-color: var(--interactive-secondary-active);
-  border-width: var(--border-weight-m);
-  border-color: var(--border-active);
+  box-shadow: inset 0 0 0 var(--border-weight-m) var(--border-active);
 }
 
 .ckw-button--state-active.ckw-button--tertiary {

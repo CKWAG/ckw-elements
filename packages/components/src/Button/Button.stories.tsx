@@ -253,19 +253,21 @@ export const Loading: Story = {
 export const Icons: Story = {
   render: () => (
     <div style={sectionStyle}>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Leading</span>
-        <Button leadingIcon={<IconPlaceholder />}>Label</Button>
-      </div>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Trailing</span>
-        <Button trailingIcon={<IconPlaceholder />}>Label</Button>
-      </div>
+      {(['large', 'medium', 'small'] as const).map((size) => (
+        <div key={size} style={rowStyle}>
+          <span style={labelStyle}>{size}</span>
+          <Button size={size} leadingIcon={<IconPlaceholder />}>
+            Rechnung herunterladen
+          </Button>
+          <Button size={size} variant="secondary" trailingIcon={<IconPlaceholder />}>
+            Weiter zum nächsten Schritt
+          </Button>
+        </div>
+      ))}
     </div>
   ),
 };
 
-/** By default the button hugs its content with a minimum width. Set `fullWidth` to stretch to the parent container. */
 /** With `href` the button renders as a real link (`<a>`) for actions that navigate. */
 export const AsLink: Story = {
   name: 'As Link',
@@ -285,6 +287,7 @@ export const AsLink: Story = {
   ),
 };
 
+/** By default the button hugs its content with a minimum width. Set `fullWidth` to stretch to the parent container. */
 export const Container: Story = {
   render: () => (
     <div style={sectionStyle}>

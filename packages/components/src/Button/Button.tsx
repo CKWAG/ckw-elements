@@ -68,6 +68,8 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
       sizeClass,
       fullWidth ? 'ckw-button--full-width' : '',
       loading ? 'ckw-button--loading' : '',
+      loading || leadingIcon ? 'ckw-button--has-leading-icon' : '',
+      trailingIcon ? 'ckw-button--has-trailing-icon' : '',
       className ?? '',
     ]
       .filter(Boolean)
@@ -77,7 +79,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
       <>
         {loading ? (
           <span className="ckw-button__icon ckw-button__spinner" aria-hidden="true">
-            <LoadingSpinner size={24} />
+            <LoadingSpinner size={size === 'large' ? 24 : 20} />
           </span>
         ) : (
           leadingIcon && <span className="ckw-button__icon">{leadingIcon}</span>
