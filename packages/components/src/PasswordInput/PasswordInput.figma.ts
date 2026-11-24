@@ -13,6 +13,8 @@ const hasField = field.type === 'INSTANCE';
 
 const label = hasField ? field.getString('Label') : 'Passwort';
 const placeholder = hasField ? field.getString('Placeholder') : '';
+const description =
+  hasField && field.getBoolean('Show Description') ? field.getString('Description') : '';
 const optional = hasField && field.getBoolean('Show Optional');
 const showInfo = hasField && field.getBoolean('Show Info');
 const isError = hasField && field.getEnum('State', { Error: true });
@@ -26,7 +28,7 @@ const errorText =
 export default {
   example: figma.code`<PasswordInput label="${label}"${
     placeholder ? ` placeholder="${placeholder}"` : ''
-  }${optional ? ' optional' : ''}${showInfo ? ' showInfo' : ''}${
+  }${description ? ` description="${description}"` : ''}${optional ? ' optional' : ''}${showInfo ? ' showInfo' : ''}${
     errorText ? ` errorText="${errorText}"` : ''
   }${disabled ? ' disabled' : ''}${visible ? ' defaultVisible' : ''} />`,
   imports: ["import { PasswordInput } from '@ckwag/elements';"],

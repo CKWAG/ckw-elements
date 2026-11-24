@@ -11,6 +11,9 @@ const placeholder = instance.getString('Placeholder');
 const optional = instance.getBoolean('Show Optional');
 const showInfo = instance.getBoolean('Show Info');
 const showIcon = instance.getBoolean('Show Icon');
+const description = instance.getBoolean('Show Description')
+  ? instance.getString('Description')
+  : '';
 const prefix = instance.getBoolean('Show Prefix') ? instance.getString('Prefix') : '';
 const suffix = instance.getBoolean('Show Suffix') ? instance.getString('Suffix') : '';
 const isError = instance.getEnum('State', { Error: true });
@@ -28,7 +31,7 @@ const iconCode =
 export default {
   example: figma.code`<InputField label="${label}" placeholder="${placeholder}"${
     value ? ` defaultValue="${value}"` : ''
-  }${prefix ? ` prefix="${prefix}"` : ''}${suffix ? ` suffix="${suffix}"` : ''}${optional ? ' optional' : ''}${showInfo ? ' showInfo' : ''}${
+  }${prefix ? ` prefix="${prefix}"` : ''}${suffix ? ` suffix="${suffix}"` : ''}${description ? ` description="${description}"` : ''}${optional ? ' optional' : ''}${showInfo ? ' showInfo' : ''}${
     errorText ? ` errorText="${errorText}"` : ''
   }${disabled ? ' disabled' : ''}${showIcon ? figma.code` icon={${iconCode}}` : ''} />`,
   imports: ["import { InputField } from '@ckwag/elements';"],

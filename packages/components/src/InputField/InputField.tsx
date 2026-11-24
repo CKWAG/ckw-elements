@@ -16,6 +16,8 @@ export interface InputFieldProps extends Omit<
   placeholder?: string;
   /** Whether the field is optional (shows "(optional)" next to label). */
   optional?: boolean;
+  /** Help text shown below the input, e.g. where to find a contract number. */
+  description?: React.ReactNode;
   /** Error text shown below the input. Pass a non-empty string to trigger the error state. */
   errorText?: string;
   /** Short text before the value inside the field, e.g. a currency such as "CHF". */
@@ -53,6 +55,7 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(fu
     placeholder = 'Placeholder',
     disabled = false,
     optional = false,
+    description,
     errorText,
     prefix,
     suffix,
@@ -74,8 +77,10 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(fu
   const errorId = hasError ? `ckw-input-error-${reactId}` : undefined;
   const prefixId = prefix ? `ckw-input-prefix-${reactId}` : undefined;
   const suffixId = suffix ? `ckw-input-suffix-${reactId}` : undefined;
+  const descriptionId = description ? `ckw-input-description-${reactId}` : undefined;
   const describedBy =
-    [ariaDescribedBy, prefixId, suffixId, errorId].filter(Boolean).join(' ') || undefined;
+    [ariaDescribedBy, prefixId, suffixId, descriptionId, errorId].filter(Boolean).join(' ') ||
+    undefined;
   const rootClasses = [
     'ckw-input-field',
     hasError && 'ckw-input-field--error',
@@ -132,6 +137,13 @@ export const InputField = React.forwardRef<HTMLInputElement, InputFieldProps>(fu
           {icon && <span className="ckw-input-field__icon">{icon}</span>}
         </div>
       </div>
+
+      {/* Help text */}
+      {description && (
+        <p className="ckw-input-field__description" id={descriptionId}>
+          {description}
+        </p>
+      )}
 
       {/* Error row */}
       {hasError && (

@@ -41,6 +41,10 @@ const meta = {
       description: 'Show "(optional)" next to the label.',
       table: { defaultValue: { summary: 'false' } },
     },
+    description: {
+      control: 'text',
+      description: 'Help text below the input, linked via aria-describedby.',
+    },
     errorText: {
       control: 'text',
       description: 'Error text below the input. Shows error state when non-empty.',
@@ -73,6 +77,7 @@ const meta = {
     value: '',
     disabled: false,
     optional: false,
+    description: '',
     errorText: '',
     showInfo: false,
     defaultVisible: false,

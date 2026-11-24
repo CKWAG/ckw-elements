@@ -122,6 +122,16 @@ export const Specials: Story = {
         </div>
       </div>
       <div style={rowStyle}>
+        <span style={labelStyle}>Description</span>
+        <div style={fieldWidth}>
+          <InputField
+            label="Vertragsnummer"
+            value="4001234567"
+            description="Sie finden die Nummer oben rechts auf Ihrer Rechnung."
+          />
+        </div>
+      </div>
+      <div style={rowStyle}>
         <span style={labelStyle}>Optional</span>
         <div style={fieldWidth}>
           <InputField value="Input" optional />
