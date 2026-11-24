@@ -124,6 +124,20 @@ are exported. Everything runs from the root of the `ckw-elements` checkout. The 
 described for humans in `packages/icons/CONTRIBUTING.md` (keep it in sync when you change this skill or the scripts)
 and in `ARCHITECTURE.md` ("D3. I added or changed icons in Figma").
 
+**Normally nothing is needed here.** The GitHub Action "Icons sync" (`.github/workflows/icons-sync.yml`) runs every
+night, reads the _Ready_ rows through the Figma REST API (`packages/icons/sync-from-figma.mjs`) and opens or updates
+one pull request (`chore/icons-sync`) that a developer reviews and merges. So after placing icons, tell the
+maintainer: the icons arrive as a pull request with the next nightly run, or right away with Actions › Icons sync ›
+Run workflow.
+
+When the maintainer wants it now and locally, run `pnpm icons:sync --dry-run` to show the report, then `pnpm icons:sync`
+(writes SVGs, aliases for renames, `src/`, `.changeset/icons-sync.md`; commits nothing). It needs a Figma token
+(`FIGMA_ACCESS_TOKEN` or the Keychain entry from `pnpm figma:token`). The sync never deletes an icon: anything listed
+under "Needs attention" (gone from Figma without rename, export problems) needs the maintainer's decision.
+
+**Fallback without a token** (the plugin path, through `use_figma`). It uses the same hash and format as the sync
+script, so both paths produce identical files:
+
 1. **List what Figma has.** Run `scripts/export-svgs.js` with `MODE = 'list'` through `use_figma` (it returns `tsv`:
    `name`, `figmaNodeId`, `hash` per line). Save the `tsv` text to a scratch file, tabs preserved.
 2. **Find what differs.** `node packages/icons/import-svgs.mjs --hashes` prints the hashes of the repo SVGs. Diff the

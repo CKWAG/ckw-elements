@@ -19,6 +19,7 @@
     "tokens:sync": "pnpm --filter @ckwag/elements-tokens run tokens:sync",
     "icons:generate": "pnpm --filter @ckwag/elements-icons run generate",
     "icons:check": "pnpm --filter @ckwag/elements-icons run check",
+    "icons:sync": "node packages/icons/sync-from-figma.mjs",
     "docs:sync": "node scripts/sync-public-docs.mjs",
     "docs:check": "node scripts/sync-public-docs.mjs --check",
     "figma:parse": "figma connect parse --exit-on-unreadable-files",
