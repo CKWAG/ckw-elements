@@ -50,7 +50,7 @@ const meta = {
   },
   args: {
     title: 'Statusmeldung',
-    children: 'Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.',
+    children: 'Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.',
     status: 'info',
     showIcon: true,
     breakpoint: 'auto',

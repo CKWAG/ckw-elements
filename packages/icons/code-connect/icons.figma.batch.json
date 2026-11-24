@@ -1,0 +1,925 @@
+{
+  "templateFile": "./icons.figma.batch.ts",
+  "components": [
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-856",
+      "name": "IconAccountTie",
+      "id": "icon-account-tie",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconAccountTie"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-588",
+      "name": "IconAdd",
+      "id": "icon-add",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconAdd"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=164-3256",
+      "name": "IconAddCircle",
+      "id": "icon-add-circle",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconAddCircle"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=164-3260",
+      "name": "IconArrowDown",
+      "id": "icon-arrow-down",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowDown"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-660",
+      "name": "IconArrowDownCircle",
+      "id": "icon-arrow-down-circle",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowDownCircle"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-661",
+      "name": "IconArrowDownCircleFilled",
+      "id": "icon-arrow-down-circle-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowDownCircleFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-741",
+      "name": "IconArrowLeft",
+      "id": "icon-arrow-left",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowLeft"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-714",
+      "name": "IconArrowLeftCircle",
+      "id": "icon-arrow-left-circle",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowLeftCircle"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-689",
+      "name": "IconArrowLeftCircleFilled",
+      "id": "icon-arrow-left-circle-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowLeftCircleFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-750",
+      "name": "IconArrowRight",
+      "id": "icon-arrow-right",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowRight"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-715",
+      "name": "IconArrowRightCircle",
+      "id": "icon-arrow-right-circle",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowRightCircle"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-695",
+      "name": "IconArrowRightCircleFilled",
+      "id": "icon-arrow-right-circle-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowRightCircleFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-749",
+      "name": "IconArrowUp",
+      "id": "icon-arrow-up",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowUp"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-716",
+      "name": "IconArrowUpCircle",
+      "id": "icon-arrow-up-circle",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowUpCircle"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-701",
+      "name": "IconArrowUpCircleFilled",
+      "id": "icon-arrow-up-circle-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowUpCircleFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-744",
+      "name": "IconArrowUpRight",
+      "id": "icon-arrow-up-right",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconArrowUpRight"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-797",
+      "name": "IconBank",
+      "id": "icon-bank",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconBank"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=324-5946",
+      "name": "IconBarGraph",
+      "id": "icon-bar-graph",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconBarGraph"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-813",
+      "name": "IconBarGraphRising",
+      "id": "icon-bar-graph-rising",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconBarGraphRising"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=1317-720",
+      "name": "IconBattery",
+      "id": "icon-battery",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconBattery"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-829",
+      "name": "IconBin",
+      "id": "icon-bin",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconBin"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-830",
+      "name": "IconBox",
+      "id": "icon-box",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconBox"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=628-5805",
+      "name": "IconBoxFilled",
+      "id": "icon-box-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconBoxFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-696",
+      "name": "IconBuilding",
+      "id": "icon-building",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconBuilding"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-875",
+      "name": "IconCalendar",
+      "id": "icon-calendar",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCalendar"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-877",
+      "name": "IconCalendarBlank",
+      "id": "icon-calendar-blank",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCalendarBlank"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-876",
+      "name": "IconCalendarRestricted",
+      "id": "icon-calendar-restricted",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCalendarRestricted"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=174-917",
+      "name": "IconCheck",
+      "id": "icon-check",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCheck"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-653",
+      "name": "IconCheckBox",
+      "id": "icon-check-box",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCheckBox"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=176-945",
+      "name": "IconCheckCircleFilled",
+      "id": "icon-check-circle-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCheckCircleFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=177-1013",
+      "name": "IconChevronDown",
+      "id": "icon-chevron-down",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconChevronDown"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=177-976",
+      "name": "IconChevronLeft",
+      "id": "icon-chevron-left",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconChevronLeft"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=177-975",
+      "name": "IconChevronRight",
+      "id": "icon-chevron-right",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconChevronRight"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=177-977",
+      "name": "IconChevronUp",
+      "id": "icon-chevron-up",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconChevronUp"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=805-243",
+      "name": "IconChevronUpDown",
+      "id": "icon-chevron-up-down",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconChevronUpDown"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=177-1538",
+      "name": "IconCircle",
+      "id": "icon-circle",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCircle"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-786",
+      "name": "IconClock",
+      "id": "icon-clock",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconClock"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-800",
+      "name": "IconClockQuarter",
+      "id": "icon-clock-quarter",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconClockQuarter"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-824",
+      "name": "IconClose",
+      "id": "icon-close",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconClose"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-838",
+      "name": "IconCloseCircleFilled",
+      "id": "icon-close-circle-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCloseCircleFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-842",
+      "name": "IconCloudy",
+      "id": "icon-cloudy",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCloudy"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=326-6453",
+      "name": "IconCoins",
+      "id": "icon-coins",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCoins"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=537-545",
+      "name": "IconDownload",
+      "id": "icon-download",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconDownload"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-856",
+      "name": "IconEnvelopes",
+      "id": "icon-envelopes",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconEnvelopes"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-461",
+      "name": "IconExternalLink",
+      "id": "icon-external-link",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconExternalLink"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=537-573",
+      "name": "IconFaq",
+      "id": "icon-faq",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconFaq"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-104",
+      "name": "IconFile",
+      "id": "icon-file",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconFile"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-107",
+      "name": "IconFileDownload",
+      "id": "icon-file-download",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconFileDownload"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-110",
+      "name": "IconFileUpload",
+      "id": "icon-file-upload",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconFileUpload"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-168",
+      "name": "IconGraphAscend",
+      "id": "icon-graph-ascend",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconGraphAscend"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-984",
+      "name": "IconHeart",
+      "id": "icon-heart",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconHeart"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-182",
+      "name": "IconHeater",
+      "id": "icon-heater",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconHeater"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=495-146",
+      "name": "IconHighVoltagePole",
+      "id": "icon-high-voltage-pole",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconHighVoltagePole"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-186",
+      "name": "IconHourglass",
+      "id": "icon-hourglass",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconHourglass"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=373-797",
+      "name": "IconHouse",
+      "id": "icon-house",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconHouse"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=625-5762",
+      "name": "IconHouseFilled",
+      "id": "icon-house-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconHouseFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-475",
+      "name": "IconHyperlink",
+      "id": "icon-hyperlink",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconHyperlink"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-942",
+      "name": "IconHyperlinkBreak",
+      "id": "icon-hyperlink-break",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconHyperlinkBreak"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-746",
+      "name": "IconInbox",
+      "id": "icon-inbox",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconInbox"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-545",
+      "name": "IconInformation",
+      "id": "icon-information",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconInformation"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-561",
+      "name": "IconKeys",
+      "id": "icon-keys",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconKeys"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-577",
+      "name": "IconLeaf",
+      "id": "icon-leaf",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconLeaf"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-988",
+      "name": "IconLetter",
+      "id": "icon-letter",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconLetter"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-581",
+      "name": "IconLightbulb",
+      "id": "icon-lightbulb",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconLightbulb"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-601",
+      "name": "IconLightning",
+      "id": "icon-lightning",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconLightning"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=625-5787",
+      "name": "IconLightningFilled",
+      "id": "icon-lightning-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconLightningFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-597",
+      "name": "IconList",
+      "id": "icon-list",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconList"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-598",
+      "name": "IconLock",
+      "id": "icon-lock",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconLock"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-637",
+      "name": "IconLogOut",
+      "id": "icon-log-out",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconLogOut"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-651",
+      "name": "IconLogOutDoor",
+      "id": "icon-log-out-door",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconLogOutDoor"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-732",
+      "name": "IconMegaphone",
+      "id": "icon-megaphone",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconMegaphone"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-750",
+      "name": "IconMessage",
+      "id": "icon-message",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconMessage"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=537-559",
+      "name": "IconMeter",
+      "id": "icon-meter",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconMeter"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-754",
+      "name": "IconMinusCircle",
+      "id": "icon-minus-circle",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconMinusCircle"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-779",
+      "name": "IconNoFire",
+      "id": "icon-no-fire",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconNoFire"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-795",
+      "name": "IconOven",
+      "id": "icon-oven",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconOven"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=495-132",
+      "name": "IconPaper",
+      "id": "icon-paper",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPaper"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=625-5801",
+      "name": "IconPaperFilled",
+      "id": "icon-paper-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPaperFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=493-127",
+      "name": "IconPaperclip",
+      "id": "icon-paperclip",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPaperclip"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=493-141",
+      "name": "IconPencil",
+      "id": "icon-pencil",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPencil"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-794",
+      "name": "IconPeople",
+      "id": "icon-people",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPeople"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=496-179",
+      "name": "IconPhone",
+      "id": "icon-phone",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPhone"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=324-5980",
+      "name": "IconPlaceholder",
+      "id": "icon-placeholder",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPlaceholder"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-506",
+      "name": "IconPlug",
+      "id": "icon-plug",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPlug"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=1033-792",
+      "name": "IconPlugFilled",
+      "id": "icon-plug-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPlugFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=164-3240",
+      "name": "IconPlus",
+      "id": "icon-plus",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPlus"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=493-155",
+      "name": "IconPowerButton",
+      "id": "icon-power-button",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPowerButton"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-970",
+      "name": "IconPriceTag",
+      "id": "icon-price-tag",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconPriceTag"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-523",
+      "name": "IconQrCode",
+      "id": "icon-qr-code",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconQrCode"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-531",
+      "name": "IconQuestion",
+      "id": "icon-question",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconQuestion"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-956",
+      "name": "IconQuestionFilled",
+      "id": "icon-question-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconQuestionFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=324-5958",
+      "name": "IconReactiveEnergy",
+      "id": "icon-reactive-energy",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconReactiveEnergy"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-565",
+      "name": "IconRedoArrow",
+      "id": "icon-redo-arrow",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconRedoArrow"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-569",
+      "name": "IconRuler",
+      "id": "icon-ruler",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconRuler"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-615",
+      "name": "IconSearch",
+      "id": "icon-search",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconSearch"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-619",
+      "name": "IconSecurity",
+      "id": "icon-security",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconSecurity"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-623",
+      "name": "IconSettings",
+      "id": "icon-settings",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconSettings"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-637",
+      "name": "IconShoppingCart",
+      "id": "icon-shopping-cart",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconShoppingCart"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=533-651",
+      "name": "IconSnowflake",
+      "id": "icon-snowflake",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconSnowflake"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=1316-686",
+      "name": "IconSolarPanel",
+      "id": "icon-solar-panel",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconSolarPanel"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=537-577",
+      "name": "IconStandardBadge",
+      "id": "icon-standard-badge",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconStandardBadge"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=534-665",
+      "name": "IconSwap",
+      "id": "icon-swap",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconSwap"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-1012",
+      "name": "IconTable",
+      "id": "icon-table",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconTable"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=534-669",
+      "name": "IconTelevision",
+      "id": "icon-television",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconTelevision"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=1199-470",
+      "name": "IconTerminatedContract",
+      "id": "icon-terminated-contract",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconTerminatedContract"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-743",
+      "name": "IconTransaction",
+      "id": "icon-transaction",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconTransaction"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=491-655",
+      "name": "IconUncheckBox",
+      "id": "icon-uncheck-box",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconUncheckBox"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-780",
+      "name": "IconUpload",
+      "id": "icon-upload",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconUpload"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-839",
+      "name": "IconViewOff",
+      "id": "icon-view-off",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconViewOff"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-838",
+      "name": "IconViewOn",
+      "id": "icon-view-on",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconViewOn"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-868",
+      "name": "IconWarning",
+      "id": "icon-warning",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconWarning"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-896",
+      "name": "IconWarningCircle",
+      "id": "icon-warning-circle",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconWarningCircle"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-897",
+      "name": "IconWarningCircleFilled",
+      "id": "icon-warning-circle-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconWarningCircleFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-869",
+      "name": "IconWarningFilled",
+      "id": "icon-warning-filled",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconWarningFilled"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=535-902",
+      "name": "IconWashingMachine",
+      "id": "icon-washing-machine",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconWashingMachine"
+    }
+  ]
+}

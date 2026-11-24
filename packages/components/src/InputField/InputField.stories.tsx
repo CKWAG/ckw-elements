@@ -81,12 +81,15 @@ export const Filled: Story = {
     <div style={sectionStyle}>
       {(
         [
-          ['default', { value: 'Input' }],
-          ['hover', { value: 'Input', className: 'ckw-input-field--state-hover' }],
-          ['active', { value: 'Input', className: 'ckw-input-field--state-active' }],
-          ['Focus visible', { value: 'Input', className: 'ckw-input-field--state-focus-visible' }],
-          ['error', { value: 'Input', errorText: 'Error text' }],
-          ['disabled', { value: 'Input', disabled: true }],
+          ['default', { defaultValue: 'Input' }],
+          ['hover', { defaultValue: 'Input', className: 'ckw-input-field--state-hover' }],
+          ['active', { defaultValue: 'Input', className: 'ckw-input-field--state-active' }],
+          [
+            'Focus visible',
+            { defaultValue: 'Input', className: 'ckw-input-field--state-focus-visible' },
+          ],
+          ['error', { defaultValue: 'Input', errorText: 'Error text' }],
+          ['disabled', { defaultValue: 'Input', disabled: true }],
         ] as const
       ).map(([stateLabel, props]) => (
         <div key={stateLabel} style={rowStyle}>
@@ -106,19 +109,19 @@ export const Specials: Story = {
       <div style={rowStyle}>
         <span style={labelStyle}>Icon</span>
         <div style={fieldWidth}>
-          <InputField value="Input" icon={<IconPlaceholder size={20} />} />
+          <InputField defaultValue="Input" icon={<IconPlaceholder size={20} />} />
         </div>
       </div>
       <div style={rowStyle}>
         <span style={labelStyle}>Prefix</span>
         <div style={fieldWidth}>
-          <InputField label="Betrag" value="120.00" prefix="CHF" />
+          <InputField label="Betrag" defaultValue="120.00" prefix="CHF" />
         </div>
       </div>
       <div style={rowStyle}>
         <span style={labelStyle}>Suffix</span>
         <div style={fieldWidth}>
-          <InputField label="Anlagenleistung" value="10.5" suffix="kWp" />
+          <InputField label="Anlagenleistung" defaultValue="10.5" suffix="kWp" />
         </div>
       </div>
       <div style={rowStyle}>
@@ -126,7 +129,7 @@ export const Specials: Story = {
         <div style={fieldWidth}>
           <InputField
             label="Vertragsnummer"
-            value="4001234567"
+            defaultValue="4001234567"
             description="Sie finden die Nummer oben rechts auf Ihrer Rechnung."
           />
         </div>
@@ -134,13 +137,13 @@ export const Specials: Story = {
       <div style={rowStyle}>
         <span style={labelStyle}>Optional</span>
         <div style={fieldWidth}>
-          <InputField value="Input" optional />
+          <InputField defaultValue="Input" optional />
         </div>
       </div>
       <div style={rowStyle}>
         <span style={labelStyle}>Info</span>
         <div style={fieldWidth}>
-          <InputField value="Input" showInfo />
+          <InputField defaultValue="Input" showInfo />
         </div>
       </div>
     </div>
@@ -216,7 +219,7 @@ export const AllVariants: Story = {
               </div>
               <div style={cellStyle}>
                 <div style={fieldWidth}>
-                  <InputField value="Input" {...props} />
+                  <InputField defaultValue="Input" {...props} />
                 </div>
               </div>
             </React.Fragment>

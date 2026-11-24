@@ -56,7 +56,7 @@ const meta = {
   },
   args: {
     title: 'Statusmeldung',
-    children: 'Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.',
+    children: 'Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.',
     status: 'info',
     showIcon: true,
     breakpoint: 'auto',
@@ -111,7 +111,7 @@ export const Statuses: Story = {
           <span style={labelStyle}>{status}</span>
           <div style={desktopFrameStyle}>
             <InlineMessage status={status} title="Statusmeldung">
-              Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+              Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
             </InlineMessage>
           </div>
         </div>
@@ -128,7 +128,7 @@ export const Title: Story = {
         <span style={labelStyle}>With title</span>
         <div style={desktopFrameStyle}>
           <InlineMessage title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -136,7 +136,7 @@ export const Title: Story = {
         <span style={labelStyle}>Without</span>
         <div style={desktopFrameStyle}>
           <InlineMessage>
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -152,7 +152,7 @@ export const Icon: Story = {
         <span style={labelStyle}>Default</span>
         <div style={desktopFrameStyle}>
           <InlineMessage title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -160,7 +160,7 @@ export const Icon: Story = {
         <span style={labelStyle}>Custom</span>
         <div style={desktopFrameStyle}>
           <InlineMessage title="Statusmeldung" icon={<IconPlaceholder size={28} />}>
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -168,7 +168,7 @@ export const Icon: Story = {
         <span style={labelStyle}>Without</span>
         <div style={desktopFrameStyle}>
           <InlineMessage title="Statusmeldung" showIcon={false}>
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -184,7 +184,7 @@ export const Breakpoints: Story = {
         <span style={labelStyle}>Desktop</span>
         <div style={desktopFrameStyle}>
           <InlineMessage breakpoint="desktop" title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -192,7 +192,7 @@ export const Breakpoints: Story = {
         <span style={labelStyle}>Mobile</span>
         <div style={mobileFrameStyle}>
           <InlineMessage breakpoint="mobile" title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>
       </div>
@@ -207,21 +207,21 @@ export const AllVariants: Story = {
       <div style={sectionStyle}>
         {(['info', 'success', 'warning', 'error'] as const).map((status) => (
           <InlineMessage key={status} status={status} title="Statusmeldung">
-            Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         ))}
       </div>
       <div style={sectionStyle}>
         <InlineMessage title="Statusmeldung" showIcon={false}>
-          Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+          Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
         </InlineMessage>
         <InlineMessage>
-          Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+          Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
         </InlineMessage>
       </div>
       <div style={mobileFrameStyle}>
         <InlineMessage breakpoint="mobile" status="error" title="Statusmeldung">
-          Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
+          Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
         </InlineMessage>
       </div>
     </div>
