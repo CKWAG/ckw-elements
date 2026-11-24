@@ -1,6 +1,6 @@
 ---
 name: cleanup-figma-section
-description: Cleans up a design system section in the CKW Elements Figma file so it is consistent with the others, covering semantic layer names, unnecessary wrapper frames, component layer names, typos in component properties and stale doc example instances, without changing how anything looks. Use when someone shares a CKW Elements Figma link and asks to tidy it up, e.g. "räum diese Section auf", "mach die Section sauber und konsistent", "Benamsung aufräumen", "unnötige Frames weg", "clean up this section".
+description: Cleans up a design system section in the CKW Elements Figma file so it is consistent with the others, covering semantic layer names, unnecessary wrapper frames, documentation-only colours for the doc chrome, component layer names, typos in component properties and stale doc example instances, without changing the design. Use when someone shares a CKW Elements Figma link and asks to tidy it up, e.g. "räum diese Section auf", "mach die Section sauber und konsistent", "Benamsung aufräumen", "unnötige Frames weg", "clean up this section".
 ---
 
 # Clean up a CKW Elements design system section
@@ -20,14 +20,16 @@ Reference section (already cleaned up, copy its structure): **Inline Message**, 
    (for example missing sidebar parts or a different doc layout), report it instead of rebuilding it.
 4. **Apply in one `use_figma` call**: unwrap the unnecessary frames, rename, then do the component internals.
    Return a log of every `old → new`.
-5. **Stale instances**: for every doc example instance, compare its child sizes with its main component. If they
+5. **Doc colours**: audit every fill, stroke and text colour of the doc chrome (everything outside the component
+   set and outside instances) and rebind it to a documentation colour (see "Doc colours" below).
+6. **Stale instances**: for every doc example instance, compare its child sizes with its main component. If they
    differ, Figma did not re-layout the instance. Replace it with a fresh `mainComponent.createInstance()` at the
    same index, copy its BOOLEAN/TEXT/INSTANCE_SWAP properties, keep `FIXED` width, then remove the old one. Do
    **not** use `swapComponent` back and forth or `resetOverrides()`: both lose nested colour overrides and widths.
-6. **Verify**: take the "after" screenshot and compare it with "before". It must look identical, apart from fixed
-   stale instances.
-7. **Change Log**: add a bullet to today's entry in the sidebar's Change Log (or a new entry, see below).
-8. **Report** to the user in their language: what was renamed or removed, anything you deliberately left alone,
+7. **Verify**: take the "after" screenshot and compare it with "before". It must look identical, apart from fixed
+   stale instances and the small shade changes from rebinding doc colours.
+8. **Change Log**: add a bullet to today's entry in the sidebar's Change Log (or a new entry, see below).
+9. **Report** to the user in their language: what was renamed or removed, anything you deliberately left alone,
    and the issues you found but did not fix.
 
 ## Section structure and names
@@ -72,6 +74,29 @@ Unwrap a frame (move its child to the frame's index in the parent, then delete t
 After unwrapping, give the child the sizing the wrapper had (usually `layoutSizingHorizontal = 'FILL'`). Load the
 fonts of a text node before moving it. If you are unsure, keep the frame and give it a proper name.
 
+## Doc colours
+
+The documentation around a component (section background, sidebar, headings, labels, Change Log, example
+containers, dividers, the component set outline) uses **only** the documentation variables:
+`Documentation/specs-*` (`specs-white`, `specs-050` … `specs-950`, `specs-black`), `Status/specs-status-*` for the
+status badge and `Logo/specs-logo-*`. Never use product colours (`Background/*`, `Text/*`, `Status/status-*`,
+primitives) or raw hex values in the doc chrome.
+
+Product colours stay **inside** the components and on their instances, because that is the design being documented.
+
+| Doc element                                | Variable                                                |
+| ------------------------------------------ | ------------------------------------------------------- |
+| Section background                         | `Documentation/specs-white`                             |
+| Sidebar panel, divider of the Variants col | `Documentation/specs-100`                               |
+| Example containers (`Examples`)            | `Documentation/specs-050`                               |
+| Change Log entry divider                   | `Documentation/specs-200`                               |
+| Component set outline (dashed)             | `Documentation/specs-400`                               |
+| All doc text                               | `Documentation/specs-900` (never pure black)            |
+| Status badge                               | `Status/specs-status-*` (wip, success, error) + `-text` |
+
+If a doc element has a product colour, rebind it to the closest documentation variable from this table and
+mention the shade change in the report. If no row fits, ask instead of guessing.
+
 ## Component internals
 
 Layer names inside the component set mirror the code's BEM elements (`packages/components/src/<Component>/`),
@@ -92,7 +117,8 @@ it to 1 to 3 English lines, with `textAutoResize = 'HEIGHT'` and FILL width. For
 
 ## Hard rules
 
-- Colours, spacing, radius and border only through the file's variables, never raw values.
+- Colours, spacing, radius and border only through the file's variables, never raw values. Doc chrome uses only
+  documentation colours (see "Doc colours").
 - Never detach instances, never touch other pages or sections than the one asked for.
 - Visual changes, restructuring or new doc content are out of scope: propose them and wait for a yes.
 
