@@ -52,9 +52,9 @@ const amountStyle: React.CSSProperties = {
 };
 
 const metricStyle: React.CSSProperties = {
-  fontSize: 'var(--text-metric-s-emphasized-font-size)',
-  fontWeight: 'var(--text-metric-s-emphasized-font-weight)',
-  lineHeight: 'var(--text-metric-s-emphasized-line-height)',
+  fontSize: 'var(--text-metric-xl-emphasized-font-size)',
+  fontWeight: 'var(--text-metric-xl-emphasized-font-weight)',
+  lineHeight: 'var(--text-metric-xl-emphasized-line-height)',
 };
 
 const unitStyle: React.CSSProperties = {
