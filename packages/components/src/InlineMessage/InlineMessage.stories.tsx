@@ -26,7 +26,7 @@ const meta = {
     },
     status: {
       control: { type: 'inline-radio' },
-      options: ['Info', 'Success', 'Error'],
+      options: ['Info', 'Success', 'Warning', 'Error'],
       description: 'Semantic status variant.',
       table: { category: 'General', defaultValue: { summary: 'Info' } },
     },
@@ -101,11 +101,11 @@ const mobileFrameStyle: React.CSSProperties = {
   maxWidth: '100%',
 };
 
-/** Status variants use semantic status border tokens for the rail and icon color. */
+/** Status variants use semantic status border tokens for the status bar and icon color. */
 export const Statuses: Story = {
   render: () => (
     <div style={sectionStyle}>
-      {(['Info', 'Success', 'Error'] as const).map((status) => (
+      {(['Info', 'Success', 'Warning', 'Error'] as const).map((status) => (
         <div key={status} style={rowStyle}>
           <span style={labelStyle}>{status}</span>
           <div style={desktopFrameStyle}>
@@ -204,7 +204,7 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
       <div style={sectionStyle}>
-        {(['Info', 'Success', 'Error'] as const).map((status) => (
+        {(['Info', 'Success', 'Warning', 'Error'] as const).map((status) => (
           <InlineMessage key={status} status={status} title="Statusmeldung">
             Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
           </InlineMessage>

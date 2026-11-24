@@ -29,7 +29,7 @@ const meta = {
     },
     status: {
       control: { type: 'inline-radio' },
-      options: ['Info', 'Success', 'Error'],
+      options: ['Info', 'Success', 'Warning', 'Error'],
       description: 'Semantic status variant.',
       table: { defaultValue: { summary: 'Info' } },
     },
