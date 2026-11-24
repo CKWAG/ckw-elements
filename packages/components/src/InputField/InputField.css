@@ -48,7 +48,7 @@
   font-size: var(--label-s-size);
   line-height: var(--label-s-height);
   font-weight: var(--label-s-weight);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -187,7 +187,7 @@
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  color: var(--text-primary);
+  color: var(--text-secondary);
 }
 
 .ckw-input-field__icon > svg {

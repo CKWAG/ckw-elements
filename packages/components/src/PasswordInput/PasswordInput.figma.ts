@@ -16,7 +16,10 @@ const placeholder = hasField ? field.getString('Placeholder') : '';
 const optional = hasField && field.getBoolean('Show Optional');
 const showInfo = hasField && field.getBoolean('Show Info');
 const isError = hasField && field.getEnum('State', { Error: true });
-const disabled = hasField && field.getEnum('State', { Disabled: true });
+// Toggle=Disabled is the disabled Password Input; hover/focus of the toggle are interaction states only.
+const disabled =
+  instance.getEnum('Toggle', { Disabled: true }) ||
+  (hasField && field.getEnum('State', { Disabled: true }));
 const errorText =
   isError && hasField && field.getBoolean('Show Error') ? field.getString('Error Text') : '';
 
