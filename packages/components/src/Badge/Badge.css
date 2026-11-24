@@ -105,3 +105,14 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/* ============================================
+   Windows High Contrast (forced colors)
+   The background disappears there; a border keeps the badge shape.
+   ============================================ */
+
+@media (forced-colors: active) {
+  .ckw-badge {
+    border: var(--border-weight-s) solid CanvasText;
+  }
+}

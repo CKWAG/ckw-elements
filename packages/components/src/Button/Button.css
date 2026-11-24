@@ -266,3 +266,24 @@
   outline: var(--border-weight-m) solid var(--border-active);
   outline-offset: 2px;
 }
+
+/* ============================================
+   Windows High Contrast (forced colors)
+   Backgrounds and shadows are removed there, so every button gets a real
+   border in the system button colour and the gradient layer is hidden.
+   ============================================ */
+
+@media (forced-colors: active) {
+  .ckw-button {
+    border: var(--border-weight-s) solid ButtonText;
+  }
+
+  .ckw-button--primary::before {
+    display: none;
+  }
+
+  .ckw-button:is(:disabled, [aria-disabled='true']) {
+    border-color: GrayText;
+    color: GrayText;
+  }
+}
