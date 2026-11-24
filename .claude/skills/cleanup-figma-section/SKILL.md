@@ -108,7 +108,8 @@ Run `scripts/normalize-doc-layout.js` (set `PAGE_ID` and `SECTION_ID`, pass the 
 `use_figma`). It applies these rules and reports what it could not fix:
 
 - **Tokens:** every non-zero padding, gap and radius is bound to a `Spacing/*` or `Radius/*` variable. Values
-  without a matching token (section radius 64, sidebar padding 56 and radius 40) are reported, never rounded.
+  without a matching token are reported, never rounded. **Accepted exceptions, leave them raw:** section corner
+  radius 64, sidebar padding 56 and sidebar corner radius 40 (the script skips them).
 - **Example boxes (`Examples`):** padding `Spacing/3xl`, gap `Spacing/xl` between examples, radius `Radius/s`,
   fill `Background/background-canvas`. Bind the paint with the resolved colour as its base colour, otherwise
   screenshots and exports render the box white.

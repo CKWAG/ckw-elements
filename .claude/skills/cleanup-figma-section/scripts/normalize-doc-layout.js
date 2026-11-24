@@ -42,9 +42,14 @@ const inComponent = (n) => {
 const docFrames = [root, ...root.findAllWithCriteria({ types: ['FRAME'] })].filter(
   (f) => !inComponent(f),
 );
+// Accepted doc-chrome values without a token (agreed with the design system owner, leave them as they are):
+// section corner radius 64, sidebar padding 56, sidebar corner radius 40.
+const ACCEPTED_RAW = { radius: [64, 40], padding: [56] };
+const isAccepted = (field, val) =>
+  field.endsWith('Radius') ? ACCEPTED_RAW.radius.includes(val) : ACCEPTED_RAW.padding.includes(val);
 const bind = (node, field, map) => {
   const val = node[field];
-  if (!val || node.boundVariables?.[field]) return;
+  if (!val || node.boundVariables?.[field] || (!map.has(val) && isAccepted(field, val))) return;
   const v = map.get(val);
   if (v) {
     node.setBoundVariable(field, v);
