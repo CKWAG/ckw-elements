@@ -89,7 +89,8 @@ export interface CardHeaderProps extends React.ComponentProps<'div'> {
   /** Usually CardTitle and an optional CardDescription. */
   children: React.ReactNode;
   /**
-   * Optional leading icon, shown in a 40px tile. Decorative: the title carries the meaning.
+   * Optional leading icon, shown in a 40px tile. Use a filled icon. Decorative: the title
+   * carries the meaning.
    * Matches Figma `Show Icon` + `Icon`.
    */
   icon?: React.ReactNode;
