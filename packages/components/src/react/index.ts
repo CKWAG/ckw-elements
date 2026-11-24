@@ -22,3 +22,5 @@ export type {
   SegmentedControlProps,
   SegmentedControlVariant,
 } from '../SegmentedControl/index.js';
+export { TextLink } from '../TextLink/index.js';
+export type { TextLinkProps, TextLinkSize, TextLinkVariant } from '../TextLink/index.js';

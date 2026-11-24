@@ -1,0 +1,171 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+import * as TextLinkStories from './TextLink.stories';
+import * as TextLinkPlayground from './TextLink.playground.stories';
+
+<Meta title="Components/Text Link" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Text Link</div>
+  <div className="docs-description">
+    Text links navigate to another page or section. Standalone links are used for back links above
+    page titles, arrow links and link lists with an icon. Inline links sit in running text. Both
+    render a real <code>a href</code>, so opening in a new tab, copying the link and screen reader
+    announcements work as users expect.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.textLink} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to configure label, variant, size, icons and external links.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Canvas of={TextLinkPlayground.Playground} />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls of={TextLinkPlayground.Playground} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Text Link or Button</div>
+    <div className="docs-subsection-description">
+      Use a <strong>Button</strong> for a prominent action: the main call to action, "Weiter",
+      "Rechnung herunterladen", also when it navigates (Button with <code>href</code>). Use a{' '}
+      <strong>Text Link</strong> for navigation that should not compete with the main action: back
+      links ("← Rechnungen"), arrow links ("Erklärung zu Ihrer Rechnung →"), lists of related pages
+      and links in running text. If an element does something on the current page without navigating
+      (open a dialog, toggle), it is a Button, not a link.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Variants</div>
+    <div className="docs-subsection-description">
+      Standalone links are not underlined until hover, because the position, the icon and the colour
+      already mark them as links. Inline links are always underlined, so they are recognisable
+      without relying on colour (WCAG 1.4.1), and take the font of the surrounding paragraph.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={TextLinkStories.Variants} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Size</div>
+    <div className="docs-subsection-description">
+      Large (label-l) is the default and matches the links in MyCKW. Medium (label-m) and Small
+      (label-s) are for denser places, for example the back link above a page title. The icon scales
+      with the text (24 / 20 / 16 px), with 8 px between icon and label.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={TextLinkStories.Sizes} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">States</div>
+    <div className="docs-subsection-description">
+      Hover darkens the colour to interactive-primary-hover; standalone links get an underline,
+      inline links a thicker one. Keyboard focus shows a 2 px border-active ring with 2 px offset: a
+      pill like the Button for standalone links, slightly rounded for inline links so it still looks
+      clean when a link wraps onto two lines. Links have no disabled state (remove the link instead)
+      and no separate visited colour.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={TextLinkStories.States} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Icons</div>
+    <div className="docs-subsection-description">
+      Use arrow-left as leading icon for back links and arrow-right as trailing icon for arrow
+      links. A leading icon can also describe the destination in link lists. <code>external</code>{' '}
+      opens the link in a new tab, sets <code>rel="noopener noreferrer"</code>, shows the
+      external-link icon and adds a hidden "(öffnet in neuem Tab)" for screen readers. Icons are
+      decorative and hidden with <code>aria-hidden</code>.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={TextLinkStories.Icons} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">In Text</div>
+    <div className="docs-subsection-description">
+      Inline links inherit size, weight and line height from the paragraph. Write link text that
+      says where it goes, never "hier klicken".
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={TextLinkStories.InText} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Router Links</div>
+    <div className="docs-subsection-description">
+      For client-side routing, pass your router's link as the only child and set{' '}
+      <code>asChild</code>. TextLink adds its classes, icons and props to that element instead of
+      rendering its own <code>a</code>, for example{' '}
+      <code>{'<TextLink asChild><Link to="/rechnungen">Rechnungen</Link></TextLink>'}</code>.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={TextLinkStories.AsChild} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      Text Link renders a native link, so it is reachable with Tab and opens with Enter. Inline
+      links are always underlined, standalone links are identified by position and icon and get an
+      underline on hover. In Windows High Contrast mode all links use the system link colour and are
+      underlined.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">All Variants</div>
+    <div className="docs-subsection-description">
+      Standalone sizes with back, arrow and external links, and inline links in text.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={TextLinkStories.AllVariants} />
+</div>
