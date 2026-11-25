@@ -14,8 +14,10 @@ automatisch in Code-Dateien übersetzt, die Entwickler direkt verwenden können.
 Statt dass ein Entwickler manuell `#86bc46` als Farbe eintippt, verwendet er
 den Token `interactive-primary` — und der Token weiss, welche Farbe gemeint ist.
 
-**282 Tokens** sind aktuell definiert: 155 Farben, 15 Abstände, 11 Rahmen,
-48 Schrift-Einstellungen (Desktop + Mobile), 3 Schatten, 1 Verlauf und 1 Schriftart.
+Es gibt Tokens für Farben (Primitiv und Semantisch), Abstände, Rahmen,
+Schrift-Einstellungen (Desktop + Mobile), Schatten, einen Verlauf und die
+Schriftart. Die genaue Anzahl ändert sich mit jedem Figma-Export; die aktuelle
+Liste zeigt Storybook auf den Foundations-Seiten.
 
 ---
 
@@ -216,7 +218,7 @@ Sie verwenden weiterhin `text-primary` — nur der Wert dahinter ändert sich je
 | **Was wenn sich eine Farbe ändert?** | Neuer Export → Doppelklick → Storybook zeigt die Änderung                |
 | **Warum zwei Ebenen?**               | Primitiv = Rohmaterial, Semantisch = Bedeutung. Flexibel und konsistent. |
 | **Ist Dark Mode möglich?**           | Ja, vorbereitet. Nur Figma-Werte definieren → Pipeline → fertig.         |
-| **Wie viele Tokens gibt es?**        | 282 (79 Primitiv-Farben, 76 Semantisch, Rest: Abstände, Schriften etc.)  |
+| **Wie viele Tokens gibt es?**        | Ändert sich mit jedem Export; aktuelle Liste in Storybook (Foundations)  |
 
 ---
 

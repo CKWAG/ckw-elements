@@ -210,7 +210,6 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for full pipeline details.
 | `pnpm --filter @ckwag/elements-storybook run dev`   | Start Storybook                         |
 | `pnpm --filter @ckwag/elements-storybook run build` | Build Storybook                         |
 | `pnpm -r run build`                                 | Build all packages                      |
-| `pnpm changeset`                                    | Add package release intent              |
 | `pnpm release:validate`                             | Validate build, release metadata, pack  |
 
 ## Tech Stack

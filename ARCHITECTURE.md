@@ -239,21 +239,27 @@ decisions from Figma into consumable CSS and JavaScript outputs.
 | `ckw/tokens-css` | `dist/tokens.css` | Single CSS file with 12 structured blocks     |
 | `ckw/tokens-js`  | `dist/tokens.js`  | JS module with named exports + default export |
 
-### Token Count Summary (282 Total)
+### Token Categories
 
-| Category           | Count   | CSS Variable Pattern                         |
-| ------------------ | ------- | -------------------------------------------- |
-| Primitive colors   | 79      | `--color-{group}-{step}`                     |
-| Semantic colors    | 76      | `--{name}` (e.g. `--text-primary`)           |
-| Spacing            | 15      | `--spacing-{size}`                           |
-| Border radius      | 7       | `--border-radius-{size}`                     |
-| Border weight      | 4       | `--border-weight-{size}`                     |
-| Font family        | 1       | `--font-family-brand`                        |
-| Shadows            | 3       | `--shadow-{size}`                            |
-| Gradient           | 1       | `--gradient-brand`                           |
-| Typography desktop | 48      | `--{style}-{prop}` (e.g. `--heading-l-size`) |
-| Typography mobile  | 48      | Same names, inside `@media` block            |
-| **Total**          | **282** |                                              |
+Counts change with every Figma export, so they are not listed here. Count them
+from the source of truth:
+
+```bash
+node -e "const c=o=>o&&typeof o==='object'?('\$value' in o?1:Object.values(o).reduce((a,v)=>a+c(v),0)):0;const t=require('./packages/tokens/tokens.json');for(const k in t)console.log(k,c(t[k]))"
+```
+
+| Category           | Source path in `tokens.json` | CSS Variable Pattern                         |
+| ------------------ | ---------------------------- | -------------------------------------------- |
+| Primitive colors   | `primitive.color`            | `--color-{group}-{step}`                     |
+| Spacing            | `primitive.spacing`          | `--spacing-{size}`                           |
+| Border radius      | `primitive.border-radius`    | `--border-radius-{size}`                     |
+| Border weight      | `primitive.border-weight`    | `--border-weight-{size}`                     |
+| Font family        | `primitive.font-family`      | `--font-family-brand`                        |
+| Shadows            | `primitive.shadow`           | `--shadow-{size}`                            |
+| Gradient           | `primitive.gradient`         | `--gradient-brand`                           |
+| Semantic colors    | `semantic.color`             | `--{name}` (e.g. `--text-primary`)           |
+| Typography desktop | `typography.desktop`         | `--{style}-{prop}` (e.g. `--heading-l-size`) |
+| Typography mobile  | `typography.mobile`          | Same names, inside `@media` block            |
 
 ### What Gets Committed vs. Generated
 
