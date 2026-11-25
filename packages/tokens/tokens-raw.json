@@ -1209,16 +1209,6 @@
       }
     },
     "Background": {
-      "background-default": {
-        "$extensions": {
-          "com.figma.scopes": [
-            "FRAME_FILL"
-          ],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$value": "{Neutrals.white}",
-        "$type": "color"
-      },
       "background-input": {
         "$extensions": {
           "com.figma.scopes": [
@@ -1227,16 +1217,6 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$value": "{Neutrals.white}",
-        "$type": "color"
-      },
-      "background-hover": {
-        "$extensions": {
-          "com.figma.scopes": [
-            "FRAME_FILL"
-          ],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$value": "{Grey.100}",
         "$type": "color"
       },
       "background-active": {
@@ -1318,16 +1298,6 @@
       }
     },
     "Border": {
-      "border-soft": {
-        "$extensions": {
-          "com.figma.scopes": [
-            "STROKE_COLOR"
-          ],
-          "com.figma.hiddenFromPublishing": false
-        },
-        "$value": "{Grey.100}",
-        "$type": "color"
-      },
       "border-medium": {
         "$extensions": {
           "com.figma.scopes": [

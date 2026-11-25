@@ -143,9 +143,7 @@ export const interactiveSecondary = "var(--color-neutrals-white)";
 export const interactiveSecondaryHover = "var(--color-green-75)";
 export const interactiveSecondaryActive = "var(--color-green-100)";
 export const interactiveText = "var(--color-green-600)";
-export const backgroundDefault = "var(--color-neutrals-white)";
 export const backgroundInput = "var(--color-neutrals-white)";
-export const backgroundHover = "var(--color-grey-100)";
 export const backgroundActive = "var(--color-green-50)";
 export const backgroundHighlight = "var(--color-khaki-75)";
 export const backgroundInfo = "var(--color-grey-700)";
@@ -154,7 +152,6 @@ export const backgroundControl = "var(--color-grey-75)";
 export const backgroundCard = "var(--color-neutrals-white)";
 export const backgroundHoverMedium = "var(--color-grey-100)";
 export const backgroundHoverLight = "var(--color-grey-75)";
-export const borderSoft = "var(--color-grey-100)";
 export const borderMedium = "var(--color-grey-200)";
 export const borderStrong = "var(--color-grey-400)";
 export const borderActive = "var(--color-green-500)";
@@ -521,9 +518,7 @@ export default {
   "interactive-secondary-hover": "var(--color-green-75)",
   "interactive-secondary-active": "var(--color-green-100)",
   "interactive-text": "var(--color-green-600)",
-  "background-default": "var(--color-neutrals-white)",
   "background-input": "var(--color-neutrals-white)",
-  "background-hover": "var(--color-grey-100)",
   "background-active": "var(--color-green-50)",
   "background-highlight": "var(--color-khaki-75)",
   "background-info": "var(--color-grey-700)",
@@ -532,7 +527,6 @@ export default {
   "background-card": "var(--color-neutrals-white)",
   "background-hover-medium": "var(--color-grey-100)",
   "background-hover-light": "var(--color-grey-75)",
-  "border-soft": "var(--color-grey-100)",
   "border-medium": "var(--color-grey-200)",
   "border-strong": "var(--color-grey-400)",
   "border-active": "var(--color-green-500)",

@@ -181,9 +181,7 @@
   --interactive-secondary-hover: var(--color-green-75);
   --interactive-secondary-active: var(--color-green-100);
   --interactive-text: var(--color-green-600);
-  --background-default: var(--color-neutrals-white);
   --background-input: var(--color-neutrals-white);
-  --background-hover: var(--color-grey-100);
   --background-active: var(--color-green-50);
   --background-highlight: var(--color-khaki-75);
   --background-info: var(--color-grey-700);
@@ -192,7 +190,6 @@
   --background-card: var(--color-neutrals-white);
   --background-hover-medium: var(--color-grey-100);
   --background-hover-light: var(--color-grey-75);
-  --border-soft: var(--color-grey-100);
   --border-medium: var(--color-grey-200);
   --border-strong: var(--color-grey-400);
   --border-active: var(--color-green-500);
@@ -261,9 +258,7 @@
   --ckw-interactive-secondary-hover: var(--color-green-75);
   --ckw-interactive-secondary-active: var(--color-green-100);
   --ckw-interactive-text: var(--color-green-600);
-  --ckw-background-default: var(--color-neutrals-white);
   --ckw-background-input: var(--color-neutrals-white);
-  --ckw-background-hover: var(--color-grey-100);
   --ckw-background-active: var(--color-green-50);
   --ckw-background-highlight: var(--color-khaki-75);
   --ckw-background-info: var(--color-grey-700);
@@ -272,7 +267,6 @@
   --ckw-background-card: var(--color-neutrals-white);
   --ckw-background-hover-medium: var(--color-grey-100);
   --ckw-background-hover-light: var(--color-grey-75);
-  --ckw-border-soft: var(--color-grey-100);
   --ckw-border-medium: var(--color-grey-200);
   --ckw-border-strong: var(--color-grey-400);
   --ckw-border-active: var(--color-green-500);

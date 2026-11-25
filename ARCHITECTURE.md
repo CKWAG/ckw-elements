@@ -326,7 +326,7 @@ They reference primitives via `var()` — this is what enables theming.
   --interactive-primary-hover: var(--color-green-700);
 
   /* Background */
-  --background-default: var(--color-neutrals-white);
+  --background-card: var(--color-neutrals-white);
   --background-canvas: var(--color-grey-50);
 
   /* Border */
@@ -357,7 +357,7 @@ Dark mode is structurally prepared from day one, even though no dark mode exists
 /* Light mode (default) — already filled with all 76 semantic tokens */
 :root {
   --text-primary: var(--color-grey-800);
-  --background-default: var(--color-neutrals-white);
+  --background-card: var(--color-neutrals-white);
   /* ... */
 }
 
@@ -365,7 +365,7 @@ Dark mode is structurally prepared from day one, even though no dark mode exists
 [data-theme='dark'] {
   /* When dark mode is designed:
      --text-primary: var(--color-grey-100);
-     --background-default: var(--color-grey-900);
+     --background-card: var(--color-grey-900);
   */
 }
 ```
@@ -383,8 +383,8 @@ When dark mode is eventually designed in Figma:
 | ----------- | ----- | ------------------------------------------------- |
 | Text        | 6     | `--text-primary`, `--text-on-interactive-primary` |
 | Interactive | 7     | `--interactive-primary`, `--interactive-text`     |
-| Background  | 8     | `--background-default`, `--background-canvas`     |
-| Border      | 6     | `--border-soft`, `--border-active`                |
+| Background  | 8     | `--background-card`, `--background-canvas`        |
+| Border      | 6     | `--border-light`, `--border-active`               |
 | Status      | 12    | `--status-error`, `--status-success-text`         |
 | Chart       | 35    | `--chart-green-dark`, `--chart-blue-medium`       |
 | Decorative  | 2     | `--decorative-light`, `--decorative-dark`         |
