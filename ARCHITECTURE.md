@@ -110,7 +110,7 @@ ckw-elements/
 | Style Dictionary | 4.x      | Token transformation (JSON → CSS/JS)     |
 | Tokens Studio    | (Plugin) | Figma plugin — exports Variables as JSON |
 | React            | 19       | Component library framework              |
-| TypeScript       | 5.x      | Type safety (strict mode planned)        |
+| TypeScript       | 7.x      | Type safety (strict mode)                |
 | Storybook        | 10.x     | Documentation site + component explorer  |
 | Vite             | 8.x      | Build tool (via @storybook/react-vite)   |
 

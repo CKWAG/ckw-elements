@@ -299,6 +299,8 @@ Only these title CSS classes exist in `docs.css`: `specs-title-4xl`, `specs-titl
   after checking the changelog and peer dependency ranges. For Style Dictionary, diff
   `packages/tokens/dist/*` before and after; the output must not change unintentionally.
 - Keep all Storybook packages (`storybook`, `@storybook/*`) on the same version.
+- TypeScript 7 (`tsc`) ships no JavaScript compiler API. Before adding a tool that does
+  `import 'typescript'`, read the TypeScript 7 entry in `KNOWN_ISSUES.md`.
 - Published packages: keep `peerDependencies` (`react`, `react-dom` `>=18 <20`) wide; only
   narrow them with a breaking changeset. Do not add runtime `dependencies` without a reason.
 - pnpm settings (`onlyBuiltDependencies`, `overrides`) live in the root `package.json` `pnpm`
@@ -376,7 +378,7 @@ Rules for agent-facing docs:
 
 ## Known Issues
 
-See `KNOWN_ISSUES.md` for component-level constraints (e.g. `Select` options cannot use an empty
+See `KNOWN_ISSUES.md` for component and tooling constraints (e.g. `Select` options cannot use an empty
 string value).
 
 | #   | Issue                                                                              |
