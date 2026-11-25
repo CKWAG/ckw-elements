@@ -2,7 +2,7 @@
  * Card Styles
  *
  * Uses only semantic design tokens from @ckwag/elements-tokens.
- * Static card: shadow-xs. Interactive card (link): shadow-s, hover shadow-m,
+ * Static card: 1px border-soft, shadow-xs. Interactive card (link): same border, shadow-s, hover shadow-m,
  * focus ring 2px border-active with 2px offset (concentric to the card radius).
  * Padding: medium (16px), large (24px).
  */
@@ -18,7 +18,9 @@
   flex-direction: column;
   gap: var(--spacing-m);
   min-width: 0;
-  padding: var(--ckw-card-padding);
+  /* the 1px border sits inside the box (like the Figma inside stroke): subtract it so the content keeps its position */
+  padding: calc(var(--ckw-card-padding) - var(--border-weight-s));
+  border: var(--border-weight-s) solid var(--border-soft);
   border-radius: var(--border-radius-l);
   background-color: var(--background-default);
   box-shadow: var(--shadow-xs);
@@ -138,7 +140,7 @@
 
 @media (forced-colors: active) {
   .ckw-card {
-    border: var(--border-weight-s) solid CanvasText;
+    border-color: CanvasText;
   }
 
   .ckw-card--interactive {
