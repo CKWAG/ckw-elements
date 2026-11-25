@@ -49,6 +49,12 @@ global pnpm versions switch to it automatically.
 - **Pre-commit hook** — Husky runs lint-staged (Prettier on staged files) and `pnpm typecheck`.
 - **CI** — `.github/workflows/ci.yml` on push/PR to `main`.
 
+The CI workflow runs Chromatic after its checks pass on pull requests, pushes to `main`, merge
+queues and manual dispatch. It requires the `CHROMATIC_PROJECT_TOKEN` repository secret and human
+approval of visual changes; see [Visual regression review](README.md#visual-regression-review) for
+setup, required checks and fork limitations. Storybook deployment waits for the full CI workflow,
+including Chromatic.
+
 No ESLint or test runner is configured. The `lint` scripts are placeholders. Do not add either
 unless explicitly asked.
 

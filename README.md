@@ -236,6 +236,33 @@ We welcome contributions! Here's how to get started:
 4. Verify visually in Storybook
 5. Open a Pull Request
 
+### Visual regression review
+
+After CI checks succeed, [Chromatic](https://www.chromatic.com/storybook) captures Storybook stories
+on pull requests, pushes to `main`, and merge queues and compares them with approved baselines.
+The CI workflow can also be started manually from GitHub Actions. Visual changes fail the
+**Visual regression** job until reviewed; they are not automatically accepted. Storybook deployment
+on `main` waits for the full CI workflow, including Chromatic.
+
+1. Open the Chromatic build linked from the workflow or pull request and inspect the visual changes.
+2. Accept intentional changes as baselines, or reject them and push a fix. New stories need review
+   as well, even when Chromatic has no previous snapshot to compare.
+3. After accepting changes, rerun the failed **Visual regression** job. If UI Review is enabled,
+   resolve discussions and obtain the assigned reviewers' approval there too.
+
+Maintainers must create a Chromatic project for this repository, install its GitHub app, enable UI
+Review, and add its project token as the GitHub Actions repository secret `CHROMATIC_PROJECT_TOKEN`.
+Run the workflow on `main` to establish the initial baseline, then update existing branches from
+`main`. Configure `Visual regression` and Chromatic's `UI Review` as required status checks in the
+repository's branch protection/ruleset; without those settings, GitHub does not block merging.
+Assign default reviewers in Chromatic when approval by specific teammates is required.
+
+Secrets are not available to forked pull requests. A maintainer can review the code and open a pull
+request from a branch in this repository to run Chromatic without exposing the token. Pull requests
+created by workflows using `GITHUB_TOKEN` do not trigger CI; close and reopen the pull request or
+push a commit to it. Chromatic uploads the built Storybook, including its static assets, so ensure
+their licensing permits hosting there before enabling the integration.
+
 ### Adding a Component
 
 ```
