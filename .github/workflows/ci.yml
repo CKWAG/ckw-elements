@@ -32,6 +32,11 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
+      - name: Check icon Code Connect mappings are up to date
+        run: |
+          node scripts/generate-icon-code-connect.mjs
+          git diff --exit-code packages/icons/code-connect/
+
       - name: Build tokens
         run: pnpm --filter @ckwag/elements-tokens run build
 
