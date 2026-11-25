@@ -57,10 +57,21 @@ When the release pull request is merged, the same workflow builds the packages,
 validates release metadata, dry-runs npm packing, publishes the public packages
 to npm, and creates GitHub releases.
 
-## Required Secret
+## Trusted Publishing
 
-The repository must define `NPM_TOKEN` with publish permission for the
-`@ckwag` npm scope. GitHub Actions publishes with npm provenance enabled.
+Each public package must have a GitHub Actions trusted publisher configured on
+npm for the workflow that publishes it. In each package's npm settings, add
+the following publishers and enable **Allow npm publish**:
+
+| Organization | Repository     | Workflow filename      | Environment |
+| ------------ | -------------- | ---------------------- | ----------- |
+| `CKWAG`      | `ckw-elements` | `publish-dev.yml`      | Leave empty |
+| `CKWAG`      | `ckw-elements` | `release-packages.yml` | Leave empty |
+
+New configurations expire unless their first publish succeeds within two days.
+Set up the dev publishers shortly before merging a change to `main`, and the
+stable publishers shortly before publishing a GitHub Release. GitHub Actions
+publishes with npm provenance enabled; no npm publishing token is needed.
 
 ## Local Validation
 
