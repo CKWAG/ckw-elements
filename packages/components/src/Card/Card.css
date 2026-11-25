@@ -20,9 +20,9 @@
   min-width: 0;
   /* the 1px border sits inside the box (like the Figma inside stroke): subtract it so the content keeps its position */
   padding: calc(var(--ckw-card-padding) - var(--border-weight-s));
-  border: var(--border-weight-s) solid var(--border-soft);
+  border: var(--border-weight-s) solid var(--border-light);
   border-radius: var(--border-radius-l);
-  background-color: var(--background-default);
+  background-color: var(--background-card);
   box-shadow: var(--shadow-xs);
   color: var(--text-primary);
   font-family: var(--font-family-brand), sans-serif;

@@ -52,7 +52,7 @@ export function BorderWeightPreview({ token }: BorderWeightPreviewProps) {
           borderStyle: isNone ? 'dashed' : 'solid',
           borderColor: isNone ? 'var(--border-strong)' : undefined,
           borderRadius: '8px',
-          backgroundColor: 'var(--background-default)',
+          backgroundColor: 'var(--background-card)',
         }}
       />
       <div style={{ textAlign: 'center' }}>

@@ -366,9 +366,9 @@
   gap: var(--spacing-xl);
   max-width: 920px;
   padding: var(--spacing-l);
-  border: var(--border-weight-s) solid var(--border-soft);
+  border: var(--border-weight-s) solid var(--border-light);
   border-radius: var(--border-radius-s);
-  background: var(--background-default);
+  background: var(--background-card);
 }
 
 .sb-unstyled .icon-playground__preview {
@@ -376,7 +376,7 @@
   place-items: center;
   min-height: 180px;
   color: var(--text-primary);
-  border: var(--border-weight-s) solid var(--border-soft);
+  border: var(--border-weight-s) solid var(--border-light);
   border-radius: var(--border-radius-s);
   background: var(--background-canvas);
 }
@@ -408,7 +408,7 @@
   padding: var(--spacing-xs) var(--spacing-s);
   border: var(--border-weight-s) solid var(--border-medium);
   border-radius: var(--border-radius-s);
-  background: var(--background-default);
+  background: var(--background-card);
   color: var(--text-primary);
   font-family: var(--font-family-brand), sans-serif !important;
   font-size: var(--body-s-size) !important;
@@ -434,7 +434,7 @@
   padding: var(--spacing-m);
   border-radius: var(--border-radius-s);
   background: var(--background-canvas);
-  border: var(--border-weight-s) solid var(--border-soft);
+  border: var(--border-weight-s) solid var(--border-light);
 }
 
 .sb-unstyled .icon-playground__actions {
@@ -456,10 +456,10 @@
   gap: var(--spacing-s);
   min-height: 72px;
   padding: var(--spacing-m);
-  border: var(--border-weight-s) solid var(--border-soft);
+  border: var(--border-weight-s) solid var(--border-light);
   border-radius: var(--border-radius-s);
   color: var(--text-primary);
-  background: var(--background-default);
+  background: var(--background-card);
 }
 
 .sb-unstyled .icon-copy-card__meta {
@@ -490,7 +490,7 @@
   border: var(--border-weight-s) solid var(--border-medium);
   border-radius: var(--border-radius-s);
   color: var(--interactive-text);
-  background: var(--background-default);
+  background: var(--background-card);
   cursor: pointer;
   font-family: var(--font-family-brand), sans-serif !important;
   font-size: var(--body-s-size) !important;
@@ -502,7 +502,7 @@
 .sb-unstyled .icon-copy-button:hover {
   border-color: var(--interactive-primary-hover);
   color: var(--interactive-primary-hover);
-  background: var(--background-hover);
+  background: var(--background-hover-medium);
 }
 
 @media (max-width: 767px) {
@@ -541,9 +541,9 @@
 
 .sb-unstyled .release-version-card,
 .sb-unstyled .release-note {
-  border: var(--border-weight-s) solid var(--border-soft);
+  border: var(--border-weight-s) solid var(--border-light);
   border-radius: var(--border-radius-s);
-  background: var(--background-default);
+  background: var(--background-card);
 }
 
 .sb-unstyled .release-version-card {
@@ -681,7 +681,7 @@
   margin-top: var(--spacing-2xl);
   margin-bottom: var(--spacing-xl);
   padding: var(--spacing-l);
-  border: var(--border-weight-s) solid var(--border-soft);
+  border: var(--border-weight-s) solid var(--border-light);
   border-radius: var(--border-radius-s);
   background: var(--background-canvas);
 }
@@ -775,7 +775,7 @@
 .sb-unstyled .docs-table tbody td {
   padding: var(--spacing-s) var(--spacing-m);
   color: var(--text-primary) !important;
-  border-bottom: var(--border-weight-s) solid var(--border-soft);
+  border-bottom: var(--border-weight-s) solid var(--border-light);
   vertical-align: middle;
   font-family: var(--font-family-brand), sans-serif !important;
   font-size: var(--body-s-size) !important;
@@ -879,7 +879,7 @@
   width: 200px;
   height: 140px;
   border-radius: var(--border-radius-m);
-  background: var(--background-default);
+  background: var(--background-card);
 }
 
 /* ============================================
@@ -890,7 +890,7 @@
   width: 80px;
   height: 80px;
   border: var(--border-weight-m) solid var(--interactive-primary);
-  background: var(--background-default);
+  background: var(--background-card);
 }
 
 /* ============================================

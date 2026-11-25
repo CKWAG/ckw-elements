@@ -83,7 +83,7 @@
   overflow: hidden;
   padding: var(--spacing-xs);
   border-radius: var(--border-radius-m);
-  background-color: var(--background-default);
+  background-color: var(--background-card);
   box-shadow: var(--shadow-m);
   font-family: var(--font-family-brand), sans-serif;
 }
@@ -121,7 +121,7 @@
 
 /* Hover and keyboard highlight */
 .ckw-select__item[data-highlighted] {
-  background-color: var(--background-hover);
+  background-color: var(--background-hover-medium);
 }
 
 .ckw-select__item[data-disabled] {

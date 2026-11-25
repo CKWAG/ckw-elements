@@ -65,7 +65,7 @@ import rawTokens from '@ckwag/elements-tokens/tokens.json';
 
 ## Styling Rules
 
-- Use only semantic tokens for component colors: `--text-primary`, `--background-default`, `--interactive-primary`, `--border-soft`.
+- Use only semantic tokens for component colors: `--text-primary`, `--background-card`, `--interactive-primary`, `--border-light`.
 - Do not use primitive color tokens in product components: avoid `--color-green-600`, `--color-grey-800`, and similar primitives.
 - Never hardcode hex colors in repository UI code except Storybook theme configuration where Storybook requires raw colors.
 - Use CKW green for primary actions. Do not substitute blue as the primary brand color.

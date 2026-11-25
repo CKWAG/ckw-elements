@@ -29,9 +29,9 @@ export function Card({ title, children, variant = 'default' }: CardProps) {
     <div
       style={{
         background:
-          variant === 'highlighted' ? 'var(--background-active)' : 'var(--background-default)',
+          variant === 'highlighted' ? 'var(--background-active)' : 'var(--background-card)',
         border: `var(--border-weight-s) solid ${
-          variant === 'highlighted' ? 'var(--border-active)' : 'var(--border-soft)'
+          variant === 'highlighted' ? 'var(--border-active)' : 'var(--border-light)'
         }`,
         borderRadius: 'var(--border-radius-s)',
         padding: 'var(--spacing-l)',
@@ -80,12 +80,12 @@ export function Card({ title, children, variant = 'default' }: CardProps) {
 
 | Element                | Background                    | Border                    | Text                              |
 | ---------------------- | ----------------------------- | ------------------------- | --------------------------------- |
-| Card                   | `--background-default`        | `--border-soft`           | `--text-primary`                  |
+| Card                   | `--background-card`           | `--border-light`          | `--text-primary`                  |
 | Card (selected)        | `--background-active`         | `--border-active`         | `--text-primary`                  |
 | Input                  | `--background-input`          | `--border-medium`         | `--text-primary`                  |
 | Input (focused)        | `--background-input`          | `--border-active`         | `--text-primary`                  |
 | Input (error)          | `--background-input`          | `--status-error-border`   | `--status-error-text`             |
-| Inline message         | `--background-default`        | status rail token         | `--text-primary`                  |
+| Inline message         | `--background-card`           | status rail token         | `--text-primary`                  |
 | Button primary         | `--interactive-primary`       | none                      | `--text-on-interactive-primary`   |
 | Button primary (hover) | `--interactive-primary-hover` | none                      | `--text-on-interactive-primary`   |
 | Button secondary       | `--interactive-secondary`     | `--interactive-primary`   | `--text-on-interactive-secondary` |

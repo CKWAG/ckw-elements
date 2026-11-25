@@ -25,7 +25,7 @@
   padding: var(--spacing-2xs);
   background-color: var(--background-control);
   /* inset border keeps the track at 40px, like the Figma component */
-  box-shadow: inset 0 0 0 var(--border-weight-s) var(--border-soft);
+  box-shadow: inset 0 0 0 var(--border-weight-s) var(--border-light);
   border-radius: var(--border-radius-full);
 }
 
@@ -129,7 +129,7 @@
 
 /* Hover (non-active only) */
 .ckw-segmented-control__segment:hover:not(.ckw-segmented-control__segment--active) {
-  background-color: var(--background-hover);
+  background-color: var(--background-hover-medium);
 }
 
 /* Active — visuals come from the indicator behind, keep segment transparent */
@@ -222,7 +222,7 @@
 
 .ckw-segmented-control--state-hover
   .ckw-segmented-control__segment:first-of-type:not(.ckw-segmented-control__segment--active) {
-  background-color: var(--background-hover);
+  background-color: var(--background-hover-medium);
 }
 
 .ckw-segmented-control--state-focus-visible .ckw-segmented-control__segment:first-of-type {

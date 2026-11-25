@@ -20,9 +20,9 @@ Then use semantic tokens:
 
 ```css
 .card {
-  background: var(--background-default);
+  background: var(--background-card);
   color: var(--text-primary);
-  border: var(--border-weight-s) solid var(--border-soft);
+  border: var(--border-weight-s) solid var(--border-light);
   border-radius: var(--border-radius-s);
   padding: var(--spacing-l);
 }
