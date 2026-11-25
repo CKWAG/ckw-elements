@@ -1,7 +1,15 @@
 import React from 'react';
+import './LoadingSpinner.css';
+
+export type LoadingSpinnerVariant = 'brand' | 'inline';
 
 export interface LoadingSpinnerProps {
-  /** Width and height of the spinner in pixels. */
+  /**
+   * `brand` is the official CKW spinner (orbiting dots) for content and pages.
+   * `inline` is a single rotating line in the current text colour for components such as Button.
+   */
+  variant?: LoadingSpinnerVariant;
+  /** Width and height of the spinner in pixels. Defaults to 20 (brand) or 24 (inline). */
   size?: number;
   /** Additional CSS class name. */
   className?: string;
@@ -10,12 +18,50 @@ export interface LoadingSpinnerProps {
 let idCounter = 0;
 
 /**
- * Animated loading spinner with orbiting dots in CKW brand green shades.
+ * Loading spinner in two variants.
  *
- * Uses an inline SVG with SMIL animations — no external dependencies needed.
- * Each instance generates a unique filter ID to avoid SVG reference collisions.
+ * `brand` (default) shows orbiting dots in CKW brand green shades and must not be recoloured.
+ * `inline` is a 120° line (1.67px stroke, round caps) in `currentColor` that rotates 360° in
+ * 800 ms, linear, endless (2400 ms with `prefers-reduced-motion`). It matches the Inline
+ * Spinner component in Figma.
  */
-export function LoadingSpinner({ size = 20, className }: LoadingSpinnerProps) {
+export function LoadingSpinner({ variant = 'brand', size, className }: LoadingSpinnerProps) {
+  if (variant === 'inline') {
+    return <InlineSpinner size={size ?? 24} className={className} />;
+  }
+  return <BrandSpinner size={size ?? 20} className={className} />;
+}
+
+interface SpinnerImplProps {
+  size: number;
+  className?: string;
+}
+
+/** Single rotating line in the current text colour. Path exported from the Figma component. */
+function InlineSpinner({ size, className }: SpinnerImplProps) {
+  const classes = ['ckw-loading-spinner--inline', className].filter(Boolean).join(' ');
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={classes}
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      role="presentation"
+      style={{ display: 'block' }}
+    >
+      <path
+        d="M12 2.00034C19.698 2.00034 24.5092 10.3337 20.6602 17.0003C20.43 17.3987 19.92 17.5351 19.5215 17.305C19.1231 17.0748 18.9867 16.5648 19.2168 16.1664C22.4241 10.6109 18.4149 3.66635 12 3.66635C11.5398 3.66635 11.167 3.29359 11.167 2.83334C11.167 2.3731 11.5398 2.00034 12 2.00034Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Official CKW spinner with orbiting dots. Each instance gets a unique filter ID. */
+function BrandSpinner({ size, className }: SpinnerImplProps) {
   const [filterId] = React.useState(() => `ckw-spinner-filter-${++idCounter}`);
 
   return (
