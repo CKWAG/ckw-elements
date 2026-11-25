@@ -34,13 +34,13 @@ _Ready_, the sync to code is automatic: the next run of the "Icons sync" workflo
 
 ## 2. Who does what
 
-| Step               | Who                      | How                                                                                 | Result                                                         |
-| ------------------ | ------------------------ | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Export and drop    | Designer                 | Export from Streamline Nova Line as SVG (20px, 2px padding), drop into the dropzone | Layers in the `Icon Dropzone` frame                            |
-| Check, name, place | Icon maintainer + Claude | Say "neue Icons sind in der Dropzone" in Claude Code                                | Icons in the Figma index with status _Ready_, Change Log entry |
-| Sync to code       | GitHub Action or local Node | Nightly/manual workflow, or `pnpm icons:sync` locally                             | Pull request or updated SVGs, generated code and changeset     |
-| Review and merge   | Developer                  | Review the pull request and "Needs attention" list; run CI before merging         | `main`                                                         |
-| Publish            | Maintainer                 | Publish a GitHub Release `vX.Y.Z` (tag-driven, see `RELEASE.md`)                    | npm `@ckwag/elements-icons`                                    |
+| Step               | Who                         | How                                                                                 | Result                                                         |
+| ------------------ | --------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Export and drop    | Designer                    | Export from Streamline Nova Line as SVG (20px, 2px padding), drop into the dropzone | Layers in the `Icon Dropzone` frame                            |
+| Check, name, place | Icon maintainer + Claude    | Say "neue Icons sind in der Dropzone" in Claude Code                                | Icons in the Figma index with status _Ready_, Change Log entry |
+| Sync to code       | GitHub Action or local Node | Nightly/manual workflow, or `pnpm icons:sync` locally                               | Pull request or updated SVGs, generated code and changeset     |
+| Review and merge   | Developer                   | Review the pull request and "Needs attention" list; run CI before merging           | `main`                                                         |
+| Publish            | Maintainer                  | Publish a GitHub Release `vX.Y.Z` (tag-driven, see `RELEASE.md`)                    | npm `@ckwag/elements-icons`                                    |
 
 The Figma file is "CKW Elements" (key `wGx1Y74QZIsy40UATyN6bI`), page "Assets", frame **Icons**:
 <https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/?node-id=164-2100>. The two Claude steps are one skill,

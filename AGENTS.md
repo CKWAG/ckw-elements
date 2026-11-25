@@ -30,7 +30,7 @@ Fix the stale doc in the same pull request (see [Keeping Docs in Sync](#keeping-
 | Typecheck icons, components and Storybook    | `pnpm typecheck`                                            |
 | Generate icon components from `svg/`         | `pnpm icons:generate`                                       |
 | Check icons are in sync (CI)                 | `pnpm icons:check`                                          |
-| Sync Ready icons from Figma                  | `pnpm icons:sync` (`--dry-run` to report only)               |
+| Sync Ready icons from Figma                  | `pnpm icons:sync` (`--dry-run` to report only)              |
 | Copy root docs to Storybook `public/`        | `pnpm docs:sync` (check: `pnpm docs:check`)                 |
 | Format code                                  | `pnpm format`                                               |
 | Check formatting (CI)                        | `pnpm format:check`                                         |
