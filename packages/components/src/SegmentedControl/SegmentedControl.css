@@ -234,3 +234,26 @@
   opacity: 0.4;
   pointer-events: none;
 }
+
+/* ============================================
+   Windows High Contrast (forced colors)
+   The track shadow and the white indicator disappear there, so the track gets
+   a real border and the selected segment a Highlight border.
+   ============================================ */
+
+@media (forced-colors: active) {
+  /* outline instead of border: keeps the track at 40px */
+  .ckw-segmented-control {
+    outline: var(--border-weight-s) solid CanvasText;
+    outline-offset: calc(-1 * var(--border-weight-s));
+  }
+
+  /* the transparent segment border would otherwise be forced to a visible colour */
+  .ckw-segmented-control__segment {
+    border-color: Canvas;
+  }
+
+  .ckw-segmented-control__indicator {
+    border: var(--border-weight-m) solid Highlight;
+  }
+}

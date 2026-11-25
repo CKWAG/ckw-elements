@@ -253,14 +253,36 @@ export const Loading: Story = {
 export const Icons: Story = {
   render: () => (
     <div style={sectionStyle}>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Leading</span>
-        <Button leadingIcon={<IconPlaceholder />}>Label</Button>
-      </div>
-      <div style={rowStyle}>
-        <span style={labelStyle}>Trailing</span>
-        <Button trailingIcon={<IconPlaceholder />}>Label</Button>
-      </div>
+      {(['large', 'medium', 'small'] as const).map((size) => (
+        <div key={size} style={rowStyle}>
+          <span style={labelStyle}>{size}</span>
+          <Button size={size} leadingIcon={<IconPlaceholder />}>
+            Rechnung herunterladen
+          </Button>
+          <Button size={size} variant="secondary" trailingIcon={<IconPlaceholder />}>
+            Weiter zum nächsten Schritt
+          </Button>
+        </div>
+      ))}
+    </div>
+  ),
+};
+
+/** With `href` the button renders as a real link (`<a>`) for actions that navigate. */
+export const AsLink: Story = {
+  name: 'As Link',
+  render: () => (
+    <div style={{ display: 'flex', gap: '16px', flexWrap: 'wrap' }}>
+      <Button href="#rechnungen">Zu den Rechnungen</Button>
+      <Button href="#verbrauch" variant="secondary">
+        Stromverbrauch analysieren
+      </Button>
+      <Button href="#hilfe" variant="tertiary" target="_blank">
+        Hilfe (neuer Tab)
+      </Button>
+      <Button href="#gesperrt" disabled>
+        Deaktivierter Link
+      </Button>
     </div>
   ),
 };
