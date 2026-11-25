@@ -1288,6 +1288,33 @@
         },
         "$value": "{Grey.75}",
         "$type": "color"
+      },
+      "background-card": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ]
+        },
+        "$value": "{Neutrals.white}",
+        "$type": "color"
+      },
+      "background-hover-medium": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ]
+        },
+        "$value": "{Grey.100}",
+        "$type": "color"
+      },
+      "background-hover-light": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "FRAME_FILL"
+          ]
+        },
+        "$value": "{Grey.75}",
+        "$type": "color"
       }
     },
     "Border": {
@@ -1349,6 +1376,15 @@
           "com.figma.hiddenFromPublishing": false
         },
         "$value": "{Green.100}",
+        "$type": "color"
+      },
+      "border-light": {
+        "$extensions": {
+          "com.figma.scopes": [
+            "STROKE_COLOR"
+          ]
+        },
+        "$value": "{Grey.100}",
         "$type": "color"
       }
     },
@@ -1440,7 +1476,7 @@
           ],
           "com.figma.hiddenFromPublishing": false
         },
-        "$value": "{Yellow.400}",
+        "$value": "{Yellow.600}",
         "$type": "color"
       },
       "status-info": {
@@ -2449,7 +2485,7 @@
           "com.figma.scopes": [
             "WIDTH_HEIGHT"
           ],
-          "com.figma.hiddenFromPublishing": true
+          "com.figma.hiddenFromPublishing": false
         },
         "$value": 1024,
         "$type": "number"
@@ -2459,7 +2495,7 @@
           "com.figma.scopes": [
             "WIDTH_HEIGHT"
           ],
-          "com.figma.hiddenFromPublishing": true
+          "com.figma.hiddenFromPublishing": false
         },
         "$value": 1440,
         "$type": "number"
@@ -3466,7 +3502,7 @@
           "com.figma.scopes": [
             "WIDTH_HEIGHT"
           ],
-          "com.figma.hiddenFromPublishing": true
+          "com.figma.hiddenFromPublishing": false
         },
         "$value": 852,
         "$type": "number"
@@ -3476,7 +3512,7 @@
           "com.figma.scopes": [
             "WIDTH_HEIGHT"
           ],
-          "com.figma.hiddenFromPublishing": true
+          "com.figma.hiddenFromPublishing": false
         },
         "$value": 393,
         "$type": "number"
