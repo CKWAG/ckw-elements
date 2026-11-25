@@ -3,6 +3,7 @@
  *
  * Uses only semantic design tokens from @ckwag/elements-tokens.
  * Variants: Info, Success, Warning, Error.
+ * Optional actions slot below the body (Figma `Actions` slot + `Show Actions`).
  * Responsive behavior follows the Figma Desktop/Mobile variants by default.
  *
  * Layout: the status bar is an inset flex item with rounded ends that stretches
@@ -108,6 +109,16 @@
   line-height: var(--body-m-height);
   font-weight: var(--body-m-weight);
   color: var(--text-primary);
+}
+
+/* Actions slot: free content below the body, in the text column, wrapping on narrow widths. */
+.ckw-inline-message__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--spacing-m);
+  row-gap: var(--spacing-xs);
+  margin-top: var(--spacing-s);
 }
 
 /* ============================================
