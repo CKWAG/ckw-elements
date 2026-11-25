@@ -55,6 +55,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
     id,
     className,
     'aria-describedby': ariaDescribedBy,
+    'aria-invalid': ariaInvalid,
     ...rest
   },
   ref,
@@ -94,6 +95,9 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
   );
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // The browser clears `indeterminate` on click. A controlled parent owns that state, so
+    // restore it here; if the parent changes it, the effect above applies the new value.
+    if (isControlled) event.target.indeterminate = indeterminate;
     onChange?.(event);
     onCheckedChange?.(event.target.checked);
   };
@@ -120,7 +124,7 @@ export const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(functi
           defaultChecked={isControlled ? undefined : defaultChecked === true}
           onChange={handleChange}
           disabled={isDisabled}
-          aria-invalid={isInvalid || undefined}
+          aria-invalid={isInvalid ? true : ariaInvalid}
           aria-describedby={describedBy}
         />
         <span className="ckw-checkbox__mark ckw-checkbox__mark--check" aria-hidden="true">

@@ -19,6 +19,7 @@ const disabled = instance.getEnum('State', { Disabled: true });
 
 // The options are the nested Radio instances ("Option 1", "Option 2", …).
 const toValue = (text: string) => text.toLowerCase().replace(/[^a-z0-9äöü]+/g, '-');
+const quote = (text: string) => text.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 const radios = instance
   .findLayers((layer) => layer.type === 'INSTANCE' && layer.name.startsWith('Option'))
   .filter((layer) => layer.type === 'INSTANCE');
@@ -26,8 +27,14 @@ let selected = '';
 const options = radios
   .map((radio) => {
     const text = radio.getString('Label');
+    const radioDescription = radio.getBoolean('Show Description')
+      ? radio.getString('Description')
+      : '';
+    const radioDisabled = radio.getEnum('State', { Disabled: true });
     if (radio.getEnum('Checked', { True: true })) selected = toValue(text);
-    return `\n    { value: '${toValue(text)}', label: '${text}' },`;
+    return `\n    { value: '${toValue(text)}', label: '${quote(text)}'${
+      radioDescription ? `, description: '${quote(radioDescription)}'` : ''
+    }${radioDisabled ? ', disabled: true' : ''} },`;
   })
   .join('');
 

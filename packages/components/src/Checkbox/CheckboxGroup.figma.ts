@@ -28,7 +28,17 @@ const children = options
       True: ' defaultChecked',
       Indeterminate: ' defaultChecked="indeterminate"',
     });
-    return `\n  <Checkbox label="${option.getString('Label')}"${checked ?? ''} />`;
+    const optionDescription = option.getBoolean('Show Description')
+      ? option.getString('Description')
+      : '';
+    const optionError =
+      option.getEnum('State', { Error: true }) && option.getBoolean('Show Error')
+        ? option.getString('Error Text')
+        : '';
+    const optionDisabled = option.getEnum('State', { Disabled: true });
+    return `\n  <Checkbox label="${option.getString('Label')}"${checked ?? ''}${
+      optionDescription ? ` description="${optionDescription}"` : ''
+    }${optionError ? ` errorText="${optionError}"` : ''}${optionDisabled ? ' disabled' : ''} />`;
   })
   .join('');
 

@@ -13,10 +13,11 @@ const description = instance.getBoolean('Show Description')
   : '';
 const disabled = instance.getEnum('State', { Disabled: true });
 const value = label.toLowerCase().replace(/[^a-z0-9äöü]+/g, '-');
+const quote = (text: string) => text.replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 
 export default {
-  example: figma.code`{ value: '${value}', label: '${label}'${
-    description ? `, description: '${description}'` : ''
+  example: figma.code`{ value: '${value}', label: '${quote(label)}'${
+    description ? `, description: '${quote(description)}'` : ''
   }${disabled ? ', disabled: true' : ''} }`,
   imports: ["import type { RadioGroupOption } from '@ckwag/elements';"],
   id: 'radio',
