@@ -263,7 +263,7 @@
 
 .ckw-input-field--disabled .ckw-input-field__inner {
   background-color: var(--background-canvas);
-  border-color: var(--border-soft);
+  border-color: var(--border-light);
   cursor: not-allowed;
 }
 

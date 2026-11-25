@@ -78,7 +78,7 @@
 .ckw-key-value-item--total {
   margin-top: var(--spacing-xs);
   padding-top: var(--spacing-m);
-  border-top: var(--border-weight-s) solid var(--border-soft);
+  border-top: var(--border-weight-s) solid var(--border-light);
   font-size: var(--body-m-emphasized-size);
   line-height: var(--body-m-emphasized-height);
   font-weight: var(--body-m-emphasized-weight);

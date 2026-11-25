@@ -27,9 +27,9 @@
   max-width: 100%;
   /* the 1px border sits inside the box (like the Figma inside stroke): subtract it so the content keeps its position */
   padding: calc(var(--spacing-m) - var(--border-weight-s));
-  border: var(--border-weight-s) solid var(--border-soft);
+  border: var(--border-weight-s) solid var(--border-light);
   border-radius: var(--border-radius-m);
-  background-color: var(--background-default);
+  background-color: var(--background-card);
   color: var(--text-primary);
   font-family: var(--font-family-brand), sans-serif;
   box-sizing: border-box;

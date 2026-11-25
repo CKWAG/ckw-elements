@@ -179,7 +179,7 @@ export const States: Story = {
 
     const hoverStyle: React.CSSProperties = {
       ...segmentBase,
-      backgroundColor: 'var(--background-hover)',
+      backgroundColor: 'var(--background-hover-medium)',
     };
 
     const activeStyle: React.CSSProperties = {
@@ -199,7 +199,7 @@ export const States: Story = {
       ...segmentBase,
       color: 'var(--text-tertiary)',
       backgroundColor: 'var(--background-canvas)',
-      borderColor: 'var(--border-soft)',
+      borderColor: 'var(--border-light)',
       cursor: 'not-allowed',
     };
 
