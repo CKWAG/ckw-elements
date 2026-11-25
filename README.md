@@ -27,7 +27,7 @@ The result: a single source of truth for colors, typography, spacing, borders, s
 
 | Package                                         | Status    | Description                                                 |
 | ----------------------------------------------- | --------- | ----------------------------------------------------------- |
-| [`@ckwag/elements-tokens`](./packages/tokens)   | ✅ Active | 282 design tokens (CSS + JS)                                |
+| [`@ckwag/elements-tokens`](./packages/tokens)   | ✅ Active | Design tokens (CSS + JS + DTCG JSON)                        |
 | [`@ckwag/elements`](./packages/components)      | ✅ Active | React component library (ESM + types + CSS)                 |
 | [`@ckwag/elements-icons`](./packages/icons)     | ✅ Active | React SVG icon set (ESM + types)                            |
 | [`@ckwag/elements-storybook`](./apps/storybook) | ✅ Active | [Documentation site](https://ckwag.github.io/ckw-elements/) |
@@ -263,7 +263,7 @@ packages/components/src/ComponentName/
 ```
 ckw-elements/
 ├── packages/
-│   ├── tokens/              282 design tokens (CSS + JS output)
+│   ├── tokens/              Design tokens (CSS + JS output)
 │   ├── components/          React component library
 │   └── icons/               React SVG icon set
 ├── apps/
