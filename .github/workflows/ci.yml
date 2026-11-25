@@ -35,6 +35,9 @@ jobs:
       - name: Build tokens
         run: pnpm --filter @ckwag/elements-tokens run build
 
+      - name: Check CSS variables against tokens
+        run: pnpm tokens:check
+
       - name: Build components
         run: pnpm --filter @ckwag/elements run build
 

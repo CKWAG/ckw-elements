@@ -54,7 +54,8 @@
   },
   "dependencies": {
     "@ckwag/elements-icons": "workspace:*",
-    "@ckwag/elements-tokens": "workspace:*"
+    "@ckwag/elements-tokens": "workspace:*",
+    "@radix-ui/react-select": "^2.4.1"
   },
   "peerDependencies": {
     "react": ">=18 <20",

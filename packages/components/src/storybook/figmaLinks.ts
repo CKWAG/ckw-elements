@@ -54,6 +54,13 @@ export const figmaReferences = {
     scope: 'component-node',
     note: 'Exact Password Input component source in the CKW Elements Figma design system.',
   },
+  select: {
+    componentName: 'Select',
+    url: getFigmaNodeUrl('1510:369'),
+    nodeId: '1510:369',
+    scope: 'component-node',
+    note: 'Exact Select component source in the CKW Elements Figma design system.',
+  },
   segmentedControl: {
     componentName: 'Segmented Control',
     url: getFigmaNodeUrl('928:624'),
