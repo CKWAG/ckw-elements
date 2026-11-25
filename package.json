@@ -23,7 +23,7 @@
     "tokens:check": "node scripts/check-css-vars.mjs"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "pnpm": ">=10"
   },
   "pnpm": {

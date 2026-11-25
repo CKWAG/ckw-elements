@@ -106,8 +106,8 @@ ckw-elements/
 | Tool             | Version  | Purpose                                  |
 | ---------------- | -------- | ---------------------------------------- |
 | pnpm             | >= 10    | Monorepo package manager (workspaces)    |
-| Node.js          | >= 20    | Runtime                                  |
-| Style Dictionary | 4.x      | Token transformation (JSON → CSS/JS)     |
+| Node.js          | >= 22    | Runtime                                  |
+| Style Dictionary | 5.x      | Token transformation (JSON → CSS/JS)     |
 | Tokens Studio    | (Plugin) | Figma plugin — exports Variables as JSON |
 | React            | 19       | Component library framework              |
 | TypeScript       | 7.x      | Type safety (strict mode)                |
@@ -178,7 +178,7 @@ decisions from Figma into consumable CSS and JavaScript outputs.
  └──────────────────────────────┬───────────────────────────────────────┘
                                 │
                      node build-tokens.mjs
-                    (runs Style Dictionary v4)
+                    (runs Style Dictionary v5)
                                 │
                    ┌────────────┴────────────┐
                    │  What it does:          │
@@ -826,7 +826,7 @@ Tokens Studio Plugin ──export──▶ tokens-raw.json
 transform-tokens.mjs ──────────▶ tokens.json ◄─── Single Source of Truth
      │                                │
      ▼                                │
-Style Dictionary v4                   │
+Style Dictionary v5                   │
      │                                │
      ├──▶ dist/tokens.css ────────────┼──▶ Storybook (global CSS)
      │                                │         │

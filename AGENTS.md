@@ -36,8 +36,9 @@ Fix the stale doc in the same pull request (see [Keeping Docs in Sync](#keeping-
 | Validate Figma Code Connect templates        | `pnpm figma:parse`                                          |
 | Build all packages                           | `pnpm -r run build`                                         |
 
-Engine requirements: **Node >= 20**, **pnpm >= 10**. CI runs Node 22. The pnpm version is pinned
-by `packageManager` in the root `package.json`; newer global pnpm versions switch to it automatically.
+Engine requirements: **Node >= 22** (Style Dictionary 5 needs it for the token build), **pnpm >= 10**.
+CI runs Node 22. The pnpm version is pinned by `packageManager` in the root `package.json`; newer
+global pnpm versions switch to it automatically.
 
 **Prettier** is configured (`.prettierrc.json`) and enforced by:
 
@@ -95,7 +96,7 @@ helpers (Figma links, design reference) used by stories; it is not part of the b
 ## Token Pipeline
 
 ```
-tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v4 → dist/tokens.{css,layered.css,js,d.ts,json}
+tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v5 → dist/tokens.{css,layered.css,js,d.ts,json}
 ```
 
 - `dist/` outputs are generated, NEVER manually edit them.

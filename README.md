@@ -19,7 +19,7 @@
 
 ## Overview
 
-CKW Elements is a design system that bridges Figma and code. Tokens are authored as Figma Variables, exported via Tokens Studio, and transformed into **CSS Custom Properties**, **JavaScript modules**, and **TypeScript declarations** through Style Dictionary v4.
+CKW Elements is a design system that bridges Figma and code. Tokens are authored as Figma Variables, exported via Tokens Studio, and transformed into **CSS Custom Properties**, **JavaScript modules**, and **TypeScript declarations** through Style Dictionary v5.
 
 The result: a single source of truth for colors, typography, spacing, borders, shadows, and React components that can be consumed directly from npm packages.
 
@@ -41,7 +41,7 @@ pnpm install
 pnpm --filter @ckwag/elements-storybook run dev
 ```
 
-> **Prerequisites:** Node.js >= 20, pnpm >= 10
+> **Prerequisites:** Node.js >= 22, pnpm >= 10
 
 Storybook opens at [localhost:6006](http://localhost:6006) with the full token documentation.
 
@@ -184,7 +184,7 @@ Figma Variables
                               ▾
                         tokens.json (DTCG)
                               │
-                     Style Dictionary v4
+                     Style Dictionary v5
                               │
                   ┌───────────┴───────────┐
                   ▾                       ▾
@@ -214,15 +214,15 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for full pipeline details.
 
 ## Tech Stack
 
-| Tool                                                          | Purpose                  |
-| ------------------------------------------------------------- | ------------------------ |
-| [pnpm](https://pnpm.io)                                       | Monorepo package manager |
-| [Style Dictionary 4](https://amzn.github.io/style-dictionary) | Token transformation     |
-| [React 19](https://react.dev)                                 | Component framework      |
-| [TypeScript 7](https://www.typescriptlang.org)                | Type safety              |
-| [Storybook 10](https://storybook.js.org)                      | Documentation            |
-| [Vite 8](https://vite.dev)                                    | Build tool               |
-| [Prettier](https://prettier.io)                               | Code formatting          |
+| Tool                                              | Purpose                  |
+| ------------------------------------------------- | ------------------------ |
+| [pnpm](https://pnpm.io)                           | Monorepo package manager |
+| [Style Dictionary 5](https://styledictionary.com) | Token transformation     |
+| [React 19](https://react.dev)                     | Component framework      |
+| [TypeScript 7](https://www.typescriptlang.org)    | Type safety              |
+| [Storybook 10](https://storybook.js.org)          | Documentation            |
+| [Vite 8](https://vite.dev)                        | Build tool               |
+| [Prettier](https://prettier.io)                   | Code formatting          |
 
 ## Contributing
 
