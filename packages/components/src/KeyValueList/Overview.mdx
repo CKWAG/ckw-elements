@@ -1,0 +1,104 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+import * as KeyValueListStories from './KeyValueList.stories';
+import * as KeyValueListPlayground from './KeyValueList.playground.stories';
+
+<Meta title="Components/Key-Value List" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Key-Value List</div>
+  <div className="docs-description">
+    A Key-Value List shows label/value pairs, for example invoice details or a cost breakdown.
+    Values are right-aligned with tabular figures, so amounts line up, and can be any content such
+    as a Badge. An optional total row is emphasized and separated by a line. Number and date
+    formatting (for example 5'956.22) is done by the app.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.keyValueList} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to configure the layout, a Badge value and the total row.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Canvas of={KeyValueListPlayground.Playground} />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls of={KeyValueListPlayground.Playground} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Inline</div>
+    <div className="docs-subsection-description">
+      The default layout puts the label (body-s, text-secondary) and the value (body-s,
+      text-primary) on one row, 8px apart. The value is right-aligned; long labels wrap.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={KeyValueListStories.Inline} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Stacked</div>
+    <div className="docs-subsection-description">
+      In narrow containers, such as invoice cards in a grid, use <code>layout="stacked"</code>: the
+      label sits above the value and rows are 12px apart.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={KeyValueListStories.Stacked} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Total</div>
+    <div className="docs-subsection-description">
+      Mark the last item with <code>total</code> for a sum such as the invoice amount. It gets a
+      separator line and body-m-emphasized text. Credits keep their minus sign and are not coloured:
+      the meaning is in the sign and the label.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={KeyValueListStories.Total} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      KeyValueList renders a description list (<code>dl</code>); each KeyValueItem is a{' '}
+      <code>div</code> with a <code>dt</code> and a <code>dd</code>, which screen readers announce
+      as term and definition. Put interactive content (links, buttons) into the value only when
+      needed, never the whole row.
+    </div>
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">All Variants</div>
+    <div className="docs-subsection-description">Both layouts with a Badge value and a total.</div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={KeyValueListStories.AllVariants} />
+</div>

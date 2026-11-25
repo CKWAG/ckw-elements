@@ -1,0 +1,153 @@
+/**
+ * Card Styles
+ *
+ * Uses only semantic design tokens from @ckwag/elements-tokens.
+ * Static card: 1px border-soft, shadow-xs. Interactive card (link): same border, shadow-s, hover shadow-m,
+ * focus ring 2px border-active with 2px offset (concentric to the card radius).
+ * Padding: medium (16px), large (24px).
+ */
+
+/* ============================================
+   Root
+   ============================================ */
+
+.ckw-card {
+  --ckw-card-padding: var(--spacing-m);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-m);
+  min-width: 0;
+  /* the 1px border sits inside the box (like the Figma inside stroke): subtract it so the content keeps its position */
+  padding: calc(var(--ckw-card-padding) - var(--border-weight-s));
+  border: var(--border-weight-s) solid var(--border-soft);
+  border-radius: var(--border-radius-l);
+  background-color: var(--background-default);
+  box-shadow: var(--shadow-xs);
+  color: var(--text-primary);
+  font-family: var(--font-family-brand), sans-serif;
+  font-size: var(--body-m-size);
+  line-height: var(--body-m-height);
+  font-weight: var(--body-m-weight);
+  box-sizing: border-box;
+}
+
+.ckw-card--padding-large {
+  --ckw-card-padding: var(--spacing-xl);
+}
+
+/* ============================================
+   Interactive (whole card is a link)
+   ============================================ */
+
+.ckw-card--interactive {
+  box-shadow: var(--shadow-s);
+  text-decoration: none;
+  cursor: pointer;
+  transition: box-shadow 150ms ease;
+}
+
+.ckw-card--interactive:hover {
+  box-shadow: var(--shadow-m);
+}
+
+.ckw-card--interactive:focus-visible {
+  outline: var(--border-weight-m) solid var(--border-active);
+  outline-offset: var(--spacing-3xs);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ckw-card--interactive {
+    transition: none;
+  }
+}
+
+/* ============================================
+   Elements
+   ============================================ */
+
+.ckw-card__header {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+}
+
+.ckw-card__icon {
+  display: flex;
+  flex: 0 0 auto;
+  padding: var(--spacing-xs);
+  border-radius: var(--border-radius-s);
+  background-color: var(--background-active);
+  color: var(--interactive-text);
+}
+
+.ckw-card__icon > svg {
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
+}
+
+.ckw-card__header-text {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ckw-card__title {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: var(--body-m-emphasized-size);
+  line-height: var(--body-m-emphasized-height);
+  font-weight: var(--body-m-emphasized-weight);
+}
+
+.ckw-card__description {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: var(--body-s-size);
+  line-height: var(--body-s-height);
+  font-weight: var(--body-s-weight);
+}
+
+.ckw-card__chevron {
+  display: flex;
+  flex: 0 0 var(--spacing-l);
+  width: var(--spacing-l);
+  height: var(--spacing-l);
+  color: var(--text-secondary);
+}
+
+.ckw-card__chevron > svg {
+  width: 100%;
+  height: 100%;
+}
+
+.ckw-card__content {
+  min-width: 0;
+}
+
+.ckw-card__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-s);
+}
+
+/* ============================================
+   Windows High Contrast (forced colors)
+   Background and shadow disappear there; a border keeps the card shape.
+   ============================================ */
+
+@media (forced-colors: active) {
+  .ckw-card {
+    border-color: CanvasText;
+  }
+
+  .ckw-card--interactive {
+    border-color: LinkText;
+  }
+
+  .ckw-card--interactive:hover {
+    border-color: Highlight;
+  }
+}
