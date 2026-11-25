@@ -112,7 +112,7 @@ ckw-elements/
 | React            | 19       | Component library framework              |
 | TypeScript       | 7.x      | Type safety (strict mode)                |
 | Storybook        | 10.x     | Documentation site + component explorer  |
-| Vite             | 6.x      | Build tool (via @storybook/react-vite)   |
+| Vite             | 8.x      | Build tool (via @storybook/react-vite)   |
 
 ### Package Status
 
