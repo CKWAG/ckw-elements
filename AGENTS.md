@@ -103,6 +103,8 @@ tokens-raw.json → transform-tokens.mjs → tokens.json → Style Dictionary v4
 - `strict: true` intent (no tsconfig yet, but write as if strict)
 - Props: always `interface`, never `type`
 - Variant unions: `export type ButtonVariant = 'primary' | 'secondary'` — no `enum`
+- Prop values are always lowercase in code (`size="large"`, `status="error"`); Figma keeps Title Case
+  (`Size=Large`) and the Code Connect templates (`*.figma.ts`) map between them
 - Type-only imports: `import type { Foo } from './bar'`
 - Named exports, not default exports (except Storybook config files)
 - One component per file, PascalCase filenames

@@ -40,6 +40,20 @@ export const figmaReferences = {
     scope: 'component-node',
     note: 'Exact Inline Message component source in the CKW Elements Figma design system.',
   },
+  badge: {
+    componentName: 'Badge',
+    url: getFigmaNodeUrl('2330:461'),
+    nodeId: '2330:461',
+    scope: 'component-node',
+    note: 'Exact Badge component source in the CKW Elements Figma design system.',
+  },
+  passwordInput: {
+    componentName: 'Password Input',
+    url: getFigmaNodeUrl('2338:183'),
+    nodeId: '2338:183',
+    scope: 'component-node',
+    note: 'Exact Password Input component source in the CKW Elements Figma design system.',
+  },
   segmentedControl: {
     componentName: 'Segmented Control',
     url: getFigmaNodeUrl('928:624'),

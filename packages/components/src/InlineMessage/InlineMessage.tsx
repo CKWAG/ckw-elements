@@ -7,8 +7,8 @@ import {
 } from '@ckwag/elements-icons';
 import './InlineMessage.css';
 
-export type InlineMessageStatus = 'Info' | 'Success' | 'Warning' | 'Error';
-export type InlineMessageBreakpoint = 'Auto' | 'Desktop' | 'Mobile';
+export type InlineMessageStatus = 'info' | 'success' | 'warning' | 'error';
+export type InlineMessageBreakpoint = 'auto' | 'desktop' | 'mobile';
 
 export interface InlineMessageProps {
   /** Optional headline shown above the body text. */
@@ -34,15 +34,15 @@ interface InlineMessageDefaultIconProps {
 }
 
 function InlineMessageDefaultIcon({ status }: InlineMessageDefaultIconProps) {
-  if (status === 'Success') {
+  if (status === 'success') {
     return <IconCheckCircleFilled />;
   }
 
-  if (status === 'Warning') {
+  if (status === 'warning') {
     return <IconWarningFilled />;
   }
 
-  if (status === 'Error') {
+  if (status === 'error') {
     return <IconWarningCircleFilled />;
   }
 
@@ -58,10 +58,10 @@ function InlineMessageDefaultIcon({ status }: InlineMessageDefaultIconProps) {
 export function InlineMessage({
   title,
   children,
-  status = 'Info',
+  status = 'info',
   icon,
   showIcon = true,
-  breakpoint = 'Auto',
+  breakpoint = 'auto',
   role = 'note',
   className,
 }: InlineMessageProps) {
@@ -70,7 +70,7 @@ export function InlineMessage({
     `ckw-inline-message--${status.toLowerCase()}`,
     title ? 'ckw-inline-message--has-title' : '',
     showIcon ? 'ckw-inline-message--has-icon' : '',
-    breakpoint !== 'Auto' ? `ckw-inline-message--breakpoint-${breakpoint.toLowerCase()}` : '',
+    breakpoint !== 'auto' ? `ckw-inline-message--breakpoint-${breakpoint.toLowerCase()}` : '',
     className ?? '',
   ]
     .filter(Boolean)

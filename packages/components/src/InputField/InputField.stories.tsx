@@ -39,6 +39,7 @@ const rowStyle: React.CSSProperties = {
 };
 
 const labelStyle: React.CSSProperties = {
+  textTransform: 'capitalize',
   fontFamily: 'var(--font-family-brand), sans-serif',
   fontSize: '14px',
   fontWeight: 500,
@@ -56,12 +57,12 @@ export const Empty: Story = {
     <div style={sectionStyle}>
       {(
         [
-          ['Default', {}],
-          ['Hover', { className: 'ckw-input-field--state-hover' }],
-          ['Active', { className: 'ckw-input-field--state-active' }],
+          ['default', {}],
+          ['hover', { className: 'ckw-input-field--state-hover' }],
+          ['active', { className: 'ckw-input-field--state-active' }],
           ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
-          ['Error', { errorText: 'Error text' }],
-          ['Disabled', { disabled: true }],
+          ['error', { errorText: 'Error text' }],
+          ['disabled', { disabled: true }],
         ] as const
       ).map(([stateLabel, props]) => (
         <div key={stateLabel} style={rowStyle}>
@@ -80,12 +81,12 @@ export const Filled: Story = {
     <div style={sectionStyle}>
       {(
         [
-          ['Default', { value: 'Input' }],
-          ['Hover', { value: 'Input', className: 'ckw-input-field--state-hover' }],
-          ['Active', { value: 'Input', className: 'ckw-input-field--state-active' }],
+          ['default', { value: 'Input' }],
+          ['hover', { value: 'Input', className: 'ckw-input-field--state-hover' }],
+          ['active', { value: 'Input', className: 'ckw-input-field--state-active' }],
           ['Focus visible', { value: 'Input', className: 'ckw-input-field--state-focus-visible' }],
-          ['Error', { value: 'Input', errorText: 'Error text' }],
-          ['Disabled', { value: 'Input', disabled: true }],
+          ['error', { value: 'Input', errorText: 'Error text' }],
+          ['disabled', { value: 'Input', disabled: true }],
         ] as const
       ).map(([stateLabel, props]) => (
         <div key={stateLabel} style={rowStyle}>
@@ -106,6 +107,28 @@ export const Specials: Story = {
         <span style={labelStyle}>Icon</span>
         <div style={fieldWidth}>
           <InputField value="Input" icon={<IconPlaceholder size={20} />} />
+        </div>
+      </div>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Prefix</span>
+        <div style={fieldWidth}>
+          <InputField label="Betrag" value="120.00" prefix="CHF" />
+        </div>
+      </div>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Suffix</span>
+        <div style={fieldWidth}>
+          <InputField label="Anlagenleistung" value="10.5" suffix="kWp" />
+        </div>
+      </div>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Description</span>
+        <div style={fieldWidth}>
+          <InputField
+            label="Vertragsnummer"
+            value="4001234567"
+            description="Sie finden die Nummer oben rechts auf Ihrer Rechnung."
+          />
         </div>
       </div>
       <div style={rowStyle}>
@@ -145,12 +168,12 @@ export const Controlled: Story = {
 export const AllVariants: Story = {
   render: () => {
     const states: Array<[string, Record<string, unknown>]> = [
-      ['Default', {}],
-      ['Hover', { className: 'ckw-input-field--state-hover' }],
-      ['Active', { className: 'ckw-input-field--state-active' }],
+      ['default', {}],
+      ['hover', { className: 'ckw-input-field--state-hover' }],
+      ['active', { className: 'ckw-input-field--state-active' }],
       ['Focus visible', { className: 'ckw-input-field--state-focus-visible' }],
-      ['Error', { errorText: 'Error text' }],
-      ['Disabled', { disabled: true }],
+      ['error', { errorText: 'Error text' }],
+      ['disabled', { disabled: true }],
     ];
 
     const cellStyle: React.CSSProperties = {

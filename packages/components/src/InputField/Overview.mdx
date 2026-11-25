@@ -1,4 +1,4 @@
-import { Meta, Primary, Controls, Story } from '@storybook/addon-docs/blocks';
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
 import { DesignReference } from '../storybook/DesignReference';
 import { figmaReferences } from '../storybook/figmaLinks';
 import * as InputFieldStories from './InputField.stories';
@@ -30,11 +30,11 @@ import * as InputFieldStories from './InputField.stories';
 </div>
 
 <div style={{ marginTop: '24px' }}>
-  <Primary />
+  <Canvas of={InputFieldStories.Basic} />
 </div>
 
 <div style={{ marginTop: '16px' }}>
-  <Controls />
+  <Controls of={InputFieldStories.Basic} />
 </div>
 
 <div className="sb-unstyled">
@@ -54,10 +54,10 @@ import * as InputFieldStories from './InputField.stories';
   <div className="docs-section">
     <div className="docs-section-title">Empty</div>
     <div className="docs-subsection-description">
-      Empty input fields show the placeholder text in a muted color. Hover, Active, and Focus
-      visible states are applied via CSS pseudo-classes. The Error state shows a red border and
-      error message below the input. Disabled fields have a muted background and cannot be
-      interacted with.
+      Empty input fields show the placeholder text in a muted color. Hover turns the border green;
+      focus keeps the field white and adds a green border plus a soft outer ring. The Error state
+      shows a red border and error message below the input. Disabled fields have a muted background
+      and cannot be interacted with.
     </div>
   </div>
 </div>
@@ -84,8 +84,11 @@ import * as InputFieldStories from './InputField.stories';
   <div className="docs-section">
     <div className="docs-section-title">Specials</div>
     <div className="docs-subsection-description">
-      Additional features: a trailing icon inside the input (20 × 20), an "(optional)" hint next to
-      the label, and an info icon for contextual help.
+      Additional features: a help text below the field (<code>description</code>), a trailing icon
+      inside the input (20 × 20), a prefix or suffix for currencies and units (for example CHF or
+      kWp), an "(optional)" hint next to the label, and an info icon for contextual help. Prefix and
+      suffix are linked to the input with
+      <code>aria-describedby</code>, so screen readers announce the unit together with the value.
     </div>
   </div>
 </div>

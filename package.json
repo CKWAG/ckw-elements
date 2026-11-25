@@ -16,7 +16,10 @@
     "release:check": "node scripts/validate-release.mjs",
     "release:pack": "npm pack ./packages/tokens --dry-run --cache ./.npm-pack-cache && npm pack ./packages/icons --dry-run --cache ./.npm-pack-cache && npm pack ./packages/components --dry-run --cache ./.npm-pack-cache",
     "release:validate": "pnpm format:check && pnpm typecheck && pnpm release:build && pnpm release:check && pnpm release:pack",
-    "tokens:sync": "pnpm --filter @ckwag/elements-tokens run tokens:sync"
+    "tokens:sync": "pnpm --filter @ckwag/elements-tokens run tokens:sync",
+    "figma:parse": "figma connect parse --exit-on-unreadable-files",
+    "figma:publish": "FIGMA_ACCESS_TOKEN=\"${FIGMA_ACCESS_TOKEN:-$(security find-generic-password -s ckw-figma-code-connect -w 2>/dev/null)}\" figma connect publish --exit-on-unreadable-files",
+    "figma:token": "security add-generic-password -U -a \"$USER\" -s ckw-figma-code-connect -w"
   },
   "engines": {
     "node": ">=20",
@@ -39,6 +42,7 @@
     "*": "prettier --write --ignore-unknown"
   },
   "devDependencies": {
+    "@figma/code-connect": "^2.1.1",
     "husky": "^9.1.7",
     "lint-staged": "^17.0.2",
     "prettier": "^3.8.3",

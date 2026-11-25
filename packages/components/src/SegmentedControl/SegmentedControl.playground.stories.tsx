@@ -25,11 +25,11 @@ const meta = {
     },
   },
   argTypes: {
-    type: {
+    variant: {
       control: 'radio',
-      options: ['Default', 'Fill'],
-      description: 'Layout type. Default = auto-width; Fill = equal-width stretch.',
-      table: { defaultValue: { summary: 'Default' } },
+      options: ['default', 'fill'],
+      description: 'Layout variant. default = auto-width; fill = equal-width stretch.',
+      table: { defaultValue: { summary: 'default' } },
     },
     contentMode: {
       control: 'radio',
@@ -48,7 +48,7 @@ const meta = {
   },
   args: {
     segments: defaultSegments,
-    type: 'Default',
+    variant: 'default',
     contentMode: 'label',
     activeValue: 'a',
   },
@@ -60,7 +60,7 @@ type Story = StoryObj<typeof meta>;
 
 export const ReactPlayground: Story = {
   name: 'React Playground',
-  render: ({ type, contentMode, activeValue }) => {
+  render: ({ variant, contentMode, activeValue }) => {
     const [currentValue, setCurrentValue] = React.useState(activeValue);
     const showIcons = contentMode !== 'label';
     const segments = [
@@ -76,7 +76,7 @@ export const ReactPlayground: Story = {
     return (
       <div style={{ maxWidth: '600px' }}>
         <SegmentedControl
-          type={type}
+          variant={variant}
           contentMode={contentMode}
           segments={segments}
           activeValue={currentValue}

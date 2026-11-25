@@ -26,9 +26,9 @@ const meta = {
     },
     status: {
       control: { type: 'inline-radio' },
-      options: ['Info', 'Success', 'Warning', 'Error'],
+      options: ['info', 'success', 'warning', 'error'],
       description: 'Semantic status variant.',
-      table: { category: 'General', defaultValue: { summary: 'Info' } },
+      table: { category: 'General', defaultValue: { summary: 'info' } },
     },
     showIcon: {
       control: 'boolean',
@@ -37,9 +37,9 @@ const meta = {
     },
     breakpoint: {
       control: { type: 'inline-radio' },
-      options: ['Auto', 'Desktop', 'Mobile'],
+      options: ['auto', 'desktop', 'mobile'],
       description: 'Auto follows viewport width; Desktop/Mobile force a documented variant.',
-      table: { category: 'General', defaultValue: { summary: 'Auto' } },
+      table: { category: 'General', defaultValue: { summary: 'auto' } },
     },
     icon: {
       control: false,
@@ -57,9 +57,9 @@ const meta = {
   args: {
     title: 'Statusmeldung',
     children: 'Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.',
-    status: 'Info',
+    status: 'info',
     showIcon: true,
-    breakpoint: 'Auto',
+    breakpoint: 'auto',
   },
 } satisfies Meta<typeof InlineMessage>;
 
@@ -83,6 +83,7 @@ const rowStyle: React.CSSProperties = {
 };
 
 const labelStyle: React.CSSProperties = {
+  textTransform: 'capitalize',
   fontFamily: 'var(--font-family-brand), sans-serif',
   fontSize: '14px',
   fontWeight: 500,
@@ -105,7 +106,7 @@ const mobileFrameStyle: React.CSSProperties = {
 export const Statuses: Story = {
   render: () => (
     <div style={sectionStyle}>
-      {(['Info', 'Success', 'Warning', 'Error'] as const).map((status) => (
+      {(['info', 'success', 'warning', 'error'] as const).map((status) => (
         <div key={status} style={rowStyle}>
           <span style={labelStyle}>{status}</span>
           <div style={desktopFrameStyle}>
@@ -182,7 +183,7 @@ export const Breakpoints: Story = {
       <div style={rowStyle}>
         <span style={labelStyle}>Desktop</span>
         <div style={desktopFrameStyle}>
-          <InlineMessage breakpoint="Desktop" title="Statusmeldung">
+          <InlineMessage breakpoint="desktop" title="Statusmeldung">
             Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
           </InlineMessage>
         </div>
@@ -190,7 +191,7 @@ export const Breakpoints: Story = {
       <div style={rowStyle}>
         <span style={labelStyle}>Mobile</span>
         <div style={mobileFrameStyle}>
-          <InlineMessage breakpoint="Mobile" title="Statusmeldung">
+          <InlineMessage breakpoint="mobile" title="Statusmeldung">
             Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
           </InlineMessage>
         </div>
@@ -204,7 +205,7 @@ export const AllVariants: Story = {
   render: () => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
       <div style={sectionStyle}>
-        {(['Info', 'Success', 'Warning', 'Error'] as const).map((status) => (
+        {(['info', 'success', 'warning', 'error'] as const).map((status) => (
           <InlineMessage key={status} status={status} title="Statusmeldung">
             Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
           </InlineMessage>
@@ -219,7 +220,7 @@ export const AllVariants: Story = {
         </InlineMessage>
       </div>
       <div style={mobileFrameStyle}>
-        <InlineMessage breakpoint="Mobile" status="Error" title="Statusmeldung">
+        <InlineMessage breakpoint="mobile" status="error" title="Statusmeldung">
           Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
         </InlineMessage>
       </div>
