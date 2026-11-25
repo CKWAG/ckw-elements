@@ -221,7 +221,7 @@ See [ARCHITECTURE.md](./ARCHITECTURE.md) for full pipeline details.
 | [React 19](https://react.dev)                                 | Component framework      |
 | [TypeScript 5](https://www.typescriptlang.org)                | Type safety              |
 | [Storybook 10](https://storybook.js.org)                      | Documentation            |
-| [Vite 6](https://vite.dev)                                    | Build tool               |
+| [Vite 8](https://vite.dev)                                    | Build tool               |
 | [Prettier](https://prettier.io)                               | Code formatting          |
 
 ## Contributing
