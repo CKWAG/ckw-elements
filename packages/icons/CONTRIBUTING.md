@@ -37,7 +37,7 @@ Nothing runs automatically when an icon is dropped. Every step is started by a p
 | Check, name, place | Icon maintainer + Claude | Say "neue Icons sind in der Dropzone" in Claude Code                                | Icons in the Figma index with status _Ready_, Change Log entry |
 | Sync to code       | Icon maintainer + Claude | Say "sync to code"                                                                  | New or changed files in `svg/`, regenerated `src/index.tsx`    |
 | Review and merge   | Developer                | Pull request, CI must be green                                                      | `main`                                                         |
-| Publish            | Maintainer               | Changesets release PR, GitHub Release                                               | npm `@ckwag/elements-icons`                                    |
+| Publish            | Maintainer               | Publish a GitHub Release `vX.Y.Z` (tag-driven, see `RELEASE.md`)                    | npm `@ckwag/elements-icons`                                    |
 
 The Figma file is "CKW Elements" (key `wGx1Y74QZIsy40UATyN6bI`), page "Assets", frame **Icons**:
 <https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/?node-id=164-2100>. The two Claude steps are one skill,
@@ -111,12 +111,12 @@ Only when asked ("sync to code"). From the repo root:
    `node packages/icons/import-svgs.mjs --prune < list.tsv` removes SVGs that are no longer in the _Ready_ list.
 5. `pnpm icons:generate`, then `pnpm icons:check`, `pnpm format:check`, `pnpm typecheck`.
 6. Both hash lists are compared again. Every name must match, otherwise an icon was transferred wrongly.
-7. A changeset for `@ckwag/elements-icons` is added (`minor` for new icons or aliases).
+7. A `.changeset/` release note for `@ckwag/elements-icons` is added (`minor` for new icons or aliases).
 
 ### 4.4 Review and release
 
-Open a pull request. CI runs `pnpm icons:check` before everything else. After the merge the usual Changesets flow
-applies, see `RELEASE.md`.
+Open a pull request. CI runs `pnpm icons:check` before everything else. After the merge, `publish-dev` publishes a
+`dev` build; a stable version is published by creating a GitHub Release, see `RELEASE.md`.
 
 ## 5. What each tool does
 

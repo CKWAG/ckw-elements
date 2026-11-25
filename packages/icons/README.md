@@ -31,7 +31,8 @@ props plus an optional `size` prop.
 ## Deprecated names
 
 Renamed or merged icons keep working until the next major version. They are exported with a `@deprecated` tag, are
-accepted by `<Icon name="…" />`, and are not part of `iconNames` or the Storybook index:
+accepted by `<Icon name="…" />` and still present in `iconComponents`, but are not part of the `IconName` type,
+`iconNames`, `iconMetadata` or the Storybook index. Code that types a value as `IconName` must use the new name:
 
 | Deprecated                   | Use                                       |
 | ---------------------------- | ----------------------------------------- |
