@@ -1,12 +1,12 @@
-# Changesets
+# Release Notes
 
-This folder holds release intent for CKW Elements.
+This folder holds hand-written release notes for CKW Elements.
 
-Run `pnpm changeset` for every pull request that changes the public contract of
-`@ckwag/elements-tokens`, `@ckwag/elements-icons`, or `@ckwag/elements`.
-Changesets then generates package version bumps and package changelogs in the
-release pull request.
+Add a `<kebab-name>.md` note for every pull request that changes the public
+contract of `@ckwag/elements-tokens`, `@ckwag/elements-icons`, or
+`@ckwag/elements`. The front matter names the package and the semver bump; the
+body says what changed for consumers and how to migrate. The Changesets CLI is
+not installed; see `RELEASE.md` for how notes become a release.
 
-The active public packages are linked so a design-system release keeps token and
-component versions aligned. `@ckwag/elements-storybook` is ignored because it is
-private documentation.
+All three public packages share one version, set from the GitHub Release tag.
+`@ckwag/elements-storybook` is private documentation and is never released.

@@ -28,7 +28,7 @@
     "figma:icons": "pnpm --filter @ckwag/elements-icons run build && node scripts/generate-icon-code-connect.mjs"
   },
   "engines": {
-    "node": ">=20",
+    "node": ">=22",
     "pnpm": ">=10"
   },
   "pnpm": {
@@ -50,8 +50,8 @@
   "devDependencies": {
     "@figma/code-connect": "^2.1.1",
     "husky": "^9.1.7",
-    "lint-staged": "^17.0.2",
-    "prettier": "^3.8.3",
-    "typescript": "^5.9.0"
+    "lint-staged": "^17.6.2",
+    "prettier": "^3.10.1",
+    "typescript": "^7.0.2"
   }
 }

@@ -1,7 +1,7 @@
 /**
  * style-dictionary.config.mjs
  *
- * Style Dictionary v4 configuration for CKW Elements tokens.
+ * Style Dictionary v5 configuration for CKW Elements tokens.
  *
  * Reads tokens.json (DTCG format) and generates:
  *   dist/tokens.css  — CSS Custom Properties (all layers) + Typography Utility Classes

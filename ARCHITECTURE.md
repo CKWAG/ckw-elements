@@ -1,7 +1,7 @@
 # ARCHITECTURE.md — CKW Elements Monorepo
 
-> Last updated: November 2026
-> Status: Token pipeline, components, icons and Storybook active; packages published to npm via Changesets
+> Last updated: March 2026
+> Status: Token pipeline complete, Storybook active, Components package active
 
 This document describes the full architecture of the CKW Elements design system monorepo:
 how the workspace is structured, how design tokens flow from Figma into code, how Storybook
@@ -59,17 +59,15 @@ ckw-elements/
 │   │       ├── Button/             Button component, styles, stories, docs
 │   │       ├── InputField/         Input field component, styles, stories, docs
 │   │       ├── InlineMessage/      Inline message component, styles, stories, docs
-│   │       ├── PasswordInput/      Password input component, styles, stories, docs
-│   │       ├── SegmentedControl/   Segmented control component, styles, stories, docs
-│   │       └── LoadingSpinner/     Loading spinner (also used inside Button)
+│   │       └── SegmentedControl/   Segmented control component, styles, stories, docs
 │   │
 │   └── icons/                    @ckwag/elements-icons .............. ACTIVE
 │       ├── package.json
+│       ├── dist/                   GENERATED — npm package output
 │       ├── svg/                    SOURCE OF TRUTH — one SVG per icon + manifest.json (Figma node ids)
 │       ├── aliases.json            Deprecated icon names that still resolve to a current icon
 │       ├── import-svgs.mjs         Writes svg/ from the Figma export (used by the Claude skill)
 │       ├── generate-icons.mjs      Validates svg/ and generates the React icon components
-│       ├── dist/                   GENERATED — npm package output
 │       └── src/                    GENERATED — React SVG icon exports (committed)
 │
 ├── apps/
@@ -96,28 +94,15 @@ ckw-elements/
 │           │   ├── ShadowCard.tsx
 │           │   ├── BorderPreview.tsx
 │           │   └── TokenTable.tsx
-│           ├── foundations/
-│           │   ├── Typography.mdx
-│           │   ├── Colors.mdx
-│           │   ├── Spacings.mdx
-│           │   ├── Borders.mdx
-│           │   ├── Shadows.mdx
-│           │   ├── Icons.mdx
-│           │   └── Logo.mdx
-│           └── getting-started/    ReactUsage, AIAgents, DesignMd, Releases, StorybookStandards
-│
-├── .changeset/                   Changesets config + pending release notes
-├── scripts/validate-release.mjs  Release metadata validation (pnpm release:check)
-├── DESIGN.md                     Machine-readable design spec for AI agents
-├── RELEASE.md                    Release process (channels, secrets, commands)
-├── llms.txt                      Entry point for LLM tools
+│           └── foundations/
+│               ├── Typography.mdx
+│               ├── Colors.mdx
+│               ├── Spacings.mdx
+│               ├── Borders.mdx
+│               └── Shadows.mdx
 │
 └── .github/
-    └── workflows/
-        ├── ci.yml                  Format, typecheck, builds, release checks
-        ├── deploy-storybook.yml    Storybook to GitHub Pages (after green CI on main)
-        ├── publish-dev.yml         `dev` dist-tag on npm (after green CI on main)
-        └── release-packages.yml    Stable release to npm (GitHub Release published)
+    └── workflows/                Empty — CI/CD not yet configured
 ```
 
 ### Tech Stack
@@ -125,22 +110,21 @@ ckw-elements/
 | Tool             | Version  | Purpose                                  |
 | ---------------- | -------- | ---------------------------------------- |
 | pnpm             | >= 10    | Monorepo package manager (workspaces)    |
-| Node.js          | >= 20    | Runtime                                  |
-| Style Dictionary | 4.x      | Token transformation (JSON → CSS/JS)     |
-| Changesets       | 2.x      | Versioning, changelogs, npm publishing   |
+| Node.js          | >= 22    | Runtime                                  |
+| Style Dictionary | 5.x      | Token transformation (JSON → CSS/JS)     |
 | Tokens Studio    | (Plugin) | Figma plugin — exports Variables as JSON |
 | React            | 19       | Component library framework              |
-| TypeScript       | 5.x      | Type safety (strict mode planned)        |
+| TypeScript       | 7.x      | Type safety (strict mode)                |
 | Storybook        | 10.x     | Documentation site + component explorer  |
-| Vite             | 6.x      | Build tool (via @storybook/react-vite)   |
+| Vite             | 8.x      | Build tool (via @storybook/react-vite)   |
 
 ### Package Status
 
 | Package               | npm Scope                   | Status | Published |
 | --------------------- | --------------------------- | ------ | --------- |
-| `packages/tokens`     | `@ckwag/elements-tokens`    | Done   | Yes (npm) |
-| `packages/components` | `@ckwag/elements`           | Active | Yes (npm) |
-| `packages/icons`      | `@ckwag/elements-icons`     | Active | Yes (npm) |
+| `packages/tokens`     | `@ckwag/elements-tokens`    | Done   | Not yet   |
+| `packages/components` | `@ckwag/elements`           | Active | Not yet   |
+| `packages/icons`      | `@ckwag/elements-icons`     | Active | Not yet   |
 | `apps/storybook`      | `@ckwag/elements-storybook` | Active | Private   |
 
 ---
@@ -198,7 +182,7 @@ decisions from Figma into consumable CSS and JavaScript outputs.
  └──────────────────────────────┬───────────────────────────────────────┘
                                 │
                      node build-tokens.mjs
-                    (runs Style Dictionary v4)
+                    (runs Style Dictionary v5)
                                 │
                    ┌────────────┴────────────┐
                    │  What it does:          │
@@ -235,12 +219,12 @@ decisions from Figma into consumable CSS and JavaScript outputs.
 | ---------------------------- | ----------------------------- | ----- |
 | `Primitive Colors/Value`     | `primitive.color.*`           | 79    |
 | `Semantic Colors/Light Mode` | `semantic.color.*`            | 76    |
-| `Typography/Desktop`         | `typography.desktop.*`        | 90    |
-| `Typography/Mobile`          | `typography.mobile.*`         | 90    |
+| `Typography/Desktop`         | `typography.desktop.*`        | 48    |
+| `Typography/Mobile`          | `typography.mobile.*`         | 48    |
 | `Spacing/Value`              | `primitive.spacing.*`         | 15    |
 | `Borders/Value`              | `primitive.border-radius.*`   | 7     |
 | `Borders/Value`              | `primitive.border-weight.*`   | 4     |
-| `Shadows/Value`              | `primitive.shadow.*`          | 5     |
+| `Shadows/Value`              | `primitive.shadow.*`          | 3     |
 | `Gradients/Value`            | `primitive.gradient.*`        | 1     |
 | `Typography/Desktop`         | `primitive.font-family.brand` | 1     |
 | `Specification/Value`        | SKIPPED (internal specs)      | —     |
@@ -259,21 +243,27 @@ decisions from Figma into consumable CSS and JavaScript outputs.
 | `ckw/tokens-css` | `dist/tokens.css` | Single CSS file with 12 structured blocks     |
 | `ckw/tokens-js`  | `dist/tokens.js`  | JS module with named exports + default export |
 
-### Token Count Summary (368 Total)
+### Token Categories
 
-| Category           | Count   | CSS Variable Pattern                         |
-| ------------------ | ------- | -------------------------------------------- |
-| Primitive colors   | 79      | `--color-{group}-{step}`                     |
-| Semantic colors    | 76      | `--{name}` (e.g. `--text-primary`)           |
-| Spacing            | 15      | `--spacing-{size}`                           |
-| Border radius      | 7       | `--border-radius-{size}`                     |
-| Border weight      | 4       | `--border-weight-{size}`                     |
-| Font family        | 1       | `--font-family-brand`                        |
-| Shadows            | 5       | `--shadow-{size}`                            |
-| Gradient           | 1       | `--gradient-brand`                           |
-| Typography desktop | 90      | `--{style}-{prop}` (e.g. `--heading-l-size`) |
-| Typography mobile  | 90      | Same names, inside `@media` block            |
-| **Total**          | **368** |                                              |
+Counts change with every Figma export, so they are not listed here. Count them
+from the source of truth:
+
+```bash
+node -e "const c=o=>o&&typeof o==='object'?('\$value' in o?1:Object.values(o).reduce((a,v)=>a+c(v),0)):0;const t=require('./packages/tokens/tokens.json');for(const k in t)console.log(k,c(t[k]))"
+```
+
+| Category           | Source path in `tokens.json` | CSS Variable Pattern                         |
+| ------------------ | ---------------------------- | -------------------------------------------- |
+| Primitive colors   | `primitive.color`            | `--color-{group}-{step}`                     |
+| Spacing            | `primitive.spacing`          | `--spacing-{size}`                           |
+| Border radius      | `primitive.border-radius`    | `--border-radius-{size}`                     |
+| Border weight      | `primitive.border-weight`    | `--border-weight-{size}`                     |
+| Font family        | `primitive.font-family`      | `--font-family-brand`                        |
+| Shadows            | `primitive.shadow`           | `--shadow-{size}`                            |
+| Gradient           | `primitive.gradient`         | `--gradient-brand`                           |
+| Semantic colors    | `semantic.color`             | `--{name}` (e.g. `--text-primary`)           |
+| Typography desktop | `typography.desktop`         | `--{style}-{prop}` (e.g. `--heading-l-size`) |
+| Typography mobile  | `typography.mobile`          | Same names, inside `@media` block            |
 
 ### What Gets Committed vs. Generated
 
@@ -310,12 +300,12 @@ weights — without any semantic meaning. They never change based on theme.
   --color-neutrals-white: #ffffff;
 
   /* Spacing — 15 steps from none to 8xl */
-  --spacing-m: 16px;
+  --spacing-md: 16px;
   --spacing-xl: 24px;
 
   /* Border radius, weight, shadows, gradient, font-family */
-  --border-radius-s: 8px;
-  --shadow-s: 0px 2px 20px 0px rgba(0, 0, 0, 0.06);
+  --border-radius-sm: 8px;
+  --shadow-sm: 0px 2px 20px 0px rgba(0, 0, 0, 0.06);
   --font-family-brand: Gotham;
 }
 ```
@@ -578,7 +568,7 @@ overriding the documentation's custom styling, all MDX page content is wrapped i
 And CSS selectors in `docs.css` use `.sb-unstyled .class-name` with `!important`
 on font properties. This is Storybook's official opt-out mechanism.
 
-### Foundation Pages (7)
+### Foundation Pages (5)
 
 | Page       | Data Source (from adapter)                           | Components Used                          |
 | ---------- | ---------------------------------------------------- | ---------------------------------------- |
@@ -587,11 +577,6 @@ on font properties. This is Storybook's official opt-out mechanism.
 | Spacings   | `spacingTokens`                                      | `SpacingBar`                             |
 | Borders    | `borderRadiusTokens`, `borderWeightTokens`           | `BorderPreview`                          |
 | Shadows    | `shadowTokens`                                       | `ShadowCard`, `TokenTable`               |
-| Icons      | `@ckwag/elements-icons` exports                      | `IconCopyGrid`                           |
-| Logo       | Static logo assets in `public/`                      | —                                        |
-
-Getting-started pages (`src/getting-started/`): React usage, AI agents, DESIGN.md, Releases
-(driven by `src/data/releases.json`) and Storybook standards.
 
 ### Sidebar Order
 
@@ -601,9 +586,7 @@ Foundations/
 ├── Colors
 ├── Spacings
 ├── Borders
-├── Shadows
-├── Icons
-└── Logo
+└── Shadows
 ```
 
 Configured in `.storybook/preview.ts` via `storySort`.
@@ -700,10 +683,8 @@ Step 2    Use Figma MCP to fetch the design context:
 Step 3    Create the component directory:
           packages/components/src/ComponentName/
           ├── ComponentName.tsx        React component
-          ├── ComponentName.css        Styles (semantic tokens only)
           ├── ComponentName.stories.tsx Storybook story + Code Connect
-          ├── Overview.mdx             Guidelines and documentation
-          └── index.ts                 Local barrel
+          └── ComponentName.mdx        Guidelines and documentation
           ↓
 Step 4    Build the component:
           • Use ONLY Semantic Tokens (var(--interactive-primary), not var(--color-green-600))
@@ -717,32 +698,14 @@ Step 5    Write the Storybook story:
           ↓
 Step 6    Export from barrel file:
           packages/components/src/index.ts
-          export { ComponentName } from './ComponentName/index.js';
+          export { ComponentName } from './ComponentName';
           ↓
 Step 7    Build the package:
           pnpm --filter @ckwag/elements run build
           ↓
 Step 8    Verify in Storybook:
           pnpm --filter @ckwag/elements-storybook run dev
-          ↓
-Step 9    Add a changeset for the public API change:
-          pnpm changeset
-          ↓
-Step 10   Validate before opening the PR:
-          pnpm release:validate
 ```
-
-### D2. "I want to release a package change"
-
-See `RELEASE.md` for the full process. In short:
-
-- **Dev channel:** every push to `main` that touches `packages/` publishes
-  `<base>-dev.<sha>` to npm under the `dev` tag (after CI is green).
-- **Stable channel:** publishing a GitHub Release runs `release-packages.yml`.
-  Changesets opens or updates a release PR with version bumps and changelogs;
-  merging it builds, validates, and publishes `@ckwag/elements-tokens`,
-  `@ckwag/elements-icons` and `@ckwag/elements` with npm provenance.
-- **Secret:** `NPM_TOKEN` with publish rights for the `@ckwag` scope.
 
 ### D3. "I added or changed icons in Figma"
 
@@ -797,13 +760,6 @@ pnpm --filter @ckwag/elements-storybook run build
 | `pnpm --filter @ckwag/elements-storybook run dev`   | Start Storybook dev server         |
 | `pnpm --filter @ckwag/elements-storybook run build` | Build Storybook for deployment     |
 | `pnpm -r run build`                                 | Build all workspace packages       |
-| `pnpm icons:generate`                               | Generate icon components from svg/ |
-| `pnpm icons:check`                                  | Fail if icons src is out of date   |
-| `pnpm docs:sync` / `pnpm docs:check`                | Sync / verify published doc copies |
-| `pnpm typecheck`                                    | Typecheck icons, components, SB    |
-| `pnpm format:check`                                 | Prettier check (CI)                |
-| `pnpm changeset`                                    | Add release intent                 |
-| `pnpm release:validate`                             | Full local release validation      |
 
 ---
 
@@ -820,19 +776,20 @@ pnpm --filter @ckwag/elements-storybook run build
 
 #### Low Priority
 
-| #   | Location                | Issue                                                                                                                                                            |
-| --- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| L3  | No root `tsconfig.json` | There is no root config. `tsconfig.base.json` is extended by the package and Storybook configs; `pnpm typecheck` runs them (also in the pre-commit hook and CI). |
-| L9  | All TSX components      | `import React from 'react'` stays required until the JSX runtime is switched to `react-jsx` — removing it causes "React is not defined" runtime errors.          |
+| #   | Location           | Issue                                                                                                                                                                                                                                   |
+| --- | ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| L3  | No `tsconfig.json` | Entire repo has no TypeScript config. IDE type-checking depends on Storybook's internal Vite config. Adding `tsconfig.json` is a known future task.                                                                                     |
+| L9  | All TSX components | `import React from 'react'` is present. Required until `tsconfig.json` with `"jsx": "react-jsx"` is added — without it, the automatic JSX transform is not active and removing the import causes "React is not defined" runtime errors. |
 
 ### Open Decisions
 
-| Question                  | Options                                          | Status        |
-| ------------------------- | ------------------------------------------------ | ------------- |
-| Figma Code Connect        | Requires Org/Enterprise plan — does CKW have it? | Not confirmed |
-| Figma API Token for CI/CD | Needed for automated token sync                  | Not created   |
-
-Decided: public npm under the `@ckwag` scope (Changesets), public repo, Storybook on GitHub Pages.
+| Question                   | Options                                          | Status        |
+| -------------------------- | ------------------------------------------------ | ------------- |
+| npm publishing             | Public npm vs. private GitHub Packages           | Not decided   |
+| Figma Code Connect         | Requires Org/Enterprise plan — does CKW have it? | Not confirmed |
+| GitHub repo visibility     | Public or private?                               | Not decided   |
+| Figma API Token for CI/CD  | Needed for automated pipeline                    | Not created   |
+| GitHub Pages for Storybook | Deploy docs site publicly?                       | Not decided   |
 
 ---
 
@@ -899,7 +856,7 @@ Tokens Studio Plugin ──export──▶ tokens-raw.json
 transform-tokens.mjs ──────────▶ tokens.json ◄─── Single Source of Truth
      │                                │
      ▼                                │
-Style Dictionary v4                   │
+Style Dictionary v5                   │
      │                                │
      ├──▶ dist/tokens.css ────────────┼──▶ Storybook (global CSS)
      │                                │         │
@@ -918,18 +875,6 @@ Style Dictionary v4                   │
           import tokens.css
 ```
 
-Icons have their own, shorter flow (see D3 and `packages/icons/CONTRIBUTING.md`):
-
-```
-Figma Icon Dropzone ──skill: check + place──▶ Figma Icon index (status Ready)
-                                                   │ skill: sync to code
-                                                   ▼
-                              packages/icons/svg/*.svg + manifest.json   ◄─── Single Source of Truth
-                                                   │ pnpm icons:generate
-                                                   ▼
-                              packages/icons/src/index.tsx ──▶ Storybook "Foundations/Icons", npm package
-```
-
 ---
 
 ## Appendix: File Reference
@@ -938,20 +883,12 @@ Quick lookup for every file in the monorepo and its purpose.
 
 ### Root
 
-| File                  | Purpose                                                                                                       |
-| --------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `package.json`        | Workspace root, shared scripts                                                                                |
-| `pnpm-workspace.yaml` | Defines workspace members                                                                                     |
-| `.gitignore`          | Excludes node_modules, dist, etc.                                                                             |
-| `ARCHITECTURE.md`     | This document                                                                                                 |
-| `AGENTS.md`           | Agent rules and conventions                                                                                   |
-| `DESIGN.md`           | Machine-readable design spec                                                                                  |
-| `RELEASE.md`          | Release process                                                                                               |
-| `llms.txt`            | LLM entry point                                                                                               |
-| `tsconfig.base.json`  | Shared TS config for packages                                                                                 |
-| `.changeset/`         | Changesets config + pending notes                                                                             |
-| `scripts/`            | `validate-release.mjs`, `sync-public-docs.mjs` (keeps `DESIGN.md` and its Storybook `public/` copy identical) |
-| `.github/workflows/`  | CI, Storybook deploy, npm release                                                                             |
+| File                  | Purpose                           |
+| --------------------- | --------------------------------- |
+| `package.json`        | Workspace root, shared scripts    |
+| `pnpm-workspace.yaml` | Defines workspace members         |
+| `.gitignore`          | Excludes node_modules, dist, etc. |
+| `ARCHITECTURE.md`     | This document                     |
 
 ### `packages/tokens/`
 
@@ -967,21 +904,6 @@ Quick lookup for every file in the monorepo and its purpose.
 | `dist/tokens.js`              | JS named + default exports (591 lines)        | No        | Yes       |
 | `dist/tokens.d.ts`            | TypeScript declarations for token JS          | No        | Yes       |
 | `dist/tokens.json`            | DTCG JSON copy for static docs                | No        | Yes       |
-
-### `packages/icons/`
-
-| File                 | Purpose                                                            | Committed | Generated |
-| -------------------- | ------------------------------------------------------------------ | --------- | --------- |
-| `svg/*.svg`          | One flat SVG per icon, `fill="currentColor"` (source of truth)     | Yes       | Yes\*     |
-| `svg/manifest.json`  | Icon name to Figma node id                                         | Yes       | Yes\*     |
-| `aliases.json`       | Deprecated icon names that still resolve to a current icon         | Yes       | No        |
-| `import-svgs.mjs`    | Writes `svg/` from the Figma export, prints hashes, prunes         | Yes       | No        |
-| `generate-icons.mjs` | Validates `svg/`, generates the React components, `--check` for CI | Yes       | No        |
-| `src/index.tsx`      | Generated React icon components and metadata                       | Yes       | Yes       |
-| `dist/`              | npm package output                                                 | No        | Yes       |
-| `CONTRIBUTING.md`    | Full icon guide: standard, pipeline, tools, formats, policy        | Yes       | No        |
-
-\* written only by `import-svgs.mjs` from the Figma icon index, never by hand.
 
 ### `apps/storybook/`
 

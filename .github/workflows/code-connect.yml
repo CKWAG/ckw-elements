@@ -11,7 +11,12 @@ on:
       - 'packages/components/src/**/*.figma.ts'
       - 'packages/icons/code-connect/**'
       - 'packages/icons/src/index.tsx'
+      - 'scripts/generate-icon-code-connect.mjs'
+      - 'package.json'
   workflow_dispatch:
+
+permissions:
+  contents: read
 
 concurrency:
   group: code-connect

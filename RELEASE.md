@@ -1,7 +1,9 @@
 # Release Process
 
-CKW Elements uses Changesets for package versioning, changelog generation, and
-npm publishing.
+Releases are tag-driven. Publishing a GitHub Release `vX.Y.Z` sets the version
+of all three public packages and publishes them to npm. Release notes are
+hand-written Markdown files in `.changeset/`; the Changesets CLI is not
+installed.
 
 ## Public Packages
 
@@ -15,13 +17,22 @@ Only these packages are published:
 
 ## Pull Request Workflow
 
-1. For public token or component changes, run `pnpm changeset`.
-2. Choose the semver bump that matches the public contract change.
-3. Write a concise release note for consumers.
-4. Run `pnpm release:validate` before opening or merging the pull request.
+1. For public token, icon or component changes, add a note in
+   `.changeset/<kebab-name>.md`:
 
-Documentation-only changes do not need a changeset unless they affect package
-usage, exports, or release notes.
+   ```md
+   ---
+   '@ckwag/elements': minor
+   ---
+
+   What changed for consumers, and migration steps for breaking changes.
+   ```
+
+2. Choose the semver bump that matches the public contract change.
+3. Run `pnpm release:validate` before opening or merging the pull request.
+
+Documentation-only, Storybook-only and dev-dependency changes do not need a
+note unless they affect package usage, exports, or release notes.
 
 ## Distribution Channels
 
@@ -47,27 +58,38 @@ an explicit tag always get the last stable release.
 
 ### Stable Channel
 
-The `Release Packages` workflow runs when a GitHub Release is published.
+The `Release Packages` workflow (`.github/workflows/release-packages.yml`) runs
+when a GitHub Release is published:
 
-If unreleased changesets exist, Changesets opens or updates a release pull
-request with package version bumps and generated changelogs. Review that pull
-request like any other code change.
+1. Pick the next version from the pending `.changeset/*.md` notes (highest
+   bump wins; all three packages share one version).
+2. Create a GitHub Release with tag `vX.Y.Z` on `main` and paste the notes
+   into the release description.
+3. The workflow sets `X.Y.Z` in all three `package.json` files (CI only, not
+   committed), checks formatting and types, builds the packages, validates the
+   release and publishes them to npm under `latest`.
 
-When the release pull request is merged, the same workflow builds the packages,
-validates release metadata, dry-runs npm packing, publishes the public packages
-to npm, and creates GitHub releases.
+## Trusted Publishing
 
-## Required Secret
+Each public package must have a GitHub Actions trusted publisher configured on
+npm for the workflow that publishes it. In each package's npm settings, add
+the following publishers and enable **Allow npm publish**:
 
-The repository must define `NPM_TOKEN` with publish permission for the
-`@ckwag` npm scope. GitHub Actions publishes with npm provenance enabled.
+| Organization | Repository     | Workflow filename      | Environment |
+| ------------ | -------------- | ---------------------- | ----------- |
+| `CKWAG`      | `ckw-elements` | `publish-dev.yml`      | Leave empty |
+| `CKWAG`      | `ckw-elements` | `release-packages.yml` | Leave empty |
+
+New configurations expire unless their first publish succeeds within two days.
+Set up the dev publishers shortly before merging a change to `main`, and the
+stable publishers shortly before publishing a GitHub Release. GitHub Actions
+publishes with npm provenance enabled; no npm publishing token is needed.
 
 ## Local Validation
 
 | Command                 | Purpose                                         |
 | ----------------------- | ----------------------------------------------- |
-| `pnpm changeset`        | Add release intent for a package change         |
-| `pnpm version:packages` | Apply pending changesets locally                |
+| `pnpm release:build`    | Build tokens, icons and components              |
 | `pnpm release:check`    | Validate release metadata and generated outputs |
 | `pnpm release:pack`     | Dry-run npm package contents                    |
 | `pnpm release:validate` | Full local release validation                   |

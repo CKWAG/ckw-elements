@@ -1,18 +1,14 @@
 # CKW Elements - AI Agent Guide
 
-CKW Elements is a token-first React design system. Build UI by importing tokens and components from the packages instead of copying styles from Storybook.
+CKW Elements is a token-first React design system. Build UI by importing tokens, icons, and components from the packages instead of copying styles from Storybook.
 
 ## Install
 
 ```bash
-npm install @ckwag/elements-tokens @ckwag/elements
+npm install @ckwag/elements-tokens @ckwag/elements-icons @ckwag/elements
 ```
 
-Icons are a separate, optional package:
-
-```bash
-npm install @ckwag/elements-icons
-```
+Peer dependencies: `react` and `react-dom` 18 or 19.
 
 ## Required App Setup
 
@@ -22,22 +18,31 @@ Import token CSS once in the app entry point:
 @import '@ckwag/elements-tokens/tokens.css';
 ```
 
-React applications can import components from either package root or the explicit React subpath:
+React applications can import components from either the package root or the explicit React subpath:
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/elements';
+import { Button, InputField, Select } from '@ckwag/elements';
 ```
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/elements/react';
+import { Button, InputField, Select } from '@ckwag/elements/react';
 ```
 
-If a bundler does not process CSS side-effect imports from packages, import the aggregate component CSS explicitly:
+If a bundler does not process CSS side-effect imports from packages, import the aggregate component CSS explicitly after the tokens:
 
 ```css
+@import '@ckwag/elements-tokens/tokens.css';
 @import '@ckwag/elements/styles.css';
+```
+
+Apps that use cascade layers can use the layered CSS exports:
+
+```css
+@layer ckw-tokens, ckw-elements, app;
+@import '@ckwag/elements-tokens/tokens.layered.css';
+@import '@ckwag/elements/styles.layered.css';
 ```
 
 ## Token Assets
@@ -45,6 +50,7 @@ If a bundler does not process CSS side-effect imports from packages, import the 
 These files are published with the deployed documentation for agents and build tooling:
 
 - `tokens/tokens.css`: CSS custom properties and typography utility classes.
+- `tokens/tokens.layered.css`: the same CSS wrapped in `@layer ckw-tokens`.
 - `tokens/tokens.js`: JavaScript named exports and a default token map.
 - `tokens/tokens.d.ts`: TypeScript declarations for JavaScript token exports.
 - `tokens/tokens.json`: DTCG token source.
@@ -68,35 +74,60 @@ import rawTokens from '@ckwag/elements-tokens/tokens.json';
 
 ## Component APIs
 
+All prop values are lowercase in code. Figma shows the same values in Title Case (`Variant=Primary` maps to `variant="primary"`). Components forward native HTML attributes where noted.
+
 ### Button
 
 ```tsx
-<Button variant="primary" size="Large">Save</Button>
+<Button variant="primary" size="large" onClick={save}>
+  Save
+</Button>
+<Button variant="secondary" href="/help" target="_blank">
+  Help
+</Button>
 ```
 
-- `variant`: `primary`, `secondary`, `tertiary`
-- `size`: `Large`, `Medium`, `Small`
+- `variant`: `primary` (default), `secondary`, `tertiary`
+- `size`: `large` (default), `medium`, `small`
 - `fullWidth`: boolean
-- `loading`: boolean
-- `leadingIcon`: React node
-- `trailingIcon`: React node
-- Extends the native `<button>` props, so `type="button" | "submit" | "reset"`, `disabled` and `onClick` work as usual
+- `leadingIcon`, `trailingIcon`: React node
+- `loading`: boolean; shows a spinner, sets `aria-busy`, and blocks interaction
+- `href`, `target`, `rel`: render as a link with button styling; `rel` defaults to `noopener noreferrer` for `target="_blank"`
+- `type`: native button type, defaults to `button`
+- Accepts native `<button>` props and forwards its ref
+
+### Badge
+
+```tsx
+<Badge status="success" showIcon>
+  Aktiv
+</Badge>
+```
+
+- `status`: `neutral` (default), `info`, `success`, `warning`, `error`, `brand`
+- `size`: `medium` (default), `small`
+- `showIcon`: boolean; `info`, `success`, `warning`, and `error` have a default icon
+- `icon`: React node; required for `neutral` and `brand` when `showIcon` is true
+- `children`: short label; the meaning must always be in the text
+- Accepts native `<span>` props
 
 ### InputField
 
 ```tsx
 <InputField label="Name" placeholder="Enter name" errorText={error} />
+<InputField label="Amount" prefix="CHF" suffix=".00" description="Without VAT" />
 ```
 
-- `label`: string
-- `placeholder`: string
-- `value`: string
-- `onChange`: React input change handler
-- `disabled`: boolean
-- `optional`: boolean
-- `errorText`: string
-- `icon`: React node
-- `showInfo`: boolean
+- `label`, `placeholder`: string
+- `description`: help text below the input
+- `errorText`: non-empty string triggers the error state
+- `optional`: shows "(optional)" next to the label
+- `prefix`, `suffix`: short text inside the field, e.g. currency or unit
+- `icon`: trailing React node
+- `showInfo`, `onInfoClick`: info button next to the label
+- `type`: native input type, defaults to `text`
+- `id`: auto-generated when omitted and wired to the label
+- Accepts native `<input>` props (`value`, `onChange`, `disabled`, `name`, `required`, ...) and forwards its ref
 
 ### PasswordInput
 
@@ -110,25 +141,51 @@ import rawTokens from '@ckwag/elements-tokens/tokens.json';
 - `onVisibilityChange`: `(visible: boolean) => void`
 - `visibilityToggleButtonProps`: native toggle button props
 
+### Select
+
+```tsx
+<Select
+  label="Country"
+  placeholder="Choose a country"
+  options={[
+    { value: 'ch', label: 'Switzerland' },
+    { value: 'de', label: 'Germany' },
+  ]}
+  value={country}
+  onValueChange={setCountry}
+/>
+```
+
+- `label`: string (required)
+- `options`: array of `{ value, label, disabled }`; `value` must not be an empty string (see KNOWN_ISSUES.md)
+- `value` / `defaultValue`: controlled or uncontrolled selection
+- `onValueChange`: `(value: string) => void`
+- `placeholder`, `description`, `errorText`, `optional`, `showInfo`, `onInfoClick`
+- `disabled`, `required`, `name` (renders a hidden native select for form submission), `id`
+- `open`, `defaultOpen`, `onOpenChange`: list open state
+- Built on `@radix-ui/react-select`; forwards its ref to the trigger button
+
 ### InlineMessage
 
 ```tsx
-<InlineMessage status="Info" title="Statusmeldung">
+<InlineMessage status="info" title="Statusmeldung">
   Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.
 </InlineMessage>
 ```
 
-- `status`: `Info`, `Success`, `Error`
+- `status`: `info` (default), `success`, `warning`, `error`
 - `title`: React node
 - `children`: React node
-- `icon`: React node
-- `showIcon`: boolean
-- `breakpoint`: `Auto`, `Desktop`, `Mobile`
+- `icon`: React node; defaults to the status icon
+- `showIcon`: boolean, defaults to true
+- `breakpoint`: `auto` (default), `desktop`, `mobile`
+- `role`: defaults to `note`
 
 ### SegmentedControl
 
 ```tsx
 <SegmentedControl
+  aria-label="View"
   segments={[
     { value: 'list', label: 'List' },
     { value: 'grid', label: 'Grid' },
@@ -138,26 +195,41 @@ import rawTokens from '@ckwag/elements-tokens/tokens.json';
 />
 ```
 
-- `segments`: array of `{ value, label, icon }`
+- `segments`: array of `{ value, label, icon }`, minimum 2
 - `activeValue`: string
 - `onChange`: `(value: string) => void`
-- `type`: `Default`, `Fill`
-- `contentMode`: `label`, `icon-label`, `icon-compact`
+- `variant`: `default` (auto width), `fill` (equal width)
+- `contentMode`: `label` (default), `icon-label`, `icon-compact`
+- `aria-label` or `aria-labelledby`: accessible name for the radio group
+
+### LoadingSpinner
+
+```tsx
+<LoadingSpinner size={20} />
+```
+
+- `size`: number in pixels, defaults to 20
+- `className`: string
 
 ## Icons
 
-Icons come from `@ckwag/elements-icons` as React components that inherit `currentColor`.
+`@ckwag/elements-icons` exports one React component per icon plus a name-based `Icon` component:
 
 ```tsx
 import React from 'react';
-import { IconSearch } from '@ckwag/elements-icons';
+import { Icon, IconSearch, iconNames } from '@ckwag/elements-icons';
 
-<IconSearch aria-hidden="true" />
-<IconSearch title="Search" size={20} />
+<IconSearch />
+<IconSearch title="Search" size={16} />
+<Icon name="search" />
 ```
 
-- Names are kebab-case, components are `Icon` plus PascalCase: `arrow-left-circle-filled` is `IconArrowLeftCircleFilled`. `-filled` is always last, outline icons have no suffix.
-- Prefer named imports. `<Icon name="search" />` exists too, but references every icon, so bundlers cannot drop unused ones.
+- Component names are `Icon` + PascalCase icon name (`chevron-down` is `IconChevronDown`).
+- `size`: number or string, defaults to 24.
+- `title`: accessible label. Omit it for decorative icons, which render `aria-hidden`.
+- Icons use `currentColor`; set color with a semantic token on the parent.
+- `iconNames` and `iconMetadata` list all available icons.
+- Names are kebab-case; `-filled` is always last, outline icons have no suffix.
 - Renamed icons stay available as deprecated aliases until the next major version (`IconPlus` is now `IconAdd`, `IconCheckBox` is now `IconCheckBoxFilled`). Use the new names in new code.
 - Never edit the generated icon code. Sources and process: `packages/icons/CONTRIBUTING.md` in the repository.
 
@@ -174,9 +246,13 @@ Use the CKW Design System file as the design source of truth:
 
 - Design system file: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System
 - Button: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=825-3416&m=dev
+- Badge: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=2330-461&m=dev
 - Input Field: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=100-443&m=dev
+- Password Input: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=2338-183&m=dev
+- Select: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=1510-369&m=dev
 - Inline Message: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=695-342&m=dev
 - Segmented Control: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=928-624&m=dev
+- Icons: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=164-2100&m=dev
 - Typography: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=4-28&m=dev
 - Colors: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=2-73&m=dev
 - Spacings: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System?node-id=2-74&m=dev
@@ -190,14 +266,12 @@ Storybook builds to static files. It is not server-side rendered HTML per route.
 
 - `llms.txt`
 - `llms-full.txt`
+- `DESIGN.md`
 - `tokens/tokens.css`
 - `tokens/tokens.json`
 - `skills/ckw-prototyping.md`
 - `skills/ckw-components.md`
 
-For story metadata, fetch Storybook's generated index from the deployed build:
-
-- `index.json`
-- `stories.json` if available in the deployed Storybook version
+For story metadata, fetch Storybook's generated `index.json` from the deployed build.
 
 Use Storybook URLs for visual inspection and the static assets above for code generation context.

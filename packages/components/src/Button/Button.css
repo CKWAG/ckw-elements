@@ -285,5 +285,7 @@
   .ckw-button:is(:disabled, [aria-disabled='true']) {
     border-color: GrayText;
     color: GrayText;
+    /* GrayText already signals "disabled", opacity would fade it twice */
+    opacity: 1;
   }
 }

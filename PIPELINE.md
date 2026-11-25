@@ -14,8 +14,10 @@ automatisch in Code-Dateien übersetzt, die Entwickler direkt verwenden können.
 Statt dass ein Entwickler manuell `#86bc46` als Farbe eintippt, verwendet er
 den Token `interactive-primary` — und der Token weiss, welche Farbe gemeint ist.
 
-**368 Tokens** sind aktuell definiert: 155 Farben, 15 Abstände, 11 Rahmen,
-180 Schrift-Einstellungen (90 Desktop + 90 Mobile), 5 Schatten, 1 Verlauf und 1 Schriftart.
+Es gibt Tokens für Farben (Primitiv und Semantisch), Abstände, Rahmen,
+Schrift-Einstellungen (Desktop + Mobile), Schatten, einen Verlauf und die
+Schriftart. Die genaue Anzahl ändert sich mit jedem Figma-Export; die aktuelle
+Liste zeigt Storybook auf den Foundations-Seiten.
 
 ---
 
@@ -101,29 +103,11 @@ Storybook aktualisiert sich automatisch wenn die Pipeline gelaufen ist.
 
 ### Produkte (z.B. MyCKW)
 
-Entwickler installieren die Tokens als npm-Paket (`@ckwag/elements-tokens`) und binden
-die `tokens.css` ein. Danach können sie Tokens als CSS-Variablen verwenden, z.B.
-`var(--interactive-primary)` für die Buttonfarbe. Fertige React-Komponenten gibt es im
-Paket `@ckwag/elements`, die Icons in `@ckwag/elements-icons`.
+Entwickler binden die `tokens.css` in ihr Projekt ein. Danach können sie Tokens
+als CSS-Variablen verwenden, z.B. `var(--interactive-primary)` für die Buttonfarbe.
 
-Wenn sich eine Farbe in Figma ändert → Pipeline läuft → Änderung wird committet →
-neue Paketversion wird veröffentlicht → Produkte aktualisieren das Paket und bekommen
-die Änderung.
-
-### Von der Änderung zum veröffentlichten Paket
-
-Nach dem Token Sync läuft der Rest automatisch über GitHub:
-
-1. **Änderung auf GitHub** — Pull Request, CI prüft Format, Typen und Builds.
-2. **Changeset** — Bei Änderungen an den öffentlichen Paketen beschreibt ein kurzer
-   Release-Hinweis (`pnpm changeset`), was sich für Nutzer ändert.
-3. **Dev-Version** — Jeder Push auf `main` mit Paketänderungen veröffentlicht automatisch
-   eine Vorab-Version (`npm install @ckwag/elements@dev`).
-4. **Stabile Version** — Ein GitHub Release veröffentlicht die geprüften Pakete unter
-   `latest`.
-5. **Storybook** — Wird nach erfolgreicher CI automatisch auf GitHub Pages aktualisiert.
-
-Details für Entwickler stehen in `RELEASE.md`.
+Wenn sich eine Farbe in Figma ändert → Pipeline läuft → CSS wird aktualisiert →
+alle Produkte die sie verwenden bekommen die Änderung automatisch.
 
 ---
 
@@ -224,30 +208,6 @@ Sie verwenden weiterhin `text-primary` — nur der Wert dahinter ändert sich je
 
 ---
 
-## Zusammenfassung
-
-| Frage                                | Antwort                                                                  |
-| ------------------------------------ | ------------------------------------------------------------------------ |
-| **Wo werden Tokens definiert?**      | In Figma (Variables)                                                     |
-| **Wie kommen sie in den Code?**      | Export via Tokens Studio → `token-drop/` → Doppelklick → fertig          |
-| **Wo kann ich sie nachschlagen?**    | In Storybook (Foundations-Seiten)                                        |
-| **Was wenn sich eine Farbe ändert?** | Neuer Export → Doppelklick → Storybook zeigt die Änderung                |
-| **Warum zwei Ebenen?**               | Primitiv = Rohmaterial, Semantisch = Bedeutung. Flexibel und konsistent. |
-| **Ist Dark Mode möglich?**           | Ja, vorbereitet. Nur Figma-Werte definieren → Pipeline → fertig.         |
-| **Wie viele Tokens gibt es?**        | 368 (79 Primitiv-Farben, 76 Semantisch, Rest: Abstände, Schriften etc.)  |
-
----
-
-## Dein Workflow als Designer
-
-```
-1.  Figma öffnen → Tokens ändern/hinzufügen
-2.  Tokens Studio Plugin → Export als JSON
-3.  JSON-Datei in den Ordner  ckw-elements/token-drop/  speichern
-4.  Doppelklick auf "Start Token Sync.command"
-5.  Lehne dich zurück — Pipeline läuft, Storybook öffnet sich, Änderungen sind sichtbar ✓
-```
-
 ## Icons
 
 Icons laufen ähnlich, aber ohne Tokens Studio: Designer legen neue Icons in Figma in die
@@ -262,3 +222,29 @@ die nächste Hauptversion erscheint. So geht bei Produkten nichts kaputt.
 
 Die ausführliche Anleitung (Regeln für Icons, alle Werkzeuge, Dateiformate, Fehlerbehebung) steht in
 `packages/icons/CONTRIBUTING.md`.
+
+---
+
+## Zusammenfassung
+
+| Frage                                | Antwort                                                                  |
+| ------------------------------------ | ------------------------------------------------------------------------ |
+| **Wo werden Tokens definiert?**      | In Figma (Variables)                                                     |
+| **Wie kommen sie in den Code?**      | Export via Tokens Studio → `token-drop/` → Doppelklick → fertig          |
+| **Wo kann ich sie nachschlagen?**    | In Storybook (Foundations-Seiten)                                        |
+| **Was wenn sich eine Farbe ändert?** | Neuer Export → Doppelklick → Storybook zeigt die Änderung                |
+| **Warum zwei Ebenen?**               | Primitiv = Rohmaterial, Semantisch = Bedeutung. Flexibel und konsistent. |
+| **Ist Dark Mode möglich?**           | Ja, vorbereitet. Nur Figma-Werte definieren → Pipeline → fertig.         |
+| **Wie viele Tokens gibt es?**        | Ändert sich mit jedem Export; aktuelle Liste in Storybook (Foundations)  |
+
+---
+
+## Dein Workflow als Designer
+
+```
+1.  Figma öffnen → Tokens ändern/hinzufügen
+2.  Tokens Studio Plugin → Export als JSON
+3.  JSON-Datei in den Ordner  ckw-elements/token-drop/  speichern
+4.  Doppelklick auf "Start Token Sync.command"
+5.  Lehne dich zurück — Pipeline läuft, Storybook öffnet sich, Änderungen sind sichtbar ✓
+```
