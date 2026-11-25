@@ -96,9 +96,18 @@ type Story = StoryObj<typeof meta>;
 
 export const Playground: Story = {
   name: 'Playground',
-  render: ({ icon, ...args }) => (
-    <div style={{ maxWidth: '320px' }}>
-      <InputField {...args} icon={icon ? <IconPlaceholder size={20} /> : undefined} />
-    </div>
-  ),
+  render: function Render({ icon, ...args }) {
+    const [value, setValue] = React.useState(args.value);
+    React.useEffect(() => setValue(args.value), [args.value]);
+    return (
+      <div style={{ maxWidth: '320px' }}>
+        <InputField
+          {...args}
+          value={value}
+          icon={icon ? <IconPlaceholder size={20} /> : undefined}
+          onChange={(event) => setValue(event.target.value)}
+        />
+      </div>
+    );
+  },
 };
