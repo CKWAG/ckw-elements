@@ -1,0 +1,98 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+import * as RadioGroupStories from './RadioGroup.stories';
+import * as RadioGroupPlayground from './RadioGroup.playground.stories';
+
+<Meta title="Components/Radio Group" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Radio Group</div>
+  <div className="docs-description">
+    A Radio Group lets users pick exactly one option from a short list (two to about six), for
+    example "Wie wohnen Sie?". The question is the group label. For several answers use a Checkbox
+    Group, for long lists a Select, and for two to five short options that switch a view a Segmented
+    Control.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.radioGroup} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to configure label, options, help text, error and state.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Canvas of={RadioGroupPlayground.Playground} />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls of={RadioGroupPlayground.Playground} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">States</div>
+    <div className="docs-subsection-description">
+      The selected option is a green circle with a white dot. Hover turns the border green, focus
+      adds a 2px green ring. Error colours only unselected circles and shows one error text for the
+      group. Disabled options turn grey.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={RadioGroupStories.States} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Description</div>
+    <div className="docs-subsection-description">
+      Help text for the group sits between question and options; each option can have its own help
+      text. Single options can be disabled.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={RadioGroupStories.WithDescription} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Specials</div>
+    <div className="docs-subsection-description">
+      Optional hint and info button work exactly like in Input Field.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={RadioGroupStories.Specials} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      Native <code>&lt;input type="radio"&gt;</code> elements with one shared <code>name</code>{' '}
+      inside <code>role="radiogroup"</code>, labelled by the question (WAI-ARIA radio group
+      pattern): Tab moves into the group to the selected option, the arrow keys move and select,
+      Space selects the focused option. Help and error text are linked with{' '}
+      <code>aria-describedby</code>; errors set <code>aria-invalid</code> on the options. In Windows
+      High Contrast the dot is drawn in a system colour.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={RadioGroupStories.Controlled} />
+</div>

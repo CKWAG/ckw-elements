@@ -1,0 +1,119 @@
+import { Meta, Canvas, Controls, Story } from '@storybook/addon-docs/blocks';
+import { DesignReference } from '../storybook/DesignReference';
+import { figmaReferences } from '../storybook/figmaLinks';
+import * as CheckboxStories from './Checkbox.stories';
+import * as CheckboxPlayground from './Checkbox.playground.stories';
+
+<Meta title="Components/Checkbox" />
+
+<div className="sb-unstyled">
+  <div className="docs-page-title">Checkbox</div>
+  <div className="docs-description">
+    Checkboxes turn one option on or off (for example accepting the terms) or pick several options
+    from a list. Lists go into a Checkbox Group with the question as label. Use a Radio Group when
+    only one option may be chosen.
+  </div>
+</div>
+
+<div className="sb-unstyled">
+  <DesignReference reference={figmaReferences.checkbox} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section" style={{ marginTop: '48px' }}>
+    <div className="docs-section-title">Playground</div>
+    <div className="docs-subsection-description">
+      Use the controls below to configure label, checked state, help text, error and disabled.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Canvas of={CheckboxPlayground.Playground} />
+</div>
+
+<div style={{ marginTop: '16px' }}>
+  <Controls of={CheckboxPlayground.Playground} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Checked</div>
+    <div className="docs-subsection-description">
+      Checked fills the box green with a white check (Icon/check). Indeterminate shows a dash
+      (Icon/minus) and is only for a parent checkbox whose children are partly selected.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CheckboxStories.CheckedStates} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">States</div>
+    <div className="docs-subsection-description">
+      Hover turns the border green, like Input Field; focus adds a 2px green ring. Error colours
+      only an unchecked box, because checking it is the fix. Disabled boxes and labels turn grey.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CheckboxStories.States} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Description</div>
+    <div className="docs-subsection-description">
+      Optional help text below the label, in the Input Field help text style.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CheckboxStories.WithDescription} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Checkbox Group</div>
+    <div className="docs-subsection-description">
+      A question with several answers. The label sits flush with the boxes, help text sits between
+      question and options, and one error text covers the whole group. <code>disabled</code> and{' '}
+      <code>errorText</code> on the group reach every checkbox inside.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CheckboxStories.Group} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Select all</div>
+    <div className="docs-subsection-description">
+      A controlled parent checkbox is indeterminate while only some children are checked.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={CheckboxStories.SelectAll} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
+    <div className="docs-section-title">Accessibility</div>
+    <div className="docs-subsection-description">
+      A native <code>&lt;input type="checkbox"&gt;</code> (WAI-ARIA checkbox pattern): Space toggles
+      it, the label is clickable, indeterminate is announced as "mixed" and the value submits with
+      the form. Help and error text are linked with <code>aria-describedby</code>, errors set{' '}
+      <code>aria-invalid</code>. A Checkbox Group is a <code>role="group"</code> labelled by its
+      question. In Windows High Contrast the checked box keeps a system-colour border and mark.
+    </div>
+  </div>
+</div>

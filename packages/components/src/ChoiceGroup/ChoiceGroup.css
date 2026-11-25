@@ -1,0 +1,25 @@
+/**
+ * Choice Group styles (shared by Checkbox Group and Radio Group)
+ *
+ * Builds on the Input Field label, description and error classes. Differences:
+ * - the group label sits flush with the controls (no label-row inset) and may wrap,
+ *   because it is usually a question;
+ * - the description sits between label and options (hint before the choices).
+ */
+
+.ckw-choice-group .ckw-input-field__label-row {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.ckw-choice-group .ckw-input-field__label {
+  white-space: normal;
+  overflow: visible;
+}
+
+.ckw-choice-group__options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-s);
+  width: 100%;
+}
