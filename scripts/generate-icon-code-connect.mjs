@@ -16,20 +16,14 @@ const outFile = fileURLToPath(
   new URL('../packages/icons/code-connect/icons.figma.batch.json', import.meta.url),
 );
 
-// Icons that exist in the package but no longer as a component in Figma (Code Connect would fail).
-// IconPlus: the Figma icon was removed; Icon/add is the plus icon in Figma.
-const notInFigma = new Set(['plus']);
-
-const components = iconMetadata
-  .filter((icon) => !notInFigma.has(icon.name))
-  .map((icon) => ({
-    url: `${fileUrl}?node-id=${icon.figmaNodeId.replace(':', '-')}`,
-    name: icon.componentName,
-    id: `icon-${icon.name}`,
-    importPath: '@ckwag/elements-icons',
-    source: 'packages/icons/src/index.tsx',
-    component: icon.componentName,
-  }));
+const components = iconMetadata.map((icon) => ({
+  url: `${fileUrl}?node-id=${icon.figmaNodeId.replace(':', '-')}`,
+  name: icon.componentName,
+  id: `icon-${icon.name}`,
+  importPath: '@ckwag/elements-icons',
+  source: 'packages/icons/src/index.tsx',
+  component: icon.componentName,
+}));
 
 writeFileSync(
   outFile,

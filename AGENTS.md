@@ -28,6 +28,9 @@ Fix the stale doc in the same pull request (see [Keeping Docs in Sync](#keeping-
 | Build icons                                  | `pnpm --filter @ckwag/elements-icons run build`             |
 | Build components (also builds icons)         | `pnpm --filter @ckwag/elements run build`                   |
 | Typecheck icons, components and Storybook    | `pnpm typecheck`                                            |
+| Generate icon components from `svg/`         | `pnpm icons:generate`                                       |
+| Check icons are in sync (CI)                 | `pnpm icons:check`                                          |
+| Copy root docs to Storybook `public/`        | `pnpm docs:sync` (check: `pnpm docs:check`)                 |
 | Format code                                  | `pnpm format`                                               |
 | Check formatting (CI)                        | `pnpm format:check`                                         |
 | Start Storybook dev server                   | `pnpm --filter @ckwag/elements-storybook run dev`           |
@@ -90,6 +93,15 @@ source must not import Storybook code. `packages/components/src/storybook/` hold
 helpers (Figma links, design reference) used by stories; it is not part of the build output.
 
 **Git remote:** `origin` → `https://github.com/CKWAG/ckw-elements.git`
+
+Icons: `packages/icons/svg/*.svg` (+ `manifest.json`) are the source of truth, `src/index.tsx` is generated from
+them (`pnpm icons:generate`) and committed; CI runs `pnpm icons:check`. Never edit `src/index.tsx` or the SVGs by
+hand: icons enter through the Claude skill `.claude/skills/add-icons-to-figma` (Figma → `import-svgs.mjs`).
+Renamed or merged icons stay available via `packages/icons/aliases.json` until the next major version.
+Full icon guide (standard, pipeline, tools, policy): `packages/icons/CONTRIBUTING.md`.
+
+`apps/storybook/public/DESIGN.md` is a published copy of the root `DESIGN.md`: edit only the root file, then run
+`pnpm docs:sync`. CI runs `pnpm docs:check`. (`llms.txt` intentionally differs between root and `public/`.)
 
 ---
 

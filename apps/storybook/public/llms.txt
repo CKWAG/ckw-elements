@@ -17,7 +17,7 @@ CKW Elements is CKW's design system for React applications. It ships design toke
 ## Packages
 
 - `@ckwag/elements-tokens`: CSS custom properties, JavaScript token exports, and DTCG JSON.
-- `@ckwag/elements-icons`: React SVG icon components from the CKW icon set.
+- `@ckwag/elements-icons`: React SVG icons (24px, `currentColor`). Use named imports such as `IconSearch`. Names are kebab-case (`arrow-left-circle-filled`); renamed icons stay available as deprecated aliases until the next major version.
 - `@ckwag/elements`: React components that use CKW semantic tokens: Badge, Button, InlineMessage, InputField, LoadingSpinner, PasswordInput, SegmentedControl, Select.
 
 ## Core Rules

@@ -7,3 +7,4 @@ packages/tokens/tokens-raw.json
 apps/storybook/storybook-static
 *.woff2
 *.otf
+.claude/skills/*/scripts

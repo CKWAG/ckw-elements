@@ -31,6 +31,8 @@
     "./package.json": "./package.json"
   },
   "scripts": {
+    "generate": "node generate-icons.mjs",
+    "check": "node generate-icons.mjs --check",
     "build": "tsc -p tsconfig.build.json",
     "prepack": "pnpm run build",
     "lint": "echo 'lint step — will be configured with eslint'"

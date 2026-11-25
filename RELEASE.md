@@ -96,3 +96,15 @@ publishes with npm provenance enabled; no npm publishing token is needed.
 
 Never publish generated `dist/` files manually. The release workflow builds the
 package outputs before validation and npm publishing.
+
+## Icon Renames and Removals
+
+Icon names are public API (`IconPlus`, `<Icon name="plus" />`). A renamed, merged or removed icon is a breaking
+change for consumers even if it is unused in Figma.
+
+- Add the old name to `packages/icons/aliases.json` pointing at the current icon. The alias keeps working as a
+  deprecated export and in `iconComponents`, but it is not part of `IconName`, `iconNames` or `iconMetadata`.
+- Release the change as `minor` and name the aliases in the changeset.
+- Remove an alias only in the next **major** version, with a `major` changeset that lists the removed names.
+
+New icons are a `minor` change. See `packages/icons/CONTRIBUTING.md` for the full process.

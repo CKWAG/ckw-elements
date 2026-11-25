@@ -229,6 +229,9 @@ import { Icon, IconSearch, iconNames } from '@ckwag/elements-icons';
 - `title`: accessible label. Omit it for decorative icons, which render `aria-hidden`.
 - Icons use `currentColor`; set color with a semantic token on the parent.
 - `iconNames` and `iconMetadata` list all available icons.
+- Names are kebab-case; `-filled` is always last, outline icons have no suffix.
+- Renamed icons stay available as deprecated aliases until the next major version (`IconPlus` is now `IconAdd`, `IconCheckBox` is now `IconCheckBoxFilled`). Use the new names in new code.
+- Never edit the generated icon code. Sources and process: `packages/icons/CONTRIBUTING.md` in the repository.
 
 ## Agent Skills
 

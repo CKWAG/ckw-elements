@@ -12,6 +12,7 @@ CKW Elements is CKW's React design system. Use it through package imports, not c
 - Release process: RELEASE.md
 - Token package: packages/tokens (`@ckwag/elements-tokens`)
 - Icon package: packages/icons (`@ckwag/elements-icons`)
+- Icon guide (standard, Figma to repo pipeline, deprecation policy): packages/icons/CONTRIBUTING.md
 - Component package: packages/components (`@ckwag/elements`)
 - Storybook app: apps/storybook
 - Deployed-agent entrypoint: apps/storybook/public/llms.txt

@@ -208,6 +208,23 @@ Sie verwenden weiterhin `text-primary` — nur der Wert dahinter ändert sich je
 
 ---
 
+## Icons
+
+Icons laufen ähnlich, aber ohne Tokens Studio: Designer legen neue Icons in Figma in die
+Icon-Dropzone. Wer im Team den Claude-Skill `add-icons-to-figma` betreut (die Rolle "Icon-Verantwortliche"), lässt sie prüfen und
+einsortieren. Mit dem Schritt "Sync to code" landen die fertigen Icons (Status "Ready") als
+SVG-Dateien im Ordner `packages/icons/svg`. Daraus erzeugt `pnpm icons:generate` die
+React-Komponenten. Storybook zeigt sie automatisch an, und beim nächsten Release gibt es sie
+im npm-Paket `@ckwag/elements-icons`.
+
+Wird ein Icon umbenannt oder zusammengelegt, funktioniert der alte Name weiter (Alias), bis
+die nächste Hauptversion erscheint. So geht bei Produkten nichts kaputt.
+
+Die ausführliche Anleitung (Regeln für Icons, alle Werkzeuge, Dateiformate, Fehlerbehebung) steht in
+`packages/icons/CONTRIBUTING.md`.
+
+---
+
 ## Zusammenfassung
 
 | Frage                                | Antwort                                                                  |
