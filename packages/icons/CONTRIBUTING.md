@@ -258,7 +258,8 @@ Known limitations:
   stroke width and are not measurable; a stroke of 3px or more looks like a solid shape.
 - A dropped icon waits until someone runs the skill; only the step from _Ready_ to the repo is automatic.
 - The published npm package contains the React components only, not the raw SVG files.
-- There is no automated visual regression test for icons; Storybook is the review tool.
+- Chromatic captures Storybook stories for visual review; see
+  [Visual regression review](../../README.md#visual-regression-review) for setup and limitations.
 
 ## 12. Possible next steps
 
