@@ -92,6 +92,8 @@
   flex: 1 1 auto;
   min-width: 0;
   flex-direction: column;
+  /* long words and URLs wrap instead of sticking out of the box */
+  overflow-wrap: anywhere;
 }
 
 .ckw-inline-message__title {
