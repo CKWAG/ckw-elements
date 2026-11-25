@@ -98,8 +98,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
       const { tabIndex, ...anchorProps } =
         props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>;
       const anchorOnClick = onClick as unknown as
-        | React.MouseEventHandler<HTMLAnchorElement>
-        | undefined;
+        React.MouseEventHandler<HTMLAnchorElement> | undefined;
       return (
         <a
           {...anchorProps}
