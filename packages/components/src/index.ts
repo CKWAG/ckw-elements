@@ -46,5 +46,7 @@ export type {
   SegmentedControlProps,
   SegmentedControlVariant,
 } from './SegmentedControl/index.js';
+export { TextLink } from './TextLink/index.js';
+export type { TextLinkProps, TextLinkSize, TextLinkVariant } from './TextLink/index.js';
 export { LoadingSpinner } from './LoadingSpinner/index.js';
 export type { LoadingSpinnerProps, LoadingSpinnerVariant } from './LoadingSpinner/index.js';

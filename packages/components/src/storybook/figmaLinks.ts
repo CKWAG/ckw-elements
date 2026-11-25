@@ -82,6 +82,13 @@ export const figmaReferences = {
     scope: 'component-node',
     note: 'Exact Segmented Control component source in the CKW Elements Figma design system.',
   },
+  textLink: {
+    componentName: 'Text Link',
+    url: getFigmaNodeUrl('2391:2501'),
+    nodeId: '2391:2501',
+    scope: 'component-node',
+    note: 'Exact Text Link component source in the CKW Elements Figma design system.',
+  },
   typography: {
     componentName: 'Typography',
     url: getFigmaNodeUrl('4:28'),

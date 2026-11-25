@@ -45,6 +45,8 @@ const preview: Preview = {
             ['Docs', 'Playground', '*'],
             'Select',
             ['Docs', 'Playground', '*'],
+            'Text Link',
+            ['Docs', 'Playground', '*'],
             '*',
             ['Docs', 'Playground', '*'],
           ],
