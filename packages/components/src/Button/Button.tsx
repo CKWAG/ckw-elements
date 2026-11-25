@@ -90,17 +90,31 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
     );
 
     if (href !== undefined) {
-      const anchorProps = props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>;
+      const { onClick, tabIndex, ...anchorProps } =
+        props as unknown as React.AnchorHTMLAttributes<HTMLAnchorElement>;
       return (
         <a
           {...anchorProps}
           ref={ref as React.Ref<HTMLAnchorElement>}
           className={classes}
-          href={isDisabled ? undefined : href}
+          // Only `disabled` drops the href. While `loading` it stays, so setting
+          // loading inside onClick does not cancel the navigation of that click.
+          href={disabled ? undefined : href}
+          role={disabled ? 'link' : undefined}
+          tabIndex={isDisabled ? -1 : tabIndex}
           target={target}
           rel={target === '_blank' ? (rel ?? 'noopener noreferrer') : rel}
-          aria-disabled={isDisabled || undefined}
+          aria-disabled={isDisabled || anchorProps['aria-disabled']}
           aria-busy={loading ? true : ariaBusy}
+          onClick={(event) => {
+            // A link without href still dispatches clicks, a disabled button does not.
+            if (isDisabled) {
+              event.preventDefault();
+              event.stopPropagation();
+              return;
+            }
+            onClick?.(event);
+          }}
         >
           {content}
         </a>

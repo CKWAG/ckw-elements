@@ -242,8 +242,15 @@
    ============================================ */
 
 @media (forced-colors: active) {
+  /* outline instead of border: keeps the track at 40px */
   .ckw-segmented-control {
-    border: var(--border-weight-s) solid CanvasText;
+    outline: var(--border-weight-s) solid CanvasText;
+    outline-offset: calc(-1 * var(--border-weight-s));
+  }
+
+  /* the transparent segment border would otherwise be forced to a visible colour */
+  .ckw-segmented-control__segment {
+    border-color: Canvas;
   }
 
   .ckw-segmented-control__indicator {

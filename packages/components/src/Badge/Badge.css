@@ -112,7 +112,9 @@
    ============================================ */
 
 @media (forced-colors: active) {
+  /* outline instead of border: keeps the badge at its normal size */
   .ckw-badge {
-    border: var(--border-weight-s) solid CanvasText;
+    outline: var(--border-weight-s) solid CanvasText;
+    outline-offset: calc(-1 * var(--border-weight-s));
   }
 }
