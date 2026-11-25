@@ -30,6 +30,7 @@ Fix the stale doc in the same pull request (see [Keeping Docs in Sync](#keeping-
 | Typecheck icons, components and Storybook    | `pnpm typecheck`                                            |
 | Generate icon components from `svg/`         | `pnpm icons:generate`                                       |
 | Check icons are in sync (CI)                 | `pnpm icons:check`                                          |
+| Sync Ready icons from Figma                  | `pnpm icons:sync` (`--dry-run` to report only)              |
 | Copy root docs to Storybook `public/`        | `pnpm docs:sync` (check: `pnpm docs:check`)                 |
 | Format code                                  | `pnpm format`                                               |
 | Check formatting (CI)                        | `pnpm format:check`                                         |
@@ -96,7 +97,8 @@ helpers (Figma links, design reference) used by stories; it is not part of the b
 
 Icons: `packages/icons/svg/*.svg` (+ `manifest.json`) are the source of truth, `src/index.tsx` is generated from
 them (`pnpm icons:generate`) and committed; CI runs `pnpm icons:check`. Never edit `src/index.tsx` or the SVGs by
-hand: icons enter through the Claude skill `.claude/skills/add-icons-to-figma` (Figma → `import-svgs.mjs`).
+hand: icons are placed in Figma with the Claude skill `.claude/skills/add-icons-to-figma`, and the nightly GitHub
+Action `icons-sync.yml` (`pnpm icons:sync`) opens a pull request with the Ready icons.
 Renamed or merged icons stay available via `packages/icons/aliases.json` until the next major version.
 Full icon guide (standard, pipeline, tools, policy): `packages/icons/CONTRIBUTING.md`.
 

@@ -4,8 +4,9 @@ How a new icon gets from a designer's Figma file into `@ckwag/elements-icons`, w
 which guarantees the pipeline gives you. Read this before you touch `svg/`, `aliases.json` or `src/index.tsx`.
 
 **In one sentence:** designers drop icons into a Figma dropzone, a Claude skill checks and files them in the Figma icon
-index and marks them _Ready_, a second step of the same skill copies the _Ready_ icons into `svg/`, and
-`pnpm icons:generate` turns those SVG files into the React components. CI refuses any state where code and SVGs differ.
+index and marks them _Ready_, a nightly GitHub Action (`icons-sync.yml`) copies the _Ready_ icons into `svg/` and opens
+a pull request, and `pnpm icons:generate` turns those SVG files into the React components. A developer reviews and
+merges. CI refuses any state where code and SVGs differ.
 
 ## 1. The big picture
 
@@ -15,8 +16,9 @@ Designer                     Figma "Icons" frame                         Repo (t
 exports SVG from        ┌──▶ Icon Dropzone ──▶ check ──▶ place ──▶ Icon index
 Streamline Nova Line ───┘     (drop here)       │          │        Icon/<name> components, status Ready
                                                  ▼          ▼                │
-                                          red / green    Change Log          │ "Sync to code"
-                                          feedback list  entry               ▼
+                                          red / green    Change Log          │ GitHub Action "Icons sync"
+                                          feedback list  entry               │ (nightly or on demand) opens a PR
+                                                                             ▼
                                                                     svg/<name>.svg + svg/manifest.json
                                                                              │ pnpm icons:generate
                                                                              ▼
@@ -27,21 +29,23 @@ Streamline Nova Line ───┘     (drop here)       │          │        
                                                               Storybook "Foundations/Icons" · npm package
 ```
 
-Nothing runs automatically when an icon is dropped. Every step is started by a person (see section 2).
+Dropping an icon starts nothing: a person runs the skill to check and place it (see section 2). Once its row is
+_Ready_, the sync to code is automatic: the next run of the "Icons sync" workflow opens or updates one pull request.
 
 ## 2. Who does what
 
-| Step               | Who                      | How                                                                                 | Result                                                         |
-| ------------------ | ------------------------ | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Export and drop    | Designer                 | Export from Streamline Nova Line as SVG (20px, 2px padding), drop into the dropzone | Layers in the `Icon Dropzone` frame                            |
-| Check, name, place | Icon maintainer + Claude | Say "neue Icons sind in der Dropzone" in Claude Code                                | Icons in the Figma index with status _Ready_, Change Log entry |
-| Sync to code       | Icon maintainer + Claude | Say "sync to code"                                                                  | New or changed files in `svg/`, regenerated `src/index.tsx`    |
-| Review and merge   | Developer                | Pull request, CI must be green                                                      | `main`                                                         |
-| Publish            | Maintainer               | Publish a GitHub Release `vX.Y.Z` (tag-driven, see `RELEASE.md`)                    | npm `@ckwag/elements-icons`                                    |
+| Step               | Who                         | How                                                                                 | Result                                                         |
+| ------------------ | --------------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------- |
+| Export and drop    | Designer                    | Export from Streamline Nova Line as SVG (20px, 2px padding), drop into the dropzone | Layers in the `Icon Dropzone` frame                            |
+| Check, name, place | Icon maintainer + Claude    | Say "neue Icons sind in der Dropzone" in Claude Code                                | Icons in the Figma index with status _Ready_, Change Log entry |
+| Sync to code       | GitHub Action or local Node | Nightly/manual workflow, or `pnpm icons:sync` locally                               | Pull request or updated SVGs, generated code and changeset     |
+| Review and merge   | Developer                   | Review the pull request and "Needs attention" list; run CI before merging           | `main`                                                         |
+| Publish            | Maintainer                  | Publish a GitHub Release `vX.Y.Z` (tag-driven, see `RELEASE.md`)                    | npm `@ckwag/elements-icons`                                    |
 
 The Figma file is "CKW Elements" (key `wGx1Y74QZIsy40UATyN6bI`), page "Assets", frame **Icons**:
 <https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/?node-id=164-2100>. The two Claude steps are one skill,
-`.claude/skills/add-icons-to-figma` (see its `SKILL.md` for the exact procedure).
+`.claude/skills/add-icons-to-figma` (see its `SKILL.md` for the exact procedure). The sync to code is
+`packages/icons/sync-from-figma.mjs`, run by `.github/workflows/icons-sync.yml` or locally with `pnpm icons:sync`.
 
 ### Roles and setup
 
@@ -52,9 +56,14 @@ A maintainer needs Claude Code in a checkout of this repository (the skill loads
 server connected with their own Figma account (edit access to the CKW Elements file), Node 20+, pnpm 10+, and write
 access to this repository. The skill ends with no commit or push unless the maintainer asks.
 
-Smoke test for a new maintainer (read-only): run the audit script and the `list` export from the skill and compare
-with `node packages/icons/import-svgs.mjs --hashes`. A clean audit and matching hashes prove that Figma access, the
-node ids and the repo are in order. The exact steps are in `SKILL.md` under "Roles and first-time setup".
+The sync needs a Figma personal access token with scope `file_content:read` (read access to the CKW Elements file). In
+GitHub it is the repository secret `FIGMA_ACCESS_TOKEN`. Locally, `pnpm icons:sync` reads the environment variable
+`FIGMA_ACCESS_TOKEN` or, on macOS, the Keychain entry that `pnpm figma:token` stores (`ckw-figma-code-connect`).
+
+Smoke test for a new maintainer (read-only): run `pnpm icons:sync --dry-run`. With no pending changes it reports
+"No icon changes"; this proves that the token, the Figma node ids and the repo are in order. Without a token, run the
+audit script and the `list` export from the skill and compare with `node packages/icons/import-svgs.mjs --hashes`
+(see `SKILL.md`, "Roles and first-time setup").
 
 ## 3. The icon standard
 
@@ -98,35 +107,48 @@ The maintainer asks Claude to add the new icons. The skill runs two phases with 
 
 Claude never decides duplicates, replacements or renames on its own. It asks, with sizes and instance counts.
 
-### 4.3 Sync to code
+### 4.3 Sync to code (automatic)
 
-Only when asked ("sync to code"). From the repo root:
+The GitHub Action **Icons sync** (`.github/workflows/icons-sync.yml`) runs every night and can be started by hand under
+Actions › Icons sync › Run workflow (tick _dry-run_ to only see the report). It runs `pnpm icons:sync`, which:
 
-1. `export-svgs.js` (runs in Figma via Claude) lists every _Ready_ icon with a hash of its path data.
-2. `node packages/icons/import-svgs.mjs --hashes` prints the same hash for every SVG in `svg/`. Names that are missing
-   or have a different hash are new or changed.
-3. `export-svgs.js` exports only those icons in a compact text format, which is piped into
-   `node packages/icons/import-svgs.mjs`. It writes `svg/<name>.svg` and updates `svg/manifest.json`.
-4. Renamed or merged icons get an entry in `aliases.json` first (see section 8), then
-   `node packages/icons/import-svgs.mjs --prune < list.tsv` removes SVGs that are no longer in the _Ready_ list.
-5. `pnpm icons:generate`, then `pnpm icons:check`, `pnpm format:check`, `pnpm typecheck`.
-6. Both hash lists are compared again. Every name must match, otherwise an icon was transferred wrongly.
-7. A `.changeset/` release note for `@ckwag/elements-icons` is added (`minor` for new icons or aliases).
+1. Reads the Figma icon index through the REST API (`GET /v1/files/:key/nodes`) and keeps the components whose row has
+   status _Ready_ (same rule as `export-svgs.js`).
+2. Exports their artwork as SVG (`GET /v1/images/:key?format=svg`, in batches) and normalises it exactly like
+   `export-svgs.js`, so the hash of an unchanged icon equals the hash of its file in `svg/`.
+3. Compares by name and hash: **new** (name not in the repo), **changed** (other hash), **renamed** (a repo icon is gone
+   from Figma and a new name has its Figma node id or its artwork). Renames are written to `aliases.json`, so the old
+   name keeps working.
+4. Never deletes an icon on its own. An icon that is gone from Figma without a rename, or whose row is no longer
+   _Ready_, stays in the repo and is listed under "Needs attention" in the pull request.
+5. Writes the SVGs and the manifest through `import-svgs.mjs`, runs `pnpm icons:generate`, and writes
+   `.changeset/icons-sync.md` (`minor` for new or renamed icons, `patch` for changed artwork only).
+
+If anything changed, the workflow opens one pull request from the branch `chore/icons-sync` (or updates the open one)
+with the list of new, changed and renamed icons. It never pushes to `main` and never merges.
+
+Locally the same runs with `pnpm icons:sync` (writes files, commits nothing) or `pnpm icons:sync --dry-run` (prints the
+report, changes nothing). The skill's manual path through the Figma plugin still exists as a fallback (`SKILL.md`,
+"Sync to code").
 
 ### 4.4 Review and release
 
-Open a pull request. CI runs `pnpm icons:check` before everything else. After the merge, `publish-dev` publishes a
-`dev` build; a stable version is published by creating a GitHub Release, see `RELEASE.md`.
+A developer reviews the sync pull request: the SVG diff, the icons in the Storybook preview, and the "Needs attention"
+list. Pull requests opened with the workflow's `GITHUB_TOKEN` do not trigger other workflows, so CI does not start on
+its own: close and reopen the pull request (or push a commit to it) to run CI before merging. After the merge,
+`publish-dev` publishes a `dev` build; a stable version is published by creating a GitHub Release, see `RELEASE.md`.
 
 ## 5. What each tool does
 
-| Tool                                                       | Runs where                      | Reads                            | Writes                                |
-| ---------------------------------------------------------- | ------------------------------- | -------------------------------- | ------------------------------------- |
-| `.claude/skills/add-icons-to-figma/scripts/place-icons.js` | Figma (`use_figma`, via Claude) | Icon Dropzone                    | Icon index rows, feedback list        |
-| `.claude/skills/add-icons-to-figma/scripts/audit-icons.js` | Figma, read-only                | Icon index                       | Report only                           |
-| `.claude/skills/add-icons-to-figma/scripts/export-svgs.js` | Figma, read-only                | Icon index (status _Ready_ only) | Compact text on stdout                |
-| `packages/icons/import-svgs.mjs`                           | Local Node                      | Export text on stdin             | `svg/*.svg`, `svg/manifest.json`      |
-| `packages/icons/generate-icons.mjs`                        | Local Node and CI               | `svg/`, `aliases.json`           | `src/index.tsx`, `src/react/index.ts` |
+| Tool                                                       | Runs where                      | Reads                            | Writes                                           |
+| ---------------------------------------------------------- | ------------------------------- | -------------------------------- | ------------------------------------------------ |
+| `.claude/skills/add-icons-to-figma/scripts/place-icons.js` | Figma (`use_figma`, via Claude) | Icon Dropzone                    | Icon index rows, feedback list                   |
+| `.claude/skills/add-icons-to-figma/scripts/audit-icons.js` | Figma, read-only                | Icon index                       | Report only                                      |
+| `.claude/skills/add-icons-to-figma/scripts/export-svgs.js` | Figma, read-only                | Icon index (status _Ready_ only) | Compact text on stdout                           |
+| `packages/icons/sync-from-figma.mjs` (`pnpm icons:sync`)   | GitHub Action or local Node     | Figma REST API (status _Ready_)  | via `import-svgs.mjs`, `aliases.json`, changeset |
+| `.github/workflows/icons-sync.yml`                         | GitHub Actions, nightly/manual  | `pnpm icons:sync`                | Pull request `chore/icons-sync`                  |
+| `packages/icons/import-svgs.mjs`                           | Local Node                      | Export text on stdin             | `svg/*.svg`, `svg/manifest.json`                 |
+| `packages/icons/generate-icons.mjs`                        | Local Node and CI               | `svg/`, `aliases.json`           | `src/index.tsx`, `src/react/index.ts`            |
 
 `import-svgs.mjs` options: no option imports export lines from stdin, `--hashes` prints `name<TAB>hash` for every SVG,
 `--prune` removes SVGs that are not in the list passed on stdin. `generate-icons.mjs --check` writes nothing and fails
@@ -177,7 +199,10 @@ nothing about code in other apps. Therefore:
 3. Ship it as a `minor` changeset that names the alias.
 4. Remove the alias in the next **major** version, with a `major` changeset that lists the removed names.
 
-If an icon is moved back from _Ready_ to _In Progress_ in Figma, `--prune` treats it as removed. Ask before pruning.
+The automatic sync follows these rules: a rename in Figma (same component, new name) becomes an alias by itself. An icon
+that disappears without a rename is never deleted; it is reported under "Needs attention" until someone adds an alias
+or removes it by hand in a pull request. If an icon is moved back from _Ready_ to _In Progress_ in Figma, the sync keeps
+the current SVG. (In the manual path, `--prune` treats it as removed: ask before pruning.)
 
 ## 9. Without Claude (manual path)
 
@@ -194,16 +219,20 @@ size and naming against the existing set.
 
 ## 10. Troubleshooting
 
-| Message or symptom                                                                 | Cause                                    | Fix                                                     |
-| ---------------------------------------------------------------------------------- | ---------------------------------------- | ------------------------------------------------------- |
-| `packages/icons/src is out of date with packages/icons/svg`                        | SVGs changed without regenerating        | `pnpm icons:generate`, commit `src/`                    |
-| `<name>.svg: missing entry in svg/manifest.json`                                   | SVG added by hand without manifest entry | Add the entry or use the import script                  |
-| `attribute "stroke" is not allowed on <path>` / `path fill must be "currentColor"` | SVG exported straight from a design tool | Outline strokes, flatten, fill with `currentColor`      |
-| `aliases.json: "x" points to "y", which is not a current icon`                     | Alias target renamed or removed          | Point the alias at the current name                     |
-| Check phase: `stroke width is measured at 1.25px`                                  | Icon exported at another size            | Re-export at 20px                                       |
-| Check phase: `unresolved naming conflict`                                          | Name too close to an existing icon       | Pick the family name or confirm it explicitly           |
-| Anchor node missing (skill script throws)                                          | The Figma Icons frame was restructured   | Update the node ids in the skill scripts and `SKILL.md` |
-| Hash lists differ after a sync                                                     | Transfer error                           | Re-export and re-import that batch                      |
+| Message or symptom                                                                 | Cause                                    | Fix                                                      |
+| ---------------------------------------------------------------------------------- | ---------------------------------------- | -------------------------------------------------------- |
+| `packages/icons/src is out of date with packages/icons/svg`                        | SVGs changed without regenerating        | `pnpm icons:generate`, commit `src/`                     |
+| `<name>.svg: missing entry in svg/manifest.json`                                   | SVG added by hand without manifest entry | Add the entry or use the import script                   |
+| `attribute "stroke" is not allowed on <path>` / `path fill must be "currentColor"` | SVG exported straight from a design tool | Outline strokes, flatten, fill with `currentColor`       |
+| `aliases.json: "x" points to "y", which is not a current icon`                     | Alias target renamed or removed          | Point the alias at the current name                      |
+| Check phase: `stroke width is measured at 1.25px`                                  | Icon exported at another size            | Re-export at 20px                                        |
+| Check phase: `unresolved naming conflict`                                          | Name too close to an existing icon       | Pick the family name or confirm it explicitly            |
+| Anchor node missing (skill script throws)                                          | The Figma Icons frame was restructured   | Update the node ids in the skill scripts and `SKILL.md`  |
+| Hash lists differ after a sync                                                     | Transfer error                           | Re-export and re-import that batch                       |
+| `icons:sync failed: No Figma token`                                                | Token missing                            | Set `FIGMA_ACCESS_TOKEN` or run `pnpm figma:token`       |
+| `icons:sync failed: Figma API 403`                                                 | Token expired or without file access     | Create a new token, update the repository secret         |
+| `icons:sync failed: Anchor node missing`                                           | The Figma icon index was restructured    | Update `INDEX_ID` in `sync-from-figma.mjs` and the skill |
+| Sync PR lists an icon under "Needs attention"                                      | Removed in Figma without rename          | Add an alias or remove the SVG by hand in the PR         |
 
 ## 11. Design decisions and known limitations
 
@@ -211,9 +240,10 @@ size and naming against the existing set.
 or a token, and the single input of the generator. The generated React file is committed so that consumers and
 Storybook never depend on a build-time Figma call.
 
-**Why a skill instead of a CI job that calls the Figma API?** A CI sync would need a Figma token, a webhook and rules
-for every judgement call (duplicates, names, replacements). The skill keeps a person in the loop. The SVG files are the
-interface, so an automatic job can be added later without changing anything downstream.
+**Why a skill for Figma and a GitHub Action for the sync?** Checking and placing icons needs judgement (duplicates,
+names, replacements), so it stays with a person and the skill. Copying _Ready_ icons into the repo needs none, so it is
+automated like at GitHub Primer or Atlassian: the action opens a pull request and a developer still decides by merging.
+It uses the Figma REST file and image endpoints, which work on the Professional plan (the Variables API does not).
 
 **Why a custom generator instead of SVGR?** The icons are tiny, flat and strictly validated; the generator is about
 300 lines and gives typed names, metadata and aliases. It can be replaced by SVGR without touching `svg/`.
@@ -221,10 +251,12 @@ interface, so an automatic job can be added later without changing anything down
 Known limitations:
 
 - The skill needs Claude Code with the Figma MCP connection; there is no standalone command for the Figma side.
-- The skill scripts contain fixed Figma node ids (index frame, template row, dropzone).
+- The skill scripts and `sync-from-figma.mjs` contain fixed Figma node ids (index frame, template row, dropzone).
+- The sync runs nightly, not on a Figma webhook, so a _Ready_ icon reaches the repo within a day (or at once with
+  "Run workflow").
 - Stroke width of already outlined artwork is measured from its geometry. Mostly solid shapes (filled icons, dots) have no
   stroke width and are not measurable; a stroke of 3px or more looks like a solid shape.
-- Nothing starts automatically. A dropped icon waits until someone runs the skill.
+- A dropped icon waits until someone runs the skill; only the step from _Ready_ to the repo is automatic.
 - The published npm package contains the React components only, not the raw SVG files.
 - There is no automated visual regression test for icons; Storybook is the review tool.
 
@@ -233,4 +265,4 @@ Known limitations:
 - Publish `svg/` with the package (`files` and an `exports` entry) for non-React consumers.
 - Optional SVG optimisation (SVGO) with a size budget, if the bundle size of the icon file becomes an issue.
 - A pull request template with an icon checklist (alias present, changeset present, `icons:check` green).
-- A scheduled or webhook-driven Figma sync that opens a pull request, once a token can be managed safely.
+- A Figma webhook (`FILE_UPDATE`) that starts the workflow right after a change instead of nightly.

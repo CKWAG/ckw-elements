@@ -714,8 +714,11 @@ committed, so nothing in the build needs Figma or a token. The full guide (stand
 troubleshooting) is `packages/icons/CONTRIBUTING.md`.
 
 ```
+Figma Icon Dropzone
+  │  .claude/skills/add-icons-to-figma  (designer drops, maintainer + Claude check and place)
+  ▼
 Figma Icons index (rows with status "Ready")
-  │  .claude/skills/add-icons-to-figma  ("Sync to code")
+  │  GitHub Action "Icons sync" (nightly or "Run workflow"): pnpm icons:sync → pull request chore/icons-sync
   ▼
 packages/icons/svg/<name>.svg + svg/manifest.json     one flat SVG per icon, fill="currentColor"
   │  pnpm icons:generate   (generate-icons.mjs, validates every SVG)
@@ -732,8 +735,14 @@ Storybook "Foundations/Icons" (reads iconMetadata) · npm @ckwag/elements-icons 
   `iconMetadata`. Aliases are removed in the next major version.
 - **Validation:** `generate-icons.mjs` rejects SVGs that are not flat (24px canvas, only `<path>`, every path
   `fill="currentColor"`, no strokes), icons missing from the manifest, and aliases pointing nowhere.
-- **Release:** add a `.changeset/` release note for `@ckwag/elements-icons` (minor for new icons or aliases). The
-  version itself comes from the GitHub Release tag, see `RELEASE.md`.
+- **Sync:** `packages/icons/sync-from-figma.mjs` (`pnpm icons:sync`, `--dry-run` to only report) reads the Ready rows
+  through the Figma REST API with `FIGMA_ACCESS_TOKEN`, writes new and changed SVGs, turns renames into aliases,
+  regenerates `src/` and writes `.changeset/icons-sync.md`. It never deletes an icon; removals are reported in the PR.
+  `.github/workflows/icons-sync.yml` runs it nightly and opens or updates one pull request. A developer reviews and
+  merges; nothing is pushed to `main` automatically.
+- **Release:** the sync writes a `.changeset/` release note for `@ckwag/elements-icons` (minor for new or renamed
+  icons, patch for changed artwork). Manual changes need their own release note. The version itself comes from the
+  GitHub Release tag, see `RELEASE.md`.
 
 ### D. "I want to run Storybook locally"
 
@@ -875,6 +884,18 @@ Style Dictionary v5                   │
      └──▶ Future: MyCKW, other products
           install @ckwag/elements-tokens
           import tokens.css
+```
+
+Icons have their own, shorter flow (see D3 and `packages/icons/CONTRIBUTING.md`):
+
+```
+Figma Icon Dropzone ──skill: check + place──▶ Figma Icon index (status Ready)
+                                                   │ GitHub Action "Icons sync" → pull request
+                                                   ▼
+                              packages/icons/svg/*.svg + manifest.json   ◄─── Single Source of Truth
+                                                   │ pnpm icons:generate
+                                                   ▼
+                              packages/icons/src/index.tsx ──▶ Storybook "Foundations/Icons", npm package
 ```
 
 ---
