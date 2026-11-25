@@ -1,6 +1,7 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import { IconPlaceholder } from '@ckwag/elements-icons';
+import { IconArrowRight, IconPlaceholder } from '@ckwag/elements-icons';
+import { Button } from '../Button';
 import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { InlineMessage } from './InlineMessage';
 
@@ -22,6 +23,12 @@ const meta = {
       name: 'Description',
       control: 'text',
       description: 'Message body text.',
+      table: { category: 'Content' },
+    },
+    actions: {
+      control: false,
+      description:
+        'Optional content below the body, in the text column (e.g. a Text Link or small Buttons).',
       table: { category: 'Content' },
     },
     status: {
@@ -64,6 +71,39 @@ const meta = {
 } satisfies Meta<typeof InlineMessage>;
 
 export default meta;
+
+interface DemoLinkProps {
+  children: React.ReactNode;
+  small?: boolean;
+}
+
+/**
+ * Story-only stand-in for the Text Link (standalone, trailing arrow) until the Text Link
+ * component ships; it uses the same tokens.
+ */
+function DemoLink({ children, small = false }: DemoLinkProps) {
+  const size = small ? 'label-s' : 'label-m';
+  return (
+    <a
+      href="#"
+      onClick={(event) => event.preventDefault()}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 'var(--spacing-xs)',
+        color: 'var(--interactive-text)',
+        textDecoration: 'none',
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: `var(--${size}-size)`,
+        lineHeight: `var(--${size}-height)`,
+        fontWeight: `var(--${size}-weight)`,
+      }}
+    >
+      {children}
+      <IconArrowRight size={small ? 16 : 20} aria-hidden="true" />
+    </a>
+  );
+}
 
 type Story = StoryObj<typeof meta>;
 
@@ -168,6 +208,72 @@ export const Icon: Story = {
         <span style={labelStyle}>Without</span>
         <div style={desktopFrameStyle}>
           <InlineMessage title="Statusmeldung" showIcon={false}>
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
+          </InlineMessage>
+        </div>
+      </div>
+    </div>
+  ),
+};
+
+/** The actions slot sits below the body, aligned with the text, and wraps on narrow widths. */
+export const Actions: Story = {
+  render: () => (
+    <div style={sectionStyle}>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Text Link</span>
+        <div style={desktopFrameStyle}>
+          <InlineMessage title="Statusmeldung" actions={<DemoLink>Mehr erfahren</DemoLink>}>
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
+          </InlineMessage>
+        </div>
+      </div>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Two Links</span>
+        <div style={desktopFrameStyle}>
+          <InlineMessage
+            status="warning"
+            title="Statusmeldung"
+            actions={
+              <>
+                <DemoLink>Zählerstand erfassen</DemoLink>
+                <DemoLink>Mehr erfahren</DemoLink>
+              </>
+            }
+          >
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
+          </InlineMessage>
+        </div>
+      </div>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Button</span>
+        <div style={desktopFrameStyle}>
+          <InlineMessage
+            status="error"
+            title="Statusmeldung"
+            actions={
+              <Button variant="secondary" size="small">
+                Rechnung bezahlen
+              </Button>
+            }
+          >
+            Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
+          </InlineMessage>
+        </div>
+      </div>
+      <div style={rowStyle}>
+        <span style={labelStyle}>Mobile</span>
+        <div style={mobileFrameStyle}>
+          <InlineMessage
+            breakpoint="mobile"
+            title="Statusmeldung"
+            actions={
+              <>
+                <DemoLink small>Zählerstand erfassen</DemoLink>
+                <DemoLink small>Mehr erfahren</DemoLink>
+              </>
+            }
+          >
             Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.
           </InlineMessage>
         </div>

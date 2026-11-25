@@ -15,6 +15,11 @@ export interface InlineMessageProps {
   title?: React.ReactNode;
   /** Message body text or content. */
   children: React.ReactNode;
+  /**
+   * Optional content below the body, aligned with the text column, e.g. a Text Link or small
+   * Buttons. Items sit in a row with an `m` gap and wrap when space runs out.
+   */
+  actions?: React.ReactNode;
   /** Semantic status variant. */
   status?: InlineMessageStatus;
   /** Optional custom icon. If omitted, a status icon is rendered. */
@@ -58,6 +63,7 @@ function InlineMessageDefaultIcon({ status }: InlineMessageDefaultIconProps) {
 export function InlineMessage({
   title,
   children,
+  actions,
   status = 'info',
   icon,
   showIcon = true,
@@ -90,6 +96,7 @@ export function InlineMessage({
         <div className="ckw-inline-message__text">
           {title && <div className="ckw-inline-message__title">{title}</div>}
           <div className="ckw-inline-message__body">{children}</div>
+          {actions && <div className="ckw-inline-message__actions">{actions}</div>}
         </div>
       </div>
     </div>

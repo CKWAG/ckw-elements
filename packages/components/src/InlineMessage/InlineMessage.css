@@ -3,6 +3,8 @@
  *
  * Uses only semantic design tokens from @ckwag/elements-tokens.
  * Variants: Info, Success, Warning, Error.
+ * Flat surface: 1px border-soft, no shadow.
+ * Optional actions slot below the body (Figma `Actions` slot + `Show Actions`).
  * Responsive behavior follows the Figma Desktop/Mobile variants by default.
  *
  * Layout: the status bar is an inset flex item with rounded ends that stretches
@@ -23,7 +25,9 @@
   gap: var(--ckw-inline-message-gap);
   width: 100%;
   max-width: 100%;
-  padding: var(--spacing-m);
+  /* the 1px border sits inside the box (like the Figma inside stroke): subtract it so the content keeps its position */
+  padding: calc(var(--spacing-m) - var(--border-weight-s));
+  border: var(--border-weight-s) solid var(--border-soft);
   border-radius: var(--border-radius-m);
   background-color: var(--background-default);
   color: var(--text-primary);
@@ -112,6 +116,16 @@
   color: var(--text-primary);
 }
 
+/* Actions slot: free content below the body, in the text column, wrapping on narrow widths. */
+.ckw-inline-message__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  column-gap: var(--spacing-m);
+  row-gap: var(--spacing-xs);
+  margin-top: var(--spacing-s);
+}
+
 /* ============================================
    Mobile Breakpoint
    ============================================ */
@@ -149,5 +163,22 @@
     font-size: var(--body-s-size);
     line-height: var(--body-s-height);
     font-weight: var(--body-s-weight);
+  }
+}
+
+/* ============================================
+   Windows High Contrast (forced colors)
+   Backgrounds are replaced there: the border keeps the shape and the
+   status bar keeps its colour as a system colour.
+   ============================================ */
+
+@media (forced-colors: active) {
+  .ckw-inline-message {
+    border-color: CanvasText;
+  }
+
+  .ckw-inline-message__status {
+    forced-color-adjust: none;
+    background-color: CanvasText;
   }
 }

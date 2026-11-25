@@ -1,7 +1,58 @@
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import { IconArrowRight } from '@ckwag/elements-icons';
+import { Button } from '../Button';
 import { figmaReferences, getFigmaDesignParameter } from '../storybook/figmaLinks';
 import { InlineMessage } from './InlineMessage';
+
+interface DemoLinkProps {
+  children: React.ReactNode;
+  small?: boolean;
+}
+
+/**
+ * Story-only stand-in for the Text Link (standalone, trailing arrow) until the Text Link
+ * component ships; it uses the same tokens.
+ */
+function DemoLink({ children, small = false }: DemoLinkProps) {
+  const size = small ? 'label-s' : 'label-m';
+  return (
+    <a
+      href="#"
+      onClick={(event) => event.preventDefault()}
+      style={{
+        display: 'inline-flex',
+        alignItems: 'center',
+        gap: 'var(--spacing-xs)',
+        color: 'var(--interactive-text)',
+        textDecoration: 'none',
+        fontFamily: 'var(--font-family-brand), sans-serif',
+        fontSize: `var(--${size}-size)`,
+        lineHeight: `var(--${size}-height)`,
+        fontWeight: `var(--${size}-weight)`,
+      }}
+    >
+      {children}
+      <IconArrowRight size={small ? 16 : 20} aria-hidden="true" />
+    </a>
+  );
+}
+
+const actionOptions = {
+  none: undefined,
+  'text link': <DemoLink>Mehr erfahren</DemoLink>,
+  'two links': (
+    <>
+      <DemoLink>Zählerstand erfassen</DemoLink>
+      <DemoLink>Mehr erfahren</DemoLink>
+    </>
+  ),
+  button: (
+    <Button variant="secondary" size="small">
+      Jetzt erfassen
+    </Button>
+  ),
+};
 
 const meta = {
   title: 'Components/Inline Message',
@@ -26,6 +77,14 @@ const meta = {
       name: 'Description',
       control: 'text',
       description: 'Message body text.',
+    },
+    actions: {
+      control: { type: 'select' },
+      options: Object.keys(actionOptions),
+      mapping: actionOptions,
+      description:
+        'Optional content below the body, in the text column (e.g. a Text Link or small Buttons).',
+      table: { defaultValue: { summary: 'none' } },
     },
     status: {
       control: { type: 'inline-radio' },

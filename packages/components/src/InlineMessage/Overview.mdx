@@ -23,7 +23,8 @@ import * as InlineMessagePlayground from './InlineMessage.playground.stories';
   <div className="docs-section" style={{ marginTop: '48px' }}>
     <div className="docs-section-title">Playground</div>
     <div className="docs-subsection-description">
-      Use the controls below to configure status, title, icon visibility, and breakpoint behavior.
+      Use the controls below to configure status, title, icon visibility, actions, and breakpoint
+      behavior.
     </div>
   </div>
 </div>
@@ -92,6 +93,24 @@ import * as InlineMessagePlayground from './InlineMessage.playground.stories';
 
 <div className="sb-unstyled">
   <div className="docs-section">
+    <div className="docs-section-title">Actions</div>
+    <div className="docs-subsection-description">
+      Use <code>actions</code> for content below the body, such as a Text Link (&quot;Mehr
+      erfahren&quot;) or a small Button. It sits in the text column with an <code>s</code> gap
+      above; several items sit in a row with an <code>m</code> gap and wrap on narrow widths. Prefer
+      Text Links for navigation and use a small secondary Button only when the message triggers a
+      real action. In Figma this is the <code>Actions</code> slot, shown with{' '}
+      <code>Show Actions</code>.
+    </div>
+  </div>
+</div>
+
+<div style={{ marginTop: '24px' }}>
+  <Story of={InlineMessageStories.Actions} />
+</div>
+
+<div className="sb-unstyled">
+  <div className="docs-section">
     <div className="docs-section-title">Breakpoint</div>
     <div className="docs-subsection-description">
       Auto mode follows the viewport. Desktop and Mobile can be forced for documentation and visual
@@ -110,7 +129,9 @@ import * as InlineMessagePlayground from './InlineMessage.playground.stories';
     <div className="docs-subsection-description">
       Inline Messages use <code>role=&quot;note&quot;</code> by default because they are persistent
       contextual feedback, not temporary alerts. Use clear text that describes the condition and the
-      next action.
+      next action. Links and Buttons in <code>actions</code> are regular tab stops in reading order;
+      give each a label that makes sense on its own (&quot;Zählerstand erfassen&quot;, not
+      &quot;Hier&quot;).
     </div>
   </div>
 </div>
