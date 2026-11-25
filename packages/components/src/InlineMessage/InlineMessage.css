@@ -2,8 +2,12 @@
  * Inline Message Styles
  *
  * Uses only semantic design tokens from @ckwag/elements-tokens.
- * Variants: Info, Success, Error.
+ * Variants: Info, Success, Warning, Error.
  * Responsive behavior follows the Figma Desktop/Mobile variants by default.
+ *
+ * Layout: the status bar is an inset flex item with rounded ends that stretches
+ * to the height of the content. The icon is as tall as one line of text and is
+ * top-aligned with the first line.
  */
 
 /* ============================================
@@ -12,12 +16,15 @@
 
 .ckw-inline-message {
   --ckw-inline-message-status-color: var(--status-info-border);
+  --ckw-inline-message-gap: var(--spacing-s);
+  --ckw-inline-message-icon-size: var(--spacing-xl);
 
   display: flex;
+  gap: var(--ckw-inline-message-gap);
   width: 100%;
   max-width: 100%;
-  overflow: hidden;
-  border-radius: var(--border-radius-s);
+  padding: var(--spacing-m);
+  border-radius: var(--border-radius-m);
   background-color: var(--background-default);
   color: var(--text-primary);
   font-family: var(--font-family-brand), sans-serif;
@@ -34,17 +41,22 @@
   --ckw-inline-message-status-color: var(--status-success-border);
 }
 
+.ckw-inline-message--warning {
+  --ckw-inline-message-status-color: var(--status-warning-border);
+}
+
 .ckw-inline-message--error {
   --ckw-inline-message-status-color: var(--status-error-border);
 }
 
 /* ============================================
-   Status Rail
+   Status Bar
    ============================================ */
 
 .ckw-inline-message__status {
-  flex: 0 0 var(--spacing-xs);
-  width: var(--spacing-xs);
+  flex: 0 0 var(--spacing-2xs);
+  align-self: stretch;
+  border-radius: var(--border-radius-full);
   background-color: var(--ckw-inline-message-status-color);
 }
 
@@ -56,24 +68,18 @@
   display: flex;
   flex: 1 1 auto;
   min-width: 0;
-  gap: var(--spacing-m);
+  gap: var(--ckw-inline-message-gap);
   align-items: flex-start;
-  padding: var(--spacing-m) var(--spacing-l);
-  background-color: var(--background-default);
 }
 
 .ckw-inline-message__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  flex: 0 0 calc(var(--spacing-xl) + var(--spacing-2xs));
-  width: calc(var(--spacing-xl) + var(--spacing-2xs));
-  height: calc(var(--spacing-xl) + var(--spacing-2xs));
+  flex: 0 0 var(--ckw-inline-message-icon-size);
+  width: var(--ckw-inline-message-icon-size);
+  height: var(--ckw-inline-message-icon-size);
   color: var(--ckw-inline-message-status-color);
-}
-
-.ckw-inline-message--has-title .ckw-inline-message__icon {
-  margin-top: var(--spacing-2xs);
 }
 
 .ckw-inline-message__icon > svg {
@@ -108,19 +114,9 @@
    Mobile Breakpoint
    ============================================ */
 
-.ckw-inline-message--breakpoint-mobile .ckw-inline-message__content {
-  gap: var(--spacing-s);
-  padding: var(--spacing-m);
-}
-
-.ckw-inline-message--breakpoint-mobile .ckw-inline-message__icon {
-  flex-basis: var(--spacing-xl);
-  width: var(--spacing-xl);
-  height: var(--spacing-xl);
-}
-
-.ckw-inline-message--breakpoint-mobile.ckw-inline-message--has-title .ckw-inline-message__icon {
-  margin-top: var(--spacing-2xs);
+.ckw-inline-message--breakpoint-mobile {
+  --ckw-inline-message-gap: var(--spacing-xs);
+  --ckw-inline-message-icon-size: var(--spacing-l);
 }
 
 .ckw-inline-message--breakpoint-mobile .ckw-inline-message__title {
@@ -136,15 +132,9 @@
 }
 
 @media (max-width: 767px) {
-  .ckw-inline-message:not(.ckw-inline-message--breakpoint-desktop) .ckw-inline-message__content {
-    gap: var(--spacing-s);
-    padding: var(--spacing-m);
-  }
-
-  .ckw-inline-message:not(.ckw-inline-message--breakpoint-desktop) .ckw-inline-message__icon {
-    flex-basis: var(--spacing-xl);
-    width: var(--spacing-xl);
-    height: var(--spacing-xl);
+  .ckw-inline-message:not(.ckw-inline-message--breakpoint-desktop) {
+    --ckw-inline-message-gap: var(--spacing-xs);
+    --ckw-inline-message-icon-size: var(--spacing-l);
   }
 
   .ckw-inline-message:not(.ckw-inline-message--breakpoint-desktop) .ckw-inline-message__title {

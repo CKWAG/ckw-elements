@@ -3,10 +3,11 @@ import {
   IconCheckCircleFilled,
   IconInformation,
   IconWarningCircleFilled,
+  IconWarningFilled,
 } from '@ckwag/elements-icons';
 import './InlineMessage.css';
 
-export type InlineMessageStatus = 'Info' | 'Success' | 'Error';
+export type InlineMessageStatus = 'Info' | 'Success' | 'Warning' | 'Error';
 export type InlineMessageBreakpoint = 'Auto' | 'Desktop' | 'Mobile';
 
 export interface InlineMessageProps {
@@ -35,6 +36,10 @@ interface InlineMessageDefaultIconProps {
 function InlineMessageDefaultIcon({ status }: InlineMessageDefaultIconProps) {
   if (status === 'Success') {
     return <IconCheckCircleFilled />;
+  }
+
+  if (status === 'Warning') {
+    return <IconWarningFilled />;
   }
 
   if (status === 'Error') {
