@@ -14,11 +14,11 @@ colors:
   text-secondary: '#4f544f'
   text-tertiary: '#8d968d'
   text-on-primary: '#ffffff'
-  background-default: '#ffffff'
+  background-card: '#ffffff'
   background-canvas: '#fafafa'
   background-active: '#f1f9e8'
-  background-hover: '#eff0ef'
-  border-soft: '#eff0ef'
+  background-hover-medium: '#eff0ef'
+  border-light: '#eff0ef'
   border-medium: '#d5d8d5'
   border-strong: '#8d968d'
   border-active: '#53821f'
@@ -136,13 +136,13 @@ components:
   button-secondary-hover:
     backgroundColor: '{colors.secondary-hover}'
   input-field:
-    backgroundColor: '{colors.background-default}'
+    backgroundColor: '{colors.background-card}'
     textColor: '{colors.text-primary}'
     typography: '{typography.body-s}'
     rounded: '{rounded.sm}'
     padding: 12px 16px
   card:
-    backgroundColor: '{colors.background-default}'
+    backgroundColor: '{colors.background-card}'
     rounded: '{rounded.sm}'
     padding: 24px
 ---

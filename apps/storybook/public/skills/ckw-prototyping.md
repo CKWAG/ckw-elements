@@ -26,12 +26,12 @@ Use CKW design tokens for all UI output. Never hardcode colors, spacing, or radi
 | Primary action (buttons, links) | `--interactive-primary`         |
 | Primary action hover            | `--interactive-primary-hover`   |
 | Primary action pressed          | `--interactive-primary-active`  |
-| Page background                 | `--background-default`          |
+| Card surface                    | `--background-card`             |
 | Subtle background               | `--background-canvas`           |
-| Hover state background          | `--background-hover`            |
+| Hover state background          | `--background-hover-medium`     |
 | Selected/active background      | `--background-active`           |
 | Input field background          | `--background-input`            |
-| Subtle border                   | `--border-soft`                 |
+| Subtle border                   | `--border-light`                |
 | Default border                  | `--border-medium`               |
 | Strong border                   | `--border-strong`               |
 | Focused/selected border         | `--border-active`               |
