@@ -103,7 +103,7 @@ Icon names are public API (`IconPlus`, `<Icon name="plus" />`). A renamed, merge
 change for consumers even if it is unused in Figma.
 
 - Add the old name to `packages/icons/aliases.json` pointing at the current icon. The alias keeps working as a
-  deprecated export and is not listed in `iconNames`.
+  deprecated export and in `iconComponents`, but it is not part of `IconName`, `iconNames` or `iconMetadata`.
 - Release the change as `minor` and name the aliases in the changeset.
 - Remove an alias only in the next **major** version, with a `major` changeset that lists the removed names.
 

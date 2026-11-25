@@ -70,6 +70,24 @@ function readIcons() {
   const manifestPath = join(svgDir, 'manifest.json');
   const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : [];
   const nodeIds = new Map(manifest.map((entry) => [entry.name, entry.figmaNodeId]));
+  const nodeIdOwners = new Map();
+  const seenNames = new Set();
+
+  for (const entry of manifest) {
+    const owner = nodeIdOwners.get(entry.figmaNodeId);
+
+    if (seenNames.has(entry.name)) {
+      errors.push(`svg/manifest.json: "${entry.name}" is listed more than once`);
+    } else if (owner) {
+      errors.push(
+        `svg/manifest.json: Figma node ${entry.figmaNodeId} is used by "${owner}" and "${entry.name}"`,
+      );
+    }
+
+    seenNames.add(entry.name);
+    nodeIdOwners.set(entry.figmaNodeId, owner ?? entry.name);
+  }
+
   const files = existsSync(svgDir)
     ? readdirSync(svgDir).filter((file) => file.endsWith('.svg'))
     : [];
@@ -310,20 +328,17 @@ ${functions}
 
 ${aliasComponents}
 
+/**
+ * Icon components by name. Also contains the deprecated names (see \`deprecatedIconAliases\`) so lookups like
+ * \`iconComponents['plus']\` keep working until the next major version.
+ */
 export const iconComponents = {
-${componentMap}
-} satisfies Record<IconName, IconComponent>;
-
-const deprecatedIconComponents = {
-${aliasComponentMap}
-} satisfies Record<DeprecatedIconName, IconComponent>;
+${componentMap}${aliasComponentMap ? `\n${aliasComponentMap}` : ''}
+} satisfies Record<IconName | DeprecatedIconName, IconComponent>;
 
 /** Renders a CKW Elements icon by name. */
 export function Icon({ name, ...props }: IconByNameProps) {
-  const IconComponent: IconComponent =
-    name in deprecatedIconComponents
-      ? deprecatedIconComponents[name as DeprecatedIconName]
-      : iconComponents[name as IconName];
+  const IconComponent: IconComponent = iconComponents[name];
 
   return <IconComponent {...props} />;
 }

@@ -3569,6 +3569,10 @@ export const IconCheckBox: IconComponent = IconCheckBoxFilled;
 /** @deprecated Renamed to IconAdd. Will be removed in the next major version. */
 export const IconPlus: IconComponent = IconAdd;
 
+/**
+ * Icon components by name. Also contains the deprecated names (see `deprecatedIconAliases`) so lookups like
+ * `iconComponents['plus']` keep working until the next major version.
+ */
 export const iconComponents = {
   'account-tie': IconAccountTie,
   add: IconAdd,
@@ -3707,19 +3711,13 @@ export const iconComponents = {
   'warning-circle-filled': IconWarningCircleFilled,
   'warning-filled': IconWarningFilled,
   'washing-machine': IconWashingMachine,
-} satisfies Record<IconName, IconComponent>;
-
-const deprecatedIconComponents = {
   'check-box': IconCheckBoxFilled,
   plus: IconAdd,
-} satisfies Record<DeprecatedIconName, IconComponent>;
+} satisfies Record<IconName | DeprecatedIconName, IconComponent>;
 
 /** Renders a CKW Elements icon by name. */
 export function Icon({ name, ...props }: IconByNameProps) {
-  const IconComponent: IconComponent =
-    name in deprecatedIconComponents
-      ? deprecatedIconComponents[name as DeprecatedIconName]
-      : iconComponents[name as IconName];
+  const IconComponent: IconComponent = iconComponents[name];
 
   return <IconComponent {...props} />;
 }

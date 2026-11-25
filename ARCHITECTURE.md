@@ -723,15 +723,17 @@ packages/icons/svg/<name>.svg + svg/manifest.json     one flat SVG per icon, fil
 packages/icons/src/index.tsx                           generated React components, committed
   │  CI: pnpm icons:check  fails when src/ and svg/ disagree
   ▼
-Storybook "Foundations/Icons" (reads iconMetadata) · npm @ckwag/elements-icons (Changesets)
+Storybook "Foundations/Icons" (reads iconMetadata) · npm @ckwag/elements-icons (GitHub Release)
 ```
 
 - **Naming and breaking changes:** a renamed or merged icon keeps working through `aliases.json`
   (`{ "old-name": "new-name" }`). The alias is exported as a deprecated `IconOldName` and is still accepted by
-  `<Icon name="old-name" />`, but is not listed in `iconNames`. Aliases are removed in the next major version.
+  `<Icon name="old-name" />` and in `iconComponents`, but is not part of `IconName`, `iconNames` or
+  `iconMetadata`. Aliases are removed in the next major version.
 - **Validation:** `generate-icons.mjs` rejects SVGs that are not flat (24px canvas, only `<path>`, every path
   `fill="currentColor"`, no strokes), icons missing from the manifest, and aliases pointing nowhere.
-- **Release:** add a changeset for `@ckwag/elements-icons` (minor for new icons or aliases).
+- **Release:** add a `.changeset/` release note for `@ckwag/elements-icons` (minor for new icons or aliases). The
+  version itself comes from the GitHub Release tag, see `RELEASE.md`.
 
 ### D. "I want to run Storybook locally"
 
