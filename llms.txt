@@ -7,27 +7,43 @@ CKW Elements is CKW's React design system. Use it through package imports, not c
 - Agent instructions: AGENTS.md
 - Architecture: ARCHITECTURE.md
 - Pipeline guide: PIPELINE.md
-- Token package: packages/tokens
-- Component package: packages/components
+- Design summary: DESIGN.md
+- Known issues: KNOWN_ISSUES.md
+- Release process: RELEASE.md
+- Token package: packages/tokens (`@ckwag/elements-tokens`)
+- Icon package: packages/icons (`@ckwag/elements-icons`)
+- Component package: packages/components (`@ckwag/elements`)
 - Storybook app: apps/storybook
 - Deployed-agent entrypoint: apps/storybook/public/llms.txt
+- Full deployed-agent guide: apps/storybook/public/llms-full.txt
 - CKW Figma design system: https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/%F0%9F%92%A0-CKW-Elements-%C2%B7-Design-System
 
 ## Package Usage
 
 ```css
-@import '@ckwag/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 ```
 
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/components';
+import { IconSearch } from '@ckwag/elements-icons';
+import {
+  Badge,
+  Button,
+  InlineMessage,
+  InputField,
+  LoadingSpinner,
+  PasswordInput,
+  SegmentedControl,
+  Select,
+} from '@ckwag/elements';
 ```
 
 ## Core Rules
 
 - Components use semantic tokens only.
 - Do not use primitive color tokens in product components.
+- Prop values are lowercase in code (`variant="primary"`, `status="error"`); Figma uses Title Case.
 - Brand color is green, not blue.
 - Font is Gotham through `var(--font-family-brand), sans-serif`.
 - Keep `import React from 'react';` in TSX files in this repository.

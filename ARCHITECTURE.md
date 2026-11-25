@@ -106,13 +106,13 @@ ckw-elements/
 | Tool             | Version  | Purpose                                  |
 | ---------------- | -------- | ---------------------------------------- |
 | pnpm             | >= 10    | Monorepo package manager (workspaces)    |
-| Node.js          | >= 20    | Runtime                                  |
-| Style Dictionary | 4.x      | Token transformation (JSON → CSS/JS)     |
+| Node.js          | >= 22    | Runtime                                  |
+| Style Dictionary | 5.x      | Token transformation (JSON → CSS/JS)     |
 | Tokens Studio    | (Plugin) | Figma plugin — exports Variables as JSON |
 | React            | 19       | Component library framework              |
-| TypeScript       | 5.x      | Type safety (strict mode planned)        |
+| TypeScript       | 7.x      | Type safety (strict mode)                |
 | Storybook        | 10.x     | Documentation site + component explorer  |
-| Vite             | 6.x      | Build tool (via @storybook/react-vite)   |
+| Vite             | 8.x      | Build tool (via @storybook/react-vite)   |
 
 ### Package Status
 
@@ -178,7 +178,7 @@ decisions from Figma into consumable CSS and JavaScript outputs.
  └──────────────────────────────┬───────────────────────────────────────┘
                                 │
                      node build-tokens.mjs
-                    (runs Style Dictionary v4)
+                    (runs Style Dictionary v5)
                                 │
                    ┌────────────┴────────────┐
                    │  What it does:          │
@@ -239,21 +239,27 @@ decisions from Figma into consumable CSS and JavaScript outputs.
 | `ckw/tokens-css` | `dist/tokens.css` | Single CSS file with 12 structured blocks     |
 | `ckw/tokens-js`  | `dist/tokens.js`  | JS module with named exports + default export |
 
-### Token Count Summary (282 Total)
+### Token Categories
 
-| Category           | Count   | CSS Variable Pattern                         |
-| ------------------ | ------- | -------------------------------------------- |
-| Primitive colors   | 79      | `--color-{group}-{step}`                     |
-| Semantic colors    | 76      | `--{name}` (e.g. `--text-primary`)           |
-| Spacing            | 15      | `--spacing-{size}`                           |
-| Border radius      | 7       | `--border-radius-{size}`                     |
-| Border weight      | 4       | `--border-weight-{size}`                     |
-| Font family        | 1       | `--font-family-brand`                        |
-| Shadows            | 3       | `--shadow-{size}`                            |
-| Gradient           | 1       | `--gradient-brand`                           |
-| Typography desktop | 48      | `--{style}-{prop}` (e.g. `--heading-l-size`) |
-| Typography mobile  | 48      | Same names, inside `@media` block            |
-| **Total**          | **282** |                                              |
+Counts change with every Figma export, so they are not listed here. Count them
+from the source of truth:
+
+```bash
+node -e "const c=o=>o&&typeof o==='object'?('\$value' in o?1:Object.values(o).reduce((a,v)=>a+c(v),0)):0;const t=require('./packages/tokens/tokens.json');for(const k in t)console.log(k,c(t[k]))"
+```
+
+| Category           | Source path in `tokens.json` | CSS Variable Pattern                         |
+| ------------------ | ---------------------------- | -------------------------------------------- |
+| Primitive colors   | `primitive.color`            | `--color-{group}-{step}`                     |
+| Spacing            | `primitive.spacing`          | `--spacing-{size}`                           |
+| Border radius      | `primitive.border-radius`    | `--border-radius-{size}`                     |
+| Border weight      | `primitive.border-weight`    | `--border-weight-{size}`                     |
+| Font family        | `primitive.font-family`      | `--font-family-brand`                        |
+| Shadows            | `primitive.shadow`           | `--shadow-{size}`                            |
+| Gradient           | `primitive.gradient`         | `--gradient-brand`                           |
+| Semantic colors    | `semantic.color`             | `--{name}` (e.g. `--text-primary`)           |
+| Typography desktop | `typography.desktop`         | `--{style}-{prop}` (e.g. `--heading-l-size`) |
+| Typography mobile  | `typography.mobile`          | Same names, inside `@media` block            |
 
 ### What Gets Committed vs. Generated
 
@@ -820,7 +826,7 @@ Tokens Studio Plugin ──export──▶ tokens-raw.json
 transform-tokens.mjs ──────────▶ tokens.json ◄─── Single Source of Truth
      │                                │
      ▼                                │
-Style Dictionary v4                   │
+Style Dictionary v5                   │
      │                                │
      ├──▶ dist/tokens.css ────────────┼──▶ Storybook (global CSS)
      │                                │         │

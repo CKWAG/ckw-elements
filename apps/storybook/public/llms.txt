@@ -1,10 +1,12 @@
 # CKW Elements
 
-CKW Elements is CKW's design system for React applications. It ships design tokens and React components as npm packages.
+CKW Elements is CKW's design system for React applications. It ships design tokens, icons, and React components as npm packages.
 
 ## Primary Resources
 
 - Full AI guide: llms-full.txt
+- Design summary: DESIGN.md
+- Story index: index.json
 - Token CSS: tokens/tokens.css
 - Token JavaScript: tokens/tokens.js
 - Token JSON: tokens/tokens.json
@@ -14,25 +16,32 @@ CKW Elements is CKW's design system for React applications. It ships design toke
 
 ## Packages
 
-- `@ckwag/tokens`: CSS custom properties, JavaScript token exports, and DTCG JSON.
-- `@ckwag/components`: React components that use CKW semantic tokens.
+- `@ckwag/elements-tokens`: CSS custom properties, JavaScript token exports, and DTCG JSON.
+- `@ckwag/elements-icons`: React SVG icon components from the CKW icon set.
+- `@ckwag/elements`: React components that use CKW semantic tokens: Badge, Button, InlineMessage, InputField, LoadingSpinner, PasswordInput, SegmentedControl, Select.
 
 ## Core Rules
 
-- Import `@ckwag/tokens/tokens.css` once in the application entry point.
+- Import `@ckwag/elements-tokens/tokens.css` once in the application entry point.
 - Use semantic tokens like `var(--interactive-primary)`, not primitive tokens like `var(--color-green-600)`, in product components.
+- Prop values are lowercase in code (`variant="primary"`, `size="large"`, `status="error"`).
 - CKW brand color is green. Do not make primary UI blue.
 - CKW brand font is Gotham via `var(--font-family-brand), sans-serif`.
 - React TSX files in this repository must keep `import React from 'react';`.
 
 ## React Usage
 
+```bash
+npm install @ckwag/elements-tokens @ckwag/elements-icons @ckwag/elements
+```
+
 ```tsx
 import React from 'react';
-import { Button, InlineMessage, InputField, PasswordInput, SegmentedControl } from '@ckwag/components';
-import '@ckwag/tokens/tokens.css';
+import { IconSearch } from '@ckwag/elements-icons';
+import { Button, InlineMessage, InputField, Select } from '@ckwag/elements';
+import '@ckwag/elements-tokens/tokens.css';
 ```
 
 ```css
-@import '@ckwag/tokens/tokens.css';
+@import '@ckwag/elements-tokens/tokens.css';
 ```
