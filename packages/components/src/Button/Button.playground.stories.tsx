@@ -71,6 +71,19 @@ const meta = {
       description: 'Shows a spinner in the leading slot, sets aria-busy, and disables interaction.',
       table: { category: 'States', defaultValue: { summary: 'false' } },
     },
+    href: {
+      control: 'text',
+      description: 'Renders the button as a link (<a href>) for navigation.',
+      table: { category: 'Link' },
+    },
+    target: {
+      control: 'select',
+      options: [undefined, '_blank'],
+      description: 'Link target; only used together with href.',
+      if: { arg: 'href' },
+      table: { category: 'Link' },
+    },
+    rel: { control: false, table: { disable: true } },
     onClick: { control: false, table: { disable: true } },
     type: { control: false, table: { disable: true } },
     className: { control: false, table: { disable: true } },
@@ -91,14 +104,15 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ReactPlayground: Story = {
-  name: 'React Playground',
-  render: ({ leadingIcon, trailingIcon, ...args }) => {
+export const Playground: Story = {
+  name: 'Playground',
+  render: ({ leadingIcon, trailingIcon, href, ...args }) => {
     const showLeading = Boolean(leadingIcon);
     const showTrailing = Boolean(trailingIcon) && !showLeading;
     return (
       <Button
         {...args}
+        href={href || undefined}
         leadingIcon={showLeading ? <IconPlaceholder /> : undefined}
         trailingIcon={showTrailing ? <IconPlaceholder /> : undefined}
       />

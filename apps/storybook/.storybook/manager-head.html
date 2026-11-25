@@ -51,6 +51,19 @@
     background-position: center;
     background-size: 16px 16px;
   }
+  /* Logo: the green CKW dot */
+  [data-item-id='foundations-logo--docs'].sidebar-item a::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-right: 6px;
+    flex: 0 0 16px;
+    background-image: url("data:image/svg+xml,%3Csvg width='16' height='16' viewBox='0 0 16 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='1' y='1' width='14' height='14' rx='3' fill='%23365F10'/%3E%3Ccircle cx='10.5' cy='10.5' r='2.5' fill='%2386BC46'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 16px 16px;
+  }
   /* Hide doc icons for component entries in the sidebar */
   [data-item-id*='components-'].sidebar-item a > div:first-child {
     display: none !important;

@@ -57,8 +57,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ReactPlayground: Story = {
-  name: 'React Playground',
+export const Playground: Story = {
+  name: 'Playground',
   render: (args) => (
     <div style={{ maxWidth: '320px' }}>
       <Select {...args} />

@@ -58,8 +58,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ReactPlayground: Story = {
-  name: 'React Playground',
+export const Playground: Story = {
+  name: 'Playground',
   render: ({ variant, contentMode, activeValue }) => {
     const [currentValue, setCurrentValue] = React.useState(activeValue);
     const showIcons = contentMode !== 'label';

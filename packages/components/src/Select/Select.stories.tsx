@@ -137,8 +137,14 @@ export const Controlled: Story = {
   },
 };
 
-/** The list opened, to compare with the Figma Active variant. */
+/**
+ * The list opened, to compare with the Figma Active variant. Rendered in its own iframe in the docs,
+ * because an open Radix Select locks scrolling and pointer events on the whole page.
+ */
 export const Open: Story = {
+  parameters: {
+    docs: { story: { inline: false, height: '320px' } },
+  },
   render: () => (
     <div style={{ ...fieldWidth, height: '280px' }}>
       <Select label="Vertrag" options={contracts} defaultValue="kreuzmatt" defaultOpen />

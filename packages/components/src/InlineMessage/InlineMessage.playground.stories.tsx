@@ -50,7 +50,7 @@ const meta = {
   },
   args: {
     title: 'Statusmeldung',
-    children: 'Hier steht eine kurze Erklaerung zum aktuellen Status oder zur naechsten Aktion.',
+    children: 'Hier steht eine kurze Erklärung zum aktuellen Status oder zur nächsten Aktion.',
     status: 'info',
     showIcon: true,
     breakpoint: 'auto',
@@ -61,8 +61,8 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ReactPlayground: Story = {
-  name: 'React Playground',
+export const Playground: Story = {
+  name: 'Playground',
   render: (args) => (
     <div style={{ maxWidth: args.breakpoint === 'mobile' ? '361px' : '720px' }}>
       <InlineMessage {...args} />

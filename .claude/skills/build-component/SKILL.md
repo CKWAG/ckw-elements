@@ -42,7 +42,8 @@ convention, say so and ask.
 ## 3. Code
 
 - `packages/components/src/<Name>/`: `<Name>.tsx`, `<Name>.css`, `index.ts`, `<Name>.stories.tsx`,
-  `<Name>.playground.stories.tsx`, `Overview.mdx`; export it from `src/index.ts`, add the node to
+  `<Name>.playground.stories.tsx`, `Overview.mdx`; the docs page follows the structure in Getting Started → Storybook
+  Standards (Docs → Playground → examples; the docs Playground is `Canvas`/`Controls` of the `Playground` story); export it from `src/index.ts`, add the node to
   `src/storybook/figmaLinks.ts`.
 - Follow `AGENTS.md` (semantic tokens only, `import React`, interfaces for props, JSDoc).
 - Code Connect: add `<Name>.figma.ts` (template file) next to the component. Header `// url=` points at the
