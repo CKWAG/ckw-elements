@@ -137,7 +137,13 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
         disabled={disabled}
         aria-disabled={loading ? true : ariaDisabled}
         aria-busy={loading ? true : ariaBusy}
-        onClick={loading ? undefined : onClick}
+        onClick={(event) => {
+          if (loading) {
+            event.preventDefault();
+            return;
+          }
+          onClick?.(event);
+        }}
       >
         {content}
       </button>
