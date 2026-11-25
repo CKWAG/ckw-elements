@@ -53,6 +53,8 @@ Install the packages in any React application:
 npm install @ckwag/elements-tokens @ckwag/elements-icons @ckwag/elements
 ```
 
+> **SSR limitation:** `@ckwag/elements` does not currently support server-side rendering. In frameworks such as Next.js, render CKW Elements components client-side only; a `'use client'` directive alone does not disable Next.js prerendering.
+
 > **Development builds:** To use the latest unreleased version from `main`, install with the `dev` tag:
 >
 > ```bash

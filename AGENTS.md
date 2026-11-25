@@ -400,3 +400,4 @@ string value).
 | M3  | `theme.ts` brand colors are hardcoded hex (Storybook `create()` needs raw strings) |
 | L3  | No root `tsconfig.json` — package configs extend `tsconfig.base.json`              |
 | L9  | React import required in all TSX until the JSX runtime is changed                  |
+| L10 | SSR unsupported; Next.js must render components client-side only                      |
