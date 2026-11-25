@@ -5,7 +5,7 @@ import './Card.css';
 export type CardPadding = 'medium' | 'large';
 export type CardTitleElement = 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'div';
 
-export interface CardProps extends Omit<React.ComponentProps<'div'>, 'ref'> {
+export interface CardProps extends React.ComponentPropsWithoutRef<'div'> {
   /** Card content, usually CardHeader, CardContent and CardFooter. */
   children: React.ReactNode;
   /** Inner padding: medium (16px) for compact cards, large (24px) for content-heavy cards. */
@@ -85,7 +85,7 @@ export const Card = React.forwardRef<HTMLDivElement | HTMLAnchorElement, CardPro
   );
 });
 
-export interface CardHeaderProps extends React.ComponentProps<'div'> {
+export interface CardHeaderProps extends React.ComponentPropsWithoutRef<'div'> {
   /** Usually CardTitle and an optional CardDescription. */
   children: React.ReactNode;
   /**
@@ -100,11 +100,18 @@ export interface CardHeaderProps extends React.ComponentProps<'div'> {
  * Header row of a Card with an optional leading icon tile. In an interactive card it shows
  * the chevron on the right. All items are vertically centred.
  */
-export function CardHeader({ children, icon, className, ...props }: CardHeaderProps) {
+export const CardHeader = React.forwardRef<HTMLDivElement, CardHeaderProps>(function CardHeader(
+  { children, icon, className, ...props },
+  ref,
+) {
   const { interactive, showChevron } = React.useContext(CardContext);
 
   return (
-    <div className={['ckw-card__header', className ?? ''].filter(Boolean).join(' ')} {...props}>
+    <div
+      {...props}
+      ref={ref}
+      className={['ckw-card__header', className ?? ''].filter(Boolean).join(' ')}
+    >
       {icon && (
         <span className="ckw-card__icon" aria-hidden="true">
           {icon}
@@ -118,9 +125,9 @@ export function CardHeader({ children, icon, className, ...props }: CardHeaderPr
       )}
     </div>
   );
-}
+});
 
-export interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+export interface CardTitleProps extends React.ComponentPropsWithoutRef<'h3'> {
   /** Title text. */
   children: React.ReactNode;
   /** Element to render. Pick the heading level that fits the page outline. */
@@ -130,15 +137,22 @@ export interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement>
 /**
  * Title of a Card. Renders an `h3` by default; set `as` to match the page's heading outline.
  */
-export function CardTitle({ children, as: Element = 'h3', className, ...props }: CardTitleProps) {
+export const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(function CardTitle(
+  { children, as: Element = 'h3', className, ...props },
+  ref,
+) {
   return (
-    <Element className={['ckw-card__title', className ?? ''].filter(Boolean).join(' ')} {...props}>
+    <Element
+      {...props}
+      ref={ref}
+      className={['ckw-card__title', className ?? ''].filter(Boolean).join(' ')}
+    >
       {children}
     </Element>
   );
-}
+});
 
-export interface CardDescriptionProps extends React.ComponentProps<'p'> {
+export interface CardDescriptionProps extends React.ComponentPropsWithoutRef<'p'> {
   /** Short supporting text below the title. */
   children: React.ReactNode;
 }
@@ -146,15 +160,21 @@ export interface CardDescriptionProps extends React.ComponentProps<'p'> {
 /**
  * Supporting text below the CardTitle, for example a period or an address.
  */
-export function CardDescription({ children, className, ...props }: CardDescriptionProps) {
-  return (
-    <p className={['ckw-card__description', className ?? ''].filter(Boolean).join(' ')} {...props}>
-      {children}
-    </p>
-  );
-}
+export const CardDescription = React.forwardRef<HTMLParagraphElement, CardDescriptionProps>(
+  function CardDescription({ children, className, ...props }, ref) {
+    return (
+      <p
+        {...props}
+        ref={ref}
+        className={['ckw-card__description', className ?? ''].filter(Boolean).join(' ')}
+      >
+        {children}
+      </p>
+    );
+  },
+);
 
-export interface CardContentProps extends React.ComponentProps<'div'> {
+export interface CardContentProps extends React.ComponentPropsWithoutRef<'div'> {
   /** Any content, for example a Key-Value List or a KPI. */
   children: React.ReactNode;
 }
@@ -162,15 +182,22 @@ export interface CardContentProps extends React.ComponentProps<'div'> {
 /**
  * Main content area of a Card (the `Content` slot in Figma).
  */
-export function CardContent({ children, className, ...props }: CardContentProps) {
+export const CardContent = React.forwardRef<HTMLDivElement, CardContentProps>(function CardContent(
+  { children, className, ...props },
+  ref,
+) {
   return (
-    <div className={['ckw-card__content', className ?? ''].filter(Boolean).join(' ')} {...props}>
+    <div
+      {...props}
+      ref={ref}
+      className={['ckw-card__content', className ?? ''].filter(Boolean).join(' ')}
+    >
       {children}
     </div>
   );
-}
+});
 
-export interface CardFooterProps extends React.ComponentProps<'div'> {
+export interface CardFooterProps extends React.ComponentPropsWithoutRef<'div'> {
   /** Actions or meta information at the bottom of the card. */
   children: React.ReactNode;
 }
@@ -179,10 +206,17 @@ export interface CardFooterProps extends React.ComponentProps<'div'> {
  * Footer row of a Card for actions or meta information. Do not put links or buttons
  * into an interactive card (one with `href`).
  */
-export function CardFooter({ children, className, ...props }: CardFooterProps) {
+export const CardFooter = React.forwardRef<HTMLDivElement, CardFooterProps>(function CardFooter(
+  { children, className, ...props },
+  ref,
+) {
   return (
-    <div className={['ckw-card__footer', className ?? ''].filter(Boolean).join(' ')} {...props}>
+    <div
+      {...props}
+      ref={ref}
+      className={['ckw-card__footer', className ?? ''].filter(Boolean).join(' ')}
+    >
       {children}
     </div>
   );
-}
+});
