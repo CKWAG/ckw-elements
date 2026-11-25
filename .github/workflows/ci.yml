@@ -5,9 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  merge_group:
+  workflow_dispatch:
 
 concurrency:
-  group: ci-${{ github.head_ref }}
+  group: ci-${{ github.event_name }}-${{ github.event.pull_request.number || github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -60,3 +62,46 @@ jobs:
 
       - name: Dry-run npm packages
         run: pnpm release:pack
+
+  visual-regression:
+    name: Visual regression
+    needs: check
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build tokens
+        run: pnpm --filter @ckwag/elements-tokens run build
+
+      - name: Build components
+        run: pnpm --filter @ckwag/elements run build
+
+      - name: Build Storybook
+        run: pnpm --filter @ckwag/elements-storybook run build
+
+      - name: Run Chromatic
+        uses: chromaui/action@v13
+        env:
+          CHROMATIC_BRANCH: ${{ github.event.pull_request.head.ref }}
+          CHROMATIC_SHA: ${{ github.event.pull_request.head.sha }}
+          CHROMATIC_SLUG: ${{ github.event_name == 'pull_request' && github.repository || '' }}
+        with:
+          projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          workingDir: apps/storybook
+          storybookBuildDir: storybook-static
+          exitZeroOnChanges: false

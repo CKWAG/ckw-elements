@@ -238,10 +238,11 @@ We welcome contributions! Here's how to get started:
 
 ### Visual regression review
 
-The [Chromatic](https://www.chromatic.com/storybook) workflow captures Storybook stories on branch
-pushes and compares them with approved baselines. It also runs for merge queues and can be started
-manually from GitHub Actions. Visual changes fail the **Visual regression** job until reviewed; they
-are not automatically accepted.
+After CI checks succeed, [Chromatic](https://www.chromatic.com/storybook) captures Storybook stories
+on pull requests, pushes to `main`, and merge queues and compares them with approved baselines.
+The CI workflow can also be started manually from GitHub Actions. Visual changes fail the
+**Visual regression** job until reviewed; they are not automatically accepted. Storybook deployment
+on `main` waits for the full CI workflow, including Chromatic.
 
 1. Open the Chromatic build linked from the workflow or pull request and inspect the visual changes.
 2. Accept intentional changes as baselines, or reject them and push a fix. New stories need review
@@ -256,11 +257,11 @@ Run the workflow on `main` to establish the initial baseline, then update existi
 repository's branch protection/ruleset; without those settings, GitHub does not block merging.
 Assign default reviewers in Chromatic when approval by specific teammates is required.
 
-Secrets are not available to forked pull requests. A maintainer can review the code and push it to a
-branch in this repository to run Chromatic without exposing the token. Pushes made by workflows
-using `GITHUB_TOKEN` do not trigger this workflow; run it manually on the branch instead. Chromatic
-uploads the built Storybook, including its static assets, so ensure their licensing permits hosting
-there before enabling the integration.
+Secrets are not available to forked pull requests. A maintainer can review the code and open a pull
+request from a branch in this repository to run Chromatic without exposing the token. Pull requests
+created by workflows using `GITHUB_TOKEN` do not trigger CI; close and reopen the pull request or
+push a commit to it. Chromatic uploads the built Storybook, including its static assets, so ensure
+their licensing permits hosting there before enabling the integration.
 
 ### Adding a Component
 
