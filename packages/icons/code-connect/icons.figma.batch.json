@@ -434,6 +434,14 @@
       "component": "IconCloudy"
     },
     {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=2229-402",
+      "name": "IconCodeHand",
+      "id": "icon-code-hand",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconCodeHand"
+    },
+    {
       "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=326-6453",
       "name": "IconCoins",
       "id": "icon-coins",
@@ -504,6 +512,14 @@
       "importPath": "@ckwag/elements-icons",
       "source": "packages/icons/src/index.tsx",
       "component": "IconFile"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=2226-401",
+      "name": "IconFileCode",
+      "id": "icon-file-code",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconFileCode"
     },
     {
       "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-107",
@@ -728,6 +744,14 @@
       "importPath": "@ckwag/elements-icons",
       "source": "packages/icons/src/index.tsx",
       "component": "IconMeter"
+    },
+    {
+      "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=2391-1822",
+      "name": "IconMinus",
+      "id": "icon-minus",
+      "importPath": "@ckwag/elements-icons",
+      "source": "packages/icons/src/index.tsx",
+      "component": "IconMinus"
     },
     {
       "url": "https://www.figma.com/design/wGx1Y74QZIsy40UATyN6bI/CKW-Elements?node-id=492-754",

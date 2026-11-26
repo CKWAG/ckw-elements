@@ -216,6 +216,10 @@
     "figmaNodeId": "491:842"
   },
   {
+    "name": "code-hand",
+    "figmaNodeId": "2229:402"
+  },
+  {
     "name": "coins",
     "figmaNodeId": "326:6453"
   },
@@ -250,6 +254,10 @@
   {
     "name": "file",
     "figmaNodeId": "492:104"
+  },
+  {
+    "name": "file-code",
+    "figmaNodeId": "2226:401"
   },
   {
     "name": "file-download",
@@ -362,6 +370,10 @@
   {
     "name": "meter",
     "figmaNodeId": "537:559"
+  },
+  {
+    "name": "minus",
+    "figmaNodeId": "2391:1822"
   },
   {
     "name": "minus-circle",

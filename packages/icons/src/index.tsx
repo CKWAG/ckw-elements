@@ -55,6 +55,7 @@ export const iconNames = [
   'close',
   'close-circle-filled',
   'cloudy',
+  'code-hand',
   'coins',
   'coins-filled',
   'copy',
@@ -64,6 +65,7 @@ export const iconNames = [
   'external-link',
   'faq',
   'file',
+  'file-code',
   'file-download',
   'file-upload',
   'graph-ascend',
@@ -92,6 +94,7 @@ export const iconNames = [
   'menu',
   'message',
   'meter',
+  'minus',
   'minus-circle',
   'more-horizontal',
   'more-vertical',
@@ -239,6 +242,7 @@ export const iconMetadata = [
   { name: 'close', componentName: 'IconClose', figmaNodeId: '491:824' },
   { name: 'close-circle-filled', componentName: 'IconCloseCircleFilled', figmaNodeId: '491:838' },
   { name: 'cloudy', componentName: 'IconCloudy', figmaNodeId: '491:842' },
+  { name: 'code-hand', componentName: 'IconCodeHand', figmaNodeId: '2229:402' },
   { name: 'coins', componentName: 'IconCoins', figmaNodeId: '326:6453' },
   { name: 'coins-filled', componentName: 'IconCoinsFilled', figmaNodeId: '2077:447' },
   { name: 'copy', componentName: 'IconCopy', figmaNodeId: '2177:526' },
@@ -248,6 +252,7 @@ export const iconMetadata = [
   { name: 'external-link', componentName: 'IconExternalLink', figmaNodeId: '492:461' },
   { name: 'faq', componentName: 'IconFaq', figmaNodeId: '537:573' },
   { name: 'file', componentName: 'IconFile', figmaNodeId: '492:104' },
+  { name: 'file-code', componentName: 'IconFileCode', figmaNodeId: '2226:401' },
   { name: 'file-download', componentName: 'IconFileDownload', figmaNodeId: '492:107' },
   { name: 'file-upload', componentName: 'IconFileUpload', figmaNodeId: '492:110' },
   { name: 'graph-ascend', componentName: 'IconGraphAscend', figmaNodeId: '492:168' },
@@ -276,6 +281,7 @@ export const iconMetadata = [
   { name: 'menu', componentName: 'IconMenu', figmaNodeId: '2177:572' },
   { name: 'message', componentName: 'IconMessage', figmaNodeId: '492:750' },
   { name: 'meter', componentName: 'IconMeter', figmaNodeId: '537:559' },
+  { name: 'minus', componentName: 'IconMinus', figmaNodeId: '2391:1822' },
   { name: 'minus-circle', componentName: 'IconMinusCircle', figmaNodeId: '492:754' },
   { name: 'more-horizontal', componentName: 'IconMoreHorizontal', figmaNodeId: '2177:584' },
   { name: 'more-vertical', componentName: 'IconMoreVertical', figmaNodeId: '2177:596' },
@@ -1625,6 +1631,28 @@ export function IconCloudy({ title, size = 24, ...props }: IconProps) {
   );
 }
 
+/** Renders the code hand icon from the CKW Elements Figma icon set. */
+export function IconCodeHand({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        d="M10.1364 12.8333C11.0832 12.8334 11.9493 13.3684 12.3728 14.2152L13.3485 16.1667H17.9326C19.2582 16.1668 20.3333 17.2418 20.3333 18.5674C20.3332 19.7553 19.4638 20.7648 18.2891 20.9412L11.2903 21.9911C11.1821 22.0072 11.0711 22.0013 10.9648 21.9748L2 19.7336V18.0164L11.2058 20.3178L18.0417 19.2925C18.4006 19.2385 18.6665 18.9304 18.6667 18.5674C18.6667 18.1623 18.3378 17.8335 17.9326 17.8333H8.66667V16.1667H11.4848L10.8818 14.9606C10.7407 14.6785 10.4518 14.5001 10.1364 14.5H2V12.8333H10.1364ZM13.1564 10.3333H11.3994L14.1769 2H15.9339L13.1564 10.3333ZM10.0892 3.42253L7.34505 6.16667L10.0892 8.91081L8.91081 10.0892L5.57748 6.75586C5.25203 6.43043 5.25203 5.90291 5.57748 5.57748L8.91081 2.24414L10.0892 3.42253ZM21.7558 5.57748C22.0813 5.90291 22.0813 6.43043 21.7558 6.75586L18.4225 10.0892L17.2442 8.91081L19.9883 6.16667L17.2442 3.42253L18.4225 2.24414L21.7558 5.57748Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 /** Renders the coins icon from the CKW Elements Figma icon set. */
 export function IconCoins({ title, size = 24, ...props }: IconProps) {
   return (
@@ -1827,6 +1855,30 @@ export function IconFile({ title, size = 24, ...props }: IconProps) {
       {title && <title>{title}</title>}
       <path
         d="M14.845 3.6665H7.00004C6.55802 3.6665 6.13409 3.8421 5.82153 4.15466C5.50897 4.46722 5.33337 4.89115 5.33337 5.33317V18.6665C5.33337 19.1085 5.50897 19.5324 5.82153 19.845C6.13409 20.1576 6.55802 20.3332 7.00004 20.3332H17C17.442 20.3332 17.866 20.1576 18.1785 19.845C18.4911 19.5324 18.6667 19.1085 18.6667 18.6665V7.48817L14.845 3.6665ZM17 18.6665H7.00004V5.33317H13.6667V8.6665H17V18.6665Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
+/** Renders the file code icon from the CKW Elements Figma icon set. */
+export function IconFileCode({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M4.49996 2C4.03973 2 3.66663 2.3731 3.66663 2.83333V21.1667C3.66663 21.6269 4.03973 22 4.49996 22H20.3333C20.7935 22 21.1666 21.6269 21.1666 21.1667V7.83333C21.1666 7.61232 21.0788 7.40036 20.9225 7.24407L15.9225 2.24408C15.7663 2.0878 15.5543 2 15.3333 2H4.49996ZM5.33329 20.3333V3.66667H14.5V8.66667H19.5V20.3333H5.33329ZM8.07737 13.9108L10.5774 11.4108L11.7559 12.5892L9.84513 14.5L11.7559 16.4108L10.5774 17.5892L8.07737 15.0892C7.75193 14.7638 7.75193 14.2362 8.07737 13.9108ZM13.0774 12.5892L14.9881 14.5L13.0774 16.4108L14.2559 17.5892L16.7559 15.0892C17.0813 14.7638 17.0813 14.2362 16.7559 13.9108L14.2559 11.4108L13.0774 12.5892Z"
         fill="currentColor"
       />
     </svg>
@@ -2465,6 +2517,25 @@ export function IconMeter({ title, size = 24, ...props }: IconProps) {
         d="M17 3.66699C17.442 3.66699 17.8659 3.84271 18.1785 4.15528C18.491 4.46783 18.6667 4.89163 18.6667 5.33366V18.667C18.6667 19.109 18.491 19.5328 18.1785 19.8454C17.8659 20.1579 17.442 20.3337 17 20.3337H7.00004C6.55802 20.3337 6.13422 20.1579 5.82166 19.8454C5.50909 19.5328 5.33337 19.109 5.33337 18.667V5.33366C5.33337 4.89163 5.50909 4.46783 5.82166 4.15528C6.13422 3.84271 6.55802 3.66699 7.00004 3.66699H17ZM7.00004 18.667H17V5.33366H7.00004V18.667ZM9.37634 13.0241C9.83308 12.8349 10.336 12.7852 10.8209 12.8817C11.3058 12.9782 11.7513 13.2164 12.101 13.5661C12.4506 13.9157 12.6889 14.3612 12.7854 14.8462C12.8818 15.3311 12.8321 15.834 12.643 16.2907C12.4537 16.7472 12.1335 17.1375 11.7225 17.4121C11.3114 17.6868 10.8278 17.8337 10.3334 17.8337C9.67033 17.8337 9.03464 17.5701 8.5658 17.1012C8.09696 16.6324 7.83337 15.9967 7.83337 15.3337C7.83337 14.8392 7.98022 14.3557 8.25492 13.9445C8.52956 13.5336 8.91977 13.2133 9.37634 13.0241ZM14.5 16.167C14.9603 16.167 15.3334 16.5401 15.3334 17.0003C15.3334 17.4606 14.9603 17.8337 14.5 17.8337C14.0398 17.8337 13.6667 17.4606 13.6667 17.0003C13.6667 16.5401 14.0398 16.167 14.5 16.167ZM10.3334 14.5003C10.1124 14.5003 9.90046 14.5882 9.74418 14.7445C9.5879 14.9007 9.50004 15.1127 9.50004 15.3337C9.50004 15.4985 9.54926 15.6597 9.64083 15.7967C9.73237 15.9337 9.86222 16.0405 10.0144 16.1035C10.1666 16.1666 10.3345 16.1829 10.4961 16.1507C10.6577 16.1185 10.806 16.0393 10.9225 15.9228C11.039 15.8063 11.1182 15.658 11.1505 15.4964C11.1826 15.3347 11.1663 15.1669 11.1032 15.0147C11.0402 14.8625 10.9334 14.7327 10.7965 14.6411C10.6594 14.5496 10.4982 14.5003 10.3334 14.5003ZM14.5 13.667C14.9603 13.667 15.3334 14.0401 15.3334 14.5003C15.3334 14.9606 14.9603 15.3337 14.5 15.3337C14.0398 15.3337 13.6667 14.9606 13.6667 14.5003C13.6667 14.0401 14.0398 13.667 14.5 13.667ZM15.3334 6.16699C15.5544 6.16699 15.7663 6.25485 15.9225 6.41113C16.0789 6.56741 16.1667 6.77931 16.1667 7.00033V11.167C16.1667 11.388 16.0789 11.5999 15.9225 11.7562C15.7663 11.9125 15.5544 12.0003 15.3334 12.0003H8.66671C8.44569 12.0003 8.23379 11.9125 8.07752 11.7562C7.92123 11.5999 7.83337 11.388 7.83337 11.167V7.00033C7.83337 6.77931 7.92123 6.56741 8.07752 6.41113C8.23379 6.25485 8.44569 6.16699 8.66671 6.16699H15.3334ZM9.50004 10.3337H10.8436L10.3733 8.93067L11.9569 8.40251L12.6006 10.3337H14.5V7.83366H9.50004V10.3337Z"
         fill="currentColor"
       />
+    </svg>
+  );
+}
+
+/** Renders the minus icon from the CKW Elements Figma icon set. */
+export function IconMinus({ title, size = 24, ...props }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      focusable="false"
+      {...getAccessibilityProps(title)}
+      {...props}
+    >
+      {title && <title>{title}</title>}
+      <path d="M21.1667 11.167V12.8337H2.83337V11.167H21.1667Z" fill="currentColor" />
     </svg>
   );
 }
@@ -3628,6 +3699,7 @@ export const iconComponents = {
   close: IconClose,
   'close-circle-filled': IconCloseCircleFilled,
   cloudy: IconCloudy,
+  'code-hand': IconCodeHand,
   coins: IconCoins,
   'coins-filled': IconCoinsFilled,
   copy: IconCopy,
@@ -3637,6 +3709,7 @@ export const iconComponents = {
   'external-link': IconExternalLink,
   faq: IconFaq,
   file: IconFile,
+  'file-code': IconFileCode,
   'file-download': IconFileDownload,
   'file-upload': IconFileUpload,
   'graph-ascend': IconGraphAscend,
@@ -3665,6 +3738,7 @@ export const iconComponents = {
   menu: IconMenu,
   message: IconMessage,
   meter: IconMeter,
+  minus: IconMinus,
   'minus-circle': IconMinusCircle,
   'more-horizontal': IconMoreHorizontal,
   'more-vertical': IconMoreVertical,
