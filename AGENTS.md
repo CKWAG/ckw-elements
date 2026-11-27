@@ -50,8 +50,9 @@ global pnpm versions switch to it automatically.
 - **CI** — `.github/workflows/ci.yml` on push/PR to `main`.
 
 The CI workflow runs Chromatic after its checks pass on pull requests, pushes to `main`, merge
-queues and manual dispatch. It requires the `CHROMATIC_PROJECT_TOKEN` repository secret and human
-approval of visual changes; see [Visual regression review](README.md#visual-regression-review) for
+queues and manual dispatch. It requires the `CHROMATIC_PROJECT_TOKEN` repository secret. Visual
+changes do not fail the job; Chromatic's required **UI Tests** check gates merging until a human
+approves them; see [Visual regression review](README.md#visual-regression-review) for
 setup, required checks and fork limitations. Storybook deployment waits for the full CI workflow,
 including Chromatic.
 
