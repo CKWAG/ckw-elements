@@ -13,7 +13,6 @@ on:
       - 'packages/icons/src/index.tsx'
       - 'scripts/generate-icon-code-connect.mjs'
       - 'package.json'
-  workflow_dispatch:
 
 permissions:
   contents: read

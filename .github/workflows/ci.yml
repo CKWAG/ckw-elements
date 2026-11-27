@@ -104,4 +104,4 @@ jobs:
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
           workingDir: apps/storybook
           storybookBuildDir: storybook-static
-          exitZeroOnChanges: false
+          exitZeroOnChanges: true

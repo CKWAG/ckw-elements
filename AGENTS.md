@@ -50,8 +50,9 @@ global pnpm versions switch to it automatically.
 - **CI** — `.github/workflows/ci.yml` on push/PR to `main`.
 
 The CI workflow runs Chromatic after its checks pass on pull requests, pushes to `main`, merge
-queues and manual dispatch. It requires the `CHROMATIC_PROJECT_TOKEN` repository secret and human
-approval of visual changes; see [Visual regression review](README.md#visual-regression-review) for
+queues and manual dispatch. It requires the `CHROMATIC_PROJECT_TOKEN` repository secret. Visual
+changes do not fail the job; Chromatic's required **UI Tests** check gates merging until a human
+approves them; see [Visual regression review](README.md#visual-regression-review) for
 setup, required checks and fork limitations. Storybook deployment waits for the full CI workflow,
 including Chromatic.
 
@@ -324,8 +325,8 @@ Only these title CSS classes exist in `docs.css`: `specs-title-4xl`, `specs-titl
   `import 'typescript'`, read the TypeScript 7 entry in `KNOWN_ISSUES.md`.
 - Published packages: keep `peerDependencies` (`react`, `react-dom` `>=18 <20`) wide; only
   narrow them with a breaking changeset. Do not add runtime `dependencies` without a reason.
-- pnpm settings (`onlyBuiltDependencies`, `overrides`) live in the root `package.json` `pnpm`
-  field while the repo is on pnpm 10. Security overrides there must stay until upstream fixes land.
+- pnpm settings (`onlyBuiltDependencies`, `overrides`) live in the root `pnpm-workspace.yaml`.
+  Security overrides must stay until upstream fixes land.
 
 ---
 
