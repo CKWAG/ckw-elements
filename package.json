@@ -32,18 +32,6 @@
     "node": ">=22",
     "pnpm": ">=10"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "esbuild",
-      "style-dictionary",
-      "@bundled-es-modules/glob"
-    ],
-    "overrides": {
-      "picomatch": ">=4.0.4",
-      "brace-expansion@^2": ">=2.0.3 <3",
-      "postcss": ">=8.5.10"
-    }
-  },
   "packageManager": "pnpm@10.11.0",
   "lint-staged": {
     "*": "prettier --write --ignore-unknown"
