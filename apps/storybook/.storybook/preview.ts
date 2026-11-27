@@ -7,7 +7,21 @@ import '@ckwag/elements-tokens/tokens.css';
 // Documentation chrome styles (CKW design tokens, Gotham, JetBrains Mono @font-face)
 import '../src/docs.css';
 
+/**
+ * Waits for the Gotham weights used by components before a story renders.
+ * The @font-face rules use `font-display: swap`, so components that measure
+ * text on mount would otherwise measure the fallback font, making visual
+ * snapshots flaky.
+ */
+const loadFonts = async (): Promise<Record<string, never>> => {
+  await Promise.all(
+    ['325', '500', '700'].map((weight) => document.fonts.load(`${weight} 1em Gotham`)),
+  );
+  return {};
+};
+
 const preview: Preview = {
+  loaders: [loadFonts],
   parameters: {
     docs: {
       theme: ckwTheme,
