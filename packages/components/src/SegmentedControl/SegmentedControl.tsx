@@ -106,6 +106,18 @@ export function SegmentedControl({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeValue, segmentsKey, variant, contentMode, hasAnimated]);
 
+  // Re-measure when segment sizes change after mount, e.g. when a web font
+  // finishes loading or the container is resized.
+  React.useEffect(() => {
+    const container = containerRef.current;
+    if (!container || typeof ResizeObserver === 'undefined') return;
+
+    const observer = new ResizeObserver(() => updateIndicator());
+    observer.observe(container);
+    segmentRefs.current.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, [segmentsKey, updateIndicator]);
+
   // For compact mode: the grid transition changes segment widths over 250ms.
   // We need to keep re-measuring the indicator during the transition so it
   // tracks the active segment's position as it expands/collapses.
